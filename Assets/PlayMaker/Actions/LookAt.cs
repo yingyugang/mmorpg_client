@@ -83,6 +83,11 @@ namespace HutongGames.PlayMaker.Actions
 
         public bool UpdateLookAtPosition()
         {
+            if (Fsm == null)
+            {
+                return false;
+            }
+
             go = Fsm.GetOwnerDefaultTarget(gameObject);
             if (go == null)
             {

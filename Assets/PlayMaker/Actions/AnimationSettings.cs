@@ -6,7 +6,7 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Animation)]
 	[Tooltip("Set the Wrap Mode, Blend Mode, Layer and Speed of an Animation.\nNOTE: Settings are applied once, on entering the state, NOT continuously. To dynamically control an animation's settings, use Set Animation Speede etc.")]
-	public class AnimationSettings : FsmStateAction
+	public class AnimationSettings : BaseAnimationAction
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(Animation))]
@@ -48,22 +48,20 @@ namespace HutongGames.PlayMaker.Actions
 			Finish();
 		}
 
-		void DoAnimationSettings()
+	    private void DoAnimationSettings()
 		{
+            if (string.IsNullOrEmpty(animName.Value))
+            {
+                return;
+            }
+
 			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-			if (go == null || string.IsNullOrEmpty(animName.Value))
+			if (!UpdateCache(go))
 			{
 				return;
 			}
 
-			if (go.GetComponent<Animation>() == null)
-			{
-				LogWarning("Missing animation component: " + go.name);
-				return;
-			}
-
-			var anim = go.GetComponent<Animation>()[animName.Value];
-
+			var anim = animation[animName.Value];
 			if (anim == null)
 			{
 				LogWarning("Missing animation: " + animName.Value);

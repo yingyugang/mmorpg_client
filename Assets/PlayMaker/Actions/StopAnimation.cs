@@ -6,7 +6,7 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Animation)]
 	[Tooltip("Stops all playing Animations on a Game Object. Optionally, specify a single Animation to Stop.")]
-	public class StopAnimation : FsmStateAction
+	public class StopAnimation : BaseAnimationAction
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(Animation))]
@@ -28,20 +28,25 @@ namespace HutongGames.PlayMaker.Actions
 			Finish();
 		}
 
-		void DoStopAnimation()
+	    private void DoStopAnimation()
 		{
-			GameObject go = Fsm.GetOwnerDefaultTarget(gameObject);
-			if (go == null) return;
+			var go = Fsm.GetOwnerDefaultTarget(gameObject);
+		    if (!UpdateCache(go))
+		    {
+		        return;
+		    }
 
-			if (go.GetComponent<Animation>() == null)
-			{
-				LogWarning("Missing animation component: " + go.name);
-				return;
-			}
-
-			go.GetComponent<Animation>().Stop(animName.Value);
+            if (FsmString.IsNullOrEmpty(animName))
+            {
+                animation.Stop();
+            }
+            else
+            {
+                animation.Stop(animName.Value);
+            }
 		}
-		/*
+
+        /*
 			public override string ErrorCheck()
 			{
 				return ErrorCheckHelpers.CheckAnimationSetup(gameObject.value);

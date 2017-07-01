@@ -5,7 +5,7 @@ using UnityEngine;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.ScriptControl)]
-	[Tooltip("Enables/Disables a Behaviour on a GameObject. Optionally reset the Behaviour on exit - useful if you only want the Behaviour to be active while this state is active.")]
+	[Tooltip("Enables/Disables a Behaviour on a GameObject. Optionally reset the Behaviour on exit - useful if you want the Behaviour to be active only while this state is active.")]
 	public class EnableBehaviour : FsmStateAction
 	{
 		[RequiredField]
@@ -56,7 +56,7 @@ namespace HutongGames.PlayMaker.Actions
 			}
 			else
 			{
-				componentTarget = go.GetComponent(behaviour.Value) as Behaviour;
+				componentTarget = go.GetComponent(ReflectionUtils.GetGlobalType(behaviour.Value)) as Behaviour;
 			}
 
 			if (componentTarget == null)
@@ -90,7 +90,7 @@ namespace HutongGames.PlayMaker.Actions
 	            return null;
 	        }
 
-	        var comp = go.GetComponent(behaviour.Value) as Behaviour;
+	        var comp = go.GetComponent(ReflectionUtils.GetGlobalType(behaviour.Value)) as Behaviour;
 	        return comp != null ? null : "Behaviour missing";
 	    }
 	}

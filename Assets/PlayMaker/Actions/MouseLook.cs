@@ -22,9 +22,11 @@ namespace HutongGames.PlayMaker.Actions
 		public RotationAxes axes = RotationAxes.MouseXAndY;
 
 		[RequiredField]
+		[Tooltip("Sensitivity of movement in X direction.")]
 		public FsmFloat sensitivityX;
 
 		[RequiredField]
+		[Tooltip("Sensitivity of movement in Y direction.")]
 		public FsmFloat sensitivityY;
 
 		[HasFloatSlider(-360,360)]
@@ -73,9 +75,10 @@ namespace HutongGames.PlayMaker.Actions
 
 			// Make the rigid body not change rotation
 			// TODO: Original Unity script had this. Expose as option?
-			if (go.GetComponent<Rigidbody>())
+		    var rigidbody = go.GetComponent<Rigidbody>();
+            if (rigidbody != null)
 			{
-				go.GetComponent<Rigidbody>().freezeRotation = true;
+				rigidbody.freezeRotation = true;
 			}
 
             // initialize rotation

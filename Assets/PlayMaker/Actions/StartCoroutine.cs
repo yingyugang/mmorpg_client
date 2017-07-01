@@ -1,5 +1,12 @@
 // (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
 
+#if UNITY_EDITOR
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
+#endif
+
 using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
@@ -35,6 +42,13 @@ namespace HutongGames.PlayMaker.Actions
 
 		MonoBehaviour component;
 
+#if UNITY_EDITOR
+
+	    private Type cachedType;
+	    private List<string> methodNames;
+
+#endif
+
 		public override void OnEnter()
 		{
 			DoStartCoroutine();
@@ -50,7 +64,7 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-			component = go.GetComponent(behaviour.Value) as MonoBehaviour;
+			component = go.GetComponent(ReflectionUtils.GetGlobalType(behaviour.Value)) as MonoBehaviour;
 
 			if (component == null)
 			{
@@ -126,6 +140,41 @@ namespace HutongGames.PlayMaker.Actions
 				component.StopCoroutine(functionCall.FunctionName);
 			}
 		}
+
+#if UNITY_EDITOR
+
+
+	    public override string ErrorCheck()
+	    {
+	        var go = Fsm.GetOwnerDefaultTarget(gameObject);
+	        if (go == null || string.IsNullOrEmpty(behaviour.Value))
+	        {
+	            return string.Empty;
+	        }
+
+	        var type = ReflectionUtils.GetGlobalType(behaviour.Value);
+            if (type == null)
+            {
+                return "Missing Behaviour: " + behaviour.Value;
+            }
+
+	        if (cachedType != type)
+	        {
+	            cachedType = type;
+                methodNames = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Select(m => m.Name).ToList();
+	        }
+
+	        if (!string.IsNullOrEmpty(functionCall.FunctionName))
+	        {
+	            if (!methodNames.Contains(functionCall.FunctionName))
+	            {
+	                return "Missing Method: " + functionCall.FunctionName;
+	            }
+	        }
+	        return string.Empty;
+	    }
+
+#endif
 
 	}
 }

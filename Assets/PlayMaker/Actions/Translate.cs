@@ -55,7 +55,7 @@ namespace HutongGames.PlayMaker.Actions
 		    fixedUpdate = false;
 		}
 
-        public override void Awake()
+        public override void OnPreprocess()
         {
             Fsm.HandleFixedUpdate = true;
         }

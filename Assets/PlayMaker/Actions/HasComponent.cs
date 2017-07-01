@@ -1,6 +1,7 @@
-// (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
 
 using UnityEngine;
+using HutongGames.PlayMaker;
 
 namespace HutongGames.PlayMaker.Actions
 {
@@ -58,8 +59,24 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoHasComponent(GameObject go)
 		{
-			aComponent = go.GetComponent(component.Value);
-
+		
+			if ( go==null)
+			{
+				if (!store.IsNone)
+				{
+					store.Value = false;
+				}
+				Fsm.Event(falseEvent);
+				return;
+			}
+		
+			aComponent = go.GetComponent(ReflectionUtils.GetGlobalType(component.Value));
+			
+			if (!store.IsNone)
+			{
+				store.Value = aComponent != null;
+			}
+			
 			Fsm.Event(aComponent != null ? trueEvent : falseEvent);
 		}
 	}

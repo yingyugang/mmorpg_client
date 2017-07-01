@@ -1,10 +1,13 @@
 // (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
 
+using System.ComponentModel;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMakerEditor;
 using System.Collections.Generic;
+using HutongGames.Editor;
 
 /// <summary>
 /// Custom inspector for PlayMakerFSM
@@ -12,201 +15,211 @@ using System.Collections.Generic;
 [CustomEditor(typeof(PlayMakerFSM))]
 public class FsmComponentInspector : Editor
 {
-    private static GUIContent restartOnEnableLabel = new GUIContent(Strings.Label_Reset_On_Disable, Strings.Tooltip_Reset_On_Disable);
-    private static GUIContent showStateLabelLabel = new GUIContent(Strings.Label_Show_State_Label, Strings.Tooltip_Show_State_Label);
-    private static GUIContent enableDebugFlowLabel = new GUIContent(Strings.FsmEditorSettings_Enable_DebugFlow, Strings.FsmEditorSettings_Enable_DebugFlow_Tooltip);
-    //private static GUIContent quickLoadLabel = new GUIContent("Quick Load", "Skip data validation when loading FSM. Faster, but can fail if actions have changed since FSM was saved.");
+    private bool initialized;
 
     // Inspector targets
 
     private PlayMakerFSM fsmComponent;   // Inspector target
     private FsmTemplate fsmTemplate;     // template used by fsmComponent
 
-    // Inspector foldout states
-
-    private bool showControls = true;
-    private bool showInfo;
-    private bool showStates;
-    private bool showEvents;
-    private bool showVariables;
-
     // Collect easily editable references to fsmComponent.Fsm.Variables
 
-    List<FsmVariable> fsmVariables = new List<FsmVariable>();
+    private List<FsmVariable> fsmVariables = new List<FsmVariable>();
 
     public void OnEnable()
     {
-        fsmComponent = target as PlayMakerFSM;
-        if (fsmComponent == null) return; // shouldn't happen
+        //Debug.Log("FsmComponentInspector: OnEnable");
 
-        fsmTemplate = fsmComponent.FsmTemplate;
-            
-        RefreshTemplate();
-        BuildFsmVariableList();
+        fsmComponent = target as PlayMakerFSM;
     }
 
+    // Can't do this in OnEnable because it interferes with FSM init
+    // when playing in the editor
+    private void Initialize()
+    {
+        fsmTemplate = fsmComponent.FsmTemplate;
+        RefreshTemplate();
+        BuildFsmVariableList();
+        initialized = true;
+    }
+
+    [Localizable(false)]
     public override void OnInspectorGUI()
     {
         if (fsmComponent == null) return; // shouldn't happen
+
+        if (!initialized)
+        {
+            Initialize();
+        }
+
+        if (!fsmComponent.Fsm.Initialized)
+        {
+            // Note: cannot do this in OnEnable since is breaks FSMs in editor
+            // Safe to do now since FSM would already have initialized itself
+            fsmComponent.Fsm.Init(fsmComponent);
+        }
 
         FsmEditorStyles.Init();
 
         var fsm = fsmComponent.Fsm;  // grab Fsm for convenience
 
-        if (fsm.States.Length > 100) // a little arbitrary, but better than nothing!
+        if (fsm.States.Length > 50) // a little arbitrary, but better than nothing!
         {
             EditorGUILayout.HelpBox("NOTE: Collapse this inspector for better editor performance with large FSMs.", MessageType.None);
         }
 
         // Edit FSM name
 
-        EditorGUILayout.BeginHorizontal(); 
+        EditorGUILayout.BeginHorizontal();
+        var foldoutRect = GUILayoutUtility.GetRect(GUIContent.none, EditorStyles.foldout, GUILayout.Width(0));      
+        fsm.NameIsExpanded = EditorGUI.Foldout(foldoutRect, fsm.NameIsExpanded, GUIContent.none);
 
+        EditorGUI.BeginChangeCheck();
         fsm.Name = EditorGUILayout.TextField(fsm.Name);
-
-        if (GUILayout.Button(new GUIContent(Strings.Label_Edit, Strings.Tooltip_Edit_in_the_PlayMaker_Editor), GUILayout.MaxWidth(45)))
+        if (EditorGUI.EndChangeCheck())
+        {
+            Labels.Update(fsm);
+        }
+        
+        // Edit FSM Button
+        if (GUILayout.Button(FsmEditorContent.EditFsmButton, GUILayout.MaxWidth(45)))
         {
             OpenInEditor(fsmComponent);
             GUIUtility.ExitGUI();
         }
-
-        EditorGUILayout.EndHorizontal(); 
-
-        // Edit FSM Template
-
-        EditorGUILayout.BeginHorizontal();
-        
-        var template = (FsmTemplate)
-            EditorGUILayout.ObjectField(new GUIContent(Strings.Label_Use_Template, Strings.Tooltip_Use_Template),
-                fsmComponent.FsmTemplate, typeof(FsmTemplate), false);
-
-        if (template != fsmComponent.FsmTemplate)
-        {
-            SelectTemplate(template);
-        }
-
-        if (GUILayout.Button(new GUIContent(Strings.Label_Browse, Strings.Tooltip_Browse_Templates), GUILayout.MaxWidth(45)))
-        {
-            DoSelectTemplateMenu();
-        }
-
         EditorGUILayout.EndHorizontal();
 
-        // Disable GUI that can't be edited if referencing a template
-
-        if (!Application.isPlaying && fsmComponent.FsmTemplate != null)
+        if (fsm.NameIsExpanded)
         {
-            template = fsmComponent.FsmTemplate;
-            fsm = template.fsm;
+            // Edit FSM Template
 
-            GUI.enabled = false;
-        }
+            EditorGUILayout.BeginHorizontal();
+            var template = (FsmTemplate)EditorGUILayout.ObjectField(FsmEditorContent.UseTemplateLabel, fsmComponent.FsmTemplate, typeof(FsmTemplate), false);
+            if (template != fsmComponent.FsmTemplate)
+            {
+                SelectTemplate(template);
+            }
+            if (GUILayout.Button(FsmEditorContent.BrowseTemplateButton, GUILayout.MaxWidth(45)))
+            {
+                DoSelectTemplateMenu();
+            }
+            EditorGUILayout.EndHorizontal();
 
-        // Resave warning
-        /*
-        if (fsm.needsResave)
-        {
-            EditorGUI.BeginDisabledGroup(false);
-            EditorGUILayout.HelpBox("NOTE: Action data has changed since FSM was saved. Please resave FSM to update actions.", MessageType.Warning);
+            // Disable GUI that can't be edited if referencing a template
+
+            EditorGUI.BeginDisabledGroup(!Application.isPlaying && fsmComponent.FsmTemplate != null);
+
+            if (fsmComponent.FsmTemplate != null)
+            {
+                // next few fields should show template values
+                template = fsmComponent.FsmTemplate;
+                fsm = template.fsm;
+            }
+
+            // Edit Description
+
+            fsm.Description = FsmEditorGUILayout.TextAreaWithHint(fsm.Description, Strings.Label_Description___, GUILayout.MinHeight(60));
+
+            // Edit Help Url (lets the user link to documentation for the FSM)
+
+            EditorGUILayout.BeginHorizontal();
+            fsm.DocUrl = FsmEditorGUILayout.TextFieldWithHint(fsm.DocUrl, Strings.Tooltip_Documentation_Url);
+            EditorGUI.BeginDisabledGroup(!string.IsNullOrEmpty(fsm.DocUrl));
+            if (FsmEditorGUILayout.HelpButton())
+            {
+                Application.OpenURL(fsm.DocUrl);
+            }
             EditorGUI.EndDisabledGroup();
-        }*/
+            EditorGUILayout.EndHorizontal();
 
-        // Edit Description
+            // Settings
 
-        fsm.Description = FsmEditorGUILayout.TextAreaWithHint(fsm.Description, Strings.Label_Description___, GUILayout.MinHeight(60));
+            EditorGUI.BeginDisabledGroup(!Application.isPlaying && FsmEditor.SelectedFsmUsesTemplate);
 
-        // Edit Help Url (lets the user link to documentation for the FSM)
+            fsm.MaxLoopCountOverride = EditorGUILayout.IntField(FsmEditorContent.MaxLoopOverrideLabel, fsm.MaxLoopCountOverride);
+            fsm.RestartOnEnable = GUILayout.Toggle(fsm.RestartOnEnable, FsmEditorContent.ResetOnDisableLabel);
 
-        EditorGUILayout.BeginHorizontal();
+            EditorGUI.EndDisabledGroup(); // Settings
+            EditorGUI.EndDisabledGroup(); // Uses template
 
-        fsm.DocUrl = FsmEditorGUILayout.TextFieldWithHint(fsm.DocUrl, Strings.Tooltip_Documentation_Url);
-
-        var guiEnabled = GUI.enabled;
-
-        GUI.enabled = !string.IsNullOrEmpty(fsm.DocUrl);
-
-        if (FsmEditorGUILayout.HelpButton())
-        {
-            Application.OpenURL(fsm.DocUrl);
-        }
-
-        EditorGUILayout.EndHorizontal();
-
-        GUI.enabled = guiEnabled;
-
-        // Edit FSM Settings
-        
-        fsm.RestartOnEnable = GUILayout.Toggle(fsm.RestartOnEnable, restartOnEnableLabel);
-        fsm.ShowStateLabel = GUILayout.Toggle(fsm.ShowStateLabel, showStateLabelLabel);
-        fsm.EnableDebugFlow = GUILayout.Toggle(fsm.EnableDebugFlow, enableDebugFlowLabel);
-        //fsm.QuickLoad = GUILayout.Toggle(fsm.QuickLoad, quickLoadLabel);
-
-        // The rest of the GUI is readonly so we can check for changes here
-
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(fsmComponent);
+            // stop showing template values
+            fsm = fsmComponent.Fsm;
         }
 
         // Controls Section
 
-        GUI.enabled = true;
-
         // Show FSM variables with Inspector option checked
 
         FsmEditorGUILayout.LightDivider();
-        showControls = EditorGUILayout.Foldout(showControls, new GUIContent(Strings.Label_Controls, Strings.Tooltip_Controls), FsmEditorStyles.CategoryFoldout);
-
-        if (showControls)
+        fsm.ControlsIsExpanded = EditorGUILayout.Foldout(fsm.ControlsIsExpanded, FsmEditorContent.FsmControlsLabel, FsmEditorStyles.CategoryFoldout);
+        if (fsm.ControlsIsExpanded)
         {
-            //EditorGUIUtility.LookLikeInspector();
-
             BuildFsmVariableList();
 
-            foreach (var fsmVar in fsmVariables)
+            var currentCategory = 0;
+            for (var index = 0; index < fsmVariables.Count; index++)
             {
-                if (fsmVar.ShowInInspector)
+                var fsmVariable = fsmVariables[index];
+                if (fsmVariable.ShowInInspector)
                 {
-                    EditorGUI.BeginChangeCheck();
-                    fsmVar.DoValueGUI(new GUIContent(fsmVar.Name, fsmVar.Name + (!string.IsNullOrEmpty(fsmVar.Tooltip) ? ":\n" + fsmVar.Tooltip : "")));
-                    if (EditorGUI.EndChangeCheck())
+                    var categoryID = fsmVariable.CategoryID;
+                    if (categoryID > 0 && categoryID != currentCategory)
                     {
-                        fsmVar.UpdateVariableValue();
+                        currentCategory = categoryID;
+                        GUILayout.Label(fsmComponent.Fsm.Variables.Categories[categoryID], EditorStyles.boldLabel);
+                        FsmEditorGUILayout.LightDivider();
                     }
+                    fsmVariable.DoInspectorGUI(FsmEditorContent.TempContent(fsmVariable.Name, fsmVariable.Name + (!string.IsNullOrEmpty(fsmVariable.Tooltip) ? ":\n" + fsmVariable.Tooltip : "")));
                 }
-            }
-
-            if (GUI.changed)
-            {
-                FsmEditor.RepaintAll();
             }
         }
 
         // Show events with Inspector option checked
         // These become buttons that the user can press to send the events
 
-        if (showControls)
+        if (fsm.ControlsIsExpanded)
         {
             foreach (var fsmEvent in fsm.ExposedEvents)
             {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel(fsmEvent.Name);
+                //GUILayout.BeginHorizontal();
+                //EditorGUILayout.PrefixLabel(fsmEvent.Name);
                 if (GUILayout.Button(fsmEvent.Name))
                 {
                     fsm.Event(fsmEvent);
                     FsmEditor.RepaintAll();
                 }
-                GUILayout.EndHorizontal();
+                //GUILayout.EndHorizontal();
             }
         }
 
-        // Show general info about the FSM
-
-        EditorGUI.indentLevel = 0;
+        // DEBUG 
 
         FsmEditorGUILayout.LightDivider();
-        showInfo = EditorGUILayout.Foldout(showInfo, Strings.Label_Info, FsmEditorStyles.CategoryFoldout);
+        fsm.DebugIsExpanded = EditorGUILayout.Foldout(fsm.DebugIsExpanded, "Debug", FsmEditorStyles.CategoryFoldout);
+        if (fsm.DebugIsExpanded)
+        {
+            fsm.ShowStateLabel = GUILayout.Toggle(fsm.ShowStateLabel, FsmEditorContent.ShowStateLabelsLabel);
+        }
 
+        // Experimental
+        // Hide for now
+
+        /*
+        FsmEditorGUILayout.LightDivider();
+        fsm.ExperimentalIsExpanded = EditorGUILayout.Foldout(fsm.ExperimentalIsExpanded, "Experimental", FsmEditorStyles.CategoryFoldout);
+        if (fsm.ExperimentalIsExpanded)
+        {
+            fsm.KillDelayedEventsOnStateExit = GUILayout.Toggle(fsm.KillDelayedEventsOnStateExit, FsmEditorContent.KillDelayedEvents);
+        }*/
+
+        #region INFO
+        // Show general info about the FSM
+
+        /* Is this useful...?
+        EditorGUI.indentLevel = 0;
+        FsmEditorGUILayout.LightDivider();
+        showInfo = EditorGUILayout.Foldout(showInfo, Strings.Label_Info, FsmEditorStyles.CategoryFoldout);
         if (showInfo)
         {
             EditorGUI.indentLevel = 1;
@@ -228,7 +241,6 @@ public class FsmComponentInspector : Editor
                 {
                     states = FsmEditorStyles.tab2 + Strings.Label_None_In_Table;
                 }
-
                 GUILayout.Label(states);
             }
 
@@ -249,7 +261,6 @@ public class FsmComponentInspector : Editor
                 {
                     events = FsmEditorStyles.tab2 + Strings.Label_None_In_Table;
                 }
-
                 GUILayout.Label(events);
             }
 
@@ -270,19 +281,26 @@ public class FsmComponentInspector : Editor
                 {
                     variables = FsmEditorStyles.tab2 + Strings.Label_None_In_Table;
                 }
-
                 GUILayout.Label(variables);
             }
-        }
+        }*/
+        #endregion
+
 
         // Manual refresh if template has been edited
 
         if (fsmTemplate != null)
         {
-            if (GUILayout.Button(new GUIContent("Refresh Template", "Use this if you've updated the template but don't see the changes here.")))
+            if (GUILayout.Button(FsmEditorContent.RefreshTemplateLabel))
             {
                 RefreshTemplate();
             }
+        }
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(fsmComponent);
+            FsmEditor.RepaintAll();
         }
     }
 
@@ -297,6 +315,7 @@ public class FsmComponentInspector : Editor
         }
         else
         {
+            EditorWindow.FocusWindowIfItsOpen<FsmEditorWindow>();
             FsmEditor.SelectFsm(fsmComponent.FsmTemplate == null ? fsmComponent.Fsm : fsmComponent.FsmTemplate.fsm);
         }
     }
@@ -319,45 +338,44 @@ public class FsmComponentInspector : Editor
     {
         if (go != null)
         {
-            OpenInEditor(FsmEditorUtility.FindFsmOnGameObject(go));
+            OpenInEditor(FsmSelection.FindFsmOnGameObject(go));
         }
     }
-    
+
     /// <summary>
     /// The fsmVariables list contains easily editable references to FSM variables
     /// (Similar in concept to SerializedProperty)
     /// </summary>
-    void BuildFsmVariableList()
+    private void BuildFsmVariableList()
     {
-        fsmVariables = FsmVariable.GetFsmVariableList(fsmComponent.Fsm.Variables, target);
-        fsmVariables.Sort();
+        fsmVariables = FsmVariable.GetFsmVariableList(target);
+        fsmVariables = fsmVariables.Where(x => x.ShowInInspector).ToList();
     }
 
     #region Templates
 
-    void SelectTemplate(object userdata)
+    private void SelectTemplate(object userdata)
     {
         SelectTemplate(userdata as FsmTemplate);
     }
 
-    void SelectTemplate(FsmTemplate template)
+    private void SelectTemplate(FsmTemplate template)
     {
         if (template == fsmComponent.FsmTemplate)
         {
             return; // don't want to lose overridden variables
         }
-
+        
+        UndoUtility.RegisterUndo(fsmComponent, "PlayMaker : Set FSM Template");
         fsmComponent.SetFsmTemplate(template);
         fsmTemplate = template;
-
         BuildFsmVariableList();
-
         EditorUtility.SetDirty(fsmComponent);
 
         FsmEditor.RefreshInspector(); // Keep Playmaker Editor in sync
     }
 
-    void ClearTemplate()
+    private void ClearTemplate()
     {
         fsmComponent.Reset();
         fsmTemplate = null;
@@ -378,7 +396,7 @@ public class FsmComponentInspector : Editor
     /// This method refreshes the UI to reflect any changes
     /// while keeping any variable overrides that the use has made
     /// </summary>
-    void RefreshTemplate()
+    private void RefreshTemplate()
     {
         if (fsmTemplate == null || Application.isPlaying)
         {
@@ -389,7 +407,7 @@ public class FsmComponentInspector : Editor
         // so we copy the current FsmVariables
 
         var currentValues = new FsmVariables(fsmComponent.Fsm.Variables);
-        
+
         // then we update the template
 
         fsmComponent.SetFsmTemplate(fsmTemplate);
@@ -399,13 +417,13 @@ public class FsmComponentInspector : Editor
         fsmComponent.Fsm.Variables.OverrideVariableValues(currentValues);
 
         // and refresh the UI
-        
+
         BuildFsmVariableList();
 
         FsmEditor.RefreshInspector();
     }
 
-    void DoSelectTemplateMenu()
+    private void DoSelectTemplateMenu()
     {
         var menu = new GenericMenu();
 

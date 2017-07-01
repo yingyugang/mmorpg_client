@@ -1,10 +1,11 @@
-// (c) copyright Hutong Games, LLC 2010-2012. All rights reserved.
+// (c) copyright Hutong Games, LLC 2010-2016. All rights reserved.
 
 using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory(ActionCategory.StateMachine)]
+    [ActionTarget(typeof(PlayMakerFSM), "gameObject,fsmName")]
     [Tooltip("Get the value of a variable in another FSM and store it in a variable of the same name in this FSM.")]
     public class GetFsmVariable : FsmStateAction
     {
@@ -19,6 +20,7 @@ namespace HutongGames.PlayMaker.Actions
         [RequiredField]
         [HideTypeFilter]
         [UIHint(UIHint.Variable)]
+		[Tooltip("Store the value of the FsmVariable")]
         public FsmVar storeValue;
 
         [Tooltip("Repeat every frame.")]
@@ -66,8 +68,7 @@ namespace HutongGames.PlayMaker.Actions
                 sourceFsm = ActionHelpers.GetGameObjectFsm(go, fsmName.Value);
                 sourceVariable = sourceFsm.FsmVariables.GetVariable(storeValue.variableName);
                 targetVariable = Fsm.Variables.GetVariable(storeValue.variableName);
-
-                storeValue.Type = FsmUtility.GetVariableType(targetVariable);
+                storeValue.Type = targetVariable.VariableType;
 
                 if (!string.IsNullOrEmpty(storeValue.variableName) && sourceVariable == null)
                 {
@@ -86,9 +87,15 @@ namespace HutongGames.PlayMaker.Actions
             }
 
             InitFsmVar();
-
             storeValue.GetValueFrom(sourceVariable);
             storeValue.ApplyValueTo(targetVariable);
         }
+
+#if UNITY_EDITOR
+        public override string AutoName()
+        {
+            return ("Get FSM Variable: " + ActionHelpers.GetValueLabel(storeValue.NamedVar));
+        }
+#endif
     }
 }

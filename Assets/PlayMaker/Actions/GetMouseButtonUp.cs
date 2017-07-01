@@ -9,24 +9,47 @@ namespace HutongGames.PlayMaker.Actions
 	public class GetMouseButtonUp : FsmStateAction
 	{
 		[RequiredField]
-		public MouseButton button;
-		public FsmEvent sendEvent;
-		[UIHint(UIHint.Variable)]
-		public FsmBool storeResult;
-		
+        [Tooltip("The mouse button to test.")]
+        public MouseButton button;
+
+        [Tooltip("Event to send if the mouse button is down.")]
+        public FsmEvent sendEvent;
+
+        [UIHint(UIHint.Variable)]
+        [Tooltip("Store the pressed state in a Bool Variable.")]
+        public FsmBool storeResult;
+
+        [Tooltip("Uncheck to run when entering the state.")]
+        public bool inUpdateOnly;
+
 		public override void Reset()
 		{
 			button = MouseButton.Left;
 			sendEvent = null;
 			storeResult = null;
+		    inUpdateOnly = true;
 		}
 
-		public override void OnUpdate()
+        public override void OnEnter()
+        {
+            if (!inUpdateOnly)
+            {
+                DoGetMouseButtonUp();
+            }
+        }
+
+        public override void OnUpdate()
+        {
+            DoGetMouseButtonUp();
+        }
+
+		public void DoGetMouseButtonUp()
 		{
-			bool buttonUp = Input.GetMouseButtonUp((int)button);
-			
+			bool buttonUp = Input.GetMouseButtonUp((int)button);		
 			if (buttonUp)
-				Fsm.Event(sendEvent);
+			{
+			    Fsm.Event(sendEvent);
+			}
 			
 			storeResult.Value = buttonUp;
 		}

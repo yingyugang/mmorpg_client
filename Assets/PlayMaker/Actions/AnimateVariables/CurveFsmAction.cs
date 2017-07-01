@@ -114,7 +114,7 @@ namespace HutongGames.PlayMaker.Actions
 			}
 			distances = new float[fromFloats.Length];
 			for(int i = 0; i<fromFloats.Length; i++){
-				distances[i] = Mathf.Sqrt(Mathf.Pow(fromFloats[i]-toFloats[i], 2));
+                distances[i] = toFloats[i] - fromFloats[i];
 			}
 		}
 

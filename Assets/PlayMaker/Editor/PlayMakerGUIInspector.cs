@@ -20,12 +20,12 @@ class PlayMakerGUIInspector : Editor
 
 	public override void OnInspectorGUI()
 	{
-#if UNITY_4_3
-	    EditorGUIUtility.labelWidth = 210;
-#else
+#if UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_2
         EditorGUIUtility.LookLikeInspector();
+#else
+        EditorGUIUtility.labelWidth = 210;
 #endif
-		GUILayout.Label(Strings.Label_NOTES, EditorStyles.boldLabel);
+        GUILayout.Label(Strings.Label_NOTES, EditorStyles.boldLabel);
 		GUILayout.Label(Strings.Hint_PlayMakerGUI_Notes);
 		GUILayout.Label(Strings.Label_General, EditorStyles.boldLabel);
 

@@ -9,9 +9,12 @@ namespace HutongGames.PlayMaker.Actions
 		[RequiredField]
 		[UIHint(UIHint.Variable)]
 		public FsmObject objectVariable;
-		[RequiredField]
+		
+        [RequiredField]
 		public FsmObject objectValue;
-		public bool everyFrame;
+		
+        [Tooltip("Repeat every frame.")]
+        public bool everyFrame;
 
 		public override void Reset()
 		{

@@ -6,7 +6,7 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Animation)]
 	[Tooltip("Blends an Animation towards a Target Weight over a specified Time.\nOptionally sends an Event when finished.")]
-	public class BlendAnimation : FsmStateAction
+	public class BlendAnimation : BaseAnimationAction
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(Animation))]
@@ -64,15 +64,15 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-			if (go.GetComponent<Animation>() == null)
+            var animation = go.GetComponent<Animation>();
+			if (animation == null)
 			{
 				LogWarning("Missing Animation component on GameObject: " + go.name);
 				Finish();
 				return;
 			}
 
-			var anim = go.GetComponent<Animation>()[animName.Value];
-
+			var anim = animation[animName.Value];
 			if (anim == null)
 			{
 				LogWarning("Missing animation: " + animName.Value);
@@ -81,7 +81,7 @@ namespace HutongGames.PlayMaker.Actions
 			}
 
 			var timeValue = time.Value;
-			go.GetComponent<Animation>().Blend(animName.Value, targetWeight.Value, timeValue);
+			animation.Blend(animName.Value, targetWeight.Value, timeValue);
 			
 			// TODO: doesn't work well with scaled time
 			if (finishEvent != null)
@@ -93,5 +93,6 @@ namespace HutongGames.PlayMaker.Actions
 				Finish();
 			}
 		}
+
 	}
 }

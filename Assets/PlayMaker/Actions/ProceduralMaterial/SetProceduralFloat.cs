@@ -8,12 +8,18 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("Set a named float property in a Substance material. NOTE: Use Rebuild Textures after setting Substance properties.")]
 	public class SetProceduralFloat : FsmStateAction
 	{
-		[RequiredField] 
+		[RequiredField]
+        [Tooltip("The Substance Material.")]
 		public FsmMaterial substanceMaterial;
+
 		[RequiredField]
+        [Tooltip("The named float property in the material.")]
 		public FsmString floatProperty;
+
 		[RequiredField]
+        [Tooltip("The value to set the property to.")]
 		public FsmFloat floatValue;
+
 		[Tooltip("NOTE: Updating procedural materials every frame can be very slow!")]
 		public bool everyFrame;
 
@@ -40,15 +46,14 @@ namespace HutongGames.PlayMaker.Actions
 			DoSetProceduralFloat();
 		}
 
-		void DoSetProceduralFloat()
+	    private void DoSetProceduralFloat()
         {
-#if !(UNITY_IPHONE || UNITY_ANDROID || UNITY_NACL || UNITY_FLASH || UNITY_PS3 || UNITY_BLACKBERRY || UNITY_METRO || UNITY_WP8)
+#if !(UNITY_IPHONE || UNITY_IOS || UNITY_ANDROID || UNITY_NACL || UNITY_FLASH || UNITY_PS3 || UNITY_PS4 || UNITY_XBOXONE || UNITY_BLACKBERRY || UNITY_METRO || UNITY_WP8 || UNITY_WIIU || UNITY_PSM || UNITY_WEBGL)
 
-			var substance = substanceMaterial.Value as ProceduralMaterial;
-
+            var substance = substanceMaterial.Value as ProceduralMaterial;
 			if (substance == null)
 			{
-				LogError("Not a substance material!");
+				LogError("The Material is not a Substance Material!");
 				return;
 			}
 

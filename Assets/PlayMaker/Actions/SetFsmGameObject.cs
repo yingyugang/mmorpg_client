@@ -6,6 +6,7 @@ using UnityEngine;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.StateMachine)]
+    [ActionTarget(typeof(PlayMakerFSM), "gameObject,fsmName")]
 	[Tooltip("Set the value of a Game Object Variable in another FSM. Accept null reference")]
 	public class SetFsmGameObject : FsmStateAction
 	{
@@ -29,6 +30,8 @@ namespace HutongGames.PlayMaker.Actions
         public bool everyFrame;
 
 		private GameObject goLastFrame;
+		string fsmNameLastFrame;
+
 		private PlayMakerFSM fsm;
 		
 		public override void Reset()
@@ -57,14 +60,15 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 			
-			if (go != goLastFrame)
+			// FIX: must check as well that the fsm name is different.
+			if (go != goLastFrame || fsmName.Value != fsmNameLastFrame)
 			{
 				goLastFrame = go;
-				
-				// only get the fsm component if go has changed
+				fsmNameLastFrame = fsmName.Value;
+				// only get the fsm component if go or fsm name has changed
 				
 				fsm = ActionHelpers.GetGameObjectFsm(go, fsmName.Value);
-			}			
+			}	
 			
 			if (fsm == null)
 			{

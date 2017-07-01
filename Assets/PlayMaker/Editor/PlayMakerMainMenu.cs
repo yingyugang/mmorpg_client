@@ -3,138 +3,172 @@
 using System.ComponentModel;
 using HutongGames.PlayMakerEditor;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 [Localizable(false)]
-static class PlayMakerMainMenu
+internal static class PlayMakerMainMenu
 {
     // Change MenuRoot to move the Playmaker Menu
     // E.g., MenuRoot = "Plugins/PlayMaker/"
     private const string MenuRoot = "PlayMaker/"; 
 
-	[MenuItem(MenuRoot + "PlayMaker Editor", false, 1)]
+	[MenuItem(MenuRoot + "PlayMaker Editor", false, 0)]
 	public static void OpenFsmEditor()
 	{
 		FsmEditorWindow.OpenWindow();
+	    if (EditorStartupPrefs.ShowWelcomeScreen)
+	    {
+	        PlayMakerWelcomeWindow.Open();
+	    }
 	}
 
 	#region EDITOR WINDOWS 
 
-    // priority starts at 10, leaving room for more items above
+    private const string editorsRoot = MenuRoot + "Editor Windows/";
+    private const int iEditors = 1; //10;
 
-    [MenuItem(MenuRoot + "Editor Windows/FSM Browser", true)]
+    [MenuItem(editorsRoot + "Action Browser", true)]
+    public static bool ValidateOpenActionWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
+
+    [MenuItem(editorsRoot + "Action Browser", false, iEditors)]
+    public static void OpenActionWindow()
+    {
+        FsmEditor.OpenActionWindow();
+    }
+
+    [MenuItem(editorsRoot + "State Browser", true)]
+    public static bool ValidateOpenStateSelectorWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
+
+    [MenuItem(editorsRoot + "State Browser", false, iEditors + 1)]
+    public static void OpenStateSelectorWindow()
+    {
+        FsmEditor.OpenStateSelectorWindow();
+    }
+
+    [MenuItem(editorsRoot + "FSM Browser", true)]
 	public static bool ValidateOpenFsmSelectorWindow()
 	{
 		return FsmEditorWindow.IsOpen();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/FSM Browser", false, 10)]
+	[MenuItem(editorsRoot + "FSM Browser", false, iEditors + 2)]
 	public static void OpenFsmSelectorWindow()
 	{
 		FsmEditor.OpenFsmSelectorWindow();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/State Browser", true)]
-	public static bool ValidateOpenStateSelectorWindow()
-	{
-		return FsmEditorWindow.IsOpen();
-	}
-
-	[MenuItem(MenuRoot + "Editor Windows/State Browser", false, 11)]
-	public static void OpenStateSelectorWindow()
-	{
-		FsmEditor.OpenStateSelectorWindow();
-	}
-
-	[MenuItem(MenuRoot + "Editor Windows/Templates Browser", true)]
+	[MenuItem(editorsRoot + "Templates Browser", true)]
 	public static bool ValidateOpenFsmTemplateWindow()
 	{
 		return FsmEditorWindow.IsOpen();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Templates Browser", false, 12)]
+    [MenuItem(editorsRoot + "Templates Browser", false, iEditors + 3)]
 	public static void OpenFsmTemplateWindow()
 	{
 		FsmEditor.OpenFsmTemplateWindow();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Edit Tool Window", true)]
-	public static bool ValidateOpenToolWindow()
-	{
-		return FsmEditorWindow.IsOpen();
-	}
+    [MenuItem(editorsRoot + "Event Browser", true)]
+    public static bool ValidateOpenGlobalEventsWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
 
-	[MenuItem(MenuRoot + "Editor Windows/Edit Tool Window", false, 13)]
-	public static void OpenToolWindow()
-	{
-		FsmEditor.OpenToolWindow();
-	}
+    [MenuItem(editorsRoot + "Event Browser", false, iEditors + 4)]
+    public static void OpenGlobalEventsWindow()
+    {
+        FsmEditor.OpenGlobalEventsWindow();
+    }
 
-	[MenuItem(MenuRoot + "Editor Windows/Action Browser", true)]
-	public static bool ValidateOpenActionWindow()
-	{
-		return FsmEditorWindow.IsOpen();
-	}
-
-	[MenuItem(MenuRoot + "Editor Windows/Action Browser", false, 14)]
-	public static void OpenActionWindow()
-	{
-		FsmEditor.OpenActionWindow();
-	}
-
-	[MenuItem(MenuRoot + "Editor Windows/Global Variables", true)]
+	[MenuItem(editorsRoot + "Global Variables", true)]
 	public static bool ValidateOpenGlobalVariablesWindow()
 	{
 		return FsmEditorWindow.IsOpen();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Global Variables", false, 15)]
+    [MenuItem(editorsRoot + "Global Variables", false, iEditors + 5)]
 	public static void OpenGlobalVariablesWindow()
 	{
 		FsmEditor.OpenGlobalVariablesWindow();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Event Browser", true)]
-	public static bool ValidateOpenGlobalEventsWindow()
-	{
-		return FsmEditorWindow.IsOpen();
-	}
+    [MenuItem(editorsRoot + "Edit Tools", true)]
+    public static bool ValidateOpenToolWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
 
-	[MenuItem(MenuRoot + "Editor Windows/Event Browser", false, 16)]
-	public static void OpenGlobalEventsWindow()
-	{
-		FsmEditor.OpenGlobalEventsWindow();
-	}
+    [MenuItem(editorsRoot + "Edit Tools", false, iEditors + 6)]
+    public static void OpenToolWindow()
+    {
+        FsmEditor.OpenToolWindow();
+    }
 
-	[MenuItem(MenuRoot + "Editor Windows/Log Window", true)]
+    // -----------------------------------------
+
+    [MenuItem(editorsRoot + "Timeline Log", true)]
+    public static bool ValidateOpenTimelineWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
+
+    [MenuItem(editorsRoot + "Timeline Log", false, iEditors + 17)]
+    public static void OpenTimelineWindow()
+    {
+        FsmEditor.OpenTimelineWindow();
+    }
+
+	[MenuItem(editorsRoot + "FSM Log", true)]
 	public static bool ValidateOpenFsmLogWindow()
 	{
 		return FsmEditorWindow.IsOpen();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Log Window", false, 17)]
+    [MenuItem(editorsRoot + "FSM Log", false, iEditors + 18)]
 	public static void OpenFsmLogWindow()
 	{
 		FsmEditor.OpenFsmLogWindow();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Editor Log", true)]
+	[MenuItem(editorsRoot + "Editor Log", true)]
 	public static bool ValidateOpenReportWindow()
 	{
 		return FsmEditorWindow.IsOpen();
 	}
 
-	[MenuItem(MenuRoot + "Editor Windows/Editor Log", false, 18)]
+    [MenuItem(editorsRoot + "Editor Log", false, iEditors + 29)]
 	public static void OpenReportWindow()
 	{
 		FsmEditor.OpenReportWindow();
 	}
 
+/* Enable when window is implemeneted
+    [MenuItem(editorsRoot + "Search", true)]
+    public static bool ValidateOpenSearchWindow()
+    {
+        return FsmEditorWindow.IsOpen();
+    }
+
+    [MenuItem(editorsRoot + "Search", false, 19)]
+    public static void OpenSearchWindow()
+    {
+        FsmEditor.OpenSearchWindow();
+    }
+*/
+
 	#endregion
 
 	#region COMPONENTS
 
-    // priority starts at 30, leaving room for more items above
+    private const int iComponents = 1;  // iEditors + 10;
 
 	[MenuItem(MenuRoot + "Components/Add FSM To Selected Objects", true)]
 	public static bool ValidateAddFsmToSelected()
@@ -142,7 +176,7 @@ static class PlayMakerMainMenu
 		return Selection.activeGameObject != null;
 	}
 
-	[MenuItem(MenuRoot + "Components/Add FSM To Selected Objects", false, 19)]
+	[MenuItem(MenuRoot + "Components/Add FSM To Selected Objects", false, iComponents)]
 	public static void AddFsmToSelected()
 	{
 		FsmBuilder.AddFsmToSelected();
@@ -156,7 +190,7 @@ static class PlayMakerMainMenu
 		return (Object.FindObjectOfType(typeof(PlayMakerGUI)) as PlayMakerGUI) == null;
 	}
 
-	[MenuItem(MenuRoot + "Components/Add PlayMakerGUI to Scene", false, 20)]
+    [MenuItem(MenuRoot + "Components/Add PlayMakerGUI to Scene", false, iComponents + 1)]
 	public static void AddPlayMakerGUI()
 	{
 		PlayMakerGUI.Instance.enabled = true;
@@ -166,138 +200,141 @@ static class PlayMakerMainMenu
 
 	#region TOOLS
 
-	[MenuItem(MenuRoot + "Tools/Load All PlayMaker Prefabs In Project", false, 25)]
-	public static void LoadAllPrefabsInProject()
-	{
-		var paths = FsmEditorUtility.LoadAllPrefabsInProject();
-		var output = "";
+    private const string toolsRoot = MenuRoot + "Tools/";
+    private const int iTools = iComponents;// + 10;
 
-		foreach (var path in paths)
-		{
-			output += path + "\n";
-		}
-
-		if (output == "")
-		{
-			EditorUtility.DisplayDialog("Loading PlayMaker Prefabs", "No PlayMaker Prefabs Found!", "OK");
-		}
-		else
-		{
-			EditorUtility.DisplayDialog("Loaded PlayMaker Prefabs", output, "OK");
-		}
-	}
-
-	[MenuItem(MenuRoot + "Tools/Custom Action Wizard", false, 26)]
-    public static void CreateWizard()
-	{
-		EditorWindow.GetWindow<PlayMakerCustomActionWizard>(true);
-	}
-
-	[MenuItem(MenuRoot + "Tools/Export Globals", false, 27)]
+    [MenuItem(toolsRoot + "Export Globals", false, iTools)]
     public static void ExportGlobals()
-	{
-		FsmEditorUtility.ExportGlobals();
-	}
+    {
+        GlobalsAsset.Export();
+    }
 
-	
-	[MenuItem(MenuRoot + "Tools/Import Globals", false, 28)]
+    [MenuItem(toolsRoot + "Import Globals", false, iTools + 1)]
     public static void ImportGlobals()
-	{
-		FsmEditorUtility.ImportGlobals();
-	}
+    {
+        GlobalsAsset.Import();
+    }
 
-	[MenuItem(MenuRoot + "Tools/Documentation Helpers", false, 29)]
+    [MenuItem(toolsRoot + "Custom Action Wizard", false, iTools + 12)]
+    public static void CreateWizard()
+    {
+        EditorWindow.GetWindow<PlayMakerCustomActionWizard>(true);
+    }
+
+    [MenuItem(toolsRoot + "Documentation Helpers", false, iTools + 13)]
     public static void DocHelpers()
-	{
-		EditorWindow.GetWindow<PlayMakerDocHelpers>(true);
-	}
+    {
+        EditorWindow.GetWindow<PlayMakerDocHelpers>(true);
+    }
 
+    /* In PlayMakerProjectTools.cs
+    [MenuItem(toolsRoot + "Update All Loaded FSMs", false, iTools + 24)]
+    public static void UpdateAllLoadedFSMs()
+    {
+        ProjectTools.ReSaveAllLoadedFSMs();
+    }
+
+    [MenuItem(toolsRoot + "Update All FSMs in Build", false, iTools + 25)]
+    public static void UpdateAllFSMsInBuild()
+    {
+        ProjectTools.UpdateScenesInBuild();
+    }*/
+
+    [MenuItem(toolsRoot + "Load All PlayMaker Prefabs", false, iTools + 25)]
+    public static void LoadAllPrefabsInProject()
+    {
+        var paths = Files.LoadAllPlaymakerPrefabs();
+
+        if (paths.Count == 0)
+        {
+            EditorUtility.DisplayDialog("Loading PlayMaker Prefabs", "No PlayMaker Prefabs Found!", "OK");
+        }
+        else
+        {
+            EditorUtility.DisplayDialog("Loaded PlayMaker Prefabs", "Prefabs found: " + paths.Count + "\nCheck console for details...", "OK");
+        }
+    }
+
+    [MenuItem(toolsRoot + "Submit Bug Report", false,  iTools + 86)]
+    public static void SubmitBug()
+    {
+        EditorWindow.GetWindow<PlayMakerBugReportWindow>(true);
+    }
+
+#if UNITY_5_0 || UNITY_5
+    [MenuItem(toolsRoot + "Post-Update Check", false, 67)]
+    public static void RunAutoUpdater()
+    {
+        PlayMakerAutoUpdater.OpenAutoUpdater();
+    }
+#endif
 
 	#endregion
 
-	#region DOCUMENTATION
+	#region HELP
 
-	[MenuItem(MenuRoot + "Online Resources/HutongGames", false, 35)]
-	public static void HutongGames()
-	{
-		Application.OpenURL("http://www.hutonggames.com/");
-	}
+    private const string helpRoot = MenuRoot + "Help/";
+    private const int iHelp = 1; // iTools + 100;
 
-    [MenuItem(MenuRoot + "Online Resources/Online Manual", false, 36)]
+    [MenuItem(helpRoot + "Online Manual", false, iHelp)]
 	public static void OnlineManual()
 	{
 		EditorCommands.OpenWikiHelp();
-		//Application.OpenURL("https://hutonggames.fogbugz.com/default.asp?W1");
 	}
 
-    [MenuItem(MenuRoot + "Online Resources/Video Tutorials", false, 37)]
-	public static void VideoTutorials()
-	{
-		Application.OpenURL("http://www.screencast.com/users/HutongGames/folders/PlayMaker");
-	}
-
-    [MenuItem(MenuRoot + "Online Resources/YouTube Channel", false, 38)]
+    [MenuItem(helpRoot + "YouTube Channel", false, iHelp + 1)]
 	public static void YouTubeChannel()
 	{
 		Application.OpenURL("http://www.youtube.com/user/HutongGamesLLC");
 	}
 
-    [MenuItem(MenuRoot + "Online Resources/PlayMaker Forums", false, 39)]
+    [MenuItem(helpRoot + "PlayMaker Forums", false, iHelp + 2)]
 	public static void PlayMakerForum()
 	{
 		Application.OpenURL("http://hutonggames.com/playmakerforum/");
 	}
 
-	//[MenuItem(MenuRoot + "Documentation/")]
-    [MenuItem(MenuRoot + "Online Resources/Release Notes", false, 40)]
-	public static void ReleaseNotes()
-	{
-		EditorCommands.OpenWikiPage(WikiPages.ReleaseNotes);
-		//Application.OpenURL("https://hutonggames.fogbugz.com/default.asp?W311");
-	}
+    /*
+    [MenuItem(helpRoot + "Check For Updates", false, iHelp + 3)]
+    public static void CheckForUpdates()
+    {
+        AssetStore.Open("content/368");
+    }*/
+
+    [MenuItem(helpRoot + "About PlayMaker...", false, iHelp + 20)]
+    public static void OpenAboutWindow()
+    {
+        EditorWindow.GetWindow<AboutWindow>(true);
+    }
 
 	#endregion
 
-    [MenuItem(MenuRoot + "Tools/Submit Bug Report", false, 30)]
-    public static void SubmitBug()
-	{
-		EditorWindow.GetWindow<PlayMakerBugReportWindow>(true);
-	}
-
-    [MenuItem(MenuRoot + "Welcome Screen", false, 45)]
-	public static void OpenWelcomeWindow()
-	{
-		EditorWindow.GetWindow<PlayMakerWelcomeWindow>(true);
-	}
-
-	//http://u3d.as/content/hutong-games-llc/playmaker/1Az
-
-/*	[MenuItem(MenuRoot + "Check For Updates")]
-	public static void CheckForUpdates()
-	{
-		AssetStore.Open("1z");
-	}*/
-
-	[MenuItem(MenuRoot + "About PlayMaker...", false, 46)]
-	public static void OpenAboutWindow()
-	{
-		EditorWindow.GetWindow<AboutWindow>(true);
-    }
-
+    // PlayMakerWelcomeWindow.cs
+    //[MenuItem("PlayMaker/Welcome Screen", false, 1000)]
 
     #region ADDONS
 
-    [MenuItem(MenuRoot + "Addons/BlackBerry Add-on")]
-    public static void GetBlackBerryAddon()
+    private const string addonsRoot = MenuRoot + "Addons/";
+    private const int iAddons = 1000;
+
+    [MenuItem(addonsRoot + "Download Addons", false, iAddons)]
+    public static void OpenAddonsWiki()
     {
-        UnityEditorInternal.AssetStore.Open("content/10530");
+        Application.OpenURL("https://hutonggames.fogbugz.com/default.asp?W714");
     }
 
-    [MenuItem(MenuRoot + "Addons/Windows Phone 8 Add-on")]
+#if !(UNITY_5 || UNITY_5_0) 
+
+    [MenuItem(addonsRoot + "Windows Phone 8 Addon", false, iAddons + 1)]
     public static void GetWindowsPhone8Addon()
     {
-        UnityEditorInternal.AssetStore.Open("content/10602");
+        AssetStore.Open("content/10602");
     }
 
+#endif
+    
+
     #endregion
+
+    
 }

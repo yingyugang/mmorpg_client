@@ -11,9 +11,11 @@ namespace HutongGames.PlayMaker.Actions
 		[RequiredField]
 		[UIHint(UIHint.Variable)]
 		public FsmString stringVariable;
-		[RequiredField]
+
+        [UIHint(UIHint.TextArea)]
 		public FsmString stringValue;
-		public bool everyFrame;
+		
+        public bool everyFrame;
 
 		public override void Reset()
 		{

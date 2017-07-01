@@ -9,9 +9,12 @@ namespace HutongGames.PlayMaker.Actions
 	public class GetMouseButton : FsmStateAction
 	{
 		[RequiredField]
-		public MouseButton button;		
+        [Tooltip("The mouse button to test.")]
+		public MouseButton button;
+		
 		[RequiredField]
 		[UIHint(UIHint.Variable)]
+        [Tooltip("Store the pressed state in a Bool Variable.")]
 		public FsmBool storeResult;
 
 		public override void Reset()
@@ -19,6 +22,11 @@ namespace HutongGames.PlayMaker.Actions
 			button = MouseButton.Left;
 			storeResult = null;
 		}
+
+        public override void OnEnter()
+        {
+            storeResult.Value = Input.GetMouseButton((int)button);
+        }
 
 		public override void OnUpdate()
 		{

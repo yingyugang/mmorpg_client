@@ -6,7 +6,7 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Animation)]
 	[Tooltip("Enables/Disables an Animation on a GameObject.\nAnimation time is paused while disabled. Animation must also have a non zero weight to play.")]
-	public class EnableAnimation : FsmStateAction
+	public class EnableAnimation : BaseAnimationAction
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(Animation))]
@@ -44,23 +44,14 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoEnableAnimation(GameObject go)
 		{
-			if (go == null)
-			{
-				return;
-			}
-
-			if (go.GetComponent<Animation>() == null)
-			{
-				LogError("Missing animation component!");
-				return;
-			}
-
-			anim = go.GetComponent<Animation>()[animName.Value];
-			
-			if (anim != null)
-			{
-				anim.enabled = enable.Value;
-			}
+		    if (UpdateCache(go))
+		    {
+                anim = animation[animName.Value];
+                if (anim != null)
+                {
+                    anim.enabled = enable.Value;
+                }
+		    }
 		}
 		
 		public override void OnExit()

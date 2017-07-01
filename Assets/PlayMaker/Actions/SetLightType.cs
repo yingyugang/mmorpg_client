@@ -6,12 +6,14 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Lights)]
 	[Tooltip("Set Spot, Directional, or Point Light type.")]
-	public class SetLightType : FsmStateAction
+	public class SetLightType : ComponentAction<Light>
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(Light))]
 		public FsmOwnerDefault gameObject;
-		public LightType lightType;
+		
+        [ObjectType(typeof(LightType))]
+        public FsmEnum lightType;
 
 		public override void Reset()
 		{
@@ -27,17 +29,11 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void DoSetLightType()
 		{
-			GameObject go = Fsm.GetOwnerDefaultTarget(gameObject);
-			if (go == null) return;
-			
-			Light light = go.GetComponent<Light>();
-			if (light == null)
-			{
-				LogError("Missing Light Component!");
-				return;
-			}
-			
-			light.type = lightType;
+			var go = Fsm.GetOwnerDefaultTarget(gameObject);
+		    if (UpdateCache(go))
+		    {
+                light.type = (LightType)lightType.Value;
+		    }
 		}
 	}
 }

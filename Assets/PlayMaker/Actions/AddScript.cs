@@ -48,7 +48,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoAddComponent(GameObject go)
 		{
-//			addedComponent = go.AddComponent<AddScript> ();// UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/PlayMaker/Actions/AddScript.cs (51,21)", script.Value);
+			addedComponent = go.AddComponent(ReflectionUtils.GetGlobalType(script.Value));
 
 			if (addedComponent == null)
 			{
