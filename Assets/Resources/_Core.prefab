@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  m_Layer: 0
+  m_Name: _Core
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .915057421, y: 1.20214367, z: 6.91346216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd5450673f424018bf46d11fffcc84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: 0
+  defaultPerspective: 0
+  spawnManager: {fileID: 0}
+  audioManager: {fileID: 0}
+  cameraContoller: {fileID: 0}
+  playerController: {fileID: 0}
+  enemyController: {fileID: 0}
+  playerAttribute: {fileID: 0}
+  enemyAttribute: {fileID: 0}
+  showEnemy: 1
+  playerSpawnPoint: {fileID: 0}
+  enemySpawnPoint: {fileID: 0}
+  playerSpawnPos: {x: 0, y: 0, z: -15}
+  enemySpawnPos: {x: 0, y: 0, z: 20}
+  collections: []
+  gates: []
+  enemyDeathCameraAnimClips:
+  - {fileID: 7400000, guid: e81e252d76dc94f41917f7d339225b70, type: 2}
+  - {fileID: 7400000, guid: 34cd1d4ce1698784eb26553dafd34f38, type: 2}
+  - {fileID: 7400000, guid: ed23daa9674c9d349b3701ee30d8aff3, type: 2}
+  enemyDeathAnimNormalizes:
+  - 0
+  - 0
+  - 0
+  playerDeathCameraAnimClips:
+  - {fileID: 7400000, guid: a0392078cdaaf3b4e91de42fa31aa1c6, type: 2}
+  playerDeathAnimNormalizes:
+  - 0
+  playerComingAnimClip: {fileID: 7400000, guid: 2a6528bca01c48c4895f75268b81b648,
+    type: 2}
+  maxClickDelay: .5
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff734119c6ba14d21b16198a33308e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEffectPath: 
+  hitPrefab0: {fileID: 0}
+  defensePrefab: {fileID: 0}
+  playerSourcePath: Girl
+  enemySourcePath: Boss
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
