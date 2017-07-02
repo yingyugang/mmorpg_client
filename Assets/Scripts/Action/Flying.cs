@@ -51,25 +51,25 @@ namespace HutongGames.PlayMaker.Actions
 				{
 					Fsm.GameObject.transform.position = new Vector3 (Fsm.GameObject.transform.position.x, Mathf.Lerp (Fsm.GameObject.transform.position.y, maxFlyHeight.Value, 0.1f), Fsm.GameObject.transform.position.z);
 					mCurrentFlyTime += Time.deltaTime;
-					if (mCurrentFlyTime >= flyDur.Value) 
-					{
-						Fsm.GetFsmBool("isAttackFlip").Value=true;
-						Fsm.Event(flipEvent);
-						Finish();
-					}
+//					if (mCurrentFlyTime >= flyDur.Value) 
+//					{
+//						Fsm.GetFsmBool("isAttackFlip").Value=true;
+//						Fsm.Event(flipEvent);
+//						Finish();
+//					}
 				}
-				else
-				{
-					Fsm.GameObject.transform.position = new Vector3 (Fsm.GameObject.transform.position.x, Mathf.Lerp (Fsm.GameObject.transform.position.y, 0, 0.1f), Fsm.GameObject.transform.position.z);
-					mCurrentFlyTime += Time.deltaTime;
-					if (mCurrentFlyTime >= landDur.Value) 
-					{
-						mAnimator.SetBool(animatorParam.Value,false);
-						Fsm.GameObject.transform.position = new Vector3 (Fsm.GameObject.transform.position.x, 0, Fsm.GameObject.transform.position.z);
-						Fsm.Event("OnIdle");
-						Finish();
-					}
-				}
+//				else
+//				{
+//					Fsm.GameObject.transform.position = new Vector3 (Fsm.GameObject.transform.position.x, Mathf.Lerp (Fsm.GameObject.transform.position.y, 0, 0.1f), Fsm.GameObject.transform.position.z);
+//					mCurrentFlyTime += Time.deltaTime;
+//					if (mCurrentFlyTime >= landDur.Value) 
+//					{
+//						mAnimator.SetBool(animatorParam.Value,false);
+//						Fsm.GameObject.transform.position = new Vector3 (Fsm.GameObject.transform.position.x, 0, Fsm.GameObject.transform.position.z);
+//						Fsm.Event("OnIdle");
+//						Finish();
+//					}
+//				}
 			}
 
 //			if(mAnimator.GetCurrentAnimatorStateInfo(0).IsName(animatorStateInfoName.Value) )

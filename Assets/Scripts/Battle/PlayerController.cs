@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using HutongGames.PlayMaker;
+using DG.Tweening;
 
 public class PlayerController : UnitController
 {
@@ -29,13 +30,16 @@ public class PlayerController : UnitController
 	public float rollPowerRequire = 200;
 
 	ETCJoystick joystick;
+	GameObject mControllObject;
 
 	protected override void Awake ()
 	{
 		base.Awake ();
 		GameObject go = Instantiate (Resources.Load<GameObject> ("Controller"));
+		mControllObject = go;
 		joystick = go.GetComponentInChildren<ETCJoystick> (true);
 		joystick.onMove.AddListener (this.On_JoystickMove);
+		mControllObject.SetActive (false);
 	}
 
 	void Start ()
@@ -288,12 +292,21 @@ public class PlayerController : UnitController
 
 	#region Btn Controll
 
+	public void ShowControllBtns(){
+		mControllObject.SetActive (true);
+		mControllObject.GetComponentInChildren<CanvasGroup> (true).alpha = 0;
+		mControllObject.GetComponentInChildren<CanvasGroup> (true).DOFade (1,1f);
+	}
+
 	void BtnY ()
 	{
 		if (!CheckControllAble ())
 			return;
+//		if (pm.ActiveStateName == "Idle") {
+//			pm.FsmVariables.FindFsmBool ("isBattle").Value = false;
+//
 		if (pm.ActiveStateName == "Idle") {
-			pm.FsmVariables.FindFsmBool ("isBattle").Value = false;
+			pm.FsmVariables.FindFsmBool ("isAttackX").Value = true;
 		} else if (pm.ActiveStateName == "IdleFree") {
 			pm.FsmVariables.FindFsmBool ("isUseItem").Value = true;
 		}
@@ -329,9 +342,9 @@ public class PlayerController : UnitController
 
 		if (pm.ActiveStateName == "IdleFree" || pm.ActiveStateName == "Run") {
 			pm.FsmVariables.FindFsmBool ("isBattle").Value = true;
-		}else if (pm.ActiveStateName == "Idle") {
+		} else if (pm.ActiveStateName == "Idle") {
 			pm.FsmVariables.FindFsmBool ("isBattle").Value = false;
-		}else if (pm.ActiveStateName == "Run") {
+		} else if (pm.ActiveStateName == "Run") {
 			pm.FsmVariables.FindFsmBool ("isRun").Value = false;
 		}
 		return;

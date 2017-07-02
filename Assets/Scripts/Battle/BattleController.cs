@@ -148,6 +148,8 @@ public class BattleController : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (1);
 		cameraContoller.PlayBossComingAnimation (playerComingAnimClip,enemyController.transform,"Base Layer.005bellow");
+		yield return new WaitForSeconds (5);
+		playerController.ShowControllBtns ();
 	}
 
 	public void EnemyDead()
