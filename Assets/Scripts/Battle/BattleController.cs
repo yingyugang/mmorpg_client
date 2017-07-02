@@ -21,8 +21,9 @@ public class BattleController : MonoBehaviour {
 	public Transform playerSpawnPoint;
 	public Transform enemySpawnPoint;
 	public Vector3 playerSpawnPos;
-	public Vector3 enemySpawnPos;
 
+	public Vector3 enemySpawnPos;
+	public Vector3 enemySpawnEuler;
 
 	public List<Collection> collections;
 	public List<Gate> gates;
@@ -32,7 +33,6 @@ public class BattleController : MonoBehaviour {
 	public AnimationClip[] playerDeathCameraAnimClips;
 	public float[] playerDeathAnimNormalizes;
 	public AnimationClip playerComingAnimClip;
-	public EasyButton[] easyButtons; 
 
 	static BattleController instance;
 	public static BattleController SingleTon()
@@ -49,13 +49,7 @@ public class BattleController : MonoBehaviour {
 
 //		GameObject battleCamera = Resources.Load<GameObject> ("BattleCamera");
 //		Instantiate (battleCamera);
-		GameObject myJoystick = Resources.Load<GameObject> ("MyJoystick");
-		Instantiate (myJoystick);
-		GameObject myEasyTouch = Resources.Load<GameObject>("MyEasyTouch");
-		GameObject go = Instantiate (myEasyTouch) as GameObject;
-		easyButtons = go.GetComponentsInChildren<EasyButton>();
-		EasyButton eb;
-		Debug.Log ("eb");
+
 		if (spawnManager == null)
 		{
 			spawnManager = gameObject.GetOrAddComponent<SpawnManager>();
@@ -80,6 +74,7 @@ public class BattleController : MonoBehaviour {
 		{
 			enemySpawnPoint = new GameObject().transform;
 			enemySpawnPoint.position = enemySpawnPos;
+			enemySpawnPoint.localEulerAngles = enemySpawnEuler;
 		}
 
 		if(playerController == null)
@@ -147,28 +142,6 @@ public class BattleController : MonoBehaviour {
 		{
 			StartCoroutine("_BossEnter");
 		}
-
-
-
-//		if(Input.Get)
-//		{
-//
-//		}
-
-//		if(Input.GetMouseButtonDown(0))
-//		{
-//			float clickTime = Time.realtimeSinceStartup;
-//			Vector2 clickPos = Input.mousePosition;
-//			if(lastClickTime!=0)
-//			{
-//				if(clickTime - lastClickTime > 0 && clickTime - lastClickTime < maxClickDelay && Vector2.Distance(lastClickPos,clickPos) < 100)
-//				{
-//					OnDoubleClick();
-//				}
-//			}
-//			lastClickTime = clickTime;
-//			lastClickPos = clickPos;
-//		}
 	}
 
 	IEnumerator _BossEnter()
@@ -216,34 +189,34 @@ public class BattleController : MonoBehaviour {
 		{
 			if(GUI.Button(new Rect(Screen.width/2 - Screen.width/10/2,Screen.height/2,Screen.width/10,Screen.height/10),"Restart"))
 			{
-				Application.LoadLevel(0);
+				UnityEngine.SceneManagement.SceneManager.LoadScene("Login");
 			}
 		}
-		mHOffset = 1;
-		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10) ,Screen.width/10,Screen.height/10),"A"))
-		{
-			Application.LoadLevel("BattleA BackGround");
-		}
-		mHOffset ++;
-		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"B"))
-		{
-			Application.LoadLevel("BattleB BackGround");
-		}
-		mHOffset ++;
-		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"C"))
-		{
-			Application.LoadLevel("BattleC BackGround");
-		}
-		mHOffset ++;
-		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"E"))
-		{
-			Application.LoadLevel("BattleE BackGround");
-		}
-		mHOffset ++;
-		if(GUI.Button(new Rect(10,10,30,50),"Camera"))
-		{
-			CameraController.SingleTon().TogglePerspective();
-		}
+//		mHOffset = 1;
+//		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10) ,Screen.width/10,Screen.height/10),"A"))
+//		{
+//			Application.LoadLevel("BattleA BackGround");
+//		}
+//		mHOffset ++;
+//		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"B"))
+//		{
+//			Application.LoadLevel("BattleB BackGround");
+//		}
+//		mHOffset ++;
+//		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"C"))
+//		{
+//			Application.LoadLevel("BattleC BackGround");
+//		}
+//		mHOffset ++;
+//		if(GUI.Button(new Rect(10,Screen.height - mHOffset * (Screen.height/10 + 10),Screen.width/10,Screen.height/10),"E"))
+//		{
+//			Application.LoadLevel("BattleE BackGround");
+//		}
+//		mHOffset ++;
+//		if(GUI.Button(new Rect(10,10,30,50),"Camera"))
+//		{
+//			CameraController.SingleTon().TogglePerspective();
+//		}
 	}
 
 	void OnDrawGizmos()
