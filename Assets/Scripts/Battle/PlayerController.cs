@@ -66,6 +66,9 @@ public class PlayerController : UnitController
 
 	void Update ()
 	{
+		if (!BattleController.SingleTon ().isBegin)
+			return;
+		
 		if (Input.GetKeyDown (KeyCode.X) || ETCInput.GetButtonDown ("btn_x")) {
 			BtnX ();
 		}
@@ -92,49 +95,7 @@ public class PlayerController : UnitController
 			enabled = false;
 		}
 
-//		
-//		foreach(EasyButton eb in easyButtons)
-//		{
-//			if(eb.name == "Btn_R")
-//			{
-//				if(eb.buttonState == EasyButton.ButtonState.None && pm.ActiveStateName == "Defense")
-//				{
-//					pm.FsmVariables.FindFsmBool("isDefense").Value = false;
-//				}
-//			}
-//		}
-
 		OnMove (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-//		stateInfo = this.animator.GetCurrentAnimatorStateInfo (0); 
-//		h = Input.GetAxis ("Horizontal");
-//		v = Input.GetAxis ("Vertical");
-//		animator.SetFloat ("Volx", h * 2, 0.1f, Time.deltaTime);
-//		animator.SetFloat ("Voly", v * 2, 0.1f, Time.deltaTime);
-		
-//		//连续3段攻击
-//		if (!stateInfo.IsName (IdleState) && !stateInfo.IsName (IdleStateFree)) {  
-//			// 每次设置完参数之后，都应该在下一帧开始时将参数设置清空，避免连续切换  
-//			animator.SetInteger (ActionCMD, 0);
-////			animator.SetBool ("X", false);
-//			animator.SetBool ("Roll", false);
-//
-//		} else if (stateInfo.IsName (IdleState) && v != 0 || h != 0) {  
-//				
-//			moveDirection = new Vector3 (h, 0, v);
-//			moveDirection.Normalize ();
-//			transform.forward = Vector3.Slerp (transform.forward, moveDirection, 0.1f);
-//			//改变转向,Slerp球形插值在两个向量之间.0.07f是转向速度
-//		}		
-//
-//		if (stateInfo.IsName (AttackA) && (stateInfo.normalizedTime > 0.54f) && (this.curComboCount == 2)) {  
-//			// 当在攻击1状态下，并且当前状态运行了0.54正交化时间（即动作时长的54%），并且用户在攻击1状态下又按下了“攻击键”  
-//			animator.SetInteger (ActionCMD, 1);  
-//		}  
-//		if (stateInfo.IsName (AttackAA) && (stateInfo.normalizedTime > 0.6f) && (this.curComboCount == 3)) {  
-//			// 当在攻击2状态下（同理攻击1状态）  
-//			animator.SetInteger (ActionCMD, 1);  
-//		} 
-//		StateMachine ();
 	}
 
 	//	void StateMachine()

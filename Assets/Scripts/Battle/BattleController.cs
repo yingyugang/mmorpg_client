@@ -33,6 +33,7 @@ public class BattleController : MonoBehaviour {
 	public AnimationClip[] playerDeathCameraAnimClips;
 	public float[] playerDeathAnimNormalizes;
 	public AnimationClip playerComingAnimClip;
+	public bool isBegin;
 
 	static BattleController instance;
 	public static BattleController SingleTon()
@@ -147,9 +148,10 @@ public class BattleController : MonoBehaviour {
 	IEnumerator _BossEnter()
 	{
 		yield return new WaitForSeconds (1);
-		cameraContoller.PlayBossComingAnimation (playerComingAnimClip,enemyController.transform,"Base Layer.005bellow");
-		yield return new WaitForSeconds (5);
-		playerController.ShowControllBtns ();
+		cameraContoller.PlayBossComingAnimation (playerComingAnimClip,enemyController.transform,"Base Layer.005bellow",()=>{
+			isBegin = true;
+			playerController.ShowControllBtns ();
+		});
 	}
 
 	public void EnemyDead()

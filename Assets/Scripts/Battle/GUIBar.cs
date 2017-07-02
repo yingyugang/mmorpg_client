@@ -40,6 +40,9 @@ public class GUIBar : MonoBehaviour {
 	
 	void OnGUI()
 	{
+		if (!BattleController.SingleTon ().isBegin) {
+			return;
+		}
 		mWidthRadiu = (float)Screen.width / defaultWidth;
 		mHeightRadiu = (float)Screen.height / defaultHeight;
 		if (side == BarSide.Left)

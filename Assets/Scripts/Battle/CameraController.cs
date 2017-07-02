@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour {
 
@@ -48,10 +49,13 @@ public class CameraController : MonoBehaviour {
 	
 #region toggle battlePerspective type
 
-	public void PlayBossComingAnimation(AnimationClip clip,Transform t,string stateName)
+	public UnityAction onBossComingDone;
+
+	public void PlayBossComingAnimation(AnimationClip clip,Transform t,string stateName,UnityAction onComplete)
 	{
 		if(clip!=null)
 		{
+			onBossComingDone = onComplete;
 			if(cameraFollow)cameraFollow.enabled = false;
 			if(mobileSimpleRpgCamera)mobileSimpleRpgCamera.enabled = false;
 			if(fixedCamera)fixedCamera.enabled = false;
@@ -72,6 +76,8 @@ public class CameraController : MonoBehaviour {
 		yield return new WaitForSeconds (clip.length);
 		Camera.main.transform.parent = null;
 		if(cameraFollow)cameraFollow.enabled = true;
+		if (onBossComingDone != null)
+			onBossComingDone ();
 	}
 
 	public void PlayDeathAnimation(AnimationClip[] clips,float[] startNormalizeTimes,Transform t,string stateName){
