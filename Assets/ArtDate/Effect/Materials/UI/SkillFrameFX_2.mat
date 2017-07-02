@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SkillFrameFX_2
+  m_Shader: {fileID: 4800000, guid: 47aa38f8b4d78af4e86082b3959070ac, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 874683a80954a2240b4faad30e25d9ef, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: 3834faa1335fb3941a824e384077d049, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 3834faa1335fb3941a824e384077d049, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 2800000, guid: aca6a2b5ff3023740a9d46198da431c2, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrc
+        second:
+          m_Texture: {fileID: 2800000, guid: 14d10574aa39ca643a35969bad2c2d36, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrcBump
+        second:
+          m_Texture: {fileID: 2800000, guid: e989c5502fb114540af63d200df91e9b, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: -.400000006
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: .400000006
+      data:
+        first:
+          name: _DispX
+        second: -1
+      data:
+        first:
+          name: _DispY
+        second: 1
+      data:
+        first:
+          name: _Amount
+        second: .178571433
+      data:
+        first:
+          name: _StartAmount
+        second: 16.2399998
+      data:
+        first:
+          name: _TransRange
+        second: .100000001
+      data:
+        first:
+          name: _Illuminate
+        second: 0
+      data:
+        first:
+          name: _Distortion
+        second: 1
+      data:
+        first:
+          name: _DistSpeed
+        second: 7.69000006
+      data:
+        first:
+          name: _DistortStrength
+        second: 1.80999994
+      data:
+        first:
+          name: _EdgeStrength
+        second: .479999989
+      data:
+        first:
+          name: _EdgeShininess
+        second: 2.24000001
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: .931034446, b: 0, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: .723123729, b: .426470578, a: .725490212}
+      data:
+        first:
+          name: _DissColor
+        second: {r: 0, g: 0, b: 0, a: .650980413}

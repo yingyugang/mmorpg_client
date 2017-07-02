@@ -1,0 +1,6 @@
+id,name,description,icon,skill_effect_base_id,effect_possibility,effect_start_round,effect_max_round,effect_value_min,effect_value_max,effect_percent_value_min,effect_percent_value_max,effect_percent_target_value_min,effect_percent_target_value_max
+1,伤害,固定值直接伤害,,1,10000,0,1,500,600,,,,
+2,伤害,基于自身伤害的直接伤害,,1,10000,0,1,,,"1,000","2,000",,
+3,伤害,基于目标maxHp的百分比伤害,,1,10000,0,1,,,,,"1,000","2,000"
+4,攻击力增强,基础攻击力百分比增强,,3,5000,0,5,,,,,500,500
+5,防御力减弱,防御力百分比减弱,,6,3000,0,5,,,,,"1,500","1,500"

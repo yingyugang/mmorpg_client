@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Splinter_Skill_2
+  m_Shader: {fileID: 4800000, guid: b08fff1b28546174ca3fa3382bfcace3, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 85ae5950cfc2d5548a1456c52c1eaab0, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 2.92214274
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: 0
+      data:
+        first:
+          name: _DispX
+        second: 0
+      data:
+        first:
+          name: _DispY
+        second: .200000003
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .0224615186, g: .00486591458, b: .0441176295, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .0700691938, g: .0544982702, b: .132352948, a: 1}

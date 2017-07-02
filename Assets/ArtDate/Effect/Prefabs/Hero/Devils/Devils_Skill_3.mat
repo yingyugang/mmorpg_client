@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Devils_Skill_3
+  m_Shader: {fileID: 4800000, guid: edefcc0c89273fb42a9f3143d49f690c, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: 3000
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: cca4f30036132f340bf09964e0791a2c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrc
+        second:
+          m_Texture: {fileID: 2800000, guid: a4b9c0549cb10e943acdfa8527129bf2, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrcBump
+        second:
+          m_Texture: {fileID: 2800000, guid: e989c5502fb114540af63d200df91e9b, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _ScrollTimeX
+        second: 0
+      data:
+        first:
+          name: _ScrollTimeY
+        second: 0
+      data:
+        first:
+          name: _Amount
+        second: 0
+      data:
+        first:
+          name: _StartAmount
+        second: .289999992
+      data:
+        first:
+          name: _TransRange
+        second: .0671428591
+      data:
+        first:
+          name: _Illuminate
+        second: 2
+      data:
+        first:
+          name: _Distortion
+        second: 1
+      data:
+        first:
+          name: _DistSpeed
+        second: 2
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _DissColor
+        second: {r: 1, g: .538539529, b: .33088237, a: 1}

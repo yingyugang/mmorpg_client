@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Brush_Distort
+  m_Shader: {fileID: 4800000, guid: edefcc0c89273fb42a9f3143d49f690c, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 8400000, guid: 8eb8da2558a0d2a4698dda30b408ae05, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 55e6facb2bb623449942330fa9a8f00a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 2800000, guid: b0bde08c619f2364a88d35217a1daef1, type: 3}
+          m_Scale: {x: 10, y: 10}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrc
+        second:
+          m_Texture: {fileID: 2800000, guid: 98ec7a847f3164c408d4d47596cc3887, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DissolveSrcBump
+        second:
+          m_Texture: {fileID: 2800000, guid: e989c5502fb114540af63d200df91e9b, type: 3}
+          m_Scale: {x: 5, y: 5}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .178621203
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: -.180000007
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: -.600000024
+      data:
+        first:
+          name: _DispX
+        second: -.980000019
+      data:
+        first:
+          name: _DispY
+        second: -1.63999999
+      data:
+        first:
+          name: _Amount
+        second: 0
+      data:
+        first:
+          name: _StartAmount
+        second: .119999997
+      data:
+        first:
+          name: _TransRange
+        second: .0178571418
+      data:
+        first:
+          name: _Illuminate
+        second: 2
+      data:
+        first:
+          name: _Distortion
+        second: .321428597
+      data:
+        first:
+          name: _DistSpeed
+        second: 6.03000021
+      data:
+        first:
+          name: _Tile
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .838235259, g: .75194633, b: .75194633, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: .501960814}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _DissColor
+        second: {r: 0, g: .337931156, b: 1, a: 1}
+      data:
+        first:
+          name: _ColorAnimate
+        second: {r: 0, g: 0, b: 0, a: 0}

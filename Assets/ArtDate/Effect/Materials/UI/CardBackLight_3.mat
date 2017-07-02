@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: CardBackLight_3
+  m_Shader: {fileID: 4800000, guid: 447410ea47f99e24d90d7c556a1dcd06, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 11fe454dfef980d43bb3b595691d0990, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: 73765bc95f100cf40853a257502d3dc8, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 2c0b84c2ccdea9e4ebf9f699e180ddb2, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 11fe454dfef980d43bb3b595691d0990, type: 3}
+          m_Scale: {x: 10, y: 1}
+          m_Offset: {x: 0, y: .800000012}
+      data:
+        first:
+          name: _DissolveMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: -.300000012
+      data:
+        first:
+          name: _DispX
+        second: .589999974
+      data:
+        first:
+          name: _DispY
+        second: 1.49000001
+      data:
+        first:
+          name: _DistortStrength
+        second: 1.89999998
+      data:
+        first:
+          name: _EdgeStrength
+        second: .569999993
+      data:
+        first:
+          name: _EdgeShininess
+        second: 9.30000019
+      data:
+        first:
+          name: _ScrollTimeX
+        second: 0
+      data:
+        first:
+          name: _ScrollTimeY
+        second: 0
+      data:
+        first:
+          name: _DissolveGamma
+        second: 1
+      data:
+        first:
+          name: _StrengthX
+        second: 1
+      data:
+        first:
+          name: _StrengthY
+        second: -1
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: .351724088, b: 0, a: 1}

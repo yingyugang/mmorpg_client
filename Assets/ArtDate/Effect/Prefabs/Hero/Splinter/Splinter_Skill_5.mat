@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Splinter_Skill_5
+  m_Shader: {fileID: 4800000, guid: 3510fd06ed67dcf4a83cad7ee8e0b06c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 3010
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _DispMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: c065be6882b0a2c4b8216cbd69855cb1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _DispScrollSpeedX
+      second: 0
+    - first:
+        name: _DispScrollSpeedY
+      second: 0.5
+    - first:
+        name: _DispX
+      second: 1
+    - first:
+        name: _DispY
+      second: 1
+    - first:
+        name: _InvFade
+      second: 2.9221427
+    - first:
+        name: _ScrollTimeX
+      second: 0
+    - first:
+        name: _ScrollTimeY
+      second: 0
+    - first:
+        name: _StrengthX
+      second: 1
+    - first:
+        name: _StrengthY
+      second: -1
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _TintColor
+      second: {r: 0.2879001, g: 0.48330152, b: 0.52205884, a: 0.14117648}

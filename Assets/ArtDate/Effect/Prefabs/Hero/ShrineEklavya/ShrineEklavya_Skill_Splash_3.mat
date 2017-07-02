@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ShrineEklavya_Skill_Splash_3
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: 3000
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 15c7547684fd97645a7f9b158b9343b2, type: 3}
+          m_Scale: {x: 1, y: .5}
+          m_Offset: {x: 0, y: .400000006}
+      data:
+        first:
+          name: _MaskTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DispMap
+        second:
+          m_Texture: {fileID: 2800000, guid: c932370e115f8a94a97cbb31cf636d8e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: fcf74b5f195671f4eae324deb2ebfb4a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _ScrollTimeX
+        second: 0
+      data:
+        first:
+          name: _ScrollTimeY
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedX
+        second: 0
+      data:
+        first:
+          name: _DispScrollSpeedY
+        second: 2
+      data:
+        first:
+          name: _DispX
+        second: 0
+      data:
+        first:
+          name: _DispY
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .588, g: .588, b: .588, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .234212816, g: .488318771, b: .838235259, a: 1}
