@@ -95,7 +95,7 @@ public class PlayerController : UnitController
 			enabled = false;
 		}
 
-		OnMove (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+//		OnMove (Input.GetAxisRaw (" "), Input.GetAxisRaw ("Vertical"));
 	}
 
 	//	void StateMachine()
@@ -144,7 +144,7 @@ public class PlayerController : UnitController
 		}
 //		if (stateInfo.IsName (IdleState)) { 
 //			
-//			// 在待命状态下，按下攻击键，进入攻击1状态，并记录连击数为1  
+//			//在待命状态下，按下攻击键，进入攻击1状态，并记录连击数为1  
 //			this.animator.SetInteger (ActionCMD, 1); 
 //			//延时调用两个方法，分别是攻击判定的生效和失效。
 //			//Invoke ("AttackStart", 1.16f);
