@@ -59,12 +59,19 @@ namespace MMO
 		{
 			PlayerInfo playerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = playerInfo.playerId;
+//			PSMeshRendererUpdater updater = BodyEffects.Instance.renderers [16];
+//			GameObject effect = Instantiate (updater.gameObject);
+//			effect.transform.SetParent (player);
+//			effect.transform.localPosition = Vector3.zero;
+//			PSMeshRendererUpdater goUpdater = effect.GetComponent<PSMeshRendererUpdater> ();
+//			goUpdater.MeshObject = player.gameObject;
+//			goUpdater.UpdateMeshEffect ();
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)
 		{
 			TransferData playerHandle = msg.ReadMessage<TransferData> ();
-			Debug.Log (JsonUtility.ToJson (playerHandle));
+//			Debug.Log (JsonUtility.ToJson (playerHandle));
 			for (int i = 0; i < playerHandle.playerDatas.Length; i++) {
 				if (playerHandle.playerDatas [i].playerId != mPlayerId) {
 					if (!otherPlayers.ContainsKey (playerHandle.playerDatas [i].playerId)) {
