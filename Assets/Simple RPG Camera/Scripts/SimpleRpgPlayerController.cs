@@ -31,7 +31,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	private float _input_s = 0;
 	private float _rotation = 0;
 	private Vector3 _last_position = Vector3.zero;
-	private float _animation_speed = 1;
+	public float _animation_speed = 1;
 	private float _move_speed = 0;
 	private Vector3 _wanted_position = Vector3.zero;
 	private Vector3 _last_wanted_position = Vector3.zero;
