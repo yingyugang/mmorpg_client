@@ -10,11 +10,11 @@ namespace MMO
 		public MMOClient client;
 		public Transform player;
 		public string targetIp;
-		SimpleRpgAnimator mRpgPlayerAnimator;
-		SimpleRpgPlayerController mRpgPlayerController;
 		public GameObject playerPrefab;
 		public SimpleRpgCamera rpgCamera;
 
+		SimpleRpgAnimator mRpgPlayerAnimator;
+		SimpleRpgPlayerController mRpgPlayerController;
 		Dictionary<int,GameObject> mOtherPlayers;
 		List<int> mOtherPlayerIds;
 		int mPlayerId;
@@ -30,7 +30,6 @@ namespace MMO
 			mRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mOtherPlayers = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
-//			client.Connect (targetIp, NetConstant.LISTENE_PORT, OnConnected,OnRecievePlayerInfo, OnRecieveMessage);
 		}
 
 		void Update ()
