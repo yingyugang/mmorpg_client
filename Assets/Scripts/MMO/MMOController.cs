@@ -69,20 +69,11 @@ namespace MMO
 			mPlayerId = playerInfo.playerId;
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
-
-//			PSMeshRendererUpdater updater = BodyEffects.Instance.renderers [16];
-//			GameObject effect = Instantiate (updater.gameObject);
-//			effect.transform.SetParent (player);
-//			effect.transform.localPosition = Vector3.zero;
-//			PSMeshRendererUpdater goUpdater = effect.GetComponent<PSMeshRendererUpdater> ();
-//			goUpdater.MeshObject = player.gameObject;
-//			goUpdater.UpdateMeshEffect ();
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)
 		{
 			TransferData playerHandle = msg.ReadMessage<TransferData> ();
-//			Debug.Log (JsonUtility.ToJson (playerHandle));
 			HashSet<int> activedPlayerIds = new HashSet<int>();
 			for (int i = 0; i < playerHandle.playerDatas.Length; i++) {
 				if (playerHandle.playerDatas [i].playerId != mPlayerId) {
