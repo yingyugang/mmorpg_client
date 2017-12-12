@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class MonoExtendUitility{
+public static class MonoExtendUtility{
 
 	public static T GetOrAddComponent<T>(this GameObject go) where T : MonoBehaviour
 	{
