@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 
 namespace MMO
 {
@@ -22,7 +23,8 @@ namespace MMO
 		Vector3 mPreForward;
 		string mPreAction;
 		float mPreSpeed;
-
+		public PlayerInfo playerInfo;
+		public PlayerData playerData;
 
 		void Start ()
 		{
@@ -66,9 +68,11 @@ namespace MMO
 			
 		}
 
+		//TODO 把通信数据放在一个主对象的不同参数里面，这个容易理解很保存数据。
+		//开发量也相对较少，否则分开的化需要不同的对象，方法，action，数量多，时间长不易于管理。
 		void OnRecievePlayerInfo (NetworkMessage msg)
 		{
-			PlayerInfo playerInfo = msg.ReadMessage<PlayerInfo> ();
+			playerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = playerInfo.playerId;
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
@@ -90,6 +94,8 @@ namespace MMO
 					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].playerForward;
 					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].action;
 					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].animSpeed);
+				} else {
+					this.playerData = playerHandle.playerDatas [i];
 				}
 			}
 

@@ -28,6 +28,5 @@ namespace MMO
 				uiRoot.SetActive(false);
 			});
 		}
-
 	}
 }
