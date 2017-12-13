@@ -40,7 +40,7 @@ namespace MMO
 			//			NetworkServer.RegisterHandler (MessageConstant.CLIENT_REQUEST_FRAMES, OnRecievePlayerFrameRequest);
 			//			NetworkServer.RegisterHandler (MessageConstant.CLIENT_RESOURCE_READY, OnRecieveClientResourceReady);
 			//			NetworkServer.RegisterHandler (MessageConstant.CLIENT_TO_SERVER_MSG, OnRecieveClientResourceReady);
-			//Environmentでシステムのパラメーターをセートする
+			//			Environmentでシステムのパラメーターをセートする
 			//			string[] commandLineArgs = Environment.GetCommandLineArgs();
 			//			for(int i=0;i<commandLineArgs.Length;i++){
 			//				if(commandLineArgs[i].ToLower().IndexOf("playercount")!=-1){
@@ -102,6 +102,7 @@ namespace MMO
 
 		//告诉客户端创建人物
 		//クライアントにキャラクターを作成する
+		//		地震をそうないて
 		//		void SendBattleBegin(){
 		//			CreatePlayer cp = new CreatePlayer ();
 		//			List<int> playerIds = new List<int> ();
@@ -130,6 +131,7 @@ namespace MMO
 			//			NetworkServer.SendUnreliableToAll (MessageConstant.SERVER_TO_CLIENT_MSG, currentMessage);
 		}
 
+		//何をしておきばいいですか。
 		//メセージを構造して、フレーム番号が増える
 		//		void ConstructFrameMessageAndIncreaseFrameIndex(ServerMessage currentMessage){
 		//			currentMessage.frame = mFrame;
@@ -177,6 +179,10 @@ namespace MMO
 		}
 
 		//收到用户准备准备完毕
+		//OnRecieveClientReady
+		//NetwokMessage
+		//msg
+		//OnRecieveClientReady(NetworkMessage msg)ユーザーを準備できたメセージを送信した。
 		//ユーザーを準備できたメセージを受信する
 		void OnRecieveClientReady(NetworkMessage msg){
 			Debug.logger.Log ("OnRecieveClientReady");
@@ -193,6 +199,11 @@ namespace MMO
 			//			if (count >= NetConstant.max_player_count) {
 			//				SendBattleBegin ();
 			//			} 
+			//OnRecievePlayerMessage(NetworkMessage msg);
+			//PlayerData playerHandle = msg.ReadMessage<PlayerData>();
+			//playerHandle.playerId = msg.conn.connectionId;
+			//if(!dic_player_data.CoutainsKey(msg.conn.connectionId))
+
 		}
 
 		void OnRecievePlayerMessage(NetworkMessage msg){
