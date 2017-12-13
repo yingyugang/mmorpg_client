@@ -1105,9 +1105,13 @@
      <Compile Include="Assets\Scripts\DataCenter\Modules\TestCSV.cs" />
      <Compile Include="Assets\Scripts\Debug\EnemyGizmos.cs" />
      <Compile Include="Assets\Scripts\Login\LoginManager.cs" />
-     <Compile Include="Assets\Scripts\MMO\MMOController.cs" />
-     <Compile Include="Assets\Scripts\MMO\MMOUIController.cs" />
-     <Compile Include="Assets\Scripts\MMO\MMOUnit.cs" />
+     <Compile Include="Assets\Scripts\MMO\Core\MMOController.cs" />
+     <Compile Include="Assets\Scripts\MMO\Core\MMOUIController.cs" />
+     <Compile Include="Assets\Scripts\MMO\Core\MMOUnit.cs" />
+     <Compile Include="Assets\Scripts\MMO\UI\LoginPanel.cs" />
+     <Compile Include="Assets\Scripts\MMO\UI\MainInterfacePanel.cs" />
+     <Compile Include="Assets\Scripts\MMO\UI\PanelBase.cs" />
+     <Compile Include="Assets\Scripts\MMO\UI\PanelManager.cs" />
      <Compile Include="Assets\Scripts\Utility\BoolTest1.cs" />
      <Compile Include="Assets\Scripts\Utility\CommonUtility.cs" />
      <Compile Include="Assets\Scripts\Utility\MonoExtendUtility.cs" />

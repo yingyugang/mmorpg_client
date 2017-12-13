@@ -7,6 +7,11 @@ using System;
 namespace MMO
 {
 
+	//TODO 用来保存所有数据
+	public class DataModel:MessageBase{
+
+	}
+
 	public class PlayerInfo : MessageBase{
 		public int playerId;
 	}
@@ -23,6 +28,12 @@ namespace MMO
 		public Vector3 playerForward;
 		public string action;
 		public float animSpeed;
+		public int currentHP;
+		public int maxHP;
+		public string playerName;
+		public int level;
+		public int currentExp;
+		public int maxExp;
 	}
 
 }
