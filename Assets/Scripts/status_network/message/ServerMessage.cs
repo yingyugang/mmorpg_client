@@ -8,21 +8,25 @@ namespace MMO
 {
 
 	//TODO 用来保存所有数据
-	public class DataModel:MessageBase{
+	public class DataModel:MessageBase
+	{
 
 	}
 
-	public class PlayerInfo : MessageBase{
+	public class PlayerInfo : MessageBase
+	{
 		public int playerId;
 	}
 
 	[Serializable]
-	public class TransferData : MessageBase{
+	public class TransferData : MessageBase
+	{
 		public PlayerData[] playerDatas;
 	}
 
 	[Serializable]
-	public class PlayerData : MessageBase{
+	public class PlayerData : MessageBase
+	{
 		public int playerId;
 		public Vector3 playerPosition;
 		public Vector3 playerForward;
