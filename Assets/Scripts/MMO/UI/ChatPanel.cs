@@ -12,6 +12,11 @@ namespace MMO
 		public InputField input_send;
 		public Text txt_recieve;
 		CanvasGroup mCanvasGroup;
+		string defaultText;
+		string[] delWord = {
+			"\n",
+			"\t",
+		};
 
 		protected override void Awake ()
 		{
@@ -21,6 +26,7 @@ namespace MMO
 			});
 			MMOController.Instance.onChat = OnRecieve;
 			mCanvasGroup = txt_recieve.GetComponent<CanvasGroup> ();
+			defaultText = input_send.text;
 		}
 
 		void LateUpdate(){
@@ -32,24 +38,34 @@ namespace MMO
 					Send ();
 				}
 			}
+
+
 			//TODO
 			if (EventSystem.current.currentSelectedGameObject != input_send.gameObject) {
 				MMOController.Instance.simpleRpgPlayerController.enabled = true;
-				mCanvasGroup.alpha = mAlpha;
 				mAlpha -= Time.deltaTime;
 			}
 			else {
+				mAlpha = 3;
 				MMOController.Instance.simpleRpgPlayerController.enabled = false;
 			}
+			mAlpha = Mathf.Max (mAlpha,0.5f);
+			mCanvasGroup.alpha = mAlpha;
 		}
 
 		void Send(){
+			//fix new GUI inputfield bug;
+//			Text txt = input_send.transform.Find ("Text").GetComponent<Text> ();
+//			if(!string.IsNullOrEmpty(txt.text))
+//				input_send.text = txt.text;
+			input_send.text = input_send.text.Replace ("\r","");
+			input_send.text = input_send.text.Replace ("\t","");
+			input_send.text = input_send.text.Replace ("\n","");
 			if (!string.IsNullOrEmpty (input_send.text)) {
 				MMOController.Instance.SendChat (input_send.text);
-				input_send.text = "";
+				input_send.text = defaultText;
 			}
 		}
-
 
 		float mAlpha = 3;
 		void OnRecieve(string msg){
