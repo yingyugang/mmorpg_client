@@ -22,13 +22,20 @@ namespace MMO
 
 		void Update ()
 		{
-			txt_level.text = MMOController.Instance.playerData.level.ToString ();
-			txt_name.text = MMOController.Instance.playerData.playerName;
-			txt_health.text = string.Format ("{0} / {1}", MMOController.Instance.playerData.currentHP, MMOController.Instance.playerData.maxHP);
-			slider_health.value = MMOController.Instance.playerData.currentHP / (float)MMOController.Instance.playerData.maxHP;
-			img_exp.fillAmount = MMOController.Instance.playerData.currentExp / (float)MMOController.Instance.playerData.maxExp;
-//			img_head.sprite = ????/TODO head sprite package.
+			UpdatePlayerInfo ();
 		}
+
+		void UpdatePlayerInfo(){
+			if (MMOController.Instance.playerInfo == null)
+				return;
+			//			txt_level.text = MMOController.Instance.playerInfo.level.ToString ();
+			txt_level.text = MMOController.Instance.playerInfo.attribute.level.ToString();
+			txt_name.text = MMOController.Instance.playerInfo.attribute.unitName;
+			txt_health.text = string.Format ("{0} / {1}", MMOController.Instance.playerInfo.attribute.currentHP, MMOController.Instance.playerInfo.attribute.maxHP);
+			if(MMOController.Instance.playerInfo.attribute.maxHP>0)
+				slider_health.value = MMOController.Instance.playerInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.attribute.maxHP;
+		}
+
 
 	}
 }

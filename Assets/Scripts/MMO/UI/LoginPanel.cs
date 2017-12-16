@@ -23,6 +23,7 @@ namespace MMO
 			input_ip.text = PlayerPrefs.GetString (TARGET_IP);
 			input_port.text = PlayerPrefs.GetString (TARGET_PORT);
 			btn_connect.onClick.AddListener (()=>{
+				MMOController.Instance.playerName = input_name.text.Trim();
 				MMOController.Instance.Connect(input_ip.text.Trim(),int.Parse(input_port.text));
 				PlayerPrefs.SetString(TARGET_IP,input_ip.text);
 				PlayerPrefs.SetString(TARGET_PORT,input_port.text);
@@ -30,6 +31,7 @@ namespace MMO
 				PlayerPrefs.Save();
 				uiRoot.SetActive(false);
 				PanelManager.Instance.mainInterfacePanel.gameObject.SetActive(true);
+				PanelManager.Instance.chatPanel.gameObject.SetActive(true);
 			});
 		}
 

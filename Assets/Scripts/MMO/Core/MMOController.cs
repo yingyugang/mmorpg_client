@@ -15,7 +15,7 @@ namespace MMO
 		public SimpleRpgCamera rpgCamera;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
-		SimpleRpgPlayerController mSimpleRpgPlayerController;
+		public SimpleRpgPlayerController simpleRpgPlayerController;
 		Dictionary<int,GameObject> mOtherPlayers;
 		List<int> mOtherPlayerIds;
 		int mPlayerId;
@@ -24,12 +24,13 @@ namespace MMO
 		string mPreAction;
 		float mPreSpeed;
 		public PlayerInfo playerInfo;
-		public PlayerData playerData;
+		public string playerName;
+		public UnityAction<string> onChat;
 
 		void Start ()
 		{
 			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
-			mSimpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
+			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mOtherPlayers = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
 		}
@@ -37,13 +38,16 @@ namespace MMO
 		void Update ()
 		{
 			if (client.IsConnected) {
-				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction || mSimpleRpgPlayerController._animation_speed != mPreSpeed) {
+				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction || simpleRpgPlayerController._animation_speed != mPreSpeed) {
 					mPrePosition = player.position;
 					mPreForward = player.forward;
 					mPreAction = mSimpleRpgAnimator.Action;
-					mPreSpeed = mSimpleRpgPlayerController._animation_speed;
+					mPreSpeed = simpleRpgPlayerController._animation_speed;
 					SendMessage (player);
 				}
+			}
+			if(Input.GetKeyDown(KeyCode.Escape)){
+				Application.Quit ();
 			}
 		}
 
@@ -52,15 +56,25 @@ namespace MMO
 			client.Connect (ip, port, OnConnected, OnRecievePlayerInfo, OnRecieveMessage);
 		}
 
+		public void Login(string loginName){
+			PlayerInfo pi = new PlayerInfo ();
+			pi.attribute.unitName = loginName;
+			client.Send (MessageConstant.LOGIN_MSG,pi);
+		}
+
 		public void SendMessage (Transform player)
 		{
-			PlayerData data = new PlayerData ();
-			data.playerId = mPlayerId;
-			data.playerForward = player.forward;
-			data.playerPosition = player.position;
-			data.action = mPreAction;
-			data.animSpeed = mPreSpeed;
-			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, data);
+			playerInfo.transform.playerForward = player.forward;
+			playerInfo.transform.playerPosition = player.position;
+			playerInfo.animation.action = mPreAction;
+			playerInfo.animation.animSpeed = mPreSpeed;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
+		}
+
+		public void SendChat(string chat){
+			playerInfo.chat = chat;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
+			playerInfo.chat = "";
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -74,8 +88,12 @@ namespace MMO
 		{
 			playerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = playerInfo.playerId;
+			MMOAttribute attribute = playerInfo.attribute;
+
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
+			playerInfo.attribute.unitName = playerName;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)
@@ -90,12 +108,19 @@ namespace MMO
 						mOtherPlayerIds.Add (playerHandle.playerDatas [i].playerId);
 					}
 					activedPlayerIds.Add (playerHandle.playerDatas [i].playerId);
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.position = playerHandle.playerDatas [i].playerPosition;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].playerForward;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].action;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].animSpeed);
-				} else {
-					this.playerData = playerHandle.playerDatas [i];
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.position = playerHandle.playerDatas [i].transform.playerPosition;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].transform.playerForward;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].animation.action;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].animation.animSpeed);
+				}
+
+				if(!string.IsNullOrEmpty(playerHandle.playerDatas [i].chat)){
+					if (onChat != null) {
+						if(playerHandle.playerDatas [i].playerId != mPlayerId)
+							onChat (string.Format ("<color=yellow>{0}</color>:{1}", playerHandle.playerDatas [i].attribute.unitName, playerHandle.playerDatas [i].chat));
+						else
+							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", playerHandle.playerDatas [i].chat));
+					}
 				}
 			}
 

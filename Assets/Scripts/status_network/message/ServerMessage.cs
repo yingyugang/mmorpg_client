@@ -6,38 +6,45 @@ using System;
 
 namespace MMO
 {
-
-	//TODO 用来保存所有数据
-	public class DataModel:MessageBase
-	{
-
-	}
-
-	public class PlayerInfo : MessageBase
-	{
+	[Serializable]
+	public class PlayerInfo : MessageBase{
 		public int playerId;
+		public string chat;
+		public MMOAttribute attribute;
+		public MMOTransform transform;
+		public MMOAnimation animation;
 	}
 
 	[Serializable]
-	public class TransferData : MessageBase
-	{
-		public PlayerData[] playerDatas;
+	public class TransferData : MessageBase{
+		public PlayerInfo[] playerDatas;
 	}
 
-	[Serializable]
-	public class PlayerData : MessageBase
+	[System.Serializable]
+	public class MMOAttribute:MessageBase
 	{
-		public int playerId;
-		public Vector3 playerPosition;
-		public Vector3 playerForward;
-		public string action;
-		public float animSpeed;
+		public int unitId;
+		public int unitType;
+		public string unitName;
 		public int currentHP;
 		public int maxHP;
-		public string playerName;
 		public int level;
 		public int currentExp;
 		public int maxExp;
+	}
+
+	[System.Serializable]
+	public class MMOTransform:MessageBase
+	{
+		public Vector3 playerPosition;
+		public Vector3 playerForward;
+	}
+
+	[System.Serializable]
+	public class MMOAnimation:MessageBase
+	{
+		public string action;
+		public float animSpeed;
 	}
 
 }

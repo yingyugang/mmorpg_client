@@ -10,6 +10,7 @@ namespace MMO
 	{
 		NetworkClient client;
 		UnityAction<NetworkMessage> onConnect;
+		UnityAction<NetworkMessage> onLogin;
 		UnityAction<NetworkMessage> onRecieveMessage;
 		UnityAction<NetworkMessage> onRecievePlayerInfo;
 
@@ -18,13 +19,9 @@ namespace MMO
 			client = new NetworkClient ();
 			client.RegisterHandler (MsgType.Connect, OnConnect);
 			client.RegisterHandler (MsgType.Disconnect, OnDisconnect);
+			client.RegisterHandler (MessageConstant.LOGIN_MSG, OnLogin);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_PLAYER_INFO, OnRecievePlayerInfo);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
-		}
-
-		void Update ()
-		{
-			
 		}
 
 		public bool IsConnected {
@@ -52,6 +49,12 @@ namespace MMO
 			Debug.logger.Log ("<color=green>Connect</color>");
 			if (onConnect != null)
 				onConnect (nm);
+		}
+
+		void OnLogin(NetworkMessage nm){
+			Debug.logger.Log ("<color=green>OnLogin</color>");
+			if (onLogin != null)
+				onLogin (nm);
 		}
 
 		void OnDisconnect (NetworkMessage nm)
