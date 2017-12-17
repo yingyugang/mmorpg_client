@@ -6,6 +6,14 @@ using System;
 
 namespace MMO
 {
+
+	[Serializable]
+	public class UnitInfo : MessageBase{
+		public MMOAttribute attribute;
+		public MMOTransform transform;
+		public MMOAnimation animation;
+	}
+
 	[Serializable]
 	public class PlayerInfo : MessageBase{
 		public int playerId;
@@ -18,6 +26,7 @@ namespace MMO
 	[Serializable]
 	public class TransferData : MessageBase{
 		public PlayerInfo[] playerDatas;
+		public UnitInfo[] monsterDatas;
 	}
 
 	[System.Serializable]

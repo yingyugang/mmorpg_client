@@ -33,6 +33,8 @@ namespace MMO
 			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mOtherPlayers = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
+			mMonsters = new Dictionary<int, GameObject> ();
+			client.onRecieveMonsterInfos = OnRecieveMonsterInfos;
 		}
 
 		void Update ()
@@ -54,12 +56,6 @@ namespace MMO
 		public void Connect (string ip, int port)
 		{
 			client.Connect (ip, port, OnConnected, OnRecievePlayerInfo, OnRecieveMessage);
-		}
-
-		public void Login(string loginName){
-			PlayerInfo pi = new PlayerInfo ();
-			pi.attribute.unitName = loginName;
-			client.Send (MessageConstant.LOGIN_MSG,pi);
 		}
 
 		public void SendMessage (Transform player)
@@ -132,6 +128,21 @@ namespace MMO
 					mOtherPlayers.Remove (id);
 					i--;
 				}
+			}
+		}
+
+		Dictionary<int,GameObject> mMonsters;
+		void OnRecieveMonsterInfos(NetworkMessage msg){
+			TransferData data = msg.ReadMessage<TransferData> ();
+			for (int i = 0; i < data.monsterDatas.Length; i++) {
+				if (!mMonsters.ContainsKey ( data.monsterDatas [i].attribute.unitId)) {
+					mMonsters.Add ( data.monsterDatas [i].attribute.unitId, Instantiate (playerPrefab));
+					mMonsters [ data.monsterDatas [i].attribute.unitId].SetActive (true);
+				}
+				mMonsters [data.monsterDatas [i].attribute.unitId].transform.position = data.monsterDatas [i].transform.playerPosition;
+				mMonsters [data.monsterDatas [i].attribute.unitId].transform.forward = data.monsterDatas [i].transform.playerForward;
+				mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
+				mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<SimpleRpgAnimator> ().SetSpeed (data.monsterDatas [i].animation.animSpeed);
 			}
 		}
 	}

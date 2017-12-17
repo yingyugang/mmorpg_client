@@ -9,17 +9,18 @@ namespace MMO
 	public class MMOClient : SingleMonoBehaviour<MMOClient>
 	{
 		NetworkClient client;
-		UnityAction<NetworkMessage> onConnect;
-		UnityAction<NetworkMessage> onLogin;
-		UnityAction<NetworkMessage> onRecieveMessage;
-		UnityAction<NetworkMessage> onRecievePlayerInfo;
+		 UnityAction<NetworkMessage> onConnect;
+		 UnityAction<NetworkMessage> onLogin;
+		 UnityAction<NetworkMessage> onRecieveMessage;
+		 UnityAction<NetworkMessage> onRecievePlayerInfo;
+		public UnityAction<NetworkMessage> onRecieveMonsterInfos;
 
 		void Start ()
 		{
 			client = new NetworkClient ();
 			client.RegisterHandler (MsgType.Connect, OnConnect);
 			client.RegisterHandler (MsgType.Disconnect, OnDisconnect);
-			client.RegisterHandler (MessageConstant.LOGIN_MSG, OnLogin);
+			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MONSTER_INFO, OnRecieveMonsterInfos);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_PLAYER_INFO, OnRecievePlayerInfo);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
 		}
@@ -68,6 +69,12 @@ namespace MMO
 			if (onRecievePlayerInfo != null)
 				onRecievePlayerInfo (msg);
 		}
+
+		void OnRecieveMonsterInfos(NetworkMessage msg){
+			if (onRecieveMonsterInfos != null)
+				onRecieveMonsterInfos (msg);
+		}
+
 
 		void OnRecieveMessage (NetworkMessage msg)
 		{
