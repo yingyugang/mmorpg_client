@@ -61,7 +61,7 @@ namespace MMO
 		void OnDisconnect (NetworkMessage nm)
 		{
 			Debug.logger.Log ("<color=red>Disconnect</color>");
-			//			BattleClientController.Instance.Reset ();
+			//BattleClientController.Instance.Reset ();
 		}
 
 		void OnRecievePlayerInfo (NetworkMessage msg)

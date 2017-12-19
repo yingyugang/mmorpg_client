@@ -12,6 +12,7 @@ namespace MMO
 		public MMOAttribute attribute;
 		public MMOTransform transform;
 		public MMOAnimation animation;
+		public MMOAttack attack;
 	}
 
 	[Serializable]
@@ -27,6 +28,11 @@ namespace MMO
 	public class TransferData : MessageBase{
 		public PlayerInfo[] playerDatas;
 		public UnitInfo[] monsterDatas;
+
+		public TransferData(){
+			playerDatas = new PlayerInfo[0];
+			monsterDatas = new UnitInfo[0];
+		}
 	}
 
 	[System.Serializable]
@@ -55,5 +61,13 @@ namespace MMO
 		public string action;
 		public float animSpeed;
 	}
+
+	[System.Serializable]
+	public class MMOAttack:MessageBase
+	{
+		public int attackType;
+		public Vector3 targetPos;
+	}
+
 
 }

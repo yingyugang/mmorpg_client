@@ -13,6 +13,7 @@ namespace MMO
 		public string targetIp;
 		public GameObject playerPrefab;
 		public SimpleRpgCamera rpgCamera;
+		public List<ShootObject> shootPrefabs;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
@@ -139,10 +140,18 @@ namespace MMO
 					mMonsters.Add ( data.monsterDatas [i].attribute.unitId, Instantiate (playerPrefab));
 					mMonsters [ data.monsterDatas [i].attribute.unitId].SetActive (true);
 				}
-				mMonsters [data.monsterDatas [i].attribute.unitId].transform.position = data.monsterDatas [i].transform.playerPosition;
-				mMonsters [data.monsterDatas [i].attribute.unitId].transform.forward = data.monsterDatas [i].transform.playerForward;
-				mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
-				mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<SimpleRpgAnimator> ().SetSpeed (data.monsterDatas [i].animation.animSpeed);
+				UnitInfo unitInfo = data.monsterDatas [i];
+				MMOUnit monster = mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit>();
+				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
+				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
+				monster.GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
+				monster.GetComponent<SimpleRpgAnimator> ().SetSpeed (data.monsterDatas [i].animation.animSpeed);
+				if(data.monsterDatas [i].attack.attackType>=0){
+					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].attack.attackType].gameObject;
+					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));
+					ShootObject so = shootGo.GetComponent<ShootObject> ();
+					so.Shoot (monster,unitInfo.attack.targetPos,Vector3.zero);
+				}
 			}
 		}
 	}
