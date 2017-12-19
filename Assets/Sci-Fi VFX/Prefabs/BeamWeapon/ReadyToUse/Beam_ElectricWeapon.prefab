@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1576267113652640}
+  m_IsPrefabParent: 1
+--- !u!1 &1576267113652640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4613315712702416}
+  - component: {fileID: 114191325139961604}
+  m_Layer: 0
+  m_Name: Beam_ElectricWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4613315712702416
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576267113652640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114191325139961604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576267113652640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a7e30344e15ea409678f026fc17c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeamPrefab: {fileID: 1352122297978598, guid: 31fe33aa481e4d548953743a8371ab16, type: 2}
+  MuzzleFlashPrefab: {fileID: 1043324046589598, guid: 002b21717aedea14480c0a2fdb248f4a,
+    type: 2}
+  ImpactEffectPrefab: {fileID: 1015594177220862, guid: 9d9bc48597654fe45acd13529e76000f,
+    type: 2}
+  ImpactEffectDecalPrefab: {fileID: 1225699857099332, guid: a379419c2ab49764c8ff2bf2dfecd9ee,
+    type: 2}
+  IsUsingAureole: 0
+  AureolePrefab: {fileID: 0}
+  ImpactDecalLifeTime: 1
+  MaxDistance: 40
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  InstantiateDelay: 0
+  InstantiateMuzzleFlashDelay: 0
