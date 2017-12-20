@@ -6,7 +6,7 @@ namespace MMO
 {
 	public class SkillBase
 	{
-
+		public int skillId;
 		public float coolDown = 5f;
 		float mNextActiveTime;
 

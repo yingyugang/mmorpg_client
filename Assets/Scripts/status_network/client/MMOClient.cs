@@ -9,10 +9,10 @@ namespace MMO
 	public class MMOClient : SingleMonoBehaviour<MMOClient>
 	{
 		NetworkClient client;
-		 UnityAction<NetworkMessage> onConnect;
-		 UnityAction<NetworkMessage> onLogin;
-		 UnityAction<NetworkMessage> onRecieveMessage;
-		 UnityAction<NetworkMessage> onRecievePlayerInfo;
+		UnityAction<NetworkMessage> onConnect;
+		UnityAction<NetworkMessage> onLogin;
+		UnityAction<NetworkMessage> onRecieveMessage;
+		UnityAction<NetworkMessage> onRecievePlayerInfo;
 		public UnityAction<NetworkMessage> onRecieveMonsterInfos;
 
 		void Start ()

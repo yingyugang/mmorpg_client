@@ -11,13 +11,15 @@ namespace MMO
 		public MMOClient client;
 		public Transform player;
 		public string targetIp;
-		public GameObject playerPrefab;
 		public SimpleRpgCamera rpgCamera;
 		public List<ShootObject> shootPrefabs;
+		public List<GameObject> unitPrefabs;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
-		Dictionary<int,GameObject> mOtherPlayers;
+		Dictionary<int,GameObject> mUnitDic;
+		Dictionary<int,GameObject> mPlayerDic;
+		Dictionary<int,GameObject> mMonsterDic;
 		List<int> mOtherPlayerIds;
 		int mPlayerId;
 		Vector3 mPrePosition;
@@ -32,9 +34,10 @@ namespace MMO
 		{
 			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
 			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
-			mOtherPlayers = new Dictionary<int, GameObject> ();
+			mPlayerDic = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
-			mMonsters = new Dictionary<int, GameObject> ();
+			mMonsterDic = new Dictionary<int, GameObject> ();
+			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveMonsterInfos;
 		}
 
@@ -68,10 +71,22 @@ namespace MMO
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 		}
 
+		//TODO
 		public void SendChat(string chat){
 			playerInfo.chat = chat;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 			playerInfo.chat = "";
+		}
+
+		//TODO
+		public void SendUseSkill(int skillId){
+			playerInfo.skillId = skillId;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
+			playerInfo.skillId = 0;
+		}
+
+		public void RecieveUseSkill(int unitId,int skillId){
+		
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -93,53 +108,56 @@ namespace MMO
 
 		void OnRecieveMessage (NetworkMessage msg)
 		{
-			TransferData playerHandle = msg.ReadMessage<TransferData> ();
+			TransferData transferData = msg.ReadMessage<TransferData> ();
 			HashSet<int> activedPlayerIds = new HashSet<int> ();
-			for (int i = 0; i < playerHandle.playerDatas.Length; i++) {
-				if (playerHandle.playerDatas [i].playerId != mPlayerId) {
-					if (!mOtherPlayers.ContainsKey (playerHandle.playerDatas [i].playerId)) {
-						mOtherPlayers.Add (playerHandle.playerDatas [i].playerId, Instantiate (playerPrefab));
-						mOtherPlayers [playerHandle.playerDatas [i].playerId].SetActive (true);
-						mOtherPlayerIds.Add (playerHandle.playerDatas [i].playerId);
+			for (int i = 0; i < transferData.playerDatas.Length; i++) {
+				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
+					GameObject playerGO = InstantiateUnit (0);
+					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
+					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
+					mOtherPlayerIds.Add (transferData.playerDatas [i].playerId);
+					if(mUnitDic.ContainsKey(transferData.playerDatas [i].unitInfo.attribute.unitId)){
+						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, playerGO);
 					}
-					activedPlayerIds.Add (playerHandle.playerDatas [i].playerId);
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.position = playerHandle.playerDatas [i].unitInfo.transform.playerPosition;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].unitInfo.transform.playerForward;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].unitInfo.animation.action;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].unitInfo.animation.animSpeed);
 				}
-
-				if(!string.IsNullOrEmpty(playerHandle.playerDatas [i].chat)){
+				if (transferData.playerDatas [i].playerId != mPlayerId) {
+					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = transferData.playerDatas [i].unitInfo.transform.playerPosition;
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = transferData.playerDatas [i].unitInfo.transform.playerForward;
+					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = transferData.playerDatas [i].unitInfo.animation.action;
+					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (transferData.playerDatas [i].unitInfo.animation.animSpeed);
+				}
+				if(!string.IsNullOrEmpty(transferData.playerDatas [i].chat)){
 					if (onChat != null) {
-						if(playerHandle.playerDatas [i].playerId != mPlayerId)
-							onChat (string.Format ("<color=yellow>{0}</color>:{1}", playerHandle.playerDatas [i].unitInfo.attribute.unitName, playerHandle.playerDatas [i].chat));
+						if(transferData.playerDatas [i].playerId != mPlayerId)
+							onChat (string.Format ("<color=yellow>{0}</color>:{1}", transferData.playerDatas [i].unitInfo.attribute.unitName, transferData.playerDatas [i].chat));
 						else
-							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", playerHandle.playerDatas [i].chat));
+							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", transferData.playerDatas [i].chat));
 					}
 				}
 			}
-
 			for (int i = 0; i < mOtherPlayerIds.Count; i++) {
 				if (!activedPlayerIds.Contains (mOtherPlayerIds [i])) {
 					int id = mOtherPlayerIds [i];
-					Destroy (mOtherPlayers [id]);
+					Destroy (mPlayerDic [id]);
 					mOtherPlayerIds.Remove (id);
-					mOtherPlayers.Remove (id);
+					mPlayerDic.Remove (id);
 					i--;
 				}
 			}
 		}
 
-		Dictionary<int,GameObject> mMonsters;
 		void OnRecieveMonsterInfos(NetworkMessage msg){
 			TransferData data = msg.ReadMessage<TransferData> ();
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
-				if (!mMonsters.ContainsKey ( data.monsterDatas [i].attribute.unitId)) {
-					mMonsters.Add ( data.monsterDatas [i].attribute.unitId, Instantiate (playerPrefab));
-					mMonsters [ data.monsterDatas [i].attribute.unitId].SetActive (true);
+				if (!mMonsterDic.ContainsKey ( data.monsterDatas [i].attribute.unitId)) {
+					GameObject monsterGo = InstantiateUnit (0);
+					mMonsterDic.Add(data.monsterDatas [i].attribute.unitId, monsterGo);
+					mMonsterDic[data.monsterDatas [i].attribute.unitId].SetActive (true);
+					mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
 				}
 				UnitInfo unitInfo = data.monsterDatas [i];
-				MMOUnit monster = mMonsters [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit>();
+				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit>();
 				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
 				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
 				monster.GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
@@ -152,5 +170,17 @@ namespace MMO
 				}
 			}
 		}
+
+		GameObject InstantiateUnit (int unitType)
+		{
+			unitType = Mathf.Clamp (unitType, 0, unitPrefabs.Count - 1);
+			GameObject unitPrebfab = unitPrefabs [unitType].gameObject;
+			unitPrebfab.SetActive (false);
+			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
+			MMOUnitSkill mmoUnitSkill = unitGo.GetOrAddComponent<MMOUnitSkill> ();
+			unitGo.SetActive (true);
+			return unitGo;
+		}
+
 	}
 }
