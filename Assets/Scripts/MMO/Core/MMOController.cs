@@ -61,10 +61,10 @@ namespace MMO
 
 		public void SendMessage (Transform player)
 		{
-			playerInfo.transform.playerForward = player.forward;
-			playerInfo.transform.playerPosition = player.position;
-			playerInfo.animation.action = mPreAction;
-			playerInfo.animation.animSpeed = mPreSpeed;
+			playerInfo.unitInfo.transform.playerForward = player.forward;
+			playerInfo.unitInfo.transform.playerPosition = player.position;
+			playerInfo.unitInfo.animation.action = mPreAction;
+			playerInfo.unitInfo.animation.animSpeed = mPreSpeed;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 		}
 
@@ -85,11 +85,9 @@ namespace MMO
 		{
 			playerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = playerInfo.playerId;
-			MMOAttribute attribute = playerInfo.attribute;
-
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
-			playerInfo.attribute.unitName = playerName;
+			playerInfo.unitInfo.attribute.unitName = playerName;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 		}
 
@@ -105,16 +103,16 @@ namespace MMO
 						mOtherPlayerIds.Add (playerHandle.playerDatas [i].playerId);
 					}
 					activedPlayerIds.Add (playerHandle.playerDatas [i].playerId);
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.position = playerHandle.playerDatas [i].transform.playerPosition;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].transform.playerForward;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].animation.action;
-					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].animation.animSpeed);
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.position = playerHandle.playerDatas [i].unitInfo.transform.playerPosition;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].transform.forward = playerHandle.playerDatas [i].unitInfo.transform.playerForward;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = playerHandle.playerDatas [i].unitInfo.animation.action;
+					mOtherPlayers [playerHandle.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (playerHandle.playerDatas [i].unitInfo.animation.animSpeed);
 				}
 
 				if(!string.IsNullOrEmpty(playerHandle.playerDatas [i].chat)){
 					if (onChat != null) {
 						if(playerHandle.playerDatas [i].playerId != mPlayerId)
-							onChat (string.Format ("<color=yellow>{0}</color>:{1}", playerHandle.playerDatas [i].attribute.unitName, playerHandle.playerDatas [i].chat));
+							onChat (string.Format ("<color=yellow>{0}</color>:{1}", playerHandle.playerDatas [i].unitInfo.attribute.unitName, playerHandle.playerDatas [i].chat));
 						else
 							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", playerHandle.playerDatas [i].chat));
 					}
