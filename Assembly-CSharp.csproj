@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_2;UNITY_5_6;UNITY_5;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;PLAYMAKER;PLAYMAKER_1_8;PLAYMAKER_1_8_3;PLAYMAKER_1_8_OR_NEWER;NET_CLIENT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_2;UNITY_5_6;UNITY_5;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;PLAYMAKER;PLAYMAKER_1_8;PLAYMAKER_1_8_3;PLAYMAKER_1_8_OR_NEWER;NET_CLIENT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -1193,6 +1193,48 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\iTween\iTween.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFAccessor\scripts\KGFAccessor.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFCustomGUI\scripts\KGFCustomGUI.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFCustomGUI\scripts\KGFCustomGUITutorial.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFCustomGUI\scripts\interfaces\KGFICustomGUI.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFCustomGUI\scripts\interfaces\KGFICustomInspectorGUI.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFEvent\scripts\KGFEvent.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFEvent\scripts\KGFEventBase.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFEvent\scripts\KGFEventSequence.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFFPSDisplay\scripts\KGFFPSDisplay.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIRenderer\scripts\KGFGUIRenderer.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIRenderer\scripts\interfaces\KGFIGui2D.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\KGFGUIUtility.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\KGFGUIUtilityTutorial.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\controls\KGFGUIDataTable.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\controls\KGFGUIDropDown.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\controls\KGFGUIObjectList.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\controls\KGFGUISelectionList.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFGUIUtility\scripts\interfaces\KGFIControl.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFLogic\scripts\KGFLogicAnalyzer.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFModule\scripts\KGFModule.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFScreen\scripts\KGFScreen.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\KGFUtility\scripts\KGFUtility.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\IDReference.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFCoreVersion.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFDataTable.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFDelegate.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFDocumentation.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFEventExpose.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFGlobals.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFITaggable.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFIValidator.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFMessageList.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFObject.cs" />
+     <Compile Include="Assets\kolmich\KGFCore\scripts\KGFString.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\demo\scripts\KGFMapSystemScriptControlDemo.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\demo\scripts\KGFMapSystemStyleDemo.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\demo\scripts\charactercontroller.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\demo\scripts\charactercontroller_sidescroller.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\scripts\KGFIMapIcon.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\scripts\KGFMapIcon.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\scripts\KGFMapSystem.cs" />
+     <Compile Include="Assets\kolmich\KGFMapSystem\scripts\KGFPhotoCapture.cs" />
      <None Include="Assets\IGSoft_Resources\ToolResources\EffectShader\FXMaker_Mask Alpha Blended.shader" />
      <None Include="Assets\Autumn\Standard Assets\Glass Refraction (Pro Only)\Sources\Shaders\Glass-Stained-BumpDistort.shader" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -1222,6 +1264,7 @@
      <None Include="Assets\AmplifyColor\Resources\BlendMask.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\KriptoFX\WeaponEffects\Shaders\WFX_Additive.shader" />
+     <None Include="Assets\kolmich\Resources\KGFSkins\default\readme.txt" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\SUIMONO - WATER SYSTEM 2\SHADERS\Suimono2_effect_splash.shader" />
@@ -1238,6 +1281,7 @@
      <None Include="Assets\Simple RPG Camera\Documentation\readme.txt" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlur.shader" />
      <None Include="Assets\Sci-Fi VFX\Shaders\SF_VFX_HoloAnim.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -1278,6 +1322,7 @@
      <None Include="Assets\AmplifyColor\Resources\BlendMaskLinear.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\AmplifyColor\Resources\BlendLinear.shader" />
+     <None Include="Assets\kolmich\KGFMapSystem\shaders\ShaderMapMask.shader" />
      <None Include="Assets\IGSoft_Tools\Readme\Contact.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Sci-Fi VFX\Shaders\SF_VFX_AnimatedShield.shader" />
@@ -1330,6 +1375,7 @@
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\Simple RPG Camera\Demo\Sources\Shaders\Toony-LightedOutline-Transparent.shader" />
      <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
+     <None Include="Assets\kolmich\KGFMapSystem\shaders\ShaderPhotoPlane.shader" />
      <None Include="Assets\Sci-Fi VFX\Shaders\SF_VFX_HoloSimple.shader" />
      <None Include="Assets\MeshBaker\Release Notes.txt" />
      <None Include="Assets\IGSoft_Tools\FXMaker\ToolResource\UnityShader\FXMakerGrayscaleEffect.shader" />
@@ -1337,6 +1383,7 @@
      <None Include="Assets\SUIMONO - WATER SYSTEM 2\SHADERS\Suimono2_depthmask.shader" />
      <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\kolmich\KGFMapSystem\shaders\ShaderMapIcon.shader" />
      <None Include="Assets\SUIMONO - WATER SYSTEM 2\SHADERS\Suimono2_effect_refractPlane_mobile.shader" />
      <None Include="Assets\KriptoFX\WeaponEffects\Readme.txt" />
      <None Include="Assets\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlurEffectConeTaps.shader" />
@@ -1422,6 +1469,9 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity5.6.2f1/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="KGFUtils.Settings">
+ <HintPath>/Users/yingyugang/ARPG_GWLR/Assets/kolmich/KGFCore/KGFUtility/KGFUtils.Settings.dll</HintPath>
  </Reference>
  <Reference Include="ConditionalExpression">
  <HintPath>/Users/yingyugang/ARPG_GWLR/Assets/PlayMaker/ConditionalExpression.dll</HintPath>
