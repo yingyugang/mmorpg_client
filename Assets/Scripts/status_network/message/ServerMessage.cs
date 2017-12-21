@@ -7,7 +7,16 @@ using System;
 namespace MMO
 {
 	[Serializable]
-	public class HitInfo:MessageBase{
+	public class SkillInfo:MessageBase
+	{
+		public int skillId;
+		public int[] targetIds;
+		public Vector3 targetPos;
+	}
+
+	[Serializable]
+	public class HitInfo:MessageBase
+	{
 		public int casterId;
 		public int[] hitIds;
 		public int[] damages;
@@ -15,22 +24,25 @@ namespace MMO
 	}
 
 	[Serializable]
-	public class UnitInfo : MessageBase{
+	public class UnitInfo : MessageBase
+	{
 		public MMOAttribute attribute;
 		public MMOTransform transform;
 		public MMOAnimation animation;
-		public MMOAttack attack;
+		public MMOAction action;
 
-		public UnitInfo(){
+		public UnitInfo ()
+		{
 			attribute = new MMOAttribute ();
 			transform = new MMOTransform ();
 			animation = new MMOAnimation ();
-			attack = new MMOAttack ();
+			action = new MMOAction ();
 		}
 	}
 
 	[Serializable]
-	public class PlayerInfo : MessageBase{
+	public class PlayerInfo : MessageBase
+	{
 		public int playerId;
 		public string chat;
 		public int skillId;
@@ -38,12 +50,14 @@ namespace MMO
 	}
 
 	[Serializable]
-	public class TransferData : MessageBase{
+	public class TransferData : MessageBase
+	{
 		public PlayerInfo[] playerDatas;
 		public UnitInfo[] monsterDatas;
 		public HitInfo[] hitDatas;
 
-		public TransferData(){
+		public TransferData ()
+		{
 			playerDatas = new PlayerInfo[0];
 			monsterDatas = new UnitInfo[0];
 			hitDatas = new HitInfo[0];
@@ -78,7 +92,7 @@ namespace MMO
 	}
 
 	[System.Serializable]
-	public class MMOAttack:MessageBase
+	public class MMOAction:MessageBase
 	{
 		public int attackType;
 		public Vector3 targetPos;

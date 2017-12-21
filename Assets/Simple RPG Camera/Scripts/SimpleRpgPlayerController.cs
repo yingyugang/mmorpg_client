@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(SimpleRpgAnimator))]
@@ -104,7 +105,9 @@ public class SimpleRpgPlayerController : MonoBehaviour
 			_running = !_running;
 		}
 		*/
-		
+		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
+			return;
+
 		// If user middle-clicks, toggle autorun on/off
 		if(Input.GetMouseButtonDown(2))
 		{
@@ -169,6 +172,9 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	// Physics should be handled within FixedUpdate()
 	void FixedUpdate()
 	{
+		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
+			return;
+		
 		_animation_speed = 1;
 		float input_modifier = (_input_x != 0.0f && _input_y != 0.0f) ? 0.7071f : 1.0f;
 

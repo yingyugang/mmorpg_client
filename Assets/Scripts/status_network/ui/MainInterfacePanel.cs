@@ -9,13 +9,12 @@ namespace MMO
 	{
 
 		public Image img_head;
-		public Image img_exp;
-		public Slider slider_health;
-		public Text txt_health;
+		public Image img_health;
+		public Image img_mana;
 		public Text txt_name;
 		public Text txt_level;
-		const int SKILL_ICON_COUNT = 20;
 
+		const int SKILL_ICON_COUNT = 20;
 		public List<Sprite> skillIconList;
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
@@ -27,6 +26,11 @@ namespace MMO
 			InitIconItems ();
 		}
 
+		void Start(){
+			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
+			SetSkillDatas (unitSkill);
+		}
+
 		void InitIconItems ()
 		{
 			for (int i = 0; i < SKILL_ICON_COUNT; i++) {
@@ -35,7 +39,9 @@ namespace MMO
 				item.transform.localScale = Vector3.one;
 				item.transform.localPosition = Vector3.zero;
 				item.SetActive (true);
-				skillButtonList.Add (item.GetComponent<Button>());
+				Image imgIcon = item.GetComponent<Image>();
+				imgIcon.sprite = skillIconList[i % skillIconList.Count];
+				skillButtonList.Add (item.GetComponentInChildren<Button>(true));
 			}
 		}
 
@@ -46,7 +52,12 @@ namespace MMO
 			for (int i = 0; i < skills.Count; i++) {
 				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
-				Image imgIcon = btnSkill.transform.Find ("img_icon").GetComponent<Image>();
+				SkillBase skillBase = skills [i];
+				btnSkill.onClick.AddListener (()=>{
+					int skillId = skillBase.skillId;
+					MMOController.Instance.SendUseSkill(skillId);
+				});
+				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
 				imgIcon.gameObject.SetActive (true);
 			}
@@ -56,7 +67,7 @@ namespace MMO
 		{
 			for (int i = 0; i < skillButtonList.Count; i++) {
 				Button btn = skillButtonList [i];
-				Image imgIcon = btn.transform.Find ("img_icon").GetComponent<Image>();
+				Image imgIcon = btn.GetComponent<Image>();
 				imgIcon.gameObject.SetActive (false);
 			}
 		}
@@ -70,12 +81,10 @@ namespace MMO
 		{
 			if (MMOController.Instance.playerInfo == null)
 				return;
-			//			txt_level.text = MMOController.Instance.playerInfo.level.ToString ();
 			txt_level.text = MMOController.Instance.playerInfo.unitInfo.attribute.level.ToString ();
 			txt_name.text = MMOController.Instance.playerInfo.unitInfo.attribute.unitName;
-			txt_health.text = string.Format ("{0} / {1}", MMOController.Instance.playerInfo.unitInfo.attribute.currentHP, MMOController.Instance.playerInfo.unitInfo.attribute.maxHP);
 			if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
-				slider_health.value = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
+				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}
 
 

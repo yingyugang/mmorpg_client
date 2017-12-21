@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace MMO
 {
@@ -17,6 +18,7 @@ namespace MMO
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
+		public GameObject minimap;
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
 		Dictionary<int,GameObject> mMonsterDic;
@@ -32,6 +34,9 @@ namespace MMO
 
 		void Start ()
 		{
+			KGFMapSystem kgf = FindObjectOfType<KGFMapSystem> ();
+			if(kgf!=null)
+				minimap = kgf.gameObject;
 			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
 			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mPlayerDic = new Dictionary<int, GameObject> ();
@@ -71,27 +76,26 @@ namespace MMO
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 		}
 
-		//TODO
 		public void SendChat(string chat){
 			playerInfo.chat = chat;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 			playerInfo.chat = "";
 		}
 
-		//TODO
 		public void SendUseSkill(int skillId){
+			Debug.Log ("SendUseSkill");
 			playerInfo.skillId = skillId;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 			playerInfo.skillId = 0;
 		}
 
 		public void RecieveUseSkill(int unitId,int skillId){
-		
+			
 		}
 
 		void OnConnected (NetworkMessage msg)
 		{
-			
+
 		}
 
 		//TODO 把通信数据放在一个主对象的不同参数里面，这个容易理解很保存数据。
@@ -104,6 +108,10 @@ namespace MMO
 			player.gameObject.SetActive (true);
 			playerInfo.unitInfo.attribute.unitName = playerName;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
+			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive(true);
+			PanelManager.Instance.chatPanel.gameObject.SetActive(true);
+			if (minimap != null)
+				minimap.SetActive (true);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)
@@ -116,7 +124,7 @@ namespace MMO
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
 					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
 					mOtherPlayerIds.Add (transferData.playerDatas [i].playerId);
-					if(mUnitDic.ContainsKey(transferData.playerDatas [i].unitInfo.attribute.unitId)){
+					if(!mUnitDic.ContainsKey(transferData.playerDatas [i].unitInfo.attribute.unitId)){
 						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, playerGO);
 					}
 				}
@@ -162,11 +170,11 @@ namespace MMO
 				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
 				monster.GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
 				monster.GetComponent<SimpleRpgAnimator> ().SetSpeed (data.monsterDatas [i].animation.animSpeed);
-				if(data.monsterDatas [i].attack.attackType>=0){
-					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].attack.attackType].gameObject;
+				if(data.monsterDatas [i].action.attackType>=0){
+					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].action.attackType].gameObject;
 					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));
 					ShootObject so = shootGo.GetComponent<ShootObject> ();
-					so.Shoot (monster,unitInfo.attack.targetPos,Vector3.zero);
+					so.Shoot (monster,unitInfo.action.targetPos,Vector3.zero);
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public enum CameraCollisionStyle
 {
@@ -86,6 +87,8 @@ public class SimpleRpgCamera : MonoBehaviour
 
 	void Update()
 	{
+		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
+			return;
 		if(target)
 		{
 			// Fade the target according to Fade Distance (if enabled)
@@ -191,6 +194,8 @@ public class SimpleRpgCamera : MonoBehaviour
 	// seems to be working fine
 	void FixedUpdate()
 	{
+		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
+			return;
 		if(target)
 		{
 			if(_controllable)

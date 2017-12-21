@@ -30,8 +30,6 @@ namespace MMO
 				PlayerPrefs.SetString(TARGET_NAME,input_name.text);
 				PlayerPrefs.Save();
 				uiRoot.SetActive(false);
-				PanelManager.Instance.mainInterfacePanel.gameObject.SetActive(true);
-				PanelManager.Instance.chatPanel.gameObject.SetActive(true);
 			});
 		}
 
