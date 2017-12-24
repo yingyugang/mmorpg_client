@@ -159,17 +159,19 @@ namespace MMO
 			TransferData data = msg.ReadMessage<TransferData> ();
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey ( data.monsterDatas [i].attribute.unitId)) {
-					GameObject monsterGo = InstantiateUnit (0);
+					GameObject monsterGo = InstantiateUnit (2);
 					mMonsterDic.Add(data.monsterDatas [i].attribute.unitId, monsterGo);
 					mMonsterDic[data.monsterDatas [i].attribute.unitId].SetActive (true);
-					mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
+					if(!mUnitDic.ContainsKey(data.monsterDatas [i].attribute.unitId))
+						mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
 				}
 				UnitInfo unitInfo = data.monsterDatas [i];
 				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit>();
 				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
 				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
-				monster.GetComponent<SimpleRpgAnimator> ().Action = data.monsterDatas [i].animation.action;
-				monster.GetComponent<SimpleRpgAnimator> ().SetSpeed (data.monsterDatas [i].animation.animSpeed);
+				monster.SetAnimation (data.monsterDatas [i].animation.action,data.monsterDatas [i].animation.animSpeed);
+
+
 				if(data.monsterDatas [i].action.attackType>=0){
 					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].action.attackType].gameObject;
 					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));

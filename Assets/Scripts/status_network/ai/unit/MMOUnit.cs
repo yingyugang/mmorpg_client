@@ -8,9 +8,13 @@ namespace MMO
 	{
 		public UnitInfo unitInfo;
 		Transform mTrans;
+		SimpleRpgAnimator mSimpleRpgAnimator;
+		Animator mAnimator;
 
 		void Awake(){
 			mTrans = transform;
+			mSimpleRpgAnimator = GetComponent<SimpleRpgAnimator> ();
+			mAnimator =  GetComponentInChildren<Animator> (true);
 		}
 
 		void Update(){
@@ -20,5 +24,19 @@ namespace MMO
 			#endif
 		}
 
+		string mPreAction;
+		public void SetAnimation(string action,float speed){
+			if (mSimpleRpgAnimator != null) {
+				mSimpleRpgAnimator.Action = action;
+				mSimpleRpgAnimator.SetSpeed (speed);
+			} else if (mAnimator !=null){
+				//TODO
+				if (mPreAction != action) {
+					mAnimator.Play (action, 0, 0);
+					mAnimator.speed = speed;
+					mPreAction = action;
+				}
+			}
+		}
 	}
 }

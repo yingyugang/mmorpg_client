@@ -41,6 +41,7 @@ public class SetMeshEffects : MonoBehaviour
 
 	void Update ()
 	{
+		return;
 		if (Time.time % 20 > 10) {
 			if (!isNeight) {
 				isNeight = true;
