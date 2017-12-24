@@ -10,7 +10,6 @@ namespace MMO
 	{
 		NetworkClient client;
 		UnityAction<NetworkMessage> onConnect;
-		UnityAction<NetworkMessage> onLogin;
 		UnityAction<NetworkMessage> onRecieveMessage;
 		UnityAction<NetworkMessage> onRecievePlayerInfo;
 		public UnityAction<NetworkMessage> onRecieveMonsterInfos;
@@ -50,12 +49,6 @@ namespace MMO
 			Debug.logger.Log ("<color=green>Connect</color>");
 			if (onConnect != null)
 				onConnect (nm);
-		}
-
-		void OnLogin(NetworkMessage nm){
-			Debug.logger.Log ("<color=green>OnLogin</color>");
-			if (onLogin != null)
-				onLogin (nm);
 		}
 
 		void OnDisconnect (NetworkMessage nm)

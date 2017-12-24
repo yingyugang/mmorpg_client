@@ -159,7 +159,7 @@ namespace MMO
 			TransferData data = msg.ReadMessage<TransferData> ();
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey ( data.monsterDatas [i].attribute.unitId)) {
-					GameObject monsterGo = InstantiateUnit (2);
+					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType);
 					mMonsterDic.Add(data.monsterDatas [i].attribute.unitId, monsterGo);
 					mMonsterDic[data.monsterDatas [i].attribute.unitId].SetActive (true);
 					if(!mUnitDic.ContainsKey(data.monsterDatas [i].attribute.unitId))

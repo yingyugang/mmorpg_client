@@ -12,6 +12,7 @@ namespace MMO
 		public LoginPanel loginPanel;
 		public MainInterfacePanel mainInterfacePanel;
 		public ChatPanel chatPanel;
+		public ServerListPanel serverListPanel;
 
 		protected override void Awake ()
 		{

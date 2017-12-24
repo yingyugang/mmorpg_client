@@ -32,7 +32,10 @@ namespace MMO
 			} else if (mAnimator !=null){
 				//TODO
 				if (mPreAction != action) {
-					mAnimator.Play (action, 0, 0);
+					if (mPreAction == "walk")
+						mAnimator.Play (action, 0, Random.Range (0, 1f));
+					else
+						mAnimator.Play (action, 0, 0);
 					mAnimator.speed = speed;
 					mPreAction = action;
 				}
