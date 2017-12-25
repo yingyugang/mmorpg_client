@@ -26,6 +26,7 @@ namespace MMO
 			skillDic = new Dictionary<int, SkillBase> ();
 			for (int i = 0; i < 20; i++) {
 				SkillShoot skillBase = new SkillShoot ();
+				skillBase.mmoUnit = mmoUnit;
 				skillBase.skillId = i;
 				skillList.Add (skillBase);
 				skillDic.Add (skillBase.skillId, skillBase);

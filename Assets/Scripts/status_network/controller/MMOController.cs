@@ -135,6 +135,10 @@ namespace MMO
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = transferData.playerDatas [i].unitInfo.animation.action;
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				}
+				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
+				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
+//				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.transform = transferData.playerDatas [i].unitInfo.transform;
+				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
 				if(!string.IsNullOrEmpty(transferData.playerDatas [i].chat)){
 					if (onChat != null) {
 						if(transferData.playerDatas [i].playerId != mPlayerId)
@@ -143,8 +147,7 @@ namespace MMO
 							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", transferData.playerDatas [i].chat));
 					}
 				}
-
-					MMOUnit mmoUnit = transferData.playerDatas [i];
+				MMOUnit mmoUnit =mPlayerDic[transferData.playerDatas [i].playerId].GetComponent<MMOUnit>();
 				if(mmoUnit.unitInfo.action.attackType>=0){
 					mmoUnit.GetComponent<MMOUnitSkill>().PlayServerSkill(mmoUnit.unitInfo.action.attackType);
 					mmoUnit.unitInfo.action.attackType = -1;
@@ -177,13 +180,7 @@ namespace MMO
 				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
 				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
 				monster.SetAnimation (data.monsterDatas [i].animation.action,data.monsterDatas [i].animation.animSpeed);
-
-
 				if(data.monsterDatas [i].action.attackType>=0){
-//					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].action.attackType].gameObject;
-//					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));
-//					ShootObject so = shootGo.GetComponent<ShootObject> ();
-//					so.Shoot (monster,unitInfo.action.targetPos,Vector3.zero);
 					monster.GetComponent<MMOUnitSkill>().PlayServerSkill(data.monsterDatas [i].action.attackType);
 					data.monsterDatas [i].action.attackType = -1;
 				}
@@ -196,7 +193,7 @@ namespace MMO
 			GameObject unitPrebfab = unitPrefabs [unitType].gameObject;
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
-//			MMOUnitSkill mmoUnitSkill = unitGo.GetOrAddComponent<MMOUnitSkill> ();
+			unitGo.GetOrAddComponent<MMOUnitSkill> ();
 			unitGo.SetActive (true);
 			return unitGo;
 		}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MMO
 {
+	[RequireComponent(typeof(MMOUnitSkill))]
 	public class MMOUnit : MonoBehaviour
 	{
 		public UnitInfo unitInfo;

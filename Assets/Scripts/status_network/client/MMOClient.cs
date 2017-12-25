@@ -67,7 +67,6 @@ namespace MMO
 				onRecieveMonsterInfos (msg);
 		}
 
-
 		void OnRecieveMessage (NetworkMessage msg)
 		{
 			if (onRecieveMessage != null)
