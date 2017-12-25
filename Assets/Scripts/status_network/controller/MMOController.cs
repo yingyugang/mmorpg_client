@@ -84,9 +84,9 @@ namespace MMO
 
 		public void SendUseSkill(int skillId){
 			Debug.Log ("SendUseSkill");
-			playerInfo.skillId = skillId;
+			playerInfo.unitInfo.action.attackType = skillId;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
-			playerInfo.skillId = 0;
+			playerInfo.unitInfo.action.attackType = 0;
 		}
 
 		public void RecieveUseSkill(int unitId,int skillId){
@@ -143,6 +143,13 @@ namespace MMO
 							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", transferData.playerDatas [i].chat));
 					}
 				}
+
+					MMOUnit mmoUnit = transferData.playerDatas [i];
+				if(mmoUnit.unitInfo.action.attackType>=0){
+					mmoUnit.GetComponent<MMOUnitSkill>().PlayServerSkill(mmoUnit.unitInfo.action.attackType);
+					mmoUnit.unitInfo.action.attackType = -1;
+				}
+
 			}
 			for (int i = 0; i < mOtherPlayerIds.Count; i++) {
 				if (!activedPlayerIds.Contains (mOtherPlayerIds [i])) {
@@ -173,10 +180,12 @@ namespace MMO
 
 
 				if(data.monsterDatas [i].action.attackType>=0){
-					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].action.attackType].gameObject;
-					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));
-					ShootObject so = shootGo.GetComponent<ShootObject> ();
-					so.Shoot (monster,unitInfo.action.targetPos,Vector3.zero);
+//					GameObject shootPrefab = shootPrefabs [data.monsterDatas [i].action.attackType].gameObject;
+//					GameObject shootGo = Instantiater.Spawn (false, shootPrefab, monster.transform.position + new Vector3 (0, 1, 0), monster.transform.rotation * Quaternion.Euler (60, 0, 0));
+//					ShootObject so = shootGo.GetComponent<ShootObject> ();
+//					so.Shoot (monster,unitInfo.action.targetPos,Vector3.zero);
+					monster.GetComponent<MMOUnitSkill>().PlayServerSkill(data.monsterDatas [i].action.attackType);
+					data.monsterDatas [i].action.attackType = -1;
 				}
 			}
 		}
