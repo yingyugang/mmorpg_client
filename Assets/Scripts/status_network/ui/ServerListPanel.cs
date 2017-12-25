@@ -12,16 +12,17 @@ namespace MMO
 		public GameObject txt_search;
 		public Transform listParent;
 		Dictionary<string,GameObject> mServerBtns;
-		float mDropIpDelay = 10;
 
 		float mCheckIpInterval = 2;
 		float mNextCheckTime;
+		string[] mServerNames;
 		public static string targetIp;
 
 		protected override void Awake ()
 		{
 			base.Awake ();
 			mServerBtns = new Dictionary<string, GameObject> ();
+			mServerNames = GetServerNames ();
 		}
 
 		void Update ()
@@ -31,6 +32,9 @@ namespace MMO
 				foreach (string ip in MessageReciever.ips.Keys) {
 					if (!mServerBtns.ContainsKey (ip)) {
 						GameObject go = Instantiate (itemPrefab);
+						Text text = go.GetComponentInChildren<Text> (true);
+						string serverName = mServerNames[Random.Range(0,mServerNames.Length)];
+						text.text = serverName;
 						go.SetActive (true);
 						go.transform.SetParent (listParent);
 						mServerBtns.Add (ip, go);
@@ -44,6 +48,28 @@ namespace MMO
 				}
 
 			}
+		}
+
+		string[] GetServerNames(){
+			string[] serverNames = new string[]{
+				"费尔威泽(Felwithe)",
+				"自由港(Freeport)",
+				"克勒辛(Kelethin)",
+				"奎诺斯(Qeynos)",
+				"大河谷(Rivervale)",
+				"费尔威泽(Felwithe)",
+				"自由港(Freeport)",
+				"奎诺斯(Qeynos)",
+				"卡比利斯(Cabilis)",
+				"奥格克(Oggok)",
+				"格洛波(Grobb)",
+				"克勒辛(Kelethin)",
+				"哈勒斯(Halas)",
+				"尼瑞克(Neriak)",
+				"卡拉丁(Kaladim)",
+				"艾露丁(Erudin)",
+				"阿克农(Ak'Anon)"};
+			return serverNames;
 		}
 	}
 }
