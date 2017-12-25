@@ -13,7 +13,7 @@ namespace MMO
 		public Transform listParent;
 		Dictionary<string,GameObject> mServerBtns;
 
-		float mCheckIpInterval = 2;
+		float mCheckIpInterval = 1;
 		float mNextCheckTime;
 		string[] mServerNames;
 		public static string targetIp;
@@ -33,10 +33,11 @@ namespace MMO
 					if (!mServerBtns.ContainsKey (ip)) {
 						GameObject go = Instantiate (itemPrefab);
 						Text text = go.GetComponentInChildren<Text> (true);
-						string serverName = mServerNames[Random.Range(0,mServerNames.Length)];
+						string serverName = mServerNames[0];
 						text.text = serverName;
 						go.SetActive (true);
 						go.transform.SetParent (listParent);
+						go.transform.localScale = Vector3.one;
 						mServerBtns.Add (ip, go);
 						txt_search.SetActive (false);
 						go.GetComponent<Button> ().onClick.AddListener (()=>{
