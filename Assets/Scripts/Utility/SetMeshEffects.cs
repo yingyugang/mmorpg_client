@@ -41,18 +41,17 @@ public class SetMeshEffects : MonoBehaviour
 
 	void Update ()
 	{
-		return;
-		if (Time.time % 20 > 10) {
-			if (!isNeight) {
-				isNeight = true;
-				StartCoroutine (_ChangeColor (mDefaultColor, mNeightColor, true));
-			}
-		} else if(Time.time % 20 < 1) {
-			if (isNeight) {
-				isNeight = false;
-				StartCoroutine (_ChangeColor (mNeightColor, mDefaultColor, false));
-			}
-		}
+//		if (Time.time % 20 > 10) {
+//			if (!isNeight) {
+//				isNeight = true;
+//				StartCoroutine (_ChangeColor (mDefaultColor, mNeightColor, true));
+//			}
+//		} else if(Time.time % 20 < 1) {
+//			if (isNeight) {
+//				isNeight = false;
+//				StartCoroutine (_ChangeColor (mNeightColor, mDefaultColor, false));
+//			}
+//		}
 	}
 
 	IEnumerator _ChangeColor (Color fromColor, Color toColor, bool isLight)

@@ -46,7 +46,11 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 				continue;
 			}
 			IPEndPoint remoteEP = null;
-			byte[] data = udp.Receive(ref remoteEP);
+
+			//TODO Should receive data sub scene ip&&port from main server.
+			//今はこのデータがない。
+//			byte[] data = udp.Receive(ref remoteEP);
+
 			if (!ips.ContainsKey (remoteEP.Address.ToString ()))
 				ips.Add (remoteEP.Address.ToString (),time);
 			else

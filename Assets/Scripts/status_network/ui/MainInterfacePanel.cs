@@ -26,7 +26,8 @@ namespace MMO
 			InitIconItems ();
 		}
 
-		void Start(){
+		protected override void Start(){
+			base.Start ();
 			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
 			SetSkillDatas (unitSkill);
 		}

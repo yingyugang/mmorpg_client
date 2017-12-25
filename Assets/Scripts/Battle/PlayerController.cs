@@ -308,8 +308,6 @@ public class PlayerController : UnitController
 		} else if (pm.ActiveStateName == "Run") {
 			pm.FsmVariables.FindFsmBool ("isRun").Value = false;
 		}
-		return;
-
 		if (pm.ActiveStateName == "Run") {
 			pm.FsmVariables.FindFsmBool ("isRun").Value = false;
 		}
@@ -426,7 +424,7 @@ public class PlayerController : UnitController
 		animator.speed = 1;
 	}
 
-	IEnumerator ResetState (string state)
+	new IEnumerator  ResetState (string state)
 	{
 		yield return null;
 		animator.SetBool (state, false);
