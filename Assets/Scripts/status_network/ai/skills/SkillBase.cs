@@ -9,6 +9,7 @@ namespace MMO
 		public int skillId;
 		public float coolDown = 5f;
 		float mNextActiveTime;
+		public MMOUnit mmoUnit;
 
 		public virtual void OnAwake ()
 		{

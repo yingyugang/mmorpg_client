@@ -25,7 +25,7 @@ namespace MMO
 			skillList = new List<SkillBase> ();
 			skillDic = new Dictionary<int, SkillBase> ();
 			for (int i = 0; i < 20; i++) {
-				SkillBase skillBase = new SkillBase ();
+				SkillShoot skillBase = new SkillShoot ();
 				skillBase.skillId = i;
 				skillList.Add (skillBase);
 				skillDic.Add (skillBase.skillId, skillBase);
@@ -37,8 +37,6 @@ namespace MMO
 		{
 			if (skillBase.IsUseAble ()) {
 				MMOController.Instance.SendUseSkill (skillBase.skillId);
-
-
 			}
 		}
 
@@ -50,18 +48,6 @@ namespace MMO
 			SkillBase skillBase = skillDic [skillId];
 			skillBase.Play ();
 		}
-
-		//表现层
-		public void PlaySkillEffects (int skillType)
-		{
-			GameObject shootPrefab = MMOController.Instance.shootPrefabs [skillType].gameObject;
-			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, mTrans.position + new Vector3 (0, 1, 0), mTrans.rotation * Quaternion.Euler (60, 0, 0));
-			ShootObject so = shootGo.GetComponent<ShootObject> ();
-			so.Shoot (mmoUnit, mmoUnit.unitInfo.action.targetPos, Vector3.zero);
-		}
-
-
-
 
 	}
 }
