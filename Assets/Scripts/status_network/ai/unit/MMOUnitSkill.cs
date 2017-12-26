@@ -37,7 +37,7 @@ namespace MMO
 		public void PlayClientSkill (SkillBase skillBase)
 		{
 			if (skillBase.IsUseAble ()) {
-				MMOController.Instance.SendUseSkill (skillBase.skillId);
+				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
 			}
 		}
 

@@ -35,6 +35,10 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 		time = Time.time;	
 	}
 
+	public void StopReceive(){
+		thread.Abort();
+	}
+
 	public static bool isRunning = true;
 	private static void ThreadMethod()
 	{
@@ -49,7 +53,7 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 			//TODO Should receive data sub scene ip&&port from main server.
 			//今はこのデータがない。
 			byte[] data = udp.Receive(ref remoteEP);
-			Debug.Log (remoteEP.Address.ToString ());
+//			Debug.Log (remoteEP.Address.ToString ());
 			if (!ips.ContainsKey (remoteEP.Address.ToString ()))
 				ips.Add (remoteEP.Address.ToString (),time);
 			else

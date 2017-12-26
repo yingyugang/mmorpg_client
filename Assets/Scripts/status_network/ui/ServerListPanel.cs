@@ -51,6 +51,11 @@ namespace MMO
 			}
 		}
 
+		void OnDisable(){
+			MessageReciever.Instance.StopReceive ();
+		}
+
+
 		string[] GetServerNames(){
 			string[] serverNames = new string[]{
 				"费尔威泽(Felwithe)",

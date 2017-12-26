@@ -28,11 +28,11 @@ namespace MMO
 
 		public virtual bool Play ()
 		{
-			bool playAble = IsUseAble ();
-			if(playAble){
+//			bool playAble = IsUseAble ();
+//			if(playAble){
 				OnActive ();
-			}
-			return playAble;
+//			}
+			return true;
 		}
 
 		protected virtual void OnActive(){

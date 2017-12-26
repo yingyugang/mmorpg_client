@@ -55,8 +55,7 @@ namespace MMO
 				Button btnSkill = skillButtonList [i];
 				SkillBase skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
-					int skillId = skillBase.skillId;
-					MMOController.Instance.SendUseSkill(skillId);
+					unitSkill.PlayClientSkill(skillBase);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
