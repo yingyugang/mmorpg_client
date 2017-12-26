@@ -44,8 +44,6 @@ namespace MMO
 			mMonsterDic = new Dictionary<int, GameObject> ();
 			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveMonsterInfos;
-			client.onRecieveMonsterInfos = OnRecieveMessage;
-
 		}
 
 		void Update ()
@@ -91,7 +89,12 @@ namespace MMO
 		//		}
 		//
 		//		public void RecieveUseSkill(int unitId,int skillId){
-		//
+		//			RecieveUseSkill(unitId,skillId);
+		//			RecieveUseSkill(int unitId,int skillId);
+		//			playerInfo.unitInfo.action.attackType = 0;
+		//			playerInfo.unitInfo.action.targetPos = Vector3.one;
+		//			playerInfo.unitInfo.action.attackType = 1;
+		//			playerInfo.unitInfo.action.targetPos = Vector3.zero;
 		//		}
 
 		void OnConnected (NetworkMessage msg)
@@ -162,11 +165,10 @@ namespace MMO
 				}
 			}
 
-
-			for (int i = 0; i < mOtherPlayerIds.Count; i++) {
-				int id = mOtherPlayerIds [i];
-				Destroy(mPlayerDic[i]);
-			}
+//			for (int i = 0; i < mOtherPlayerIds.Count; i++) {
+//				int id = mOtherPlayerIds [i];
+//				Destroy(mPlayerDic[i]);
+//			}
 		}
 
 		void OnRecieveMonsterInfos (NetworkMessage msg)
@@ -189,6 +191,11 @@ namespace MMO
 					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.attackType);
 					data.monsterDatas [i].action.attackType = -1;
 				}
+				//data.monsterDatas[i].action.attackType = -1;
+				//data.monsterDatas[i].action.attackType = -2;
+				//data.monsterDatas[i].action.attackType = -3;
+				//monster.GetComponent<MMOUnitSkill>().PlayServerSkill
+
 			}
 		}
 
