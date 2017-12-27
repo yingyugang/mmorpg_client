@@ -13,29 +13,29 @@
 	#include "UnityCG.cginc"
 	
 	struct v2f {
-		half4 pos : POSITION;
+		half4 pos : SV_POSITION;
 		half2 uv1 : TEXCOORD0;
 	};
 	
 	struct v2fDofApply {
-		half4 pos : POSITION;
+		half4 pos : SV_POSITION;
 		half2 uv : TEXCOORD0;
 	};
 	
 	struct v2fRadius {
-		half4 pos : POSITION;
+		half4 pos : SV_POSITION;
 		half2 uv : TEXCOORD0;
 		half4 uv1[4] : TEXCOORD1;
 	};
 	
 	struct v2fDown {
-		half4 pos : POSITION;
+		half4 pos : SV_POSITION;
 		half2 uv0 : TEXCOORD0;
 		half2 uv[2] : TEXCOORD1;
 	};	 
 			
 	sampler2D _MainTex;
-	sampler2D _CameraDepthTexture;
+	sampler2D_float _CameraDepthTexture;
 	sampler2D _TapLowBackground;	
 	sampler2D _TapLowForeground;
 	sampler2D _TapMedium;
@@ -128,7 +128,7 @@
 		return littleBlur;
 	}	
 	
-	half4 fragDownsampleWithCocConserve(v2fDown i) : COLOR {
+	half4 fragDownsampleWithCocConserve(v2fDown i) : SV_Target {
 		half2 rowOfs[4];   
 		
   		rowOfs[0] = half2(0.0, 0.0);  
@@ -156,10 +156,10 @@
 		return color;
 	}
 	
-	half4 fragDofApplyBg (v2fDofApply i) : COLOR {		
+	half4 fragDofApplyBg (v2fDofApply i) : SV_Target {		
 		half4 tapHigh = tex2D (_MainTex, i.uv.xy);
 		
-		#if SHADER_API_D3D9 || SHADER_API_D3D11 || SHADER_API_XBOX360
+		#if UNITY_UV_STARTS_AT_TOP
 		if (_MainTex_TexelSize.y < 0)
 			i.uv.xy = i.uv.xy * half2(1,-1)+half2(0,1);
 		#endif
@@ -169,7 +169,7 @@
 		return tapHigh; 
 	}	
 	
-	half4 fragDofApplyBgDebug (v2fDofApply i) : COLOR {		
+	half4 fragDofApplyBgDebug (v2fDofApply i) : SV_Target {		
 		half4 tapHigh = tex2D (_MainTex, i.uv.xy); 	
 		
 		half4 tapLow = tex2D (_TapLowBackground, i.uv.xy);
@@ -184,10 +184,10 @@
 		return lerp (tapHigh, tapLow, tapHigh.a);
 	}		
 	
-	half4 fragDofApplyFg (v2fDofApply i) : COLOR {
+	half4 fragDofApplyFg (v2fDofApply i) : SV_Target {
 		half4 fgBlur = tex2D(_TapLowForeground, i.uv.xy);	
 		
-		#if SHADER_API_D3D9 || SHADER_API_D3D11 || SHADER_API_XBOX360
+		#if UNITY_UV_STARTS_AT_TOP
 		if (_MainTex_TexelSize.y < 0)
 			i.uv.xy = i.uv.xy * half2(1,-1)+half2(0,1);
 		#endif
@@ -201,7 +201,7 @@
 		return lerp (fgColor, fgBlur, saturate(fgBlur.a));
 	}	
 	
-	half4 fragDofApplyFgDebug (v2fDofApply i) : COLOR {
+	half4 fragDofApplyFgDebug (v2fDofApply i) : SV_Target {
 		half4 fgBlur = tex2D(_TapLowForeground, i.uv.xy);		
 					
 		half4 fgColor = tex2D(_MainTex,i.uv.xy);
@@ -217,9 +217,9 @@
 		return lerp ( fgColor, fgBlur, saturate(fgBlur.a));
 	}	
 		
-	half4 fragCocBg (v2f i) : COLOR {
+	half4 fragCocBg (v2f i) : SV_Target {
 		
-		float d = UNITY_SAMPLE_DEPTH ( tex2D (_CameraDepthTexture, i.uv1.xy) );
+		float d = SAMPLE_DEPTH_TEXTURE (_CameraDepthTexture, i.uv1.xy);
 		d = Linear01Depth (d);
 		half coc = 0.0; 
 		
@@ -232,16 +232,16 @@
 		return coc;
 	} 
 	
-	half4 fragCocFg (v2f i) : COLOR {		
+	half4 fragCocFg (v2f i) : SV_Target {		
 		half4 color = tex2D (_MainTex, i.uv1.xy);
 		color.a = 0.0;
 
-		#if SHADER_API_D3D9 || SHADER_API_D3D11 || SHADER_API_XBOX360
+		#if UNITY_UV_STARTS_AT_TOP
 		if (_MainTex_TexelSize.y < 0)
 			i.uv1.xy = i.uv1.xy * half2(1,-1)+half2(0,1);
 		#endif
 
-		float d = UNITY_SAMPLE_DEPTH (tex2D (_CameraDepthTexture, i.uv1.xy) );
+		float d = SAMPLE_DEPTH_TEXTURE (_CameraDepthTexture, i.uv1.xy);
 		d = Linear01Depth (d);	
 		
 		half focalDistance01 = (_CurveParams.w - _CurveParams.z);	
@@ -255,23 +255,23 @@
 	
 	// not being used atm
 	
-	half4 fragMask (v2f i) : COLOR {
+	half4 fragMask (v2f i) : SV_Target {
 		return half4(0,0,0,0); 
 	}	
 	
 	// used for simple one one blend
 	
-	half4 fragAddBokeh (v2f i) : COLOR {	
+	half4 fragAddBokeh (v2f i) : SV_Target {	
 		half4 from = tex2D( _MainTex, i.uv1.xy );
 		return from;
 	}
 	
-	half4 fragAddFgBokeh (v2f i) : COLOR {		
+	half4 fragAddFgBokeh (v2f i) : SV_Target {		
 		half4 from = tex2D( _MainTex, i.uv1.xy );
 		return from; 
 	}
 		
-	half4 fragDarkenForBokeh(v2fRadius i) : COLOR {		
+	half4 fragDarkenForBokeh(v2fRadius i) : SV_Target {		
 		half4 fromOriginal = tex2D(_MainTex, i.uv.xy);
 		half4 lowRez = BokehPrereqs (_MainTex, i.uv1, fromOriginal, _Threshhold.z);
 		half4 outColor = half4(0,0,0, fromOriginal.a);
@@ -295,7 +295,7 @@
 		return outColor;
 	}
  
- 	half4 fragExtractAndAddToBokeh (v2fRadius i) : COLOR {	
+ 	half4 fragExtractAndAddToBokeh (v2fRadius i) : SV_Target {	
 		half4 from = tex2D(_MainTex, i.uv.xy);
 		half4 lowRez = BokehPrereqs(_MainTex, i.uv1, from, _Threshhold.z);
 		half4 outColor = from;
@@ -326,11 +326,8 @@ Subshader {
  
  Pass {
 	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertDofApply
       #pragma fragment fragDofApplyBg
       
@@ -342,11 +339,8 @@ Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask RGB
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertDofApply
       #pragma fragment fragDofApplyFgDebug
 
@@ -358,11 +352,8 @@ Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask RGB
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertDofApply
       #pragma fragment fragDofApplyBgDebug
 
@@ -376,11 +367,8 @@ Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask A
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vert
       #pragma fragment fragCocBg
 
@@ -395,11 +383,8 @@ Subshader {
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask RGB
 	  //Blend One One
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertDofApply
       #pragma fragment fragDofApplyFg
       
@@ -411,11 +396,8 @@ Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask ARGB
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vert
       #pragma fragment fragCocFg
 
@@ -426,11 +408,8 @@ Subshader {
  
  Pass {
 	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertDownsampleWithCocConserve
       #pragma fragment fragDownsampleWithCocConserve
 
@@ -443,11 +422,8 @@ Subshader {
  Pass { 
 	  ZTest Always Cull Off ZWrite Off
 	  ColorMask RGBA
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vert
       #pragma fragment fragMask
 
@@ -460,11 +436,8 @@ Subshader {
 	  ZTest Always Cull Off ZWrite Off
 	  Blend SrcAlpha OneMinusSrcAlpha
 	  ColorMask RGB
-  	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vert
       #pragma fragment fragAddBokeh
 
@@ -477,11 +450,8 @@ Subshader {
 	  ZTest Always Cull Off ZWrite Off
 	  Blend One One
 	  ColorMask RGB
-	  Fog { Mode off }       
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertWithRadius
       #pragma fragment fragExtractAndAddToBokeh
 
@@ -492,11 +462,8 @@ Subshader {
  
  Pass {
 	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertWithRadius
       #pragma fragment fragDarkenForBokeh
 
@@ -507,11 +474,8 @@ Subshader {
  
  Pass {
 	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma exclude_renderers flash
-      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vertWithRadius
       #pragma fragment fragExtractAndAddToBokeh
 

@@ -11,7 +11,7 @@ Shader "Hidden/FisheyeShader" {
 	#include "UnityCG.cginc"
 	
 	struct v2f {
-		float4 pos : POSITION;
+		float4 pos : SV_POSITION;
 		float2 uv : TEXCOORD0;
 	};
 	
@@ -27,7 +27,7 @@ Shader "Hidden/FisheyeShader" {
 		return o;
 	} 
 	
-	half4 frag(v2f i) : COLOR 
+	half4 frag(v2f i) : SV_Target 
 	{
 		half2 coords = i.uv;
 		coords = (coords - 0.5) * 2.0;		
@@ -46,10 +46,8 @@ Shader "Hidden/FisheyeShader" {
 Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma fragmentoption ARB_precision_hint_fastest 
       #pragma vertex vert
       #pragma fragment frag
       ENDCG

@@ -1,0 +1,2759 @@
+fileFormatVersion: 2
+guid: bc18376e7862f7244bd039fc6b2df203
+timeCreated: 1456141556
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: oscuridad_rig:AimerElbow0_L
+    100004: oscuridad_rig:AimerElbow0_R
+    100006: oscuridad_rig:AimerShoulder0_L
+    100008: oscuridad_rig:AimerShoulder0_R
+    100010: oscuridad_rig:AimSystem
+    100012: oscuridad_rig:AlignIKToAnkle_L
+    100014: oscuridad_rig:AlignIKToAnkle_R
+    100016: oscuridad_rig:AlignIKToChest_M
+    100018: oscuridad_rig:AlignIKToWrist_L
+    100020: oscuridad_rig:AlignIKToWrist_R
+    100022: oscuridad_rig:Ankle
+    100024: oscuridad_rig:Ankle_L
+    100026: oscuridad_rig:Ankle_R
+    100028: oscuridad_rig:BackA
+    100030: oscuridad_rig:BackA_M
+    100032: oscuridad_rig:Bend0Elbow_L
+    100034: oscuridad_rig:Bend0Elbow_R
+    100036: oscuridad_rig:Bend0ExtraElbow_L
+    100038: oscuridad_rig:Bend0ExtraElbow_R
+    100040: oscuridad_rig:Bend0OffsetElbow_L
+    100042: oscuridad_rig:Bend0OffsetElbow_R
+    100044: oscuridad_rig:BendAimerAtElbow_L
+    100046: oscuridad_rig:BendAimerAtElbow_R
+    100048: oscuridad_rig:BendAimerAtShoulder_L
+    100050: oscuridad_rig:BendAimerAtShoulder_R
+    100052: oscuridad_rig:BendElbow_L
+    100054: oscuridad_rig:BendElbow_R
+    100056: oscuridad_rig:BendExtraElbow_L
+    100058: oscuridad_rig:BendExtraElbow_R
+    100060: oscuridad_rig:BendExtraShoulder_L
+    100062: oscuridad_rig:BendExtraShoulder_R
+    100064: oscuridad_rig:BendParentConstraintElbow_L
+    100066: oscuridad_rig:BendParentConstraintElbow_R
+    100068: oscuridad_rig:BendParentConstraintShoulder_L
+    100070: oscuridad_rig:BendParentConstraintShoulder_R
+    100072: oscuridad_rig:BendShoulder_L
+    100074: oscuridad_rig:BendShoulder_R
+    100076: oscuridad_rig:BendSystem
+    100078: oscuridad_rig:BigToe
+    100080: oscuridad_rig:BigToe_L
+    100082: oscuridad_rig:BigToe_R
+    100084: oscuridad_rig:Bip01
+    100086: oscuridad_rig:Center_M
+    100088: oscuridad_rig:CenterExtra_M
+    100090: oscuridad_rig:CenterOffset_M
+    100092: oscuridad_rig:Chest
+    100094: oscuridad_rig:Chest_01_M
+    100096: oscuridad_rig:Chest_M
+    100098: oscuridad_rig:Cup
+    100100: oscuridad_rig:Cup_L
+    100102: oscuridad_rig:Cup_R
+    100104: oscuridad_rig:DynamicSystem
+    100106: oscuridad_rig:Elbow
+    100108: oscuridad_rig:Elbow_L
+    100110: oscuridad_rig:Elbow_R
+    100112: oscuridad_rig:Elbow_twistJointsLocator1
+    100114: oscuridad_rig:Elbow_twistJointsLocator10
+    100116: oscuridad_rig:Elbow_twistJointsLocator2
+    100118: oscuridad_rig:Elbow_twistJointsLocator3
+    100120: oscuridad_rig:Elbow_twistJointsLocator4
+    100122: oscuridad_rig:Elbow_twistJointsLocator5
+    100124: oscuridad_rig:Elbow_twistJointsLocator6
+    100126: oscuridad_rig:Elbow_twistJointsLocator7
+    100128: oscuridad_rig:Elbow_twistJointsLocator8
+    100130: oscuridad_rig:Elbow_twistJointsLocator9
+    100132: oscuridad_rig:Elbow_twistLocator1
+    100134: oscuridad_rig:Elbow_twistLocator10
+    100136: oscuridad_rig:Elbow_twistLocator2
+    100138: oscuridad_rig:Elbow_twistLocator3
+    100140: oscuridad_rig:Elbow_twistLocator4
+    100142: oscuridad_rig:Elbow_twistLocator5
+    100144: oscuridad_rig:Elbow_twistLocator6
+    100146: oscuridad_rig:Elbow_twistLocator7
+    100148: oscuridad_rig:Elbow_twistLocator8
+    100150: oscuridad_rig:Elbow_twistLocator9
+    100152: oscuridad_rig:ElbowBendCurve_L
+    100154: oscuridad_rig:ElbowBendCurve_R
+    100156: oscuridad_rig:ElbowBendCurveEnd_L
+    100158: oscuridad_rig:ElbowBendCurveEnd_R
+    100160: oscuridad_rig:ElbowBendCurveMid_L
+    100162: oscuridad_rig:ElbowBendCurveMid_R
+    100164: oscuridad_rig:ElbowBendCurveStart_L
+    100166: oscuridad_rig:ElbowBendCurveStart_R
+    100168: oscuridad_rig:ElbowPart1_L
+    100170: oscuridad_rig:ElbowPart1_L_tangentConstraint1
+    100172: oscuridad_rig:ElbowPart1_R
+    100174: oscuridad_rig:ElbowPart1_R_tangentConstraint1
+    100176: oscuridad_rig:ElbowPart2_L
+    100178: oscuridad_rig:ElbowPart2_L_tangentConstraint1
+    100180: oscuridad_rig:ElbowPart2_R
+    100182: oscuridad_rig:ElbowPart2_R_tangentConstraint1
+    100184: oscuridad_rig:ElbowPointOnCurveXform1_L
+    100186: oscuridad_rig:ElbowPointOnCurveXform1_R
+    100188: oscuridad_rig:ElbowPointOnCurveXform2_L
+    100190: oscuridad_rig:ElbowPointOnCurveXform2_R
+    100192: oscuridad_rig:Export_Rig
+    100194: oscuridad_rig:Fingers
+    100196: oscuridad_rig:Fingers_L
+    100198: oscuridad_rig:Fingers_R
+    100200: oscuridad_rig:FitSkeleton
+    100202: oscuridad_rig:FitSkeletonOffset
+    100204: oscuridad_rig:FKAnkle_L
+    100206: oscuridad_rig:FKAnkle_R
+    100208: oscuridad_rig:FKBackA_M
+    100210: oscuridad_rig:FKChest_M
+    100212: oscuridad_rig:FKCup_L
+    100214: oscuridad_rig:FKCup_R
+    100216: oscuridad_rig:FKElbow_L
+    100218: oscuridad_rig:FKElbow_R
+    100220: oscuridad_rig:FKExtraAnkle_L
+    100222: oscuridad_rig:FKExtraAnkle_R
+    100224: oscuridad_rig:FKExtraBackA_M
+    100226: oscuridad_rig:FKExtraChest_M
+    100228: oscuridad_rig:FKExtraCup_L
+    100230: oscuridad_rig:FKExtraCup_R
+    100232: oscuridad_rig:FKExtraElbow_L
+    100234: oscuridad_rig:FKExtraElbow_R
+    100236: oscuridad_rig:FKExtraHead_M
+    100238: oscuridad_rig:FKExtraHip_L
+    100240: oscuridad_rig:FKExtraHip_R
+    100242: oscuridad_rig:FKExtraIndexFinger1_L
+    100244: oscuridad_rig:FKExtraIndexFinger1_R
+    100246: oscuridad_rig:FKExtraIndexFinger2_L
+    100248: oscuridad_rig:FKExtraIndexFinger2_R
+    100250: oscuridad_rig:FKExtraIndexFinger3_L
+    100252: oscuridad_rig:FKExtraIndexFinger3_R
+    100254: oscuridad_rig:FKExtraJaw_M
+    100256: oscuridad_rig:FKExtraKnee_L
+    100258: oscuridad_rig:FKExtraKnee_R
+    100260: oscuridad_rig:FKExtraMiddleFinger1_L
+    100262: oscuridad_rig:FKExtraMiddleFinger1_R
+    100264: oscuridad_rig:FKExtraMiddleFinger2_L
+    100266: oscuridad_rig:FKExtraMiddleFinger2_R
+    100268: oscuridad_rig:FKExtraMiddleFinger3_L
+    100270: oscuridad_rig:FKExtraMiddleFinger3_R
+    100272: oscuridad_rig:FKExtraMiddleToe1_L
+    100274: oscuridad_rig:FKExtraMiddleToe1_R
+    100276: oscuridad_rig:FKExtraNeck_M
+    100278: oscuridad_rig:FKExtraPinkyFinger1_L
+    100280: oscuridad_rig:FKExtraPinkyFinger1_R
+    100282: oscuridad_rig:FKExtraPinkyFinger2_L
+    100284: oscuridad_rig:FKExtraPinkyFinger2_R
+    100286: oscuridad_rig:FKExtraPinkyFinger3_L
+    100288: oscuridad_rig:FKExtraPinkyFinger3_R
+    100290: oscuridad_rig:FKExtraRingFinger1_L
+    100292: oscuridad_rig:FKExtraRingFinger1_R
+    100294: oscuridad_rig:FKExtraRingFinger2_L
+    100296: oscuridad_rig:FKExtraRingFinger2_R
+    100298: oscuridad_rig:FKExtraRingFinger3_L
+    100300: oscuridad_rig:FKExtraRingFinger3_R
+    100302: oscuridad_rig:FKExtraRoot_M
+    100304: oscuridad_rig:FKExtraScapula_L
+    100306: oscuridad_rig:FKExtraScapula_R
+    100308: oscuridad_rig:FKExtraShoulder_L
+    100310: oscuridad_rig:FKExtraShoulder_R
+    100312: oscuridad_rig:FKExtraThumbFinger1_L
+    100314: oscuridad_rig:FKExtraThumbFinger1_R
+    100316: oscuridad_rig:FKExtraThumbFinger2_L
+    100318: oscuridad_rig:FKExtraThumbFinger2_R
+    100320: oscuridad_rig:FKExtraThumbFinger3_L
+    100322: oscuridad_rig:FKExtraThumbFinger3_R
+    100324: oscuridad_rig:FKExtraWrist_L
+    100326: oscuridad_rig:FKExtraWrist_R
+    100328: oscuridad_rig:FKGlobalHead_M
+    100330: oscuridad_rig:FKGlobalShoulder_L
+    100332: oscuridad_rig:FKGlobalShoulder_R
+    100334: oscuridad_rig:FKGlobalStaticHead_M
+    100336: oscuridad_rig:FKGlobalStaticShoulder_L
+    100338: oscuridad_rig:FKGlobalStaticShoulder_R
+    100340: oscuridad_rig:FKGlobalStaticWrist_L
+    100342: oscuridad_rig:FKGlobalStaticWrist_R
+    100344: oscuridad_rig:FKGlobalWrist_L
+    100346: oscuridad_rig:FKGlobalWrist_R
+    100348: oscuridad_rig:FKHead_M
+    100350: oscuridad_rig:FKHip_L
+    100352: oscuridad_rig:FKHip_R
+    100354: oscuridad_rig:FKIKArm_L
+    100356: oscuridad_rig:FKIKArm_R
+    100358: oscuridad_rig:FKIKLeg_L
+    100360: oscuridad_rig:FKIKLeg_R
+    100362: oscuridad_rig:FKIKMixElbow_L
+    100364: oscuridad_rig:FKIKMixElbow_R
+    100366: oscuridad_rig:FKIKMixOffsetElbow_L
+    100368: oscuridad_rig:FKIKMixOffsetElbow_R
+    100370: oscuridad_rig:FKIKMixOffsetShoulder_L
+    100372: oscuridad_rig:FKIKMixOffsetShoulder_R
+    100374: oscuridad_rig:FKIKMixOffsetWrist_L
+    100376: oscuridad_rig:FKIKMixOffsetWrist_R
+    100378: oscuridad_rig:FKIKMixShoulder_L
+    100380: oscuridad_rig:FKIKMixShoulder_R
+    100382: oscuridad_rig:FKIKMixWrist_L
+    100384: oscuridad_rig:FKIKMixWrist_R
+    100386: oscuridad_rig:FKIKParentConstraintArm_L
+    100388: oscuridad_rig:FKIKParentConstraintArm_R
+    100390: oscuridad_rig:FKIKParentConstraintLeg_L
+    100392: oscuridad_rig:FKIKParentConstraintLeg_R
+    100394: oscuridad_rig:FKIKParentConstraintSpine_M
+    100396: oscuridad_rig:FKIKSpine_M
+    100398: oscuridad_rig:FKIKSystem
+    100400: oscuridad_rig:FKIndexFinger1_L
+    100402: oscuridad_rig:FKIndexFinger1_R
+    100404: oscuridad_rig:FKIndexFinger2_L
+    100406: oscuridad_rig:FKIndexFinger2_R
+    100408: oscuridad_rig:FKIndexFinger3_L
+    100410: oscuridad_rig:FKIndexFinger3_R
+    100412: oscuridad_rig:FKJaw_M
+    100414: oscuridad_rig:FKKnee_L
+    100416: oscuridad_rig:FKKnee_R
+    100418: oscuridad_rig:FKMiddleFinger1_L
+    100420: oscuridad_rig:FKMiddleFinger1_R
+    100422: oscuridad_rig:FKMiddleFinger2_L
+    100424: oscuridad_rig:FKMiddleFinger2_R
+    100426: oscuridad_rig:FKMiddleFinger3_L
+    100428: oscuridad_rig:FKMiddleFinger3_R
+    100430: oscuridad_rig:FKMiddleToe1_L
+    100432: oscuridad_rig:FKMiddleToe1_R
+    100434: oscuridad_rig:FKNeck_M
+    100436: oscuridad_rig:FKOffsetAnkle_L
+    100438: oscuridad_rig:FKOffsetAnkle_R
+    100440: oscuridad_rig:FKOffsetBackA_M
+    100442: oscuridad_rig:FKOffsetChest_M
+    100444: oscuridad_rig:FKOffsetCup_L
+    100446: oscuridad_rig:FKOffsetCup_R
+    100448: oscuridad_rig:FKOffsetElbow_L
+    100450: oscuridad_rig:FKOffsetElbow_R
+    100452: oscuridad_rig:FKOffsetFingers_L
+    100454: oscuridad_rig:FKOffsetFingers_R
+    100456: oscuridad_rig:FKOffsetHead_M
+    100458: oscuridad_rig:FKOffsetHip_L
+    100460: oscuridad_rig:FKOffsetHip_R
+    100462: oscuridad_rig:FKOffsetIndexFinger1_L
+    100464: oscuridad_rig:FKOffsetIndexFinger1_R
+    100466: oscuridad_rig:FKOffsetIndexFinger2_L
+    100468: oscuridad_rig:FKOffsetIndexFinger2_R
+    100470: oscuridad_rig:FKOffsetIndexFinger3_L
+    100472: oscuridad_rig:FKOffsetIndexFinger3_R
+    100474: oscuridad_rig:FKOffsetJaw_M
+    100476: oscuridad_rig:FKOffsetKnee_L
+    100478: oscuridad_rig:FKOffsetKnee_R
+    100480: oscuridad_rig:FKOffsetMiddleFinger1_L
+    100482: oscuridad_rig:FKOffsetMiddleFinger1_R
+    100484: oscuridad_rig:FKOffsetMiddleFinger2_L
+    100486: oscuridad_rig:FKOffsetMiddleFinger2_R
+    100488: oscuridad_rig:FKOffsetMiddleFinger3_L
+    100490: oscuridad_rig:FKOffsetMiddleFinger3_R
+    100492: oscuridad_rig:FKOffsetMiddleToe1_L
+    100494: oscuridad_rig:FKOffsetMiddleToe1_R
+    100496: oscuridad_rig:FKOffsetNeck_M
+    100498: oscuridad_rig:FKOffsetPinkyFinger1_L
+    100500: oscuridad_rig:FKOffsetPinkyFinger1_R
+    100502: oscuridad_rig:FKOffsetPinkyFinger2_L
+    100504: oscuridad_rig:FKOffsetPinkyFinger2_R
+    100506: oscuridad_rig:FKOffsetPinkyFinger3_L
+    100508: oscuridad_rig:FKOffsetPinkyFinger3_R
+    100510: oscuridad_rig:FKOffsetRingFinger1_L
+    100512: oscuridad_rig:FKOffsetRingFinger1_R
+    100514: oscuridad_rig:FKOffsetRingFinger2_L
+    100516: oscuridad_rig:FKOffsetRingFinger2_R
+    100518: oscuridad_rig:FKOffsetRingFinger3_L
+    100520: oscuridad_rig:FKOffsetRingFinger3_R
+    100522: oscuridad_rig:FKOffsetRoot_M
+    100524: oscuridad_rig:FKOffsetScapula_L
+    100526: oscuridad_rig:FKOffsetScapula_R
+    100528: oscuridad_rig:FKOffsetShoulder_L
+    100530: oscuridad_rig:FKOffsetShoulder_R
+    100532: oscuridad_rig:FKOffsetThumbFinger1_L
+    100534: oscuridad_rig:FKOffsetThumbFinger1_R
+    100536: oscuridad_rig:FKOffsetThumbFinger2_L
+    100538: oscuridad_rig:FKOffsetThumbFinger2_R
+    100540: oscuridad_rig:FKOffsetThumbFinger3_L
+    100542: oscuridad_rig:FKOffsetThumbFinger3_R
+    100544: oscuridad_rig:FKOffsetWrist_L
+    100546: oscuridad_rig:FKOffsetWrist_R
+    100548: oscuridad_rig:FKParentConstraintFingers_L
+    100550: oscuridad_rig:FKParentConstraintFingers_R
+    100552: oscuridad_rig:FKParentConstraintToAnkle_L
+    100554: oscuridad_rig:FKParentConstraintToAnkle_R
+    100556: oscuridad_rig:FKParentConstraintToChest_M
+    100558: oscuridad_rig:FKParentConstraintToRoot_M
+    100560: oscuridad_rig:FKParentConstraintToWrist_L
+    100562: oscuridad_rig:FKParentConstraintToWrist_R
+    100564: oscuridad_rig:FKPinkyFinger1_L
+    100566: oscuridad_rig:FKPinkyFinger1_R
+    100568: oscuridad_rig:FKPinkyFinger2_L
+    100570: oscuridad_rig:FKPinkyFinger2_R
+    100572: oscuridad_rig:FKPinkyFinger3_L
+    100574: oscuridad_rig:FKPinkyFinger3_R
+    100576: oscuridad_rig:FKRingFinger1_L
+    100578: oscuridad_rig:FKRingFinger1_R
+    100580: oscuridad_rig:FKRingFinger2_L
+    100582: oscuridad_rig:FKRingFinger2_R
+    100584: oscuridad_rig:FKRingFinger3_L
+    100586: oscuridad_rig:FKRingFinger3_R
+    100588: oscuridad_rig:FKRoot_M
+    100590: oscuridad_rig:FKScapula_L
+    100592: oscuridad_rig:FKScapula_R
+    100594: oscuridad_rig:FKShoulder_L
+    100596: oscuridad_rig:FKShoulder_R
+    100598: oscuridad_rig:FKSystem
+    100600: oscuridad_rig:FKThumbFinger1_L
+    100602: oscuridad_rig:FKThumbFinger1_R
+    100604: oscuridad_rig:FKThumbFinger2_L
+    100606: oscuridad_rig:FKThumbFinger2_R
+    100608: oscuridad_rig:FKThumbFinger3_L
+    100610: oscuridad_rig:FKThumbFinger3_R
+    100612: oscuridad_rig:FKWrist_L
+    100614: oscuridad_rig:FKWrist_R
+    100616: oscuridad_rig:FKXAnkle_L
+    100618: oscuridad_rig:FKXAnkle_R
+    100620: oscuridad_rig:FKXBackA_M
+    100622: oscuridad_rig:FKXBigToe_L
+    100624: oscuridad_rig:FKXBigToe_R
+    100626: oscuridad_rig:FKXChest_M
+    100628: oscuridad_rig:FKXCup_L
+    100630: oscuridad_rig:FKXCup_R
+    100632: oscuridad_rig:FKXElbow_L
+    100634: oscuridad_rig:FKXElbow_R
+    100636: oscuridad_rig:FKXHair_M
+    100638: oscuridad_rig:FKXHead_M
+    100640: oscuridad_rig:FKXHeel_L
+    100642: oscuridad_rig:FKXHeel_R
+    100644: oscuridad_rig:FKXHip_L
+    100646: oscuridad_rig:FKXHip_R
+    100648: oscuridad_rig:FKXIndexFinger1_L
+    100650: oscuridad_rig:FKXIndexFinger1_R
+    100652: oscuridad_rig:FKXIndexFinger2_L
+    100654: oscuridad_rig:FKXIndexFinger2_R
+    100656: oscuridad_rig:FKXIndexFinger3_L
+    100658: oscuridad_rig:FKXIndexFinger3_R
+    100660: oscuridad_rig:FKXIndexFinger4_L
+    100662: oscuridad_rig:FKXIndexFinger4_R
+    100664: oscuridad_rig:FKXJaw_M
+    100666: oscuridad_rig:FKXJawEnd_M
+    100668: oscuridad_rig:FKXKnee_L
+    100670: oscuridad_rig:FKXKnee_R
+    100672: oscuridad_rig:FKXMiddleFinger1_L
+    100674: oscuridad_rig:FKXMiddleFinger1_R
+    100676: oscuridad_rig:FKXMiddleFinger2_L
+    100678: oscuridad_rig:FKXMiddleFinger2_R
+    100680: oscuridad_rig:FKXMiddleFinger3_L
+    100682: oscuridad_rig:FKXMiddleFinger3_R
+    100684: oscuridad_rig:FKXMiddleFinger4_L
+    100686: oscuridad_rig:FKXMiddleFinger4_R
+    100688: oscuridad_rig:FKXMiddleToe1_L
+    100690: oscuridad_rig:FKXMiddleToe1_R
+    100692: oscuridad_rig:FKXMiddleToe2_L
+    100694: oscuridad_rig:FKXMiddleToe2_R
+    100696: oscuridad_rig:FKXNeck_M
+    100698: oscuridad_rig:FKXPinkyFinger1_L
+    100700: oscuridad_rig:FKXPinkyFinger1_R
+    100702: oscuridad_rig:FKXPinkyFinger2_L
+    100704: oscuridad_rig:FKXPinkyFinger2_R
+    100706: oscuridad_rig:FKXPinkyFinger3_L
+    100708: oscuridad_rig:FKXPinkyFinger3_R
+    100710: oscuridad_rig:FKXPinkyFinger4_L
+    100712: oscuridad_rig:FKXPinkyFinger4_R
+    100714: oscuridad_rig:FKXPinkyToe_L
+    100716: oscuridad_rig:FKXPinkyToe_R
+    100718: oscuridad_rig:FKXRingFinger1_L
+    100720: oscuridad_rig:FKXRingFinger1_R
+    100722: oscuridad_rig:FKXRingFinger2_L
+    100724: oscuridad_rig:FKXRingFinger2_R
+    100726: oscuridad_rig:FKXRingFinger3_L
+    100728: oscuridad_rig:FKXRingFinger3_R
+    100730: oscuridad_rig:FKXRingFinger4_L
+    100732: oscuridad_rig:FKXRingFinger4_R
+    100734: oscuridad_rig:FKXRoot_M
+    100736: oscuridad_rig:FKXScapula_L
+    100738: oscuridad_rig:FKXScapula_R
+    100740: oscuridad_rig:FKXShoulder_L
+    100742: oscuridad_rig:FKXShoulder_R
+    100744: oscuridad_rig:FKXThumbFinger1_L
+    100746: oscuridad_rig:FKXThumbFinger1_R
+    100748: oscuridad_rig:FKXThumbFinger2_L
+    100750: oscuridad_rig:FKXThumbFinger2_R
+    100752: oscuridad_rig:FKXThumbFinger3_L
+    100754: oscuridad_rig:FKXThumbFinger3_R
+    100756: oscuridad_rig:FKXThumbFinger4_L
+    100758: oscuridad_rig:FKXThumbFinger4_R
+    100760: oscuridad_rig:FKXWrist_L
+    100762: oscuridad_rig:FKXWrist_R
+    100764: oscuridad_rig:Geo_Arms_Oscuridad
+    100766: oscuridad_rig:Geo_Chest_Oscuridad
+    100768: oscuridad_rig:Geo_Head_Oscuridad
+    100770: oscuridad_rig:Geo_Legs_Oscuridad
+    100772: oscuridad_rig:Geometry
+    100774: oscuridad_rig:GlobalHead_M
+    100776: oscuridad_rig:GlobalOffsetHead_M
+    100778: oscuridad_rig:GlobalOffsetShoulder_L
+    100780: oscuridad_rig:GlobalOffsetShoulder_R
+    100782: oscuridad_rig:GlobalOffsetWrist_L
+    100784: oscuridad_rig:GlobalOffsetWrist_R
+    100786: oscuridad_rig:GlobalShoulder_L
+    100788: oscuridad_rig:GlobalShoulder_R
+    100790: oscuridad_rig:GlobalSystem
+    100792: oscuridad_rig:GlobalWrist_L
+    100794: oscuridad_rig:GlobalWrist_R
+    100796: oscuridad_rig:Group
+    100798: oscuridad_rig:Hair
+    100800: oscuridad_rig:Hair_M
+    100802: oscuridad_rig:Head
+    100804: oscuridad_rig:Head_globalLocator
+    100806: oscuridad_rig:Head_M
+    100808: oscuridad_rig:Heel
+    100810: oscuridad_rig:Hip
+    100812: oscuridad_rig:Hip_L
+    100814: oscuridad_rig:Hip_R
+    100816: oscuridad_rig:Hip_twistJointsLocator1
+    100818: oscuridad_rig:Hip_twistJointsLocator10
+    100820: oscuridad_rig:Hip_twistJointsLocator2
+    100822: oscuridad_rig:Hip_twistJointsLocator3
+    100824: oscuridad_rig:Hip_twistJointsLocator4
+    100826: oscuridad_rig:Hip_twistJointsLocator5
+    100828: oscuridad_rig:Hip_twistJointsLocator6
+    100830: oscuridad_rig:Hip_twistJointsLocator7
+    100832: oscuridad_rig:Hip_twistJointsLocator8
+    100834: oscuridad_rig:Hip_twistJointsLocator9
+    100836: oscuridad_rig:HipSwingerGroupRoot_M
+    100838: oscuridad_rig:HipSwingerOffsetRoot_M
+    100840: oscuridad_rig:HipSwingerRoot_M
+    100842: oscuridad_rig:HipSwingerStabalizeRoot_M
+    100844: oscuridad_rig:IKArm_L
+    100846: oscuridad_rig:IKArm_R
+    100848: oscuridad_rig:IKCrv
+    100850: oscuridad_rig:IKdistanceArm_L
+    100852: oscuridad_rig:IKdistanceArm_R
+    100854: oscuridad_rig:IKdistanceLeg_L
+    100856: oscuridad_rig:IKdistanceLeg_R
+    100858: oscuridad_rig:IKEndJointOrientToSpine_M
+    100860: oscuridad_rig:IKExtraArm_L
+    100862: oscuridad_rig:IKExtraArm_R
+    100864: oscuridad_rig:IKExtraLeg_L
+    100866: oscuridad_rig:IKExtraLeg_R
+    100868: oscuridad_rig:IKExtraLegBall_L
+    100870: oscuridad_rig:IKExtraLegBall_R
+    100872: oscuridad_rig:IKExtraLegHeel_L
+    100874: oscuridad_rig:IKExtraLegHeel_R
+    100876: oscuridad_rig:IKExtraLegToe_L
+    100878: oscuridad_rig:IKExtraLegToe_R
+    100880: oscuridad_rig:IKExtraSpine0_M
+    100882: oscuridad_rig:IKExtraSpine2_M
+    100884: oscuridad_rig:IKExtraSpine4_M
+    100886: oscuridad_rig:IKfake1Spine_M
+    100888: oscuridad_rig:IKFake1UpLocSpine_M
+    100890: oscuridad_rig:IKfake2Spine_M
+    100892: oscuridad_rig:IKFKAlignedArm_L
+    100894: oscuridad_rig:IKFKAlignedArm_R
+    100896: oscuridad_rig:IKFKAlignedLeg_L
+    100898: oscuridad_rig:IKFKAlignedLeg_R
+    100900: oscuridad_rig:IKFKAlignedSpine_M
+    100902: oscuridad_rig:IKFootIndexPivotLeg_L
+    100904: oscuridad_rig:IKFootIndexPivotLeg_R
+    100906: oscuridad_rig:IKFootPinkyPivotLeg_L
+    100908: oscuridad_rig:IKFootPinkyPivotLeg_R
+    100910: oscuridad_rig:IKFootPivotBallReverseLeg_L
+    100912: oscuridad_rig:IKFootPivotBallReverseLeg_R
+    100914: oscuridad_rig:IKFootRollLeg_L
+    100916: oscuridad_rig:IKFootRollLeg_R
+    100918: oscuridad_rig:IKHandle
+    100920: oscuridad_rig:IKLeg_L
+    100922: oscuridad_rig:IKLeg_R
+    100924: oscuridad_rig:IKLegBall_L
+    100926: oscuridad_rig:IKLegBall_R
+    100928: oscuridad_rig:IKLegHeel_L
+    100930: oscuridad_rig:IKLegHeel_R
+    100932: oscuridad_rig:IKLegToe_L
+    100934: oscuridad_rig:IKLegToe_R
+    100936: oscuridad_rig:IKLiftToeLegToe_L
+    100938: oscuridad_rig:IKLiftToeLegToe_R
+    100940: oscuridad_rig:IKMessure
+    100942: oscuridad_rig:IKmessureConstrainToArm_L
+    100944: oscuridad_rig:IKmessureConstrainToArm_R
+    100946: oscuridad_rig:IKmessureConstrainToLeg_L
+    100948: oscuridad_rig:IKmessureConstrainToLeg_R
+    100950: oscuridad_rig:IKmessureLoc1Arm_L
+    100952: oscuridad_rig:IKmessureLoc1Arm_R
+    100954: oscuridad_rig:IKmessureLoc1Leg_L
+    100956: oscuridad_rig:IKmessureLoc1Leg_R
+    100958: oscuridad_rig:IKmessureLoc2Arm_L
+    100960: oscuridad_rig:IKmessureLoc2Arm_R
+    100962: oscuridad_rig:IKmessureLoc2Leg_L
+    100964: oscuridad_rig:IKmessureLoc2Leg_R
+    100966: oscuridad_rig:IKOffsetHip_L
+    100968: oscuridad_rig:IKOffsetHip_R
+    100970: oscuridad_rig:IKOffsetRoot_M
+    100972: oscuridad_rig:IKOffsetShoulder_L
+    100974: oscuridad_rig:IKOffsetShoulder_R
+    100976: oscuridad_rig:IKOrientToSpine_M
+    100978: oscuridad_rig:IKParentConstraint
+    100980: oscuridad_rig:IKParentConstraintArm_L
+    100982: oscuridad_rig:IKParentConstraintArm_LStatic
+    100984: oscuridad_rig:IKParentConstraintArm_R
+    100986: oscuridad_rig:IKParentConstraintArm_RStatic
+    100988: oscuridad_rig:IKParentConstraintHip_L
+    100990: oscuridad_rig:IKParentConstraintHip_R
+    100992: oscuridad_rig:IKParentConstraintLeg_L
+    100994: oscuridad_rig:IKParentConstraintLeg_R
+    100996: oscuridad_rig:IKParentConstraintRoot_M
+    100998: oscuridad_rig:IKParentConstraintShoulder_L
+    101000: oscuridad_rig:IKParentConstraintShoulder_R
+    101002: oscuridad_rig:IKParentConstraintSpine0_M
+    101004: oscuridad_rig:IKParentConstraintSpine2_M
+    101006: oscuridad_rig:IKParentConstraintSpine4_M
+    101008: oscuridad_rig:IKRollLegBall_L
+    101010: oscuridad_rig:IKRollLegBall_R
+    101012: oscuridad_rig:IKRollLegHeel_L
+    101014: oscuridad_rig:IKRollLegHeel_R
+    101016: oscuridad_rig:IKRollLegToe_L
+    101018: oscuridad_rig:IKRollLegToe_R
+    101020: oscuridad_rig:IKSpine0_M
+    101022: oscuridad_rig:IKSpine0AlignTo_M
+    101024: oscuridad_rig:IKSpine2_M
+    101026: oscuridad_rig:IKSpine4_M
+    101028: oscuridad_rig:IKSpine4AlignTo_M
+    101030: oscuridad_rig:IKSpine4AlignUnTwistTo_M
+    101032: oscuridad_rig:IKSpine4AlignUnTwistToOffset_M
+    101034: oscuridad_rig:IKStatic
+    101036: oscuridad_rig:IKStiffEndOrientSpine_M
+    101038: oscuridad_rig:IKStiffStartOrientSpine_M
+    101040: oscuridad_rig:IKSystem
+    101042: oscuridad_rig:IKXAnkle_L
+    101044: oscuridad_rig:IKXAnkle_R
+    101046: oscuridad_rig:IKXArmHandle_L
+    101048: oscuridad_rig:IKXArmHandle_R
+    101050: oscuridad_rig:IKXBackA_M
+    101052: oscuridad_rig:IKXChest_M
+    101054: oscuridad_rig:IKXElbow_L
+    101056: oscuridad_rig:IKXElbow_R
+    101058: oscuridad_rig:IKXHip_L
+    101060: oscuridad_rig:IKXHip_R
+    101062: oscuridad_rig:IKXKnee_L
+    101064: oscuridad_rig:IKXKnee_R
+    101066: oscuridad_rig:IKXLegHandle_L
+    101068: oscuridad_rig:IKXLegHandle_R
+    101070: oscuridad_rig:IKXLegHandleBall_L
+    101072: oscuridad_rig:IKXLegHandleBall_R
+    101074: oscuridad_rig:IKXLegHandleToe_L
+    101076: oscuridad_rig:IKXLegHandleToe_R
+    101078: oscuridad_rig:IKXMiddleToe1_L
+    101080: oscuridad_rig:IKXMiddleToe1_R
+    101082: oscuridad_rig:IKXMiddleToe2_L
+    101084: oscuridad_rig:IKXMiddleToe2_R
+    101086: oscuridad_rig:IKXRoot_M
+    101088: oscuridad_rig:IKXShoulder_L
+    101090: oscuridad_rig:IKXShoulder_R
+    101092: oscuridad_rig:IKXSpineCurve_M
+    101094: oscuridad_rig:IKXSpineHandle_M
+    101096: oscuridad_rig:IKXSpineLocator0_M
+    101098: oscuridad_rig:IKXSpineLocator1_M
+    101100: oscuridad_rig:IKXSpineLocator2_M
+    101102: oscuridad_rig:IKXSpineLocator3_M
+    101104: oscuridad_rig:IKXSpineLocator4_M
+    101106: oscuridad_rig:IKXWrist_L
+    101108: oscuridad_rig:IKXWrist_R
+    101110: oscuridad_rig:IndexFinger1
+    101112: oscuridad_rig:IndexFinger1_L
+    101114: oscuridad_rig:IndexFinger1_R
+    101116: oscuridad_rig:IndexFinger2
+    101118: oscuridad_rig:IndexFinger2_L
+    101120: oscuridad_rig:IndexFinger2_R
+    101122: oscuridad_rig:IndexFinger3
+    101124: oscuridad_rig:IndexFinger3_L
+    101126: oscuridad_rig:IndexFinger3_R
+    101128: oscuridad_rig:IndexFinger4
+    101130: oscuridad_rig:IndexFinger4_L
+    101132: oscuridad_rig:IndexFinger4_R
+    101134: oscuridad_rig:Jaw
+    101136: oscuridad_rig:Jaw_M
+    101138: oscuridad_rig:JawEnd
+    101140: oscuridad_rig:JawEnd_M
+    101142: oscuridad_rig:Knee
+    101144: oscuridad_rig:Knee_L
+    101146: oscuridad_rig:Knee_R
+    101148: oscuridad_rig:Main
+    101150: oscuridad_rig:MiddleFinger1
+    101152: oscuridad_rig:MiddleFinger1_L
+    101154: oscuridad_rig:MiddleFinger1_R
+    101156: oscuridad_rig:MiddleFinger2
+    101158: oscuridad_rig:MiddleFinger2_L
+    101160: oscuridad_rig:MiddleFinger2_R
+    101162: oscuridad_rig:MiddleFinger3
+    101164: oscuridad_rig:MiddleFinger3_L
+    101166: oscuridad_rig:MiddleFinger3_R
+    101168: oscuridad_rig:MiddleFinger4
+    101170: oscuridad_rig:MiddleFinger4_L
+    101172: oscuridad_rig:MiddleFinger4_R
+    101174: oscuridad_rig:MiddleToe1
+    101176: oscuridad_rig:MiddleToe1_L
+    101178: oscuridad_rig:MiddleToe1_R
+    101180: oscuridad_rig:MiddleToe2
+    101182: oscuridad_rig:MiddleToe2_L
+    101184: oscuridad_rig:MiddleToe2_R
+    101186: oscuridad_rig:MotionSystem
+    101188: oscuridad_rig:Neck
+    101190: oscuridad_rig:Neck_M
+    101192: oscuridad_rig:Neck_twistJointsLocator1
+    101194: oscuridad_rig:Neck_twistJointsLocator10
+    101196: oscuridad_rig:Neck_twistJointsLocator2
+    101198: oscuridad_rig:Neck_twistJointsLocator3
+    101200: oscuridad_rig:Neck_twistJointsLocator4
+    101202: oscuridad_rig:Neck_twistJointsLocator5
+    101204: oscuridad_rig:Neck_twistJointsLocator6
+    101206: oscuridad_rig:Neck_twistJointsLocator7
+    101208: oscuridad_rig:Neck_twistJointsLocator8
+    101210: oscuridad_rig:Neck_twistJointsLocator9
+    101212: oscuridad_rig:Oscuridad_Geo
+    101214: oscuridad_rig:PinkyFinger1
+    101216: oscuridad_rig:PinkyFinger1_L
+    101218: oscuridad_rig:PinkyFinger1_R
+    101220: oscuridad_rig:PinkyFinger2
+    101222: oscuridad_rig:PinkyFinger2_L
+    101224: oscuridad_rig:PinkyFinger2_R
+    101226: oscuridad_rig:PinkyFinger3
+    101228: oscuridad_rig:PinkyFinger3_L
+    101230: oscuridad_rig:PinkyFinger3_R
+    101232: oscuridad_rig:PinkyFinger4
+    101234: oscuridad_rig:PinkyFinger4_L
+    101236: oscuridad_rig:PinkyFinger4_R
+    101238: oscuridad_rig:PinkyToe
+    101240: oscuridad_rig:PinkyToe_L
+    101242: oscuridad_rig:PinkyToe_R
+    101244: oscuridad_rig:PoleAimLeg_L
+    101246: oscuridad_rig:PoleAimLeg_R
+    101248: oscuridad_rig:PoleAnnotationArm_L
+    101250: oscuridad_rig:PoleAnnotationArm_R
+    101252: oscuridad_rig:PoleAnnotationLeg_L
+    101254: oscuridad_rig:PoleAnnotationLeg_R
+    101256: oscuridad_rig:PoleArm_L
+    101258: oscuridad_rig:PoleArm_R
+    101260: oscuridad_rig:PoleExtraArm_L
+    101262: oscuridad_rig:PoleExtraArm_R
+    101264: oscuridad_rig:PoleExtraLeg_L
+    101266: oscuridad_rig:PoleExtraLeg_R
+    101268: oscuridad_rig:PoleLeg_L
+    101270: oscuridad_rig:PoleLeg_R
+    101272: oscuridad_rig:PoleParentConstraintArm_L
+    101274: oscuridad_rig:PoleParentConstraintArm_LStatic
+    101276: oscuridad_rig:PoleParentConstraintArm_R
+    101278: oscuridad_rig:PoleParentConstraintArm_RStatic
+    101280: oscuridad_rig:PoleParentConstraintLeg_L
+    101282: oscuridad_rig:PoleParentConstraintLeg_LStatic
+    101284: oscuridad_rig:PoleParentConstraintLeg_R
+    101286: oscuridad_rig:PoleParentConstraintLeg_RStatic
+    101288: oscuridad_rig:RingFinger1
+    101290: oscuridad_rig:RingFinger1_L
+    101292: oscuridad_rig:RingFinger1_R
+    101294: oscuridad_rig:RingFinger2
+    101296: oscuridad_rig:RingFinger2_L
+    101298: oscuridad_rig:RingFinger2_R
+    101300: oscuridad_rig:RingFinger3
+    101302: oscuridad_rig:RingFinger3_L
+    101304: oscuridad_rig:RingFinger3_R
+    101306: oscuridad_rig:RingFinger4
+    101308: oscuridad_rig:RingFinger4_L
+    101310: oscuridad_rig:RingFinger4_R
+    101312: oscuridad_rig:Root
+    101314: oscuridad_rig:RootCenter_M
+    101316: oscuridad_rig:RootCenterBtwLegs_M
+    101318: oscuridad_rig:RootCenterBtwLegsBlended_M
+    101320: oscuridad_rig:RootCenterBtwLegsOffset_M
+    101322: oscuridad_rig:RootSystem
+    101324: oscuridad_rig:Scapula
+    101326: oscuridad_rig:Scapula_01_L
+    101328: oscuridad_rig:Scapula_01_R
+    101330: oscuridad_rig:Scapula_L
+    101332: oscuridad_rig:Scapula_R
+    101334: oscuridad_rig:Shoulder
+    101336: oscuridad_rig:Shoulder_globalLocator
+    101338: oscuridad_rig:Shoulder_L
+    101340: oscuridad_rig:Shoulder_R
+    101342: oscuridad_rig:Shoulder_twistJointsLocator10
+    101344: oscuridad_rig:Shoulder_twistJointsLocator2
+    101346: oscuridad_rig:Shoulder_twistJointsLocator3
+    101348: oscuridad_rig:Shoulder_twistJointsLocator4
+    101350: oscuridad_rig:Shoulder_twistJointsLocator5
+    101352: oscuridad_rig:Shoulder_twistJointsLocator6
+    101354: oscuridad_rig:Shoulder_twistJointsLocator7
+    101356: oscuridad_rig:Shoulder_twistJointsLocator8
+    101358: oscuridad_rig:Shoulder_twistJointsLocator9
+    101360: oscuridad_rig:ShoulderBendCurve_L
+    101362: oscuridad_rig:ShoulderBendCurve_R
+    101364: oscuridad_rig:ShoulderBendCurveEnd_L
+    101366: oscuridad_rig:ShoulderBendCurveEnd_R
+    101368: oscuridad_rig:ShoulderBendCurveMid_L
+    101370: oscuridad_rig:ShoulderBendCurveMid_R
+    101372: oscuridad_rig:ShoulderBendCurveStart_L
+    101374: oscuridad_rig:ShoulderBendCurveStart_R
+    101376: oscuridad_rig:ShoulderPart1_L
+    101378: oscuridad_rig:ShoulderPart1_L_tangentConstraint1
+    101380: oscuridad_rig:ShoulderPart1_R
+    101382: oscuridad_rig:ShoulderPart1_R_tangentConstraint1
+    101384: oscuridad_rig:ShoulderPart2_L
+    101386: oscuridad_rig:ShoulderPart2_L_tangentConstraint1
+    101388: oscuridad_rig:ShoulderPart2_R
+    101390: oscuridad_rig:ShoulderPart2_R_tangentConstraint1
+    101392: oscuridad_rig:ShoulderPointOnCurveXform1_L
+    101394: oscuridad_rig:ShoulderPointOnCurveXform1_R
+    101396: oscuridad_rig:ShoulderPointOnCurveXform2_L
+    101398: oscuridad_rig:ShoulderPointOnCurveXform2_R
+    101400: oscuridad_rig:ThumbFinger1
+    101402: oscuridad_rig:ThumbFinger1_L
+    101404: oscuridad_rig:ThumbFinger1_R
+    101406: oscuridad_rig:ThumbFinger2
+    101408: oscuridad_rig:ThumbFinger2_L
+    101410: oscuridad_rig:ThumbFinger2_R
+    101412: oscuridad_rig:ThumbFinger3
+    101414: oscuridad_rig:ThumbFinger3_L
+    101416: oscuridad_rig:ThumbFinger3_R
+    101418: oscuridad_rig:ThumbFinger4
+    101420: oscuridad_rig:ThumbFinger4_L
+    101422: oscuridad_rig:ThumbFinger4_R
+    101424: oscuridad_rig:TwistBalancerElbow_L
+    101426: oscuridad_rig:TwistBalancerElbow_R
+    101428: oscuridad_rig:TwistBalancerShoulder_L
+    101430: oscuridad_rig:TwistBalancerShoulder_R
+    101432: oscuridad_rig:TwistBalancerWrist_L
+    101434: oscuridad_rig:TwistBalancerWrist_R
+    101436: oscuridad_rig:TwisterElbow0_L
+    101438: oscuridad_rig:TwisterElbow0_R
+    101440: oscuridad_rig:TwisterElbow1_L
+    101442: oscuridad_rig:TwisterElbow1_R
+    101444: oscuridad_rig:TwisterElbow2_L
+    101446: oscuridad_rig:TwisterElbow2_R
+    101448: oscuridad_rig:TwisterShoulder0_L
+    101450: oscuridad_rig:TwisterShoulder0_R
+    101452: oscuridad_rig:TwisterShoulder1_L
+    101454: oscuridad_rig:TwisterShoulder1_R
+    101456: oscuridad_rig:TwisterShoulder2_L
+    101458: oscuridad_rig:TwisterShoulder2_R
+    101460: oscuridad_rig:TwistFollowElbow_L
+    101462: oscuridad_rig:TwistFollowElbow_R
+    101464: oscuridad_rig:TwistFollowParentElbow_L
+    101466: oscuridad_rig:TwistFollowParentElbow_R
+    101468: oscuridad_rig:TwistFollowParentShoulder_L
+    101470: oscuridad_rig:TwistFollowParentShoulder_R
+    101472: oscuridad_rig:TwistFollowParentWrist_L
+    101474: oscuridad_rig:TwistFollowParentWrist_R
+    101476: oscuridad_rig:TwistFollowRoot_M
+    101478: oscuridad_rig:TwistFollowShoulder_L
+    101480: oscuridad_rig:TwistFollowShoulder_R
+    101482: oscuridad_rig:TwistFollowWrist_L
+    101484: oscuridad_rig:TwistFollowWrist_R
+    101486: oscuridad_rig:TwistSystem
+    101488: oscuridad_rig:UnTwistElbow_L
+    101490: oscuridad_rig:UnTwistElbow_R
+    101492: oscuridad_rig:UnTwistEndElbow_L
+    101494: oscuridad_rig:UnTwistEndElbow_R
+    101496: oscuridad_rig:UnTwistEndRoot_M
+    101498: oscuridad_rig:UnTwistEndShoulder_L
+    101500: oscuridad_rig:UnTwistEndShoulder_R
+    101502: oscuridad_rig:UnTwistEndWrist_L
+    101504: oscuridad_rig:UnTwistEndWrist_R
+    101506: oscuridad_rig:UnTwistIKElbow_L
+    101508: oscuridad_rig:UnTwistIKElbow_R
+    101510: oscuridad_rig:UnTwistIKRoot_M
+    101512: oscuridad_rig:UnTwistIKShoulder_L
+    101514: oscuridad_rig:UnTwistIKShoulder_R
+    101516: oscuridad_rig:UnTwistIKWrist_L
+    101518: oscuridad_rig:UnTwistIKWrist_R
+    101520: oscuridad_rig:UnTwistPoleVectorElbow_L
+    101522: oscuridad_rig:UnTwistPoleVectorElbow_R
+    101524: oscuridad_rig:UnTwistPoleVectorShoulder_L
+    101526: oscuridad_rig:UnTwistPoleVectorShoulder_R
+    101528: oscuridad_rig:UnTwistPoleVectorWrist_L
+    101530: oscuridad_rig:UnTwistPoleVectorWrist_R
+    101532: oscuridad_rig:UnTwistRoot_M
+    101534: oscuridad_rig:UnTwistShoulder_L
+    101536: oscuridad_rig:UnTwistShoulder_R
+    101538: oscuridad_rig:UnTwistWrist_L
+    101540: oscuridad_rig:UnTwistWrist_R
+    101542: oscuridad_rig:WagSystem
+    101544: oscuridad_rig:Wrist
+    101546: oscuridad_rig:Wrist_globalLocator
+    101548: oscuridad_rig:Wrist_L
+    101550: oscuridad_rig:Wrist_R
+    101552: Ankle_L
+    101554: Ankle_R
+    101556: BackA_M
+    101558: BigToe_L
+    101560: BigToe_R
+    101562: Bip01
+    101564: Chest_01_M
+    101566: Chest_M
+    101568: Cup_L
+    101570: Cup_R
+    101572: Elbow_L
+    101574: Elbow_R
+    101576: ElbowPart1_L
+    101578: ElbowPart1_R
+    101580: ElbowPart2_L
+    101582: ElbowPart2_R
+    101584: Export_Rig
+    101586: Geo_Arms_Oscuridad
+    101588: Geo_Chest_Oscuridad
+    101590: Geo_Head_Oscuridad
+    101592: Geo_Legs_Oscuridad
+    101594: Geometry
+    101596: GrannyRootBone
+    101598: Group
+    101600: Hair_M
+    101602: Head_M
+    101604: Hip_L
+    101606: Hip_R
+    101608: IndexFinger1_L
+    101610: IndexFinger1_R
+    101612: IndexFinger2_L
+    101614: IndexFinger2_R
+    101616: IndexFinger3_L
+    101618: IndexFinger3_R
+    101620: IndexFinger4_L
+    101622: IndexFinger4_R
+    101624: Jaw_M
+    101626: JawEnd_M
+    101628: Knee_L
+    101630: Knee_R
+    101632: Main
+    101634: MiddleFinger1_L
+    101636: MiddleFinger1_R
+    101638: MiddleFinger2_L
+    101640: MiddleFinger2_R
+    101642: MiddleFinger3_L
+    101644: MiddleFinger3_R
+    101646: MiddleFinger4_L
+    101648: MiddleFinger4_R
+    101650: MiddleToe1_L
+    101652: MiddleToe1_R
+    101654: MiddleToe2_L
+    101656: MiddleToe2_R
+    101658: Neck_M
+    101660: Oscuridad_Geo
+    101662: PinkyFinger1_L
+    101664: PinkyFinger1_R
+    101666: PinkyFinger2_L
+    101668: PinkyFinger2_R
+    101670: PinkyFinger3_L
+    101672: PinkyFinger3_R
+    101674: PinkyFinger4_L
+    101676: PinkyFinger4_R
+    101678: PinkyToe_L
+    101680: PinkyToe_R
+    101682: RingFinger1_L
+    101684: RingFinger1_R
+    101686: RingFinger2_L
+    101688: RingFinger2_R
+    101690: RingFinger3_L
+    101692: RingFinger3_R
+    101694: RingFinger4_L
+    101696: RingFinger4_R
+    101698: RootBalance
+    101700: RootHelper
+    101702: Scapula_01_L
+    101704: Scapula_01_R
+    101706: Scapula_L
+    101708: Scapula_R
+    101710: Shoulder_L
+    101712: Shoulder_R
+    101714: ShoulderPart1_L
+    101716: ShoulderPart1_R
+    101718: ShoulderPart2_L
+    101720: ShoulderPart2_R
+    101722: ThumbFinger1_L
+    101724: ThumbFinger1_R
+    101726: ThumbFinger2_L
+    101728: ThumbFinger2_R
+    101730: ThumbFinger3_L
+    101732: ThumbFinger3_R
+    101734: ThumbFinger4_L
+    101736: ThumbFinger4_R
+    101738: Wrist_L
+    101740: Wrist_R
+    400000: //RootNode
+    400002: oscuridad_rig:AimerElbow0_L
+    400004: oscuridad_rig:AimerElbow0_R
+    400006: oscuridad_rig:AimerShoulder0_L
+    400008: oscuridad_rig:AimerShoulder0_R
+    400010: oscuridad_rig:AimSystem
+    400012: oscuridad_rig:AlignIKToAnkle_L
+    400014: oscuridad_rig:AlignIKToAnkle_R
+    400016: oscuridad_rig:AlignIKToChest_M
+    400018: oscuridad_rig:AlignIKToWrist_L
+    400020: oscuridad_rig:AlignIKToWrist_R
+    400022: oscuridad_rig:Ankle
+    400024: oscuridad_rig:Ankle_L
+    400026: oscuridad_rig:Ankle_R
+    400028: oscuridad_rig:BackA
+    400030: oscuridad_rig:BackA_M
+    400032: oscuridad_rig:Bend0Elbow_L
+    400034: oscuridad_rig:Bend0Elbow_R
+    400036: oscuridad_rig:Bend0ExtraElbow_L
+    400038: oscuridad_rig:Bend0ExtraElbow_R
+    400040: oscuridad_rig:Bend0OffsetElbow_L
+    400042: oscuridad_rig:Bend0OffsetElbow_R
+    400044: oscuridad_rig:BendAimerAtElbow_L
+    400046: oscuridad_rig:BendAimerAtElbow_R
+    400048: oscuridad_rig:BendAimerAtShoulder_L
+    400050: oscuridad_rig:BendAimerAtShoulder_R
+    400052: oscuridad_rig:BendElbow_L
+    400054: oscuridad_rig:BendElbow_R
+    400056: oscuridad_rig:BendExtraElbow_L
+    400058: oscuridad_rig:BendExtraElbow_R
+    400060: oscuridad_rig:BendExtraShoulder_L
+    400062: oscuridad_rig:BendExtraShoulder_R
+    400064: oscuridad_rig:BendParentConstraintElbow_L
+    400066: oscuridad_rig:BendParentConstraintElbow_R
+    400068: oscuridad_rig:BendParentConstraintShoulder_L
+    400070: oscuridad_rig:BendParentConstraintShoulder_R
+    400072: oscuridad_rig:BendShoulder_L
+    400074: oscuridad_rig:BendShoulder_R
+    400076: oscuridad_rig:BendSystem
+    400078: oscuridad_rig:BigToe
+    400080: oscuridad_rig:BigToe_L
+    400082: oscuridad_rig:BigToe_R
+    400084: oscuridad_rig:Bip01
+    400086: oscuridad_rig:Center_M
+    400088: oscuridad_rig:CenterExtra_M
+    400090: oscuridad_rig:CenterOffset_M
+    400092: oscuridad_rig:Chest
+    400094: oscuridad_rig:Chest_01_M
+    400096: oscuridad_rig:Chest_M
+    400098: oscuridad_rig:Cup
+    400100: oscuridad_rig:Cup_L
+    400102: oscuridad_rig:Cup_R
+    400104: oscuridad_rig:DynamicSystem
+    400106: oscuridad_rig:Elbow
+    400108: oscuridad_rig:Elbow_L
+    400110: oscuridad_rig:Elbow_R
+    400112: oscuridad_rig:Elbow_twistJointsLocator1
+    400114: oscuridad_rig:Elbow_twistJointsLocator10
+    400116: oscuridad_rig:Elbow_twistJointsLocator2
+    400118: oscuridad_rig:Elbow_twistJointsLocator3
+    400120: oscuridad_rig:Elbow_twistJointsLocator4
+    400122: oscuridad_rig:Elbow_twistJointsLocator5
+    400124: oscuridad_rig:Elbow_twistJointsLocator6
+    400126: oscuridad_rig:Elbow_twistJointsLocator7
+    400128: oscuridad_rig:Elbow_twistJointsLocator8
+    400130: oscuridad_rig:Elbow_twistJointsLocator9
+    400132: oscuridad_rig:Elbow_twistLocator1
+    400134: oscuridad_rig:Elbow_twistLocator10
+    400136: oscuridad_rig:Elbow_twistLocator2
+    400138: oscuridad_rig:Elbow_twistLocator3
+    400140: oscuridad_rig:Elbow_twistLocator4
+    400142: oscuridad_rig:Elbow_twistLocator5
+    400144: oscuridad_rig:Elbow_twistLocator6
+    400146: oscuridad_rig:Elbow_twistLocator7
+    400148: oscuridad_rig:Elbow_twistLocator8
+    400150: oscuridad_rig:Elbow_twistLocator9
+    400152: oscuridad_rig:ElbowBendCurve_L
+    400154: oscuridad_rig:ElbowBendCurve_R
+    400156: oscuridad_rig:ElbowBendCurveEnd_L
+    400158: oscuridad_rig:ElbowBendCurveEnd_R
+    400160: oscuridad_rig:ElbowBendCurveMid_L
+    400162: oscuridad_rig:ElbowBendCurveMid_R
+    400164: oscuridad_rig:ElbowBendCurveStart_L
+    400166: oscuridad_rig:ElbowBendCurveStart_R
+    400168: oscuridad_rig:ElbowPart1_L
+    400170: oscuridad_rig:ElbowPart1_L_tangentConstraint1
+    400172: oscuridad_rig:ElbowPart1_R
+    400174: oscuridad_rig:ElbowPart1_R_tangentConstraint1
+    400176: oscuridad_rig:ElbowPart2_L
+    400178: oscuridad_rig:ElbowPart2_L_tangentConstraint1
+    400180: oscuridad_rig:ElbowPart2_R
+    400182: oscuridad_rig:ElbowPart2_R_tangentConstraint1
+    400184: oscuridad_rig:ElbowPointOnCurveXform1_L
+    400186: oscuridad_rig:ElbowPointOnCurveXform1_R
+    400188: oscuridad_rig:ElbowPointOnCurveXform2_L
+    400190: oscuridad_rig:ElbowPointOnCurveXform2_R
+    400192: oscuridad_rig:Export_Rig
+    400194: oscuridad_rig:Fingers
+    400196: oscuridad_rig:Fingers_L
+    400198: oscuridad_rig:Fingers_R
+    400200: oscuridad_rig:FitSkeleton
+    400202: oscuridad_rig:FitSkeletonOffset
+    400204: oscuridad_rig:FKAnkle_L
+    400206: oscuridad_rig:FKAnkle_R
+    400208: oscuridad_rig:FKBackA_M
+    400210: oscuridad_rig:FKChest_M
+    400212: oscuridad_rig:FKCup_L
+    400214: oscuridad_rig:FKCup_R
+    400216: oscuridad_rig:FKElbow_L
+    400218: oscuridad_rig:FKElbow_R
+    400220: oscuridad_rig:FKExtraAnkle_L
+    400222: oscuridad_rig:FKExtraAnkle_R
+    400224: oscuridad_rig:FKExtraBackA_M
+    400226: oscuridad_rig:FKExtraChest_M
+    400228: oscuridad_rig:FKExtraCup_L
+    400230: oscuridad_rig:FKExtraCup_R
+    400232: oscuridad_rig:FKExtraElbow_L
+    400234: oscuridad_rig:FKExtraElbow_R
+    400236: oscuridad_rig:FKExtraHead_M
+    400238: oscuridad_rig:FKExtraHip_L
+    400240: oscuridad_rig:FKExtraHip_R
+    400242: oscuridad_rig:FKExtraIndexFinger1_L
+    400244: oscuridad_rig:FKExtraIndexFinger1_R
+    400246: oscuridad_rig:FKExtraIndexFinger2_L
+    400248: oscuridad_rig:FKExtraIndexFinger2_R
+    400250: oscuridad_rig:FKExtraIndexFinger3_L
+    400252: oscuridad_rig:FKExtraIndexFinger3_R
+    400254: oscuridad_rig:FKExtraJaw_M
+    400256: oscuridad_rig:FKExtraKnee_L
+    400258: oscuridad_rig:FKExtraKnee_R
+    400260: oscuridad_rig:FKExtraMiddleFinger1_L
+    400262: oscuridad_rig:FKExtraMiddleFinger1_R
+    400264: oscuridad_rig:FKExtraMiddleFinger2_L
+    400266: oscuridad_rig:FKExtraMiddleFinger2_R
+    400268: oscuridad_rig:FKExtraMiddleFinger3_L
+    400270: oscuridad_rig:FKExtraMiddleFinger3_R
+    400272: oscuridad_rig:FKExtraMiddleToe1_L
+    400274: oscuridad_rig:FKExtraMiddleToe1_R
+    400276: oscuridad_rig:FKExtraNeck_M
+    400278: oscuridad_rig:FKExtraPinkyFinger1_L
+    400280: oscuridad_rig:FKExtraPinkyFinger1_R
+    400282: oscuridad_rig:FKExtraPinkyFinger2_L
+    400284: oscuridad_rig:FKExtraPinkyFinger2_R
+    400286: oscuridad_rig:FKExtraPinkyFinger3_L
+    400288: oscuridad_rig:FKExtraPinkyFinger3_R
+    400290: oscuridad_rig:FKExtraRingFinger1_L
+    400292: oscuridad_rig:FKExtraRingFinger1_R
+    400294: oscuridad_rig:FKExtraRingFinger2_L
+    400296: oscuridad_rig:FKExtraRingFinger2_R
+    400298: oscuridad_rig:FKExtraRingFinger3_L
+    400300: oscuridad_rig:FKExtraRingFinger3_R
+    400302: oscuridad_rig:FKExtraRoot_M
+    400304: oscuridad_rig:FKExtraScapula_L
+    400306: oscuridad_rig:FKExtraScapula_R
+    400308: oscuridad_rig:FKExtraShoulder_L
+    400310: oscuridad_rig:FKExtraShoulder_R
+    400312: oscuridad_rig:FKExtraThumbFinger1_L
+    400314: oscuridad_rig:FKExtraThumbFinger1_R
+    400316: oscuridad_rig:FKExtraThumbFinger2_L
+    400318: oscuridad_rig:FKExtraThumbFinger2_R
+    400320: oscuridad_rig:FKExtraThumbFinger3_L
+    400322: oscuridad_rig:FKExtraThumbFinger3_R
+    400324: oscuridad_rig:FKExtraWrist_L
+    400326: oscuridad_rig:FKExtraWrist_R
+    400328: oscuridad_rig:FKGlobalHead_M
+    400330: oscuridad_rig:FKGlobalShoulder_L
+    400332: oscuridad_rig:FKGlobalShoulder_R
+    400334: oscuridad_rig:FKGlobalStaticHead_M
+    400336: oscuridad_rig:FKGlobalStaticShoulder_L
+    400338: oscuridad_rig:FKGlobalStaticShoulder_R
+    400340: oscuridad_rig:FKGlobalStaticWrist_L
+    400342: oscuridad_rig:FKGlobalStaticWrist_R
+    400344: oscuridad_rig:FKGlobalWrist_L
+    400346: oscuridad_rig:FKGlobalWrist_R
+    400348: oscuridad_rig:FKHead_M
+    400350: oscuridad_rig:FKHip_L
+    400352: oscuridad_rig:FKHip_R
+    400354: oscuridad_rig:FKIKArm_L
+    400356: oscuridad_rig:FKIKArm_R
+    400358: oscuridad_rig:FKIKLeg_L
+    400360: oscuridad_rig:FKIKLeg_R
+    400362: oscuridad_rig:FKIKMixElbow_L
+    400364: oscuridad_rig:FKIKMixElbow_R
+    400366: oscuridad_rig:FKIKMixOffsetElbow_L
+    400368: oscuridad_rig:FKIKMixOffsetElbow_R
+    400370: oscuridad_rig:FKIKMixOffsetShoulder_L
+    400372: oscuridad_rig:FKIKMixOffsetShoulder_R
+    400374: oscuridad_rig:FKIKMixOffsetWrist_L
+    400376: oscuridad_rig:FKIKMixOffsetWrist_R
+    400378: oscuridad_rig:FKIKMixShoulder_L
+    400380: oscuridad_rig:FKIKMixShoulder_R
+    400382: oscuridad_rig:FKIKMixWrist_L
+    400384: oscuridad_rig:FKIKMixWrist_R
+    400386: oscuridad_rig:FKIKParentConstraintArm_L
+    400388: oscuridad_rig:FKIKParentConstraintArm_R
+    400390: oscuridad_rig:FKIKParentConstraintLeg_L
+    400392: oscuridad_rig:FKIKParentConstraintLeg_R
+    400394: oscuridad_rig:FKIKParentConstraintSpine_M
+    400396: oscuridad_rig:FKIKSpine_M
+    400398: oscuridad_rig:FKIKSystem
+    400400: oscuridad_rig:FKIndexFinger1_L
+    400402: oscuridad_rig:FKIndexFinger1_R
+    400404: oscuridad_rig:FKIndexFinger2_L
+    400406: oscuridad_rig:FKIndexFinger2_R
+    400408: oscuridad_rig:FKIndexFinger3_L
+    400410: oscuridad_rig:FKIndexFinger3_R
+    400412: oscuridad_rig:FKJaw_M
+    400414: oscuridad_rig:FKKnee_L
+    400416: oscuridad_rig:FKKnee_R
+    400418: oscuridad_rig:FKMiddleFinger1_L
+    400420: oscuridad_rig:FKMiddleFinger1_R
+    400422: oscuridad_rig:FKMiddleFinger2_L
+    400424: oscuridad_rig:FKMiddleFinger2_R
+    400426: oscuridad_rig:FKMiddleFinger3_L
+    400428: oscuridad_rig:FKMiddleFinger3_R
+    400430: oscuridad_rig:FKMiddleToe1_L
+    400432: oscuridad_rig:FKMiddleToe1_R
+    400434: oscuridad_rig:FKNeck_M
+    400436: oscuridad_rig:FKOffsetAnkle_L
+    400438: oscuridad_rig:FKOffsetAnkle_R
+    400440: oscuridad_rig:FKOffsetBackA_M
+    400442: oscuridad_rig:FKOffsetChest_M
+    400444: oscuridad_rig:FKOffsetCup_L
+    400446: oscuridad_rig:FKOffsetCup_R
+    400448: oscuridad_rig:FKOffsetElbow_L
+    400450: oscuridad_rig:FKOffsetElbow_R
+    400452: oscuridad_rig:FKOffsetFingers_L
+    400454: oscuridad_rig:FKOffsetFingers_R
+    400456: oscuridad_rig:FKOffsetHead_M
+    400458: oscuridad_rig:FKOffsetHip_L
+    400460: oscuridad_rig:FKOffsetHip_R
+    400462: oscuridad_rig:FKOffsetIndexFinger1_L
+    400464: oscuridad_rig:FKOffsetIndexFinger1_R
+    400466: oscuridad_rig:FKOffsetIndexFinger2_L
+    400468: oscuridad_rig:FKOffsetIndexFinger2_R
+    400470: oscuridad_rig:FKOffsetIndexFinger3_L
+    400472: oscuridad_rig:FKOffsetIndexFinger3_R
+    400474: oscuridad_rig:FKOffsetJaw_M
+    400476: oscuridad_rig:FKOffsetKnee_L
+    400478: oscuridad_rig:FKOffsetKnee_R
+    400480: oscuridad_rig:FKOffsetMiddleFinger1_L
+    400482: oscuridad_rig:FKOffsetMiddleFinger1_R
+    400484: oscuridad_rig:FKOffsetMiddleFinger2_L
+    400486: oscuridad_rig:FKOffsetMiddleFinger2_R
+    400488: oscuridad_rig:FKOffsetMiddleFinger3_L
+    400490: oscuridad_rig:FKOffsetMiddleFinger3_R
+    400492: oscuridad_rig:FKOffsetMiddleToe1_L
+    400494: oscuridad_rig:FKOffsetMiddleToe1_R
+    400496: oscuridad_rig:FKOffsetNeck_M
+    400498: oscuridad_rig:FKOffsetPinkyFinger1_L
+    400500: oscuridad_rig:FKOffsetPinkyFinger1_R
+    400502: oscuridad_rig:FKOffsetPinkyFinger2_L
+    400504: oscuridad_rig:FKOffsetPinkyFinger2_R
+    400506: oscuridad_rig:FKOffsetPinkyFinger3_L
+    400508: oscuridad_rig:FKOffsetPinkyFinger3_R
+    400510: oscuridad_rig:FKOffsetRingFinger1_L
+    400512: oscuridad_rig:FKOffsetRingFinger1_R
+    400514: oscuridad_rig:FKOffsetRingFinger2_L
+    400516: oscuridad_rig:FKOffsetRingFinger2_R
+    400518: oscuridad_rig:FKOffsetRingFinger3_L
+    400520: oscuridad_rig:FKOffsetRingFinger3_R
+    400522: oscuridad_rig:FKOffsetRoot_M
+    400524: oscuridad_rig:FKOffsetScapula_L
+    400526: oscuridad_rig:FKOffsetScapula_R
+    400528: oscuridad_rig:FKOffsetShoulder_L
+    400530: oscuridad_rig:FKOffsetShoulder_R
+    400532: oscuridad_rig:FKOffsetThumbFinger1_L
+    400534: oscuridad_rig:FKOffsetThumbFinger1_R
+    400536: oscuridad_rig:FKOffsetThumbFinger2_L
+    400538: oscuridad_rig:FKOffsetThumbFinger2_R
+    400540: oscuridad_rig:FKOffsetThumbFinger3_L
+    400542: oscuridad_rig:FKOffsetThumbFinger3_R
+    400544: oscuridad_rig:FKOffsetWrist_L
+    400546: oscuridad_rig:FKOffsetWrist_R
+    400548: oscuridad_rig:FKParentConstraintFingers_L
+    400550: oscuridad_rig:FKParentConstraintFingers_R
+    400552: oscuridad_rig:FKParentConstraintToAnkle_L
+    400554: oscuridad_rig:FKParentConstraintToAnkle_R
+    400556: oscuridad_rig:FKParentConstraintToChest_M
+    400558: oscuridad_rig:FKParentConstraintToRoot_M
+    400560: oscuridad_rig:FKParentConstraintToWrist_L
+    400562: oscuridad_rig:FKParentConstraintToWrist_R
+    400564: oscuridad_rig:FKPinkyFinger1_L
+    400566: oscuridad_rig:FKPinkyFinger1_R
+    400568: oscuridad_rig:FKPinkyFinger2_L
+    400570: oscuridad_rig:FKPinkyFinger2_R
+    400572: oscuridad_rig:FKPinkyFinger3_L
+    400574: oscuridad_rig:FKPinkyFinger3_R
+    400576: oscuridad_rig:FKRingFinger1_L
+    400578: oscuridad_rig:FKRingFinger1_R
+    400580: oscuridad_rig:FKRingFinger2_L
+    400582: oscuridad_rig:FKRingFinger2_R
+    400584: oscuridad_rig:FKRingFinger3_L
+    400586: oscuridad_rig:FKRingFinger3_R
+    400588: oscuridad_rig:FKRoot_M
+    400590: oscuridad_rig:FKScapula_L
+    400592: oscuridad_rig:FKScapula_R
+    400594: oscuridad_rig:FKShoulder_L
+    400596: oscuridad_rig:FKShoulder_R
+    400598: oscuridad_rig:FKSystem
+    400600: oscuridad_rig:FKThumbFinger1_L
+    400602: oscuridad_rig:FKThumbFinger1_R
+    400604: oscuridad_rig:FKThumbFinger2_L
+    400606: oscuridad_rig:FKThumbFinger2_R
+    400608: oscuridad_rig:FKThumbFinger3_L
+    400610: oscuridad_rig:FKThumbFinger3_R
+    400612: oscuridad_rig:FKWrist_L
+    400614: oscuridad_rig:FKWrist_R
+    400616: oscuridad_rig:FKXAnkle_L
+    400618: oscuridad_rig:FKXAnkle_R
+    400620: oscuridad_rig:FKXBackA_M
+    400622: oscuridad_rig:FKXBigToe_L
+    400624: oscuridad_rig:FKXBigToe_R
+    400626: oscuridad_rig:FKXChest_M
+    400628: oscuridad_rig:FKXCup_L
+    400630: oscuridad_rig:FKXCup_R
+    400632: oscuridad_rig:FKXElbow_L
+    400634: oscuridad_rig:FKXElbow_R
+    400636: oscuridad_rig:FKXHair_M
+    400638: oscuridad_rig:FKXHead_M
+    400640: oscuridad_rig:FKXHeel_L
+    400642: oscuridad_rig:FKXHeel_R
+    400644: oscuridad_rig:FKXHip_L
+    400646: oscuridad_rig:FKXHip_R
+    400648: oscuridad_rig:FKXIndexFinger1_L
+    400650: oscuridad_rig:FKXIndexFinger1_R
+    400652: oscuridad_rig:FKXIndexFinger2_L
+    400654: oscuridad_rig:FKXIndexFinger2_R
+    400656: oscuridad_rig:FKXIndexFinger3_L
+    400658: oscuridad_rig:FKXIndexFinger3_R
+    400660: oscuridad_rig:FKXIndexFinger4_L
+    400662: oscuridad_rig:FKXIndexFinger4_R
+    400664: oscuridad_rig:FKXJaw_M
+    400666: oscuridad_rig:FKXJawEnd_M
+    400668: oscuridad_rig:FKXKnee_L
+    400670: oscuridad_rig:FKXKnee_R
+    400672: oscuridad_rig:FKXMiddleFinger1_L
+    400674: oscuridad_rig:FKXMiddleFinger1_R
+    400676: oscuridad_rig:FKXMiddleFinger2_L
+    400678: oscuridad_rig:FKXMiddleFinger2_R
+    400680: oscuridad_rig:FKXMiddleFinger3_L
+    400682: oscuridad_rig:FKXMiddleFinger3_R
+    400684: oscuridad_rig:FKXMiddleFinger4_L
+    400686: oscuridad_rig:FKXMiddleFinger4_R
+    400688: oscuridad_rig:FKXMiddleToe1_L
+    400690: oscuridad_rig:FKXMiddleToe1_R
+    400692: oscuridad_rig:FKXMiddleToe2_L
+    400694: oscuridad_rig:FKXMiddleToe2_R
+    400696: oscuridad_rig:FKXNeck_M
+    400698: oscuridad_rig:FKXPinkyFinger1_L
+    400700: oscuridad_rig:FKXPinkyFinger1_R
+    400702: oscuridad_rig:FKXPinkyFinger2_L
+    400704: oscuridad_rig:FKXPinkyFinger2_R
+    400706: oscuridad_rig:FKXPinkyFinger3_L
+    400708: oscuridad_rig:FKXPinkyFinger3_R
+    400710: oscuridad_rig:FKXPinkyFinger4_L
+    400712: oscuridad_rig:FKXPinkyFinger4_R
+    400714: oscuridad_rig:FKXPinkyToe_L
+    400716: oscuridad_rig:FKXPinkyToe_R
+    400718: oscuridad_rig:FKXRingFinger1_L
+    400720: oscuridad_rig:FKXRingFinger1_R
+    400722: oscuridad_rig:FKXRingFinger2_L
+    400724: oscuridad_rig:FKXRingFinger2_R
+    400726: oscuridad_rig:FKXRingFinger3_L
+    400728: oscuridad_rig:FKXRingFinger3_R
+    400730: oscuridad_rig:FKXRingFinger4_L
+    400732: oscuridad_rig:FKXRingFinger4_R
+    400734: oscuridad_rig:FKXRoot_M
+    400736: oscuridad_rig:FKXScapula_L
+    400738: oscuridad_rig:FKXScapula_R
+    400740: oscuridad_rig:FKXShoulder_L
+    400742: oscuridad_rig:FKXShoulder_R
+    400744: oscuridad_rig:FKXThumbFinger1_L
+    400746: oscuridad_rig:FKXThumbFinger1_R
+    400748: oscuridad_rig:FKXThumbFinger2_L
+    400750: oscuridad_rig:FKXThumbFinger2_R
+    400752: oscuridad_rig:FKXThumbFinger3_L
+    400754: oscuridad_rig:FKXThumbFinger3_R
+    400756: oscuridad_rig:FKXThumbFinger4_L
+    400758: oscuridad_rig:FKXThumbFinger4_R
+    400760: oscuridad_rig:FKXWrist_L
+    400762: oscuridad_rig:FKXWrist_R
+    400764: oscuridad_rig:Geo_Arms_Oscuridad
+    400766: oscuridad_rig:Geo_Chest_Oscuridad
+    400768: oscuridad_rig:Geo_Head_Oscuridad
+    400770: oscuridad_rig:Geo_Legs_Oscuridad
+    400772: oscuridad_rig:Geometry
+    400774: oscuridad_rig:GlobalHead_M
+    400776: oscuridad_rig:GlobalOffsetHead_M
+    400778: oscuridad_rig:GlobalOffsetShoulder_L
+    400780: oscuridad_rig:GlobalOffsetShoulder_R
+    400782: oscuridad_rig:GlobalOffsetWrist_L
+    400784: oscuridad_rig:GlobalOffsetWrist_R
+    400786: oscuridad_rig:GlobalShoulder_L
+    400788: oscuridad_rig:GlobalShoulder_R
+    400790: oscuridad_rig:GlobalSystem
+    400792: oscuridad_rig:GlobalWrist_L
+    400794: oscuridad_rig:GlobalWrist_R
+    400796: oscuridad_rig:Group
+    400798: oscuridad_rig:Hair
+    400800: oscuridad_rig:Hair_M
+    400802: oscuridad_rig:Head
+    400804: oscuridad_rig:Head_globalLocator
+    400806: oscuridad_rig:Head_M
+    400808: oscuridad_rig:Heel
+    400810: oscuridad_rig:Hip
+    400812: oscuridad_rig:Hip_L
+    400814: oscuridad_rig:Hip_R
+    400816: oscuridad_rig:Hip_twistJointsLocator1
+    400818: oscuridad_rig:Hip_twistJointsLocator10
+    400820: oscuridad_rig:Hip_twistJointsLocator2
+    400822: oscuridad_rig:Hip_twistJointsLocator3
+    400824: oscuridad_rig:Hip_twistJointsLocator4
+    400826: oscuridad_rig:Hip_twistJointsLocator5
+    400828: oscuridad_rig:Hip_twistJointsLocator6
+    400830: oscuridad_rig:Hip_twistJointsLocator7
+    400832: oscuridad_rig:Hip_twistJointsLocator8
+    400834: oscuridad_rig:Hip_twistJointsLocator9
+    400836: oscuridad_rig:HipSwingerGroupRoot_M
+    400838: oscuridad_rig:HipSwingerOffsetRoot_M
+    400840: oscuridad_rig:HipSwingerRoot_M
+    400842: oscuridad_rig:HipSwingerStabalizeRoot_M
+    400844: oscuridad_rig:IKArm_L
+    400846: oscuridad_rig:IKArm_R
+    400848: oscuridad_rig:IKCrv
+    400850: oscuridad_rig:IKdistanceArm_L
+    400852: oscuridad_rig:IKdistanceArm_R
+    400854: oscuridad_rig:IKdistanceLeg_L
+    400856: oscuridad_rig:IKdistanceLeg_R
+    400858: oscuridad_rig:IKEndJointOrientToSpine_M
+    400860: oscuridad_rig:IKExtraArm_L
+    400862: oscuridad_rig:IKExtraArm_R
+    400864: oscuridad_rig:IKExtraLeg_L
+    400866: oscuridad_rig:IKExtraLeg_R
+    400868: oscuridad_rig:IKExtraLegBall_L
+    400870: oscuridad_rig:IKExtraLegBall_R
+    400872: oscuridad_rig:IKExtraLegHeel_L
+    400874: oscuridad_rig:IKExtraLegHeel_R
+    400876: oscuridad_rig:IKExtraLegToe_L
+    400878: oscuridad_rig:IKExtraLegToe_R
+    400880: oscuridad_rig:IKExtraSpine0_M
+    400882: oscuridad_rig:IKExtraSpine2_M
+    400884: oscuridad_rig:IKExtraSpine4_M
+    400886: oscuridad_rig:IKfake1Spine_M
+    400888: oscuridad_rig:IKFake1UpLocSpine_M
+    400890: oscuridad_rig:IKfake2Spine_M
+    400892: oscuridad_rig:IKFKAlignedArm_L
+    400894: oscuridad_rig:IKFKAlignedArm_R
+    400896: oscuridad_rig:IKFKAlignedLeg_L
+    400898: oscuridad_rig:IKFKAlignedLeg_R
+    400900: oscuridad_rig:IKFKAlignedSpine_M
+    400902: oscuridad_rig:IKFootIndexPivotLeg_L
+    400904: oscuridad_rig:IKFootIndexPivotLeg_R
+    400906: oscuridad_rig:IKFootPinkyPivotLeg_L
+    400908: oscuridad_rig:IKFootPinkyPivotLeg_R
+    400910: oscuridad_rig:IKFootPivotBallReverseLeg_L
+    400912: oscuridad_rig:IKFootPivotBallReverseLeg_R
+    400914: oscuridad_rig:IKFootRollLeg_L
+    400916: oscuridad_rig:IKFootRollLeg_R
+    400918: oscuridad_rig:IKHandle
+    400920: oscuridad_rig:IKLeg_L
+    400922: oscuridad_rig:IKLeg_R
+    400924: oscuridad_rig:IKLegBall_L
+    400926: oscuridad_rig:IKLegBall_R
+    400928: oscuridad_rig:IKLegHeel_L
+    400930: oscuridad_rig:IKLegHeel_R
+    400932: oscuridad_rig:IKLegToe_L
+    400934: oscuridad_rig:IKLegToe_R
+    400936: oscuridad_rig:IKLiftToeLegToe_L
+    400938: oscuridad_rig:IKLiftToeLegToe_R
+    400940: oscuridad_rig:IKMessure
+    400942: oscuridad_rig:IKmessureConstrainToArm_L
+    400944: oscuridad_rig:IKmessureConstrainToArm_R
+    400946: oscuridad_rig:IKmessureConstrainToLeg_L
+    400948: oscuridad_rig:IKmessureConstrainToLeg_R
+    400950: oscuridad_rig:IKmessureLoc1Arm_L
+    400952: oscuridad_rig:IKmessureLoc1Arm_R
+    400954: oscuridad_rig:IKmessureLoc1Leg_L
+    400956: oscuridad_rig:IKmessureLoc1Leg_R
+    400958: oscuridad_rig:IKmessureLoc2Arm_L
+    400960: oscuridad_rig:IKmessureLoc2Arm_R
+    400962: oscuridad_rig:IKmessureLoc2Leg_L
+    400964: oscuridad_rig:IKmessureLoc2Leg_R
+    400966: oscuridad_rig:IKOffsetHip_L
+    400968: oscuridad_rig:IKOffsetHip_R
+    400970: oscuridad_rig:IKOffsetRoot_M
+    400972: oscuridad_rig:IKOffsetShoulder_L
+    400974: oscuridad_rig:IKOffsetShoulder_R
+    400976: oscuridad_rig:IKOrientToSpine_M
+    400978: oscuridad_rig:IKParentConstraint
+    400980: oscuridad_rig:IKParentConstraintArm_L
+    400982: oscuridad_rig:IKParentConstraintArm_LStatic
+    400984: oscuridad_rig:IKParentConstraintArm_R
+    400986: oscuridad_rig:IKParentConstraintArm_RStatic
+    400988: oscuridad_rig:IKParentConstraintHip_L
+    400990: oscuridad_rig:IKParentConstraintHip_R
+    400992: oscuridad_rig:IKParentConstraintLeg_L
+    400994: oscuridad_rig:IKParentConstraintLeg_R
+    400996: oscuridad_rig:IKParentConstraintRoot_M
+    400998: oscuridad_rig:IKParentConstraintShoulder_L
+    401000: oscuridad_rig:IKParentConstraintShoulder_R
+    401002: oscuridad_rig:IKParentConstraintSpine0_M
+    401004: oscuridad_rig:IKParentConstraintSpine2_M
+    401006: oscuridad_rig:IKParentConstraintSpine4_M
+    401008: oscuridad_rig:IKRollLegBall_L
+    401010: oscuridad_rig:IKRollLegBall_R
+    401012: oscuridad_rig:IKRollLegHeel_L
+    401014: oscuridad_rig:IKRollLegHeel_R
+    401016: oscuridad_rig:IKRollLegToe_L
+    401018: oscuridad_rig:IKRollLegToe_R
+    401020: oscuridad_rig:IKSpine0_M
+    401022: oscuridad_rig:IKSpine0AlignTo_M
+    401024: oscuridad_rig:IKSpine2_M
+    401026: oscuridad_rig:IKSpine4_M
+    401028: oscuridad_rig:IKSpine4AlignTo_M
+    401030: oscuridad_rig:IKSpine4AlignUnTwistTo_M
+    401032: oscuridad_rig:IKSpine4AlignUnTwistToOffset_M
+    401034: oscuridad_rig:IKStatic
+    401036: oscuridad_rig:IKStiffEndOrientSpine_M
+    401038: oscuridad_rig:IKStiffStartOrientSpine_M
+    401040: oscuridad_rig:IKSystem
+    401042: oscuridad_rig:IKXAnkle_L
+    401044: oscuridad_rig:IKXAnkle_R
+    401046: oscuridad_rig:IKXArmHandle_L
+    401048: oscuridad_rig:IKXArmHandle_R
+    401050: oscuridad_rig:IKXBackA_M
+    401052: oscuridad_rig:IKXChest_M
+    401054: oscuridad_rig:IKXElbow_L
+    401056: oscuridad_rig:IKXElbow_R
+    401058: oscuridad_rig:IKXHip_L
+    401060: oscuridad_rig:IKXHip_R
+    401062: oscuridad_rig:IKXKnee_L
+    401064: oscuridad_rig:IKXKnee_R
+    401066: oscuridad_rig:IKXLegHandle_L
+    401068: oscuridad_rig:IKXLegHandle_R
+    401070: oscuridad_rig:IKXLegHandleBall_L
+    401072: oscuridad_rig:IKXLegHandleBall_R
+    401074: oscuridad_rig:IKXLegHandleToe_L
+    401076: oscuridad_rig:IKXLegHandleToe_R
+    401078: oscuridad_rig:IKXMiddleToe1_L
+    401080: oscuridad_rig:IKXMiddleToe1_R
+    401082: oscuridad_rig:IKXMiddleToe2_L
+    401084: oscuridad_rig:IKXMiddleToe2_R
+    401086: oscuridad_rig:IKXRoot_M
+    401088: oscuridad_rig:IKXShoulder_L
+    401090: oscuridad_rig:IKXShoulder_R
+    401092: oscuridad_rig:IKXSpineCurve_M
+    401094: oscuridad_rig:IKXSpineHandle_M
+    401096: oscuridad_rig:IKXSpineLocator0_M
+    401098: oscuridad_rig:IKXSpineLocator1_M
+    401100: oscuridad_rig:IKXSpineLocator2_M
+    401102: oscuridad_rig:IKXSpineLocator3_M
+    401104: oscuridad_rig:IKXSpineLocator4_M
+    401106: oscuridad_rig:IKXWrist_L
+    401108: oscuridad_rig:IKXWrist_R
+    401110: oscuridad_rig:IndexFinger1
+    401112: oscuridad_rig:IndexFinger1_L
+    401114: oscuridad_rig:IndexFinger1_R
+    401116: oscuridad_rig:IndexFinger2
+    401118: oscuridad_rig:IndexFinger2_L
+    401120: oscuridad_rig:IndexFinger2_R
+    401122: oscuridad_rig:IndexFinger3
+    401124: oscuridad_rig:IndexFinger3_L
+    401126: oscuridad_rig:IndexFinger3_R
+    401128: oscuridad_rig:IndexFinger4
+    401130: oscuridad_rig:IndexFinger4_L
+    401132: oscuridad_rig:IndexFinger4_R
+    401134: oscuridad_rig:Jaw
+    401136: oscuridad_rig:Jaw_M
+    401138: oscuridad_rig:JawEnd
+    401140: oscuridad_rig:JawEnd_M
+    401142: oscuridad_rig:Knee
+    401144: oscuridad_rig:Knee_L
+    401146: oscuridad_rig:Knee_R
+    401148: oscuridad_rig:Main
+    401150: oscuridad_rig:MiddleFinger1
+    401152: oscuridad_rig:MiddleFinger1_L
+    401154: oscuridad_rig:MiddleFinger1_R
+    401156: oscuridad_rig:MiddleFinger2
+    401158: oscuridad_rig:MiddleFinger2_L
+    401160: oscuridad_rig:MiddleFinger2_R
+    401162: oscuridad_rig:MiddleFinger3
+    401164: oscuridad_rig:MiddleFinger3_L
+    401166: oscuridad_rig:MiddleFinger3_R
+    401168: oscuridad_rig:MiddleFinger4
+    401170: oscuridad_rig:MiddleFinger4_L
+    401172: oscuridad_rig:MiddleFinger4_R
+    401174: oscuridad_rig:MiddleToe1
+    401176: oscuridad_rig:MiddleToe1_L
+    401178: oscuridad_rig:MiddleToe1_R
+    401180: oscuridad_rig:MiddleToe2
+    401182: oscuridad_rig:MiddleToe2_L
+    401184: oscuridad_rig:MiddleToe2_R
+    401186: oscuridad_rig:MotionSystem
+    401188: oscuridad_rig:Neck
+    401190: oscuridad_rig:Neck_M
+    401192: oscuridad_rig:Neck_twistJointsLocator1
+    401194: oscuridad_rig:Neck_twistJointsLocator10
+    401196: oscuridad_rig:Neck_twistJointsLocator2
+    401198: oscuridad_rig:Neck_twistJointsLocator3
+    401200: oscuridad_rig:Neck_twistJointsLocator4
+    401202: oscuridad_rig:Neck_twistJointsLocator5
+    401204: oscuridad_rig:Neck_twistJointsLocator6
+    401206: oscuridad_rig:Neck_twistJointsLocator7
+    401208: oscuridad_rig:Neck_twistJointsLocator8
+    401210: oscuridad_rig:Neck_twistJointsLocator9
+    401212: oscuridad_rig:Oscuridad_Geo
+    401214: oscuridad_rig:PinkyFinger1
+    401216: oscuridad_rig:PinkyFinger1_L
+    401218: oscuridad_rig:PinkyFinger1_R
+    401220: oscuridad_rig:PinkyFinger2
+    401222: oscuridad_rig:PinkyFinger2_L
+    401224: oscuridad_rig:PinkyFinger2_R
+    401226: oscuridad_rig:PinkyFinger3
+    401228: oscuridad_rig:PinkyFinger3_L
+    401230: oscuridad_rig:PinkyFinger3_R
+    401232: oscuridad_rig:PinkyFinger4
+    401234: oscuridad_rig:PinkyFinger4_L
+    401236: oscuridad_rig:PinkyFinger4_R
+    401238: oscuridad_rig:PinkyToe
+    401240: oscuridad_rig:PinkyToe_L
+    401242: oscuridad_rig:PinkyToe_R
+    401244: oscuridad_rig:PoleAimLeg_L
+    401246: oscuridad_rig:PoleAimLeg_R
+    401248: oscuridad_rig:PoleAnnotationArm_L
+    401250: oscuridad_rig:PoleAnnotationArm_R
+    401252: oscuridad_rig:PoleAnnotationLeg_L
+    401254: oscuridad_rig:PoleAnnotationLeg_R
+    401256: oscuridad_rig:PoleArm_L
+    401258: oscuridad_rig:PoleArm_R
+    401260: oscuridad_rig:PoleExtraArm_L
+    401262: oscuridad_rig:PoleExtraArm_R
+    401264: oscuridad_rig:PoleExtraLeg_L
+    401266: oscuridad_rig:PoleExtraLeg_R
+    401268: oscuridad_rig:PoleLeg_L
+    401270: oscuridad_rig:PoleLeg_R
+    401272: oscuridad_rig:PoleParentConstraintArm_L
+    401274: oscuridad_rig:PoleParentConstraintArm_LStatic
+    401276: oscuridad_rig:PoleParentConstraintArm_R
+    401278: oscuridad_rig:PoleParentConstraintArm_RStatic
+    401280: oscuridad_rig:PoleParentConstraintLeg_L
+    401282: oscuridad_rig:PoleParentConstraintLeg_LStatic
+    401284: oscuridad_rig:PoleParentConstraintLeg_R
+    401286: oscuridad_rig:PoleParentConstraintLeg_RStatic
+    401288: oscuridad_rig:RingFinger1
+    401290: oscuridad_rig:RingFinger1_L
+    401292: oscuridad_rig:RingFinger1_R
+    401294: oscuridad_rig:RingFinger2
+    401296: oscuridad_rig:RingFinger2_L
+    401298: oscuridad_rig:RingFinger2_R
+    401300: oscuridad_rig:RingFinger3
+    401302: oscuridad_rig:RingFinger3_L
+    401304: oscuridad_rig:RingFinger3_R
+    401306: oscuridad_rig:RingFinger4
+    401308: oscuridad_rig:RingFinger4_L
+    401310: oscuridad_rig:RingFinger4_R
+    401312: oscuridad_rig:Root
+    401314: oscuridad_rig:RootCenter_M
+    401316: oscuridad_rig:RootCenterBtwLegs_M
+    401318: oscuridad_rig:RootCenterBtwLegsBlended_M
+    401320: oscuridad_rig:RootCenterBtwLegsOffset_M
+    401322: oscuridad_rig:RootSystem
+    401324: oscuridad_rig:Scapula
+    401326: oscuridad_rig:Scapula_01_L
+    401328: oscuridad_rig:Scapula_01_R
+    401330: oscuridad_rig:Scapula_L
+    401332: oscuridad_rig:Scapula_R
+    401334: oscuridad_rig:Shoulder
+    401336: oscuridad_rig:Shoulder_globalLocator
+    401338: oscuridad_rig:Shoulder_L
+    401340: oscuridad_rig:Shoulder_R
+    401342: oscuridad_rig:Shoulder_twistJointsLocator10
+    401344: oscuridad_rig:Shoulder_twistJointsLocator2
+    401346: oscuridad_rig:Shoulder_twistJointsLocator3
+    401348: oscuridad_rig:Shoulder_twistJointsLocator4
+    401350: oscuridad_rig:Shoulder_twistJointsLocator5
+    401352: oscuridad_rig:Shoulder_twistJointsLocator6
+    401354: oscuridad_rig:Shoulder_twistJointsLocator7
+    401356: oscuridad_rig:Shoulder_twistJointsLocator8
+    401358: oscuridad_rig:Shoulder_twistJointsLocator9
+    401360: oscuridad_rig:ShoulderBendCurve_L
+    401362: oscuridad_rig:ShoulderBendCurve_R
+    401364: oscuridad_rig:ShoulderBendCurveEnd_L
+    401366: oscuridad_rig:ShoulderBendCurveEnd_R
+    401368: oscuridad_rig:ShoulderBendCurveMid_L
+    401370: oscuridad_rig:ShoulderBendCurveMid_R
+    401372: oscuridad_rig:ShoulderBendCurveStart_L
+    401374: oscuridad_rig:ShoulderBendCurveStart_R
+    401376: oscuridad_rig:ShoulderPart1_L
+    401378: oscuridad_rig:ShoulderPart1_L_tangentConstraint1
+    401380: oscuridad_rig:ShoulderPart1_R
+    401382: oscuridad_rig:ShoulderPart1_R_tangentConstraint1
+    401384: oscuridad_rig:ShoulderPart2_L
+    401386: oscuridad_rig:ShoulderPart2_L_tangentConstraint1
+    401388: oscuridad_rig:ShoulderPart2_R
+    401390: oscuridad_rig:ShoulderPart2_R_tangentConstraint1
+    401392: oscuridad_rig:ShoulderPointOnCurveXform1_L
+    401394: oscuridad_rig:ShoulderPointOnCurveXform1_R
+    401396: oscuridad_rig:ShoulderPointOnCurveXform2_L
+    401398: oscuridad_rig:ShoulderPointOnCurveXform2_R
+    401400: oscuridad_rig:ThumbFinger1
+    401402: oscuridad_rig:ThumbFinger1_L
+    401404: oscuridad_rig:ThumbFinger1_R
+    401406: oscuridad_rig:ThumbFinger2
+    401408: oscuridad_rig:ThumbFinger2_L
+    401410: oscuridad_rig:ThumbFinger2_R
+    401412: oscuridad_rig:ThumbFinger3
+    401414: oscuridad_rig:ThumbFinger3_L
+    401416: oscuridad_rig:ThumbFinger3_R
+    401418: oscuridad_rig:ThumbFinger4
+    401420: oscuridad_rig:ThumbFinger4_L
+    401422: oscuridad_rig:ThumbFinger4_R
+    401424: oscuridad_rig:TwistBalancerElbow_L
+    401426: oscuridad_rig:TwistBalancerElbow_R
+    401428: oscuridad_rig:TwistBalancerShoulder_L
+    401430: oscuridad_rig:TwistBalancerShoulder_R
+    401432: oscuridad_rig:TwistBalancerWrist_L
+    401434: oscuridad_rig:TwistBalancerWrist_R
+    401436: oscuridad_rig:TwisterElbow0_L
+    401438: oscuridad_rig:TwisterElbow0_R
+    401440: oscuridad_rig:TwisterElbow1_L
+    401442: oscuridad_rig:TwisterElbow1_R
+    401444: oscuridad_rig:TwisterElbow2_L
+    401446: oscuridad_rig:TwisterElbow2_R
+    401448: oscuridad_rig:TwisterShoulder0_L
+    401450: oscuridad_rig:TwisterShoulder0_R
+    401452: oscuridad_rig:TwisterShoulder1_L
+    401454: oscuridad_rig:TwisterShoulder1_R
+    401456: oscuridad_rig:TwisterShoulder2_L
+    401458: oscuridad_rig:TwisterShoulder2_R
+    401460: oscuridad_rig:TwistFollowElbow_L
+    401462: oscuridad_rig:TwistFollowElbow_R
+    401464: oscuridad_rig:TwistFollowParentElbow_L
+    401466: oscuridad_rig:TwistFollowParentElbow_R
+    401468: oscuridad_rig:TwistFollowParentShoulder_L
+    401470: oscuridad_rig:TwistFollowParentShoulder_R
+    401472: oscuridad_rig:TwistFollowParentWrist_L
+    401474: oscuridad_rig:TwistFollowParentWrist_R
+    401476: oscuridad_rig:TwistFollowRoot_M
+    401478: oscuridad_rig:TwistFollowShoulder_L
+    401480: oscuridad_rig:TwistFollowShoulder_R
+    401482: oscuridad_rig:TwistFollowWrist_L
+    401484: oscuridad_rig:TwistFollowWrist_R
+    401486: oscuridad_rig:TwistSystem
+    401488: oscuridad_rig:UnTwistElbow_L
+    401490: oscuridad_rig:UnTwistElbow_R
+    401492: oscuridad_rig:UnTwistEndElbow_L
+    401494: oscuridad_rig:UnTwistEndElbow_R
+    401496: oscuridad_rig:UnTwistEndRoot_M
+    401498: oscuridad_rig:UnTwistEndShoulder_L
+    401500: oscuridad_rig:UnTwistEndShoulder_R
+    401502: oscuridad_rig:UnTwistEndWrist_L
+    401504: oscuridad_rig:UnTwistEndWrist_R
+    401506: oscuridad_rig:UnTwistIKElbow_L
+    401508: oscuridad_rig:UnTwistIKElbow_R
+    401510: oscuridad_rig:UnTwistIKRoot_M
+    401512: oscuridad_rig:UnTwistIKShoulder_L
+    401514: oscuridad_rig:UnTwistIKShoulder_R
+    401516: oscuridad_rig:UnTwistIKWrist_L
+    401518: oscuridad_rig:UnTwistIKWrist_R
+    401520: oscuridad_rig:UnTwistPoleVectorElbow_L
+    401522: oscuridad_rig:UnTwistPoleVectorElbow_R
+    401524: oscuridad_rig:UnTwistPoleVectorShoulder_L
+    401526: oscuridad_rig:UnTwistPoleVectorShoulder_R
+    401528: oscuridad_rig:UnTwistPoleVectorWrist_L
+    401530: oscuridad_rig:UnTwistPoleVectorWrist_R
+    401532: oscuridad_rig:UnTwistRoot_M
+    401534: oscuridad_rig:UnTwistShoulder_L
+    401536: oscuridad_rig:UnTwistShoulder_R
+    401538: oscuridad_rig:UnTwistWrist_L
+    401540: oscuridad_rig:UnTwistWrist_R
+    401542: oscuridad_rig:WagSystem
+    401544: oscuridad_rig:Wrist
+    401546: oscuridad_rig:Wrist_globalLocator
+    401548: oscuridad_rig:Wrist_L
+    401550: oscuridad_rig:Wrist_R
+    401552: Ankle_L
+    401554: Ankle_R
+    401556: BackA_M
+    401558: BigToe_L
+    401560: BigToe_R
+    401562: Bip01
+    401564: Chest_01_M
+    401566: Chest_M
+    401568: Cup_L
+    401570: Cup_R
+    401572: Elbow_L
+    401574: Elbow_R
+    401576: ElbowPart1_L
+    401578: ElbowPart1_R
+    401580: ElbowPart2_L
+    401582: ElbowPart2_R
+    401584: Export_Rig
+    401586: Geo_Arms_Oscuridad
+    401588: Geo_Chest_Oscuridad
+    401590: Geo_Head_Oscuridad
+    401592: Geo_Legs_Oscuridad
+    401594: Geometry
+    401596: GrannyRootBone
+    401598: Group
+    401600: Hair_M
+    401602: Head_M
+    401604: Hip_L
+    401606: Hip_R
+    401608: IndexFinger1_L
+    401610: IndexFinger1_R
+    401612: IndexFinger2_L
+    401614: IndexFinger2_R
+    401616: IndexFinger3_L
+    401618: IndexFinger3_R
+    401620: IndexFinger4_L
+    401622: IndexFinger4_R
+    401624: Jaw_M
+    401626: JawEnd_M
+    401628: Knee_L
+    401630: Knee_R
+    401632: Main
+    401634: MiddleFinger1_L
+    401636: MiddleFinger1_R
+    401638: MiddleFinger2_L
+    401640: MiddleFinger2_R
+    401642: MiddleFinger3_L
+    401644: MiddleFinger3_R
+    401646: MiddleFinger4_L
+    401648: MiddleFinger4_R
+    401650: MiddleToe1_L
+    401652: MiddleToe1_R
+    401654: MiddleToe2_L
+    401656: MiddleToe2_R
+    401658: Neck_M
+    401660: Oscuridad_Geo
+    401662: PinkyFinger1_L
+    401664: PinkyFinger1_R
+    401666: PinkyFinger2_L
+    401668: PinkyFinger2_R
+    401670: PinkyFinger3_L
+    401672: PinkyFinger3_R
+    401674: PinkyFinger4_L
+    401676: PinkyFinger4_R
+    401678: PinkyToe_L
+    401680: PinkyToe_R
+    401682: RingFinger1_L
+    401684: RingFinger1_R
+    401686: RingFinger2_L
+    401688: RingFinger2_R
+    401690: RingFinger3_L
+    401692: RingFinger3_R
+    401694: RingFinger4_L
+    401696: RingFinger4_R
+    401698: RootBalance
+    401700: RootHelper
+    401702: Scapula_01_L
+    401704: Scapula_01_R
+    401706: Scapula_L
+    401708: Scapula_R
+    401710: Shoulder_L
+    401712: Shoulder_R
+    401714: ShoulderPart1_L
+    401716: ShoulderPart1_R
+    401718: ShoulderPart2_L
+    401720: ShoulderPart2_R
+    401722: ThumbFinger1_L
+    401724: ThumbFinger1_R
+    401726: ThumbFinger2_L
+    401728: ThumbFinger2_R
+    401730: ThumbFinger3_L
+    401732: ThumbFinger3_R
+    401734: ThumbFinger4_L
+    401736: ThumbFinger4_R
+    401738: Wrist_L
+    401740: Wrist_R
+    2300000: //RootNode
+    2300002: oscuridad_rig:Geo_Arms_Oscuridad
+    2300004: oscuridad_rig:Geo_Chest_Oscuridad
+    2300006: oscuridad_rig:Geo_Head_Oscuridad
+    2300008: oscuridad_rig:Geo_Legs_Oscuridad
+    2300010: Geo_Arms_Oscuridad
+    2300012: Geo_Chest_Oscuridad
+    2300014: Geo_Head_Oscuridad
+    2300016: Geo_Legs_Oscuridad
+    3300000: //RootNode
+    3300002: oscuridad_rig:Geo_Arms_Oscuridad
+    3300004: oscuridad_rig:Geo_Chest_Oscuridad
+    3300006: oscuridad_rig:Geo_Head_Oscuridad
+    3300008: oscuridad_rig:Geo_Legs_Oscuridad
+    3300010: Geo_Arms_Oscuridad
+    3300012: Geo_Chest_Oscuridad
+    3300014: Geo_Head_Oscuridad
+    3300016: Geo_Legs_Oscuridad
+    4300000: DarkGolem
+    4300002: oscuridad_rig:Geo_Legs_Oscuridad
+    4300004: oscuridad_rig:Geo_Chest_Oscuridad
+    4300006: oscuridad_rig:Geo_Arms_Oscuridad
+    4300008: oscuridad_rig:Geo_Head_Oscuridad
+    4300010: Geo_Legs_Oscuridad
+    4300012: Geo_Chest_Oscuridad
+    4300014: Geo_Arms_Oscuridad
+    4300016: Geo_Head_Oscuridad
+    9500000: //RootNode
+    13700000: oscuridad_rig:Geo_Arms_Oscuridad
+    13700002: oscuridad_rig:Geo_Chest_Oscuridad
+    13700004: oscuridad_rig:Geo_Head_Oscuridad
+    13700006: oscuridad_rig:Geo_Legs_Oscuridad
+    13700008: Geo_Arms_Oscuridad
+    13700010: Geo_Chest_Oscuridad
+    13700012: Geo_Head_Oscuridad
+    13700014: Geo_Legs_Oscuridad
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Bip01
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hip_L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hip_R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Knee_L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Knee_R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ankle_L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ankle_R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: BackA_M
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chest_M
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Head_M
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Scapula_L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Scapula_R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Shoulder_L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Shoulder_R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Elbow_L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Elbow_R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ElbowPart2_L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ElbowPart2_R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleToe1_L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleToe1_R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hair_M
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jaw_M
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger1_L
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger2_L
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger3_L
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger1_L
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger2_L
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger3_L
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger1_L
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger2_L
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger3_L
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger1_L
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger2_L
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger3_L
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger1_L
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger2_L
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger3_L
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger1_R
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger2_R
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger3_R
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger1_R
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger2_R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger3_R
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger1_R
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger2_R
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger3_R
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger1_R
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger2_R
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger3_R
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger1_R
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger2_R
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger3_R
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: DarkGolem(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Group
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Geometry
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Oscuridad_Geo
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Geo_Arms_Oscuridad
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Geo_Chest_Oscuridad
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Geo_Head_Oscuridad
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Geo_Legs_Oscuridad
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Main
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Export_Rig
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip01
+      position: {x: -0, y: 1.3977786, z: 0.0015}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BackA_M
+      position: {x: -0.26901358, y: -0.0015, z: -1.2013217e-16}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chest_M
+      position: {x: -0.3980129, y: -4.7886094e-17, z: -3.093182e-16}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chest_01_M
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Neck_M
+      position: {x: -0.113434196, y: -2.6402038e-16, z: -5.0374902e-17}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Head_M
+      position: {x: -0.21998107, y: -5.3879665e-16, z: 7.3268416e-17}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Hair_M
+      position: {x: -0.29103902, y: 7.785127e-16, z: -4.685214e-16}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Jaw_M
+      position: {x: -0.02686013, y: 0.06371, z: 3.815692e-17}
+      rotation: {x: -0.000000029802326, y: -0.000000029802326, z: 0.9352401, w: -0.35401422}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
+      transformModified: 1
+    - name: JawEnd_M
+      position: {x: -0.24412389, y: 2.842171e-16, z: -1.0302914e-16}
+      rotation: {x: 0, y: 0, z: 0.12869093, w: 0.9916848}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: Scapula_L
+      position: {x: -0.12012885, y: 0.21345578, z: 0.11797981}
+      rotation: {x: 0.41201544, y: 0.41201544, z: 0.574668, w: -0.574668}
+      scale: {x: 1, y: 1, z: 0.99999994}
+      transformModified: 1
+    - name: Scapula_01_L
+      position: {x: 2.2204459e-17, y: 0, z: 0}
+      rotation: {x: -2.664535e-15, y: -0.00000004470348, z: -0.000000025618638, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: Shoulder_L
+      position: {x: 0.52033794, y: -2.842171e-16, z: -0.0000000108300675}
+      rotation: {x: -0.00000005965266, y: -0.15504992, z: 0.00000032946159, w: 0.9879067}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1}
+      transformModified: 1
+    - name: ShoulderPart1_L
+      position: {x: 0.15807477, y: -0.00000005663268, z: -0.000000024344473}
+      rotation: {x: -0.00000005292601, y: -0.030769918, z: 0.000000027025523, w: 0.99952656}
+      scale: {x: 0.99999976, y: 0.99999964, z: 0.99999994}
+      transformModified: 1
+    - name: ShoulderPart2_L
+      position: {x: 0.15807477, y: -0.00000005663268, z: -0.000000024344473}
+      rotation: {x: 0.000000017474362, y: -0.000000029802319, z: -0.000000022003794,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1.0000002}
+      transformModified: 1
+    - name: Elbow_L
+      position: {x: 0.15807477, y: -0.00000005706455, z: -0.000000018775445}
+      rotation: {x: 0.000000047382535, y: -0.016702915, z: 0.00000002591299, w: 0.9998605}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999976}
+      transformModified: 1
+    - name: ElbowPart1_L
+      position: {x: 0.21255977, y: -0.00000013265706, z: -0.000000071149685}
+      rotation: {x: -0.000000037826712, y: -0.0000000037252899, z: -0.00000003863143,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ElbowPart2_L
+      position: {x: 0.21255977, y: -0.00000013291641, z: -0.000000073557466}
+      rotation: {x: 0.00000007936039, y: 0.00000001117587, z: 0.00000008256631, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Wrist_L
+      position: {x: 0.21255977, y: -0.00000013317577, z: -0.00000007596525}
+      rotation: {x: -0.00000010558504, y: -0.016821815, z: -0.00000052736294, w: 0.99985856}
+      scale: {x: 1, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: Cup_L
+      position: {x: 0.008939195, y: 0.00034196177, z: -0.06652743}
+      rotation: {x: -0.00024971573, y: 0.040484194, z: 0.0059331586, w: 0.99916255}
+      scale: {x: 0.9999998, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyFinger1_L
+      position: {x: 0.06647157, y: 0.021148797, z: -0.10807366}
+      rotation: {x: 0.007707195, y: 0.04583895, z: 0.022064138, w: 0.99867547}
+      scale: {x: 0.99999976, y: 0.99999994, z: 1}
+      transformModified: 1
+    - name: PinkyFinger2_L
+      position: {x: 0.053304195, y: 2.1227009e-10, z: 9.93775e-11}
+      rotation: {x: 0, y: -0, z: -0.0062831417, w: 0.9999803}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyFinger3_L
+      position: {x: 0.026175026, y: 1.0423491e-10, z: 4.5582666e-11}
+      rotation: {x: -0.00000004470345, y: -0.00000005215403, z: -0.041114397, w: 0.9991545}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyFinger4_L
+      position: {x: 0.036861543, y: 1.7852272e-10, z: -1.0228973e-12}
+      rotation: {x: 0.000000013620588, y: 0.000000059604623, z: -0.0000000419095,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+      transformModified: 1
+    - name: RingFinger1_L
+      position: {x: 0.08966239, y: -0.0024023792, z: -0.024841718}
+      rotation: {x: -0.0013416546, y: 0.05433088, z: -0.0007765641, w: 0.9985218}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
+      transformModified: 1
+    - name: RingFinger2_L
+      position: {x: 0.12143658, y: 0.0018116912, z: 1.0948628e-10}
+      rotation: {x: 0.000000059604634, y: -0.000000059604634, z: 0.018848518, w: 0.9998224}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.99999994}
+      transformModified: 1
+    - name: RingFinger3_L
+      position: {x: 0.10681412, y: -0.003013475, z: 9.042654e-11}
+      rotation: {x: -0.000000042840824, y: 0.000000014901156, z: -0.037690174, w: 0.9992895}
+      scale: {x: 1.0000006, y: 1.0000005, z: 0.99999994}
+      transformModified: 1
+    - name: RingFinger4_L
+      position: {x: 0.041592587, y: 2.0604517e-10, z: 1.9210588e-12}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: IndexFinger1_L
+      position: {x: 0.10643821, y: 0.0020516803, z: 0.09356604}
+      rotation: {x: -0.0028306902, y: -0.060802132, z: 0.016864043, w: 0.9980034}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+      transformModified: 1
+    - name: IndexFinger2_L
+      position: {x: 0.1456256, y: -2.5753819e-10, z: 1.3819935e-10}
+      rotation: {x: 0.000000085914486, y: 0.00000005960463, z: 0.000000076630364,
+        w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: IndexFinger3_L
+      position: {x: 0.13564555, y: -0.005853208, z: 6.824095e-11}
+      rotation: {x: -0.000000025844198, y: 0.000000059604638, z: -0.05024428, w: 0.99873704}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+      transformModified: 1
+    - name: IndexFinger4_L
+      position: {x: 0.03912799, y: 1.9849551e-10, z: -1.6525803e-12}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MiddleFinger1_L
+      position: {x: 0.11485622, y: -0.004900703, z: -0.0038090583}
+      rotation: {x: 0.00053322787, y: -0.00054152624, z: 0.04161557, w: 0.9991334}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1}
+      transformModified: 1
+    - name: MiddleFinger2_L
+      position: {x: 0.15207143, y: -0.0030089929, z: -2.0912212e-10}
+      rotation: {x: 0.0000000228174, y: 0.00000003998866, z: -0.021989327, w: 0.99975824}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+      transformModified: 1
+    - name: MiddleFinger3_L
+      position: {x: 0.1444547, y: -0.005149642, z: -2.9112912e-10}
+      rotation: {x: 0.000000041909512, y: 0.00000005133915, z: -0.032032613, w: 0.99948686}
+      scale: {x: 0.9999998, y: 1, z: 1}
+      transformModified: 1
+    - name: MiddleFinger4_L
+      position: {x: 0.046288338, y: 2.3933522e-10, z: -2.7180035e-13}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ThumbFinger1_L
+      position: {x: -0.0071131545, y: 0.013567673, z: 0.07700353}
+      rotation: {x: 0.008776065, y: -0.42687345, z: -0.04535346, w: 0.9031307}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.99999994}
+      transformModified: 1
+    - name: ThumbFinger2_L
+      position: {x: 0.07324835, y: -8.2189955e-10, z: -9.971083e-10}
+      rotation: {x: -0.00000022596201, y: 0.0000005960461, z: 0.024960391, w: 0.9996885}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1}
+      transformModified: 1
+    - name: ThumbFinger3_L
+      position: {x: 0.087827764, y: -6.6150957e-10, z: -9.0972035e-10}
+      rotation: {x: -0.000000014901154, y: -0.000000089406925, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: ThumbFinger4_L
+      position: {x: 0.1116677, y: 0.000000045694094, z: 0.000000081682956}
+      rotation: {x: 0.000000029802308, y: 0.000000029802308, z: 0.000000044703462,
+        w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+      transformModified: 1
+    - name: Scapula_R
+      position: {x: -0.12012885, y: 0.21345578, z: -0.11797981}
+      rotation: {x: -0.41201544, y: 0.4120154, z: -0.574668, w: -0.574668}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000002}
+      transformModified: 1
+    - name: Scapula_01_R
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -0.00000002121436, y: -0.000000014901159, z: 7.521094e-11, w: 1}
+      scale: {x: 0.99999976, y: 1, z: 0.99999976}
+      transformModified: 1
+    - name: Shoulder_R
+      position: {x: -0.52033794, y: 1.1368684e-15, z: 0.0000000108300675}
+      rotation: {x: -0.00000007662663, y: -0.15504989, z: 0.00000035813395, w: 0.98790663}
+      scale: {x: 0.9999996, y: 1, z: 0.9999995}
+      transformModified: 1
+    - name: ShoulderPart1_R
+      position: {x: -0.15807477, y: 0.000000056379065, z: 0.000000024344473}
+      rotation: {x: -0.00000006787494, y: -0.030770056, z: -0.00000018307784, w: 0.99952656}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: ShoulderPart2_R
+      position: {x: -0.15807477, y: 0.000000056379065, z: 0.000000024344473}
+      rotation: {x: 0.000000024952374, y: 0.000000037252892, z: 0.000000083097625,
+        w: 1}
+      scale: {x: 1, y: 1, z: 0.9999998}
+      transformModified: 1
+    - name: Elbow_R
+      position: {x: -0.15807477, y: 0.00000005706455, z: 0.000000018775442}
+      rotation: {x: 0.0000000610218, y: -0.01670291, z: 0.000000040302186, w: 0.9998605}
+      scale: {x: 0.9999997, y: 1, z: 0.9999997}
+      transformModified: 1
+    - name: ElbowPart1_R
+      position: {x: -0.21255977, y: 0.00000013064738, z: 0.00000007107205}
+      rotation: {x: -0.000000038326565, y: -0.000000005587919, z: -0.000000043237772,
+        w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+      transformModified: 1
+    - name: ElbowPart2_R
+      position: {x: -0.21255977, y: 0.00000013079642, z: 0.00000007347983}
+      rotation: {x: 0.000000035416715, y: 0.000000011175854, z: 0.0000000027127667,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Wrist_R
+      position: {x: -0.21255977, y: 0.00000013094548, z: 0.00000007588762}
+      rotation: {x: -0.0000001204862, y: -0.01682183, z: -0.0000005124618, w: 0.9998585}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Cup_R
+      position: {x: -0.008939195, y: -0.0003419625, z: 0.06652743}
+      rotation: {x: -0.0002496204, y: 0.040484298, z: 0.0059331628, w: 0.99916255}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: PinkyFinger1_R
+      position: {x: -0.06647157, y: -0.021148795, z: 0.10807366}
+      rotation: {x: 0.0077071213, y: 0.045838665, z: 0.022063775, w: 0.99867547}
+      scale: {x: 0.9999998, y: 1.0000001, z: 0.99999994}
+      transformModified: 1
+    - name: PinkyFinger2_R
+      position: {x: -0.053304195, y: -1.4083241e-11, z: -1.8973764e-11}
+      rotation: {x: 0, y: -0, z: -0.0062831435, w: 0.9999803}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyFinger3_R
+      position: {x: -0.026175026, y: -6.9172753e-12, z: -9.337668e-12}
+      rotation: {x: 0.000000026077023, y: -0.00000020384316, z: -0.041106522, w: 0.9991548}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyFinger4_R
+      position: {x: -0.036861543, y: -4.1472673e-11, z: 1.536307e-11}
+      rotation: {x: -0.00000003440072, y: 6.275512e-10, z: -0.0000000018626447, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: RingFinger1_R
+      position: {x: -0.08966239, y: 0.0024023794, z: 0.024841718}
+      rotation: {x: -0.0013417299, y: 0.05433097, z: -0.00077626825, w: 0.9985218}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: RingFinger2_R
+      position: {x: -0.12143658, y: -0.0018116909, z: -4.41085e-11}
+      rotation: {x: -0.000000054598786, y: -0.000000078807716, z: 0.018848391, w: 0.9998224}
+      scale: {x: 0.9999997, y: 1, z: 0.9999997}
+      transformModified: 1
+    - name: RingFinger3_R
+      position: {x: -0.10681412, y: 0.0030134756, z: -3.8793926e-11}
+      rotation: {x: 0.000000033644017, y: -0.000000031257503, z: -0.037690148, w: 0.9992895}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1.0000006}
+      transformModified: 1
+    - name: RingFinger4_R
+      position: {x: -0.041592587, y: -7.957112e-11, z: -1.7901058e-12}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: IndexFinger1_R
+      position: {x: -0.10643821, y: -0.0020516792, z: -0.09356604}
+      rotation: {x: -0.0028306514, y: -0.060802475, z: 0.016863836, w: 0.99800336}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+      transformModified: 1
+    - name: IndexFinger2_R
+      position: {x: -0.1456256, y: -4.1336816e-11, z: -5.221601e-11}
+      rotation: {x: 0.000000056577846, y: 0.000000005842594, z: 0.000000044703484,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+      transformModified: 1
+    - name: IndexFinger3_R
+      position: {x: -0.13564555, y: 0.005853207, z: -4.9041302e-11}
+      rotation: {x: -0.00000009802169, y: 0.000000019797879, z: -0.05024432, w: 0.998737}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: IndexFinger4_R
+      position: {x: -0.03912799, y: -2.7880048e-10, z: -1.6214443e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MiddleFinger1_R
+      position: {x: -0.11485622, y: 0.004900703, z: 0.0038090586}
+      rotation: {x: 0.00053332676, y: -0.000541426, z: 0.04161557, w: 0.9991334}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.99999994}
+      transformModified: 1
+    - name: MiddleFinger2_R
+      position: {x: -0.15207143, y: 0.0030089929, z: 3.1157973e-10}
+      rotation: {x: -0.000000017869752, y: -0.000000019126674, z: -0.021989316, w: 0.99975824}
+      scale: {x: 0.99999976, y: 1.0000001, z: 0.9999999}
+      transformModified: 1
+    - name: MiddleFinger3_R
+      position: {x: -0.1444547, y: 0.005149642, z: 2.967166e-10}
+      rotation: {x: 0.000000019033905, y: -0.00000008321513, z: -0.032032587, w: 0.9994869}
+      scale: {x: 1.0000007, y: 1, z: 1.0000002}
+      transformModified: 1
+    - name: MiddleFinger4_R
+      position: {x: -0.046288338, y: -2.3984653e-10, z: -1.1919336e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ThumbFinger1_R
+      position: {x: 0.0071131545, y: -0.013567671, z: -0.07700354}
+      rotation: {x: 0.00877575, y: -0.42687201, z: -0.04535206, w: 0.90313154}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: ThumbFinger2_R
+      position: {x: -0.07324835, y: 1.3063839e-10, z: 8.8239344e-10}
+      rotation: {x: -0.00000022537994, y: -0.00000014329262, z: 0.02496063, w: 0.99968845}
+      scale: {x: 1, y: 1.0000001, z: 1}
+      transformModified: 1
+    - name: ThumbFinger3_R
+      position: {x: -0.087827764, y: -1.6733878e-10, z: 0.0000000010839312}
+      rotation: {x: 0.000000059604623, y: 0.00000011548396, z: -0.000000029802312,
+        w: 1}
+      scale: {x: 1, y: 0.99999976, z: 1}
+      transformModified: 1
+    - name: ThumbFinger4_R
+      position: {x: -0.1116677, y: -0.00000004674793, z: -0.00000008146146}
+      rotation: {x: 0.00000004470347, y: 0.000000018626444, z: -0.000000014901156,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: Hip_L
+      position: {x: -0, y: -0.0015, z: 0.28367382}
+      rotation: {x: 0.000000029802322, y: -0.000000029802322, z: 0.031938046, w: 0.9994899}
+      scale: {x: 0.9999998, y: 1, z: 0.9999999}
+      transformModified: 1
+    - name: Knee_L
+      position: {x: 0.57101893, y: 4.2632563e-16, z: 7.105427e-17}
+      rotation: {x: 0, y: 0, z: -0.09169024, w: 0.9957876}
+      scale: {x: 1.0000001, y: 1, z: 1}
+      transformModified: 1
+    - name: Ankle_L
+      position: {x: 0.6114423, y: -5.3290704e-17, z: -7.020162e-14}
+      rotation: {x: -0.00016674398, y: -0.000009983777, z: 0.05983994, w: 0.998208}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
+      transformModified: 1
+    - name: MiddleToe1_L
+      position: {x: 0.12237295, y: 0.2837087, z: 0.000094689494}
+      rotation: {x: 0.00013908742, y: -0.00009267031, z: 0.5513002, w: 0.83430696}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.9999999}
+      transformModified: 1
+    - name: BigToe_L
+      position: {x: -0.00863868, y: -0.07840978, z: -0.10567048}
+      rotation: {x: -0.00000002235174, y: 0.000000027939674, z: 0.0000000745058, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 1}
+      transformModified: 1
+    - name: MiddleToe2_L
+      position: {x: 0.17521118, y: 9.778382e-12, z: 7.105427e-17}
+      rotation: {x: -0.00000002235174, y: 0.000000027939674, z: 0.0000000745058, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 1}
+      transformModified: 1
+    - name: PinkyToe_L
+      position: {x: -0.008638478, y: -0.07841, z: 0.10606545}
+      rotation: {x: -0.00000002235174, y: 0.000000027939674, z: 0.0000000745058, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 1}
+      transformModified: 1
+    - name: Hip_R
+      position: {x: -0, y: -0.0015, z: -0.28367382}
+      rotation: {x: 0.000000044703487, y: 0.000000029802326, z: 0.9994899, w: -0.03193808}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999999}
+      transformModified: 1
+    - name: Knee_R
+      position: {x: -0.57101893, y: -3.7303492e-16, z: 4.6185276e-16}
+      rotation: {x: 0, y: 0, z: -0.09169024, w: 0.9957876}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: Ankle_R
+      position: {x: -0.6114423, y: 1.3322676e-16, z: 7.03082e-14}
+      rotation: {x: 0.00016663967, y: 0.000009909271, z: -0.05983991, w: -0.99820805}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000002}
+      transformModified: 1
+    - name: MiddleToe1_R
+      position: {x: -0.12237295, y: -0.2837087, z: -0.000094690295}
+      rotation: {x: -0.00013908742, y: 0.00009271501, z: -0.5513003, w: -0.83430696}
+      scale: {x: 0.99999964, y: 0.99999934, z: 0.9999998}
+      transformModified: 1
+    - name: BigToe_R
+      position: {x: 0.00863868, y: 0.07840978, z: 0.10567048}
+      rotation: {x: -0.000000037252896, y: 0.00000005960463, z: -0.000000007450579,
+        w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: MiddleToe2_R
+      position: {x: -0.17521118, y: -1.2070735e-11, z: -7.105427e-17}
+      rotation: {x: -0.000000037252896, y: 0.00000005960463, z: -0.000000007450579,
+        w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: PinkyToe_R
+      position: {x: 0.008638478, y: 0.07841, z: -0.10606545}
+      rotation: {x: -0.000000037252896, y: 0.00000005960463, z: -0.000000007450579,
+        w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+      transformModified: 1
+    - name: GrannyRootBone
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 3.5206822e-17, y: 0.7071068, z: -3.5206822e-17, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RootBalance
+      position: {x: 0, y: 1.3977786, z: 0.0015}
+      rotation: {x: 8.326673e-17, y: 1.6653345e-16, z: -1.3877788e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RootHelper
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
