@@ -22,6 +22,7 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 
 	protected override void Awake ()
 	{
+		base.Awake ();
 		//監視しているポート
 		int LOCAL_PORT = 50001;
 		ips = new Dictionary<string, float> ();
