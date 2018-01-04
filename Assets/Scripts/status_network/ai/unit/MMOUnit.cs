@@ -11,6 +11,7 @@ namespace MMO
 		Transform mTrans;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
+		public Transform head;
 
 		void Awake(){
 			mTrans = transform;
@@ -23,6 +24,9 @@ namespace MMO
 			unitInfo.transform.playerPosition = mTrans.position;
 			unitInfo.transform.playerForward = mTrans.forward;
 			#endif
+			if (head != null)
+				head.forward = Camera.main.transform.forward;
+//				head.LookAt (Camera.main.transform.position);
 		}
 
 		string mPreAction;

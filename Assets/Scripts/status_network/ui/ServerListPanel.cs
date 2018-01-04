@@ -58,7 +58,7 @@ namespace MMO
 
 		string[] GetServerNames(){
 			string[] serverNames = new string[]{
-				"トゥルーマンの世界",//灵感来自与The Truman Show。
+				"トゥルーマンの世界",//灵感来自于The Truman Show。
 				"费尔威泽(Felwithe)",
 				"自由港(Freeport)",
 				"克勒辛(Kelethin)",

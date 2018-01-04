@@ -15,10 +15,13 @@ namespace MMO
 		public SimpleRpgCamera rpgCamera;
 		public List<ShootObject> shootPrefabs;
 		public List<GameObject> unitPrefabs;
-
-		SimpleRpgAnimator mSimpleRpgAnimator;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
+		public PlayerInfo playerInfo;
+		public string playerName;
+		public UnityAction<string> onChat;
+
+		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
 		Dictionary<int,GameObject> mMonsterDic;
@@ -28,9 +31,6 @@ namespace MMO
 		Vector3 mPreForward;
 		string mPreAction;
 		float mPreSpeed;
-		public PlayerInfo playerInfo;
-		public string playerName;
-		public UnityAction<string> onChat;
 
 		void Start ()
 		{
@@ -80,22 +80,6 @@ namespace MMO
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
 			playerInfo.chat = "";
 		}
-
-		//		public void SendUseSkill(int skillId){
-		//			Debug.Log ("SendUseSkill");
-		//			playerInfo.unitInfo.action.attackType = skillId;
-		//			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
-		//			playerInfo.unitInfo.action.attackType = 0;
-		//		}
-		//
-		//		public void RecieveUseSkill(int unitId,int skillId){
-		//			RecieveUseSkill(unitId,skillId);
-		//			RecieveUseSkill(int unitId,int skillId);
-		//			playerInfo.unitInfo.action.attackType = 0;
-		//			playerInfo.unitInfo.action.targetPos = Vector3.one;
-		//			playerInfo.unitInfo.action.attackType = 1;
-		//			playerInfo.unitInfo.action.targetPos = Vector3.zero;
-		//		}
 
 		void OnConnected (NetworkMessage msg)
 		{
@@ -164,11 +148,6 @@ namespace MMO
 					mmoUnit.unitInfo.action.attackType = 0;
 				}
 			}
-
-//			for (int i = 0; i < mOtherPlayerIds.Count; i++) {
-//				int id = mOtherPlayerIds [i];
-//				Destroy(mPlayerDic[i]);
-//			}
 		}
 
 		void OnRecieveMonsterInfos (NetworkMessage msg)
@@ -191,11 +170,6 @@ namespace MMO
 					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.attackType);
 					data.monsterDatas [i].action.attackType = -1;
 				}
-				//data.monsterDatas[i].action.attackType = -1;
-				//data.monsterDatas[i].action.attackType = -2;
-				//data.monsterDatas[i].action.attackType = -3;
-				//monster.GetComponent<MMOUnitSkill>().PlayServerSkill
-
 			}
 		}
 
