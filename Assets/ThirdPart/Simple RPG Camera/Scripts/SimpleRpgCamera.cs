@@ -85,10 +85,26 @@ public class SimpleRpgCamera : MonoBehaviour
 		}
 	}
 
+	bool mIsMonsterSelected;
 	void Update()
 	{
 		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
 			return;
+
+		if(Input.GetMouseButtonDown(0)){
+			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
+				mIsMonsterSelected = true;
+			}
+		}
+
+		if(mIsMonsterSelected && Input.GetMouseButtonUp(0)){
+			mIsMonsterSelected = false;
+		}
+
+		if(mIsMonsterSelected){
+			return;
+		}
+
 		if(target)
 		{
 			// Fade the target according to Fade Distance (if enabled)
@@ -196,6 +212,11 @@ public class SimpleRpgCamera : MonoBehaviour
 	{
 		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
 			return;
+		
+		if(mIsMonsterSelected){
+			return;
+		}
+
 		if(target)
 		{
 			if(_controllable)

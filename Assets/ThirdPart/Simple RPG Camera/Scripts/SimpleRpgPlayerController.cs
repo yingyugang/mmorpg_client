@@ -96,6 +96,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		_wanted_position = _t.position;
 	}
 
+	bool mIsMonsterSelected;
 	void Update()
 	{
 		/*
@@ -107,6 +108,20 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		*/
 		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
 			return;
+
+		if(Input.GetMouseButtonDown(0)){
+			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
+				mIsMonsterSelected = true;
+			}
+		}
+
+		if(mIsMonsterSelected && Input.GetMouseButtonUp(0)){
+			mIsMonsterSelected = false;
+		}
+
+		if(mIsMonsterSelected){
+			return;
+		}
 
 		// If user middle-clicks, toggle autorun on/off
 		if(Input.GetMouseButtonDown(2))
@@ -174,6 +189,11 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	{
 		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
 			return;
+
+		if(mIsMonsterSelected){
+			return;
+		}
+
 		
 		_animation_speed = 1;
 		float input_modifier = (_input_x != 0.0f && _input_y != 0.0f) ? 0.7071f : 1.0f;

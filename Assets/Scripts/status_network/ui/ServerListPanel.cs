@@ -47,14 +47,12 @@ namespace MMO
 						});
 					}
 				}
-
 			}
 		}
 
 		void OnDisable(){
 			MessageReciever.Instance.StopReceive ();
 		}
-
 
 		string[] GetServerNames(){
 			string[] serverNames = new string[]{

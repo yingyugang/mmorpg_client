@@ -22,6 +22,7 @@ namespace MMO
 		public string playerName;
 		public UnityAction<string> onChat;
 		public HeadUIBase headUIPrefab;
+		public GameObject handleSelectRing;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
@@ -69,6 +70,12 @@ namespace MMO
 			if (Input.GetKeyDown (KeyCode.Escape)) {
 				Application.Quit ();
 			}
+			if(Input.GetMouseButtonDown(0)){
+				RaycastHit hit;
+				if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit,Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
+					SelectUnit (hit);
+				}
+			}
 		}
 
 		public void Connect (string ip, int port)
@@ -83,9 +90,15 @@ namespace MMO
 			playerInfo.chat = "";
 		}
 
+		void SelectUnit(RaycastHit hit){
+			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
+			handleSelectRing.transform.SetParent (mmoUnit.transform);
+			handleSelectRing.transform.localPosition = new Vector3 (0,0.1f,0);
+		}
+
 		void OnConnected (NetworkMessage msg)
 		{
-
+			Debug.Log ("OnConnected");
 		}
 
 		//TODO 把通信数据放在一个主对象的不同参数里面，这个容易理解很保存数据。
