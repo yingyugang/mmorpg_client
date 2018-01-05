@@ -20,7 +20,8 @@ namespace MMO
 		public int casterId;
 		public int[] hitIds;
 		public int[] damages;
-		public int hitObjectId;
+		public int[] hitObjectIds;
+		public IntVector3[] hitPositions;
 	}
 
 	[Serializable]
@@ -98,5 +99,29 @@ namespace MMO
 		public Vector3 targetPos;
 	}
 
+	[System.Serializable]
+	public class IntVector3:MessageBase
+	{
+		public int x;
+		public int y;
+		public int z;
 
+		public static IntVector3 GetInstance (Vector3 vector)
+		{
+			IntVector3 pos = new IntVector3 ();
+			pos.x = (int)(vector.x * 1000);
+			pos.y = (int)(vector.y * 1000);
+			pos.z = (int)(vector.z * 1000);
+			return pos;
+		}
+
+		public static Vector3 ToVector3 (IntVector3 vector)
+		{
+			Vector3 pos = new Vector3 ();
+			pos.x = vector.x / 1000f;
+			pos.y = vector.y / 1000f;
+			pos.z = vector.z / 1000f;
+			return pos;
+		}
+	}
 }

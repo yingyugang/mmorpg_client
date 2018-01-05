@@ -14,12 +14,14 @@ namespace MMO
 		public string targetIp;
 		public SimpleRpgCamera rpgCamera;
 		public List<ShootObject> shootPrefabs;
+		public List<GameObject> hitPrefabs;//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public PlayerInfo playerInfo;
 		public string playerName;
 		public UnityAction<string> onChat;
+		public HeadUIBase headUIPrefab;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
@@ -43,7 +45,7 @@ namespace MMO
 			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
 			mUnitDic = new Dictionary<int, GameObject> ();
-			client.onRecieveMonsterInfos = OnRecieveMonsterInfos;
+			client.onRecieveMonsterInfos = OnRecieveServerActions;
 		}
 
 		void Update ()
@@ -111,7 +113,7 @@ namespace MMO
 				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
 					GameObject playerGO;
 					if (transferData.playerDatas [i].playerId != mPlayerId) {
-						playerGO = InstantiateUnit (0);
+						playerGO = InstantiateUnit (0,transferData.playerDatas [i].unitInfo);
 					} else {
 						playerGO = MMOController.Instance.player.gameObject;
 					}
@@ -150,12 +152,13 @@ namespace MMO
 			}
 		}
 
-		void OnRecieveMonsterInfos (NetworkMessage msg)
+		//TODO 以后需要跟player info 合并，只保留更新其他npc和玩家自身两个api。
+		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			TransferData data = msg.ReadMessage<TransferData> ();
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey (data.monsterDatas [i].attribute.unitId)) {
-					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType);
+					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType,data.monsterDatas [i]);
 					mMonsterDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
 					mMonsterDic [data.monsterDatas [i].attribute.unitId].SetActive (true);
 					if (!mUnitDic.ContainsKey (data.monsterDatas [i].attribute.unitId))
@@ -171,9 +174,23 @@ namespace MMO
 					data.monsterDatas [i].action.attackType = -1;
 				}
 			}
+			if (data.hitDatas.Length > 0) {
+				Debug.Log (data.hitDatas.Length);
+				for (int i = 0; i < data.hitDatas.Length; i++) {
+					OnHit (data.hitDatas[i]);
+				}
+			}
 		}
 
-		GameObject InstantiateUnit (int unitType)
+		void OnHit(HitInfo hitInfo){
+			for(int i = 0;i< hitInfo.hitObjectIds.Length;i++){
+				GameObject prefab = this.hitPrefabs [hitInfo.hitObjectIds [i]];
+				GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (hitInfo.hitPositions [i]), Quaternion.identity);
+				Destroy (go, 10);
+			}
+		}
+
+		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
 		{
 			unitType = Mathf.Clamp (unitType, 0, unitPrefabs.Count - 1);
 			GameObject unitPrebfab = unitPrefabs [unitType].gameObject;
@@ -181,6 +198,10 @@ namespace MMO
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
 			unitGo.SetActive (true);
+			MMOUnit mmoUnit = unitGo.GetComponent<MMOUnit> ();
+			mmoUnit.unitInfo = unitInfo;
+			GameObject go = Instantiate (headUIPrefab.gameObject);
+			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			return unitGo;
 		}
 

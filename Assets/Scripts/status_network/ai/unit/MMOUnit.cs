@@ -11,12 +11,13 @@ namespace MMO
 		Transform mTrans;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
-		public Transform head;
+		CapsuleCollider mCapsuleCollider;
 
 		void Awake(){
 			mTrans = transform;
 			mSimpleRpgAnimator = GetComponent<SimpleRpgAnimator> ();
 			mAnimator =  GetComponentInChildren<Animator> (true);
+			mCapsuleCollider = GetComponent<CapsuleCollider> ();
 		}
 
 		void Update(){
@@ -24,9 +25,6 @@ namespace MMO
 			unitInfo.transform.playerPosition = mTrans.position;
 			unitInfo.transform.playerForward = mTrans.forward;
 			#endif
-			if (head != null)
-				head.forward = Camera.main.transform.forward;
-//				head.LookAt (Camera.main.transform.position);
 		}
 
 		string mPreAction;
