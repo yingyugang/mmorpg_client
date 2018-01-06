@@ -9,6 +9,9 @@ public class SimpleRpgAnimator : MonoBehaviour
 	private string _action = string.Empty;
 	private string _animation = string.Empty;
 
+	Animation mAnimation;
+	Animator mAnimator;
+
 	public string Action
 	{
 		get { return _action; }
@@ -17,6 +20,8 @@ public class SimpleRpgAnimator : MonoBehaviour
 
 	void Start()
 	{
+		mAnimation = model.GetComponent<Animation> ();
+		mAnimator = model.GetComponent<Animator> ();
 		// Check to make sure the model is selected and has animation
 		if(!model)
 		{
@@ -25,7 +30,7 @@ public class SimpleRpgAnimator : MonoBehaviour
 		}
 		else
 		{
-			if(!model.GetComponent<Animation>())
+			if(!mAnimation && !mAnimator)
 			{
 				Debug.LogWarning("SimpleRpgAnimator: Selected model has no animation");
 				_active = false;
@@ -41,7 +46,11 @@ public class SimpleRpgAnimator : MonoBehaviour
 			if(_animation != _action)
 			{
 				_animation = _action;
-				model.GetComponent<Animation>().CrossFade(_animation);
+				if (mAnimation != null) {
+					mAnimation.Play (_animation);
+				} else {
+					mAnimator.Play (_animation);
+				}
 			}
 		}
 	}
@@ -51,11 +60,15 @@ public class SimpleRpgAnimator : MonoBehaviour
 		if(_active)
 		{
 			// Set the current animation's speed
-			if(model.GetComponent<Animation>()[_animation])
-			{
-				if(model.GetComponent<Animation>()[_animation].speed != n)
-				{
-					model.GetComponent<Animation>()[_animation].speed = n;
+			if (mAnimation != null ) {
+				if (mAnimation [_animation]) {
+					if (mAnimation [_animation].speed != n) {
+						mAnimation [_animation].speed = n;
+					}
+				}
+			} else {
+				if(mAnimator!=null && mAnimator.speed != n){
+					mAnimator.speed = n;
 				}
 			}
 		}

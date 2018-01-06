@@ -27,6 +27,10 @@ namespace MMO
 			#endif
 		}
 
+		public Vector3 GetHeadPos(){
+			return mTrans.position + new Vector3 (0,mCapsuleCollider.height,0);
+		}
+
 		string mPreAction;
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {

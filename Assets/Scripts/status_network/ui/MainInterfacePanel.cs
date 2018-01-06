@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace MMO
 {
@@ -13,12 +14,15 @@ namespace MMO
 		public Image img_mana;
 		public Text txt_name;
 		public Text txt_level;
+		public Slider slider_skill;
 
 		const int SKILL_ICON_COUNT = 20;
 		public List<Sprite> skillIconList;
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
+		MMOUnitSkill mUnitSkill;
+		Button mSelectButton;
 
 		protected override void Awake ()
 		{
@@ -49,14 +53,35 @@ namespace MMO
 		void SetSkillDatas (MMOUnitSkill unitSkill)
 		{
 			ResetSkillIcons ();
+			mUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;
 			for (int i = 0; i < skills.Count; i++) {
 				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
 				SkillBase skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
-					unitSkill.PlayClientSkill(skillBase);
+					mSelectButton = btnSkill;
+					ShowSkillSilder(3f,unitSkill,skillBase);
 				});
+				Image imgIcon = btnSkill.GetComponent<Image>();
+				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
+				imgIcon.gameObject.SetActive (true);
+			}
+		}
+
+		void UpdateCooldowns(){
+			List<SkillBase> skills = mUnitSkill.skillList;
+			for (int i = 0; i < skills.Count; i++) {
+				SkillBase sb = skills [i];
+				Button btnSkill = skillButtonList [i];
+				SkillBase skillBase = skills [i];
+				Image imgCooldown = btnSkill.transform.parent.Find ("img_cooldown").GetComponent<Image> ();
+				imgCooldown.fillAmount = Mathf.Max(0,skillBase.GetCooldown());
+				if (imgCooldown.fillAmount == 0) {
+					imgCooldown.gameObject.SetActive (false);
+				} else {
+					imgCooldown.gameObject.SetActive (true);
+				}
 				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
 				imgIcon.gameObject.SetActive (true);
@@ -75,6 +100,7 @@ namespace MMO
 		void Update ()
 		{
 			UpdatePlayerInfo ();
+			UpdateCooldowns ();
 		}
 
 		void UpdatePlayerInfo ()
@@ -87,6 +113,33 @@ namespace MMO
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}
 
+		Coroutine mCoroutine;
+		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+			if (mCoroutine != null)
+				StopCoroutine (mCoroutine);
+			mCoroutine = StartCoroutine (_ShowSkillSilder(duration,unitSkill,skillBase));
+		}
 
+		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+			slider_skill.GetComponent<CanvasGroup> ().DOFade (1,0.1f);
+			if(mSelectButton!=null){
+				Transform activeTrans = mSelectButton.transform.parent.Find ("img_active");
+				activeTrans.gameObject.SetActive (true);
+			}
+			float t = 0;
+			slider_skill.value = 0;
+			while(t < 1){
+				t += Time.deltaTime / duration;
+				slider_skill.value = t;
+				yield return null;
+			}
+			unitSkill.PlayClientSkill(skillBase);
+			if(mSelectButton!=null){
+				Transform activeTrans = mSelectButton.transform.parent.Find ("img_active");
+				activeTrans.gameObject.SetActive (false);
+				mSelectButton = null;
+			}
+			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
+		}
 	}
 }

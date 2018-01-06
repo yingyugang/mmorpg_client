@@ -47,7 +47,13 @@ namespace MMO
 		public int playerId;
 		public string chat;
 		public int skillId;
+		public int targetId;
 		public UnitInfo unitInfo;
+
+		public PlayerInfo(){
+			skillId = -1;
+			targetId = -1;
+		}
 	}
 
 	[Serializable]
@@ -96,6 +102,7 @@ namespace MMO
 	public class MMOAction:MessageBase
 	{
 		public int attackType;
+		public int targetId;
 		public Vector3 targetPos;
 	}
 

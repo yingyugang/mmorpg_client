@@ -39,5 +39,8 @@ namespace MMO
 			mNextActiveTime = Time.time + coolDown;
 		}
 
+		public float GetCooldown(){
+			return (mNextActiveTime - Time.time) / coolDown;
+		}
 	}
 }

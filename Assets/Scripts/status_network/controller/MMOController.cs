@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using TMPro;
 
 namespace MMO
 {
@@ -22,7 +23,11 @@ namespace MMO
 		public string playerName;
 		public UnityAction<string> onChat;
 		public HeadUIBase headUIPrefab;
+
 		public GameObject handleSelectRing;
+		public MMOUnit selectedUnit;
+
+		public GameObject hitUITextPrefab;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
@@ -61,6 +66,11 @@ namespace MMO
 //					SendPlayerMessage (player);
 					playerInfo.unitInfo.transform.playerForward = player.forward;
 					playerInfo.unitInfo.transform.playerPosition = player.position;
+					if (selectedUnit != null) {
+						playerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
+					} else {
+						playerInfo.targetId = -1;
+					}
 					playerInfo.unitInfo.animation.action = mPreAction;
 					playerInfo.unitInfo.animation.animSpeed = mPreSpeed;
 					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
@@ -72,8 +82,13 @@ namespace MMO
 			}
 			if(Input.GetMouseButtonDown(0)){
 				RaycastHit hit;
-				if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit,Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
 					SelectUnit (hit);
+				} else {
+					if (!EventSystem.current.IsPointerOverGameObject ()) {
+						selectedUnit = null;
+						this.handleSelectRing.transform.position = new Vector3 (0,-1000f,0);
+					}
 				}
 			}
 		}
@@ -91,9 +106,10 @@ namespace MMO
 		}
 
 		void SelectUnit(RaycastHit hit){
-			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
-			handleSelectRing.transform.SetParent (mmoUnit.transform);
-			handleSelectRing.transform.localPosition = new Vector3 (0,0.1f,0);
+				MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
+				selectedUnit = mmoUnit;
+				handleSelectRing.transform.SetParent (mmoUnit.transform);
+				handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -158,9 +174,8 @@ namespace MMO
 				}
 				MMOUnit mmoUnit = mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ();
 				if (mmoUnit.unitInfo.action.attackType > 0) {
-					Debug.Log (mmoUnit.unitInfo.action.attackType);
 					mmoUnit.GetComponent<MMOUnitSkill> ().PlayServerSkill (mmoUnit.unitInfo.action.attackType);
-					mmoUnit.unitInfo.action.attackType = 0;
+					mmoUnit.unitInfo.action.attackType = -1;
 				}
 			}
 		}
@@ -181,6 +196,7 @@ namespace MMO
 				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ();
 				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
 				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
+				monster.unitInfo = unitInfo;
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 				if (data.monsterDatas [i].action.attackType >= 0) {
 					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.attackType);
@@ -188,7 +204,6 @@ namespace MMO
 				}
 			}
 			if (data.hitDatas.Length > 0) {
-				Debug.Log (data.hitDatas.Length);
 				for (int i = 0; i < data.hitDatas.Length; i++) {
 					OnHit (data.hitDatas[i]);
 				}
@@ -201,7 +216,20 @@ namespace MMO
 				GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (hitInfo.hitPositions [i]), Quaternion.identity);
 				Destroy (go, 10);
 			}
+			ShowHitUIInfo (hitInfo);
 		}
+
+		void ShowHitUIInfo(HitInfo hitInfo){
+			for(int j=0;j<hitInfo.hitIds.Length;j++){
+				if(mMonsterDic.ContainsKey(hitInfo.hitIds[j])){
+					GameObject go = mMonsterDic [hitInfo.hitIds [j]];
+					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, go.GetComponent<MMOUnit> ().GetHeadPos (), Quaternion.identity);
+					uiGo.GetComponent<TextMeshPro>().text = hitInfo.damages[j].ToString();
+					uiGo.SetActive (true);
+				}
+			}
+		}
+
 
 		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
 		{
