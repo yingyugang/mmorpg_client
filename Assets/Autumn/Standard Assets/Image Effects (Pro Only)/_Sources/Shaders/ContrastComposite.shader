@@ -12,7 +12,7 @@ Shader "Hidden/ContrastComposite" {
 	#include "UnityCG.cginc"
 	
 	struct v2f {
-		float4 pos : SV_POSITION;
+		float4 pos : POSITION;
 		float2 uv[2] : TEXCOORD0;
 	};
 	
@@ -30,14 +30,14 @@ Shader "Hidden/ContrastComposite" {
 		
 		o.uv[0] = v.texcoord.xy;
 		o.uv[1] = v.texcoord.xy;
-		#if UNITY_UV_STARTS_AT_TOP
+		#if SHADER_API_D3D9
 		if (_MainTex_TexelSize.y < 0)
 			o.uv[0].y = 1-o.uv[0].y;
 		#endif			
 		return o;
 	}
 	
-	half4 frag(v2f i) : SV_Target 
+	half4 frag(v2f i) : COLOR 
 	{
 		half4 color = tex2D (_MainTex, i.uv[1]);
 		half4 blurred = tex2D (_MainTexBlurred, (i.uv[0]));
@@ -56,8 +56,10 @@ Shader "Hidden/ContrastComposite" {
 Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
+	  Fog { Mode off }      
 
       CGPROGRAM
+      #pragma fragmentoption ARB_precision_hint_fastest
       #pragma vertex vert
       #pragma fragment frag
       ENDCG
