@@ -21,12 +21,15 @@ namespace MMO
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
+		Dictionary<Button,SkillBase> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
 
 		protected override void Awake ()
 		{
 			base.Awake ();
+			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
+			skillButtonList = new List<Button> ();
 			InitIconItems ();
 		}
 
@@ -34,6 +37,20 @@ namespace MMO
 			base.Start ();
 			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
 			SetSkillDatas (unitSkill);
+		}
+
+		//TODO
+		public void AddSkillIcon(SkillBase skillBase){
+			GameObject item = Instantiate (skillItemPrefab);
+			item.transform.SetParent (skillGrid.transform);
+			item.transform.localScale = Vector3.one;
+			item.transform.localPosition = Vector3.zero;
+			item.SetActive (true);
+			Image imgIcon = item.GetComponent<Image>();
+			imgIcon.sprite = skillIconList[skillBase.skillId];
+			Button skillBtn = item.GetComponentInChildren<Button> (true);
+			skillButtonList.Add (skillBtn);
+			mSkillButtonDic.Add (skillBtn,skillBase);
 		}
 
 		void InitIconItems ()

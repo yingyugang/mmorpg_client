@@ -28,7 +28,7 @@ namespace MMO
 			//TODO 
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, mmoUnit.transform.position + new Vector3 (0, 1, 0), mmoUnit.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootProjectileObject so = shootGo.GetComponent<ShootProjectileObject> ();
-			so.Shoot (mmoUnit, mmoUnit.unitInfo.action.targetPos, Vector3.zero);
+			so.Shoot (mmoUnit, IntVector3.ToVector3( mmoUnit.unitInfo.action.targetPos), Vector3.zero);
 		}
 	}
 }

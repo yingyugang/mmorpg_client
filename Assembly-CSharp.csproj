@@ -1061,7 +1061,6 @@
      <Compile Include="Assets\Scripts\Battle\UnitController.cs" />
      <Compile Include="Assets\Scripts\Battle\UnitResources.cs" />
      <Compile Include="Assets\Scripts\Battle\Weapon.cs" />
-     <Compile Include="Assets\Scripts\Constant\LayerConstant.cs" />
      <Compile Include="Assets\Scripts\DataCenter\Config\ConfigMgr.cs" />
      <Compile Include="Assets\Scripts\DataCenter\Config\HeroDefine.cs" />
      <Compile Include="Assets\Scripts\DataCenter\Config\ModuleDefine.cs" />
@@ -1072,6 +1071,7 @@
      <Compile Include="Assets\Scripts\DataCenter\Modules\TestCSV.cs" />
      <Compile Include="Assets\Scripts\Debug\EnemyGizmos.cs" />
      <Compile Include="Assets\Scripts\Login\LoginManager.cs" />
+     <Compile Include="Assets\Scripts\Other\KomiyaArmd.cs" />
      <Compile Include="Assets\Scripts\Utility\BoolTest1.cs" />
      <Compile Include="Assets\Scripts\Utility\CommonUtility.cs" />
      <Compile Include="Assets\Scripts\Utility\FlyPlane.cs" />
@@ -1081,6 +1081,16 @@
      <Compile Include="Assets\Scripts\Utility\SingleMonoBehivour.cs" />
      <Compile Include="Assets\Scripts\Utility\TestAnimator.cs" />
      <Compile Include="Assets\Scripts\Utility\TextureUtility.cs" />
+     <Compile Include="Assets\Scripts\csv\CSVFileReader.cs" />
+     <Compile Include="Assets\Scripts\csv\CSVManager.cs" />
+     <Compile Include="Assets\Scripts\csv\CSVParser.cs" />
+     <Compile Include="Assets\Scripts\csv\CSVReader.cs" />
+     <Compile Include="Assets\Scripts\csv\VersionCSV.cs" />
+     <Compile Include="Assets\Scripts\csv\structure\BaseCSVStructure.cs" />
+     <Compile Include="Assets\Scripts\csv\structure\MSkill.cs" />
+     <Compile Include="Assets\Scripts\csv\structure\MSkillEffectBaseCSVStructure.cs" />
+     <Compile Include="Assets\Scripts\csv\structure\MUnit.cs" />
+     <Compile Include="Assets\Scripts\csv\structure\MUnitSkill.cs" />
      <Compile Include="Assets\Scripts\status_network\ai\skills\SkillBase.cs" />
      <Compile Include="Assets\Scripts\status_network\ai\skills\SkillDefault.cs" />
      <Compile Include="Assets\Scripts\status_network\ai\skills\SkillShoot.cs" />
@@ -1088,6 +1098,7 @@
      <Compile Include="Assets\Scripts\status_network\ai\unit\MMOUnitSkill.cs" />
      <Compile Include="Assets\Scripts\status_network\client\MMOClient.cs" />
      <Compile Include="Assets\Scripts\status_network\client\MessageReciever.cs" />
+     <Compile Include="Assets\Scripts\status_network\constant\LayerConstant.cs" />
      <Compile Include="Assets\Scripts\status_network\constant\MessageConstant.cs" />
      <Compile Include="Assets\Scripts\status_network\constant\NetConstant.cs" />
      <Compile Include="Assets\Scripts\status_network\controller\MMOController.cs" />
@@ -1580,6 +1591,9 @@
  </Reference>
  <Reference Include="ConditionalExpression">
  <HintPath>/Users/yingyugang/ARPG_GWLR/Assets/PlayMaker/ConditionalExpression.dll</HintPath>
+ </Reference>
+ <Reference Include="CSV">
+ <HintPath>/Users/yingyugang/ARPG_GWLR/Assets/Plugins/CSV.dll</HintPath>
  </Reference>
  <Reference Include="DemiLib">
  <HintPath>/Users/yingyugang/ARPG_GWLR/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>

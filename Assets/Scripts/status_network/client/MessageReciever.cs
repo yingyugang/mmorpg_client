@@ -6,10 +6,8 @@ using System.Threading;
 using System.Net;
 using System.Text;
 using System;
-
 //recieve the machine controlling messages.
 using UnityEngine.Events;
-
 
 public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 	//メセージを監視用UDPクライアント。
@@ -58,7 +56,7 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 			if (!ips.ContainsKey (remoteEP.Address.ToString ()))
 				ips.Add (remoteEP.Address.ToString (),time);
 			else
-				ips[remoteEP.Address.ToString ()] =time;
+				ips[remoteEP.Address.ToString ()] = time;
 		}
 		Debug.Log ("Thread Done!");
 	} 

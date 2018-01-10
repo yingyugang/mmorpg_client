@@ -11,22 +11,23 @@ namespace MMO
 	public class MMOController : SingleMonoBehaviour<MMOController>
 	{
 		public MMOClient client;
+
 		public Transform player;
+		public PlayerInfo playerInfo;
+		public string playerName;
+
 		public string targetIp;
 		public SimpleRpgCamera rpgCamera;
 		public List<ShootObject> shootPrefabs;
-		public List<GameObject> hitPrefabs;//TODO ResourcesManager に移動する必要だ。
+		//TODO ResourcesManager に移動する必要だ。
+		public List<GameObject> hitPrefabs;
 		public List<GameObject> unitPrefabs;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
-		public PlayerInfo playerInfo;
-		public string playerName;
 		public UnityAction<string> onChat;
 		public HeadUIBase headUIPrefab;
-
 		public GameObject handleSelectRing;
 		public MMOUnit selectedUnit;
-
 		public GameObject hitUITextPrefab;
 
 		SimpleRpgAnimator mSimpleRpgAnimator;
@@ -64,8 +65,8 @@ namespace MMO
 					mPreAction = mSimpleRpgAnimator.Action;
 					mPreSpeed = simpleRpgPlayerController._animation_speed;
 //					SendPlayerMessage (player);
-					playerInfo.unitInfo.transform.playerForward = player.forward;
-					playerInfo.unitInfo.transform.playerPosition = player.position;
+					playerInfo.unitInfo.transform.playerForward = IntVector3.ToIntVector3 (player.forward);
+					playerInfo.unitInfo.transform.playerPosition = IntVector3.ToIntVector3 (player.position);
 					if (selectedUnit != null) {
 						playerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
 					} else {
@@ -80,14 +81,14 @@ namespace MMO
 			if (Input.GetKeyDown (KeyCode.Escape)) {
 				Application.Quit ();
 			}
-			if(Input.GetMouseButtonDown(0)){
+			if (Input.GetMouseButtonDown (0)) {
 				RaycastHit hit;
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
 					SelectUnit (hit);
 				} else {
 					if (!EventSystem.current.IsPointerOverGameObject ()) {
 						selectedUnit = null;
-						this.handleSelectRing.transform.position = new Vector3 (0,-1000f,0);
+						this.handleSelectRing.transform.position = new Vector3 (0, -1000f, 0);
 					}
 				}
 			}
@@ -105,11 +106,12 @@ namespace MMO
 			playerInfo.chat = "";
 		}
 
-		void SelectUnit(RaycastHit hit){
-				MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
-				selectedUnit = mmoUnit;
-				handleSelectRing.transform.SetParent (mmoUnit.transform);
-				handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);
+		void SelectUnit (RaycastHit hit)
+		{
+			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
+			selectedUnit = mmoUnit;
+			handleSelectRing.transform.SetParent (mmoUnit.transform);
+			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -142,7 +144,7 @@ namespace MMO
 				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
 					GameObject playerGO;
 					if (transferData.playerDatas [i].playerId != mPlayerId) {
-						playerGO = InstantiateUnit (0,transferData.playerDatas [i].unitInfo);
+						playerGO = InstantiateUnit (0, transferData.playerDatas [i].unitInfo);
 					} else {
 						playerGO = MMOController.Instance.player.gameObject;
 					}
@@ -155,8 +157,8 @@ namespace MMO
 				}
 				if (transferData.playerDatas [i].playerId != mPlayerId) {
 					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = transferData.playerDatas [i].unitInfo.transform.playerPosition;
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = transferData.playerDatas [i].unitInfo.transform.playerForward;
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerPosition);
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerForward);
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = transferData.playerDatas [i].unitInfo.animation.action;
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				}
@@ -186,7 +188,7 @@ namespace MMO
 			TransferData data = msg.ReadMessage<TransferData> ();
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey (data.monsterDatas [i].attribute.unitId)) {
-					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType,data.monsterDatas [i]);
+					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType, data.monsterDatas [i]);
 					mMonsterDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
 					mMonsterDic [data.monsterDatas [i].attribute.unitId].SetActive (true);
 					if (!mUnitDic.ContainsKey (data.monsterDatas [i].attribute.unitId))
@@ -194,8 +196,8 @@ namespace MMO
 				}
 				UnitInfo unitInfo = data.monsterDatas [i];
 				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ();
-				monster.transform.position = data.monsterDatas [i].transform.playerPosition;
-				monster.transform.forward = data.monsterDatas [i].transform.playerForward;
+				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.playerPosition);
+				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.playerForward);
 				monster.unitInfo = unitInfo;
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 				if (data.monsterDatas [i].action.attackType >= 0) {
@@ -205,13 +207,14 @@ namespace MMO
 			}
 			if (data.hitDatas.Length > 0) {
 				for (int i = 0; i < data.hitDatas.Length; i++) {
-					OnHit (data.hitDatas[i]);
+					OnHit (data.hitDatas [i]);
 				}
 			}
 		}
 
-		void OnHit(HitInfo hitInfo){
-			for(int i = 0;i< hitInfo.hitObjectIds.Length;i++){
+		void OnHit (HitInfo hitInfo)
+		{
+			for (int i = 0; i < hitInfo.hitObjectIds.Length; i++) {
 				GameObject prefab = this.hitPrefabs [hitInfo.hitObjectIds [i]];
 				GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (hitInfo.hitPositions [i]), Quaternion.identity);
 				Destroy (go, 10);
@@ -219,22 +222,22 @@ namespace MMO
 			ShowHitUIInfo (hitInfo);
 		}
 
-		void ShowHitUIInfo(HitInfo hitInfo){
-			for(int j=0;j<hitInfo.hitIds.Length;j++){
-				if(mMonsterDic.ContainsKey(hitInfo.hitIds[j])){
+		void ShowHitUIInfo (HitInfo hitInfo)
+		{
+			for (int j = 0; j < hitInfo.hitIds.Length; j++) {
+				if (mMonsterDic.ContainsKey (hitInfo.hitIds [j])) {
 					GameObject go = mMonsterDic [hitInfo.hitIds [j]];
 					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, go.GetComponent<MMOUnit> ().GetHeadPos (), Quaternion.identity);
-					uiGo.GetComponent<TextMeshPro>().text = hitInfo.damages[j].ToString();
+					uiGo.GetComponent<TextMeshPro> ().text = hitInfo.damages [j].ToString ();
 					uiGo.SetActive (true);
 				}
 			}
 		}
 
-
 		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
 		{
-			unitType = Mathf.Clamp (unitType, 0, unitPrefabs.Count - 1);
-			GameObject unitPrebfab = unitPrefabs [unitType].gameObject;
+			MUnit mUnit = CSVManager.Instance.GetUnit (unitInfo.attribute.unitType);
+			GameObject unitPrebfab = Resources.Load<GameObject> (mUnit.resource_name);
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
@@ -245,6 +248,5 @@ namespace MMO
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			return unitGo;
 		}
-
 	}
 }

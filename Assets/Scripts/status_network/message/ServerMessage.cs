@@ -6,13 +6,6 @@ using System;
 
 namespace MMO
 {
-	[Serializable]
-	public class SkillInfo:MessageBase
-	{
-		public int skillId;
-		public int[] targetIds;
-		public Vector3 targetPos;
-	}
 
 	[Serializable]
 	public class HitInfo:MessageBase
@@ -31,6 +24,7 @@ namespace MMO
 		public MMOTransform transform;
 		public MMOAnimation animation;
 		public MMOAction action;
+		public int[] skillIds;
 
 		public UnitInfo ()
 		{
@@ -38,6 +32,7 @@ namespace MMO
 			transform = new MMOTransform ();
 			animation = new MMOAnimation ();
 			action = new MMOAction ();
+			skillIds = new int[0];
 		}
 	}
 
@@ -87,8 +82,13 @@ namespace MMO
 	[System.Serializable]
 	public class MMOTransform:MessageBase
 	{
-		public Vector3 playerPosition;
-		public Vector3 playerForward;
+		public IntVector3 playerPosition;
+		public IntVector3 playerForward;
+
+		public MMOTransform(){
+			playerPosition = new IntVector3 ();
+			playerForward = new IntVector3 ();
+		}
 	}
 
 	[System.Serializable]
@@ -103,31 +103,35 @@ namespace MMO
 	{
 		public int attackType;
 		public int targetId;
-		public Vector3 targetPos;
+		public IntVector3 targetPos;
+
+		public MMOAction(){
+			targetPos = new IntVector3 ();
+		}
 	}
 
+
 	[System.Serializable]
-	public class IntVector3:MessageBase
+	public struct IntVector3
 	{
 		public int x;
 		public int y;
 		public int z;
 
-		public static IntVector3 GetInstance (Vector3 vector)
+		public const int MULTIPLE = 1000;
+
+		public static IntVector3 ToIntVector3 (Vector3 vector)
 		{
 			IntVector3 pos = new IntVector3 ();
-			pos.x = (int)(vector.x * 1000);
-			pos.y = (int)(vector.y * 1000);
-			pos.z = (int)(vector.z * 1000);
+			pos.x = (int)(vector.x * MULTIPLE);
+			pos.y = (int)(vector.y * MULTIPLE);
+			pos.z = (int)(vector.z * MULTIPLE);
 			return pos;
 		}
 
-		public static Vector3 ToVector3 (IntVector3 vector)
+		public static Vector3 ToVector3 (IntVector3 intPos)
 		{
-			Vector3 pos = new Vector3 ();
-			pos.x = vector.x / 1000f;
-			pos.y = vector.y / 1000f;
-			pos.z = vector.z / 1000f;
+			Vector3 pos = new Vector3 (((float)intPos.x) / MULTIPLE, ((float)intPos.y) / MULTIPLE, ((float)intPos.z) / MULTIPLE);
 			return pos;
 		}
 	}
