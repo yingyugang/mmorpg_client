@@ -106,6 +106,7 @@ namespace MMO
 		public IntVector3 targetPos;
 
 		public MMOAction(){
+			attackType = -1;
 			targetPos = new IntVector3 ();
 		}
 	}

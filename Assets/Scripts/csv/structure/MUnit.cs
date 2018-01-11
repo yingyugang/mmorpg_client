@@ -72,7 +72,7 @@ namespace MMO
 		[CsvColumn ()]
 		public string adv;
 		[CsvColumn ()]//1.好戦型 2.厌戦型
-	public int disposition;
+		public int disposition;
 		[CsvColumn ()]
 		public int is_active;
 		[CsvColumn ()]
@@ -99,6 +99,10 @@ namespace MMO
 		private List<int> elementList;
 
 		public List<MUnitSkill> unitSkillList;
+
+		public int[] skillIds;
+
+		public List<int> skillIdList;
 
 	}
 }

@@ -9,7 +9,7 @@ namespace MMO
 {
 	public class CSVManager : SingleMonoBehaviour<CSVManager>
 	{
-		//public const string CSV_PATH = @"Assets/CSV";//
+		//	public const string CSV_PATH = @"Assets/CSV";//
 		private const string CSV_UNIT = "m_unit";
 		private const string CSV_SKILL = "m_skill";
 		private const string CSV_SKILL_EFFECT_BASE = "m_skill_effect_base";
@@ -81,7 +81,6 @@ namespace MMO
 		{
 			mUnitSkillList = CreateCSVList<MUnitSkill> (CSV_UNIT_SKILL);
 			unitSkillDic = GetDictionary<MUnitSkill> (mUnitSkillList);
-			//set skills to units
 			for (int i = 0; i < mUnitSkillList.Count; i++) {
 				MUnitSkill mUnitSkill = mUnitSkillList [i];
 				if(mUnitDic.ContainsKey(mUnitSkill.unit_id)){
@@ -89,8 +88,18 @@ namespace MMO
 					if (mUnit.unitSkillList == null) {
 						mUnit.unitSkillList = new List<MUnitSkill> ();
 					}
+					if(mUnit.skillIdList == null){
+						mUnit.skillIdList = new List<int> ();
+					}
+					mUnit.skillIdList.Add(mUnitSkill.skill_id);
 					mUnit.unitSkillList.Add (mUnitSkill);
 				}
+			}
+			for(int i=0;i<mUnitList.Count;i++){
+				if(mUnitList [i].skillIdList!=null)
+					mUnitList [i].skillIds = mUnitList [i].skillIdList.ToArray ();
+				else
+					mUnitList [i].skillIds = new int[0];
 			}
 		}
 
@@ -111,6 +120,5 @@ namespace MMO
 			}
 			return dic;
 		}
-
 	}
 }

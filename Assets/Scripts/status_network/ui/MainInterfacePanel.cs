@@ -35,8 +35,8 @@ namespace MMO
 
 		protected override void Start(){
 			base.Start ();
-			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
-			SetSkillDatas (unitSkill);
+//			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
+//			SetSkillDatas (unitSkill);
 		}
 
 		//TODO
@@ -67,8 +67,9 @@ namespace MMO
 			}
 		}
 
-		void SetSkillDatas (MMOUnitSkill unitSkill)
+		public void SetSkillDatas (MMOUnitSkill unitSkill)
 		{
+			Debug.Log ("SetSkillDatas");
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;
@@ -87,6 +88,8 @@ namespace MMO
 		}
 
 		void UpdateCooldowns(){
+			if (mUnitSkill == null || mUnitSkill.skillList == null)
+				return;
 			List<SkillBase> skills = mUnitSkill.skillList;
 			for (int i = 0; i < skills.Count; i++) {
 				SkillBase sb = skills [i];

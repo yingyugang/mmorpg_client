@@ -11,23 +11,31 @@ namespace MMO
 		public Dictionary<int,SkillBase> skillDic;
 		public MMOUnit mmoUnit;
 		Transform mTrans;
+		bool mIsInitted;
 
 		void Awake ()
 		{
 			mTrans = transform;
 			mmoUnit = GetComponent<MMOUnit> ();
-			InitSkills ();
 		}
 
-		//TODO Init Skills from config files;
+		public bool IsInitted{
+			get{
+				return mIsInitted;
+			}
+		}
+
 		public void InitSkills ()
 		{
+			if (mIsInitted)
+				return;
+			mIsInitted = true;
 			skillList = new List<SkillBase> ();
 			skillDic = new Dictionary<int, SkillBase> ();
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < mmoUnit.unitInfo.skillIds.Length; i++) {
 				SkillShoot skillBase = new SkillShoot ();
 				skillBase.mmoUnit = mmoUnit;
-				skillBase.skillId = i;
+				skillBase.skillId = mmoUnit.unitInfo.skillIds[i];
 				skillList.Add (skillBase);
 				skillDic.Add (skillBase.skillId, skillBase);
 			}
@@ -36,6 +44,7 @@ namespace MMO
 		//スキルidがサーバーに通信される
 		public void PlayClientSkill (SkillBase skillBase)
 		{
+			Debug.Log ("PlayClientSkill");
 			if (skillBase.IsUseAble ()) {
 				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
 			}
@@ -46,6 +55,7 @@ namespace MMO
 		//必须要服务器验证过返回过后才能调用，防止延迟，否则需要在冷却部分加上逻辑。
 		public void PlayServerSkill (int skillId)
 		{
+			Debug.Log (skillId);
 			SkillBase skillBase = skillDic [skillId];
 			skillBase.Play ();
 		}

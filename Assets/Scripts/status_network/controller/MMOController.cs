@@ -13,6 +13,8 @@ namespace MMO
 		public MMOClient client;
 
 		public Transform player;
+		//if Serialized this while not run the construction function when game start;
+		[System.NonSerialized]
 		public PlayerInfo playerInfo;
 		public string playerName;
 
@@ -96,7 +98,7 @@ namespace MMO
 
 		public void Connect (string ip, int port)
 		{
-			client.Connect (ip, port, OnConnected, OnRecievePlayerInfo, OnRecieveMessage);
+			client.Connect (ip, port, OnConnected, OnRecievePlayerInfo, OnRecievePlayerMessage);
 		}
 
 		public void SendChat (string chat)
@@ -111,7 +113,7 @@ namespace MMO
 			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
 			selectedUnit = mmoUnit;
 			handleSelectRing.transform.SetParent (mmoUnit.transform);
-			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);
+			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);//大会集材
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -125,6 +127,7 @@ namespace MMO
 		void OnRecievePlayerInfo (NetworkMessage msg)
 		{
 			playerInfo = msg.ReadMessage<PlayerInfo> ();
+			Debug.Log (playerInfo.skillId);
 			mPlayerId = playerInfo.playerId;
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
@@ -136,7 +139,7 @@ namespace MMO
 				minimap.SetActive (true);
 		}
 
-		void OnRecieveMessage (NetworkMessage msg)
+		void OnRecievePlayerMessage (NetworkMessage msg)
 		{
 			TransferData transferData = msg.ReadMessage<TransferData> ();
 			HashSet<int> activedPlayerIds = new HashSet<int> ();
@@ -166,6 +169,7 @@ namespace MMO
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
 //				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.transform = transferData.playerDatas [i].unitInfo.transform;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
+				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.skillIds = transferData.playerDatas [i].unitInfo.skillIds;
 				if (!string.IsNullOrEmpty (transferData.playerDatas [i].chat)) {
 					if (onChat != null) {
 						if (transferData.playerDatas [i].playerId != mPlayerId)
@@ -175,6 +179,13 @@ namespace MMO
 					}
 				}
 				MMOUnit mmoUnit = mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ();
+				if (transferData.playerDatas [i].playerId == mPlayerId) {
+					MMOUnitSkill mmoUnitSkill = mmoUnit.GetComponent<MMOUnitSkill> ();
+					if(!mmoUnitSkill.IsInitted){
+						mmoUnitSkill.InitSkills ();
+						PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
+					}
+				}
 				if (mmoUnit.unitInfo.action.attackType > 0) {
 					mmoUnit.GetComponent<MMOUnitSkill> ().PlayServerSkill (mmoUnit.unitInfo.action.attackType);
 					mmoUnit.unitInfo.action.attackType = -1;

@@ -23,12 +23,10 @@ namespace MMO
 			loginPanel.gameObject.SetActive (true);
 		}
 
-		//TODO skill icon  can't be changed now.
-		public void AddSkill(){
-//			mainInterfacePanel.AddSkillIcon(
-
-
+		public void InitSkillIcons(MMOUnitSkill mmoUnitSkill){
+			mainInterfacePanel.SetSkillDatas (mmoUnitSkill);
 		}
+
 
 	}
 }

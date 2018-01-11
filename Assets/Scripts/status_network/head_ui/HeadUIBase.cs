@@ -43,7 +43,7 @@ namespace MMO
 
 		public void SetUnit (MMOUnit mmoUnit)
 		{
-			Debug.Log(mmoUnit.unitInfo.attribute.unitName);
+//			Debug.Log(mmoUnit.unitInfo.attribute.unitName);
 			this.mmoUnit = mmoUnit;
 			text.text = mmoUnit.unitInfo.attribute.unitName;
 			CapsuleCollider capsuleCollider = mmoUnit.GetComponent<CapsuleCollider> ();
