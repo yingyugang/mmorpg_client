@@ -11,11 +11,11 @@ namespace MMO
 	public class MMOController : SingleMonoBehaviour<MMOController>
 	{
 		public MMOClient client;
+		public bool isStart;
 
 		public Transform player;
 		//if Serialized this while not run the construction function when game start;
-		[System.NonSerialized]
-		public PlayerInfo playerInfo;
+		PlayerInfo mPlayerInfo;
 		public string playerName;
 
 		public string targetIp;
@@ -59,25 +59,25 @@ namespace MMO
 
 		void Update ()
 		{
-			if (client.IsConnected) {
+			if (isStart) {
 				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction ||
-				    simpleRpgPlayerController._animation_speed != mPreSpeed || playerInfo.skillId > -1) {
+				    simpleRpgPlayerController._animation_speed != mPreSpeed || mPlayerInfo.skillId > -1) {
 					mPrePosition = player.position;
 					mPreForward = player.forward;
 					mPreAction = mSimpleRpgAnimator.Action;
 					mPreSpeed = simpleRpgPlayerController._animation_speed;
 //					SendPlayerMessage (player);
-					playerInfo.unitInfo.transform.playerForward = IntVector3.ToIntVector3 (player.forward);
-					playerInfo.unitInfo.transform.playerPosition = IntVector3.ToIntVector3 (player.position);
+					mPlayerInfo.unitInfo.transform.playerForward = IntVector3.ToIntVector3 (player.forward);
+					mPlayerInfo.unitInfo.transform.playerPosition = IntVector3.ToIntVector3 (player.position);
 					if (selectedUnit != null) {
-						playerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
+						mPlayerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
 					} else {
-						playerInfo.targetId = -1;
+						mPlayerInfo.targetId = -1;
 					}
-					playerInfo.unitInfo.animation.action = mPreAction;
-					playerInfo.unitInfo.animation.animSpeed = mPreSpeed;
-					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
-					playerInfo.skillId = -1;
+					mPlayerInfo.unitInfo.animation.action = mPreAction;
+					mPlayerInfo.unitInfo.animation.animSpeed = mPreSpeed;
+					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
+					mPlayerInfo.skillId = -1;
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -98,14 +98,14 @@ namespace MMO
 
 		public void Connect (string ip, int port)
 		{
-			client.Connect (ip, port, OnConnected, OnRecievePlayerInfo, OnRecievePlayerMessage);
+			client.Connect (ip, port, OnConnected, OnRecieveGameStartInfo, OnRecievePlayerMessage);
 		}
 
 		public void SendChat (string chat)
 		{
-			playerInfo.chat = chat;
-			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
-			playerInfo.chat = "";
+			mPlayerInfo.chat = chat;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
+			mPlayerInfo.chat = "";
 		}
 
 		void SelectUnit (RaycastHit hit)
@@ -124,19 +124,20 @@ namespace MMO
 		//TODO 把通信数据放在一个主对象的不同参数里面，这个容易理解很保存数据。
 		//开发量也相对较少，否则分开的化需要不同的对象，方法，action，数量多，时间长不易于管理。
 		//主要是玩家自己的操作
-		void OnRecievePlayerInfo (NetworkMessage msg)
+		void OnRecieveGameStartInfo (NetworkMessage msg)
 		{
-			playerInfo = msg.ReadMessage<PlayerInfo> ();
-			Debug.Log (playerInfo.skillId);
-			mPlayerId = playerInfo.playerId;
+			mPlayerInfo = msg.ReadMessage<PlayerInfo> ();
+			Debug.Log (mPlayerInfo.skillId);
+			mPlayerId = mPlayerInfo.playerId;
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
-			playerInfo.unitInfo.attribute.unitName = playerName;
-			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, playerInfo);
+			mPlayerInfo.unitInfo.attribute.unitName = playerName;
+			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive (true);
 			PanelManager.Instance.chatPanel.gameObject.SetActive (true);
 			if (minimap != null)
 				minimap.SetActive (true);
+			isStart = true;
 		}
 
 		void OnRecievePlayerMessage (NetworkMessage msg)
@@ -258,6 +259,12 @@ namespace MMO
 			GameObject go = Instantiate (headUIPrefab.gameObject);
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			return unitGo;
+		}
+	
+		public PlayerInfo playerInfo{
+			get{
+				return mPlayerInfo;
+			}
 		}
 	}
 }
