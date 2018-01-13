@@ -96,30 +96,24 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		_wanted_position = _t.position;
 	}
 
-	bool mIsMonsterSelected;
+	bool mIsUnControllAblePointDown;
 	void Update()
 	{
-		/*
-		 * Uncomment this code if you want to make a toggle button for running / walking
-		if(Input.GetButtonDown("ToggleRun"))
-		{
-			_running = !_running;
-		}
-		*/
-		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
-			return;
-
 		if(Input.GetMouseButtonDown(0)){
-			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
-				mIsMonsterSelected = true;
+			if (EventSystem.current.IsPointerOverGameObject ()) {
+				mIsUnControllAblePointDown = true;
+			} else {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+					mIsUnControllAblePointDown = true;
+				}
 			}
 		}
 
-		if(mIsMonsterSelected && Input.GetMouseButtonUp(0)){
-			mIsMonsterSelected = false;
+		if(Input.GetMouseButtonUp(0)){
+			mIsUnControllAblePointDown = false;
 		}
 
-		if(mIsMonsterSelected){
+		if(mIsUnControllAblePointDown){
 			return;
 		}
 
@@ -187,13 +181,9 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	// Physics should be handled within FixedUpdate()
 	void FixedUpdate()
 	{
-		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
-			return;
-
-		if(mIsMonsterSelected){
+		if(mIsUnControllAblePointDown){
 			return;
 		}
-
 		
 		_animation_speed = 1;
 		float input_modifier = (_input_x != 0.0f && _input_y != 0.0f) ? 0.7071f : 1.0f;

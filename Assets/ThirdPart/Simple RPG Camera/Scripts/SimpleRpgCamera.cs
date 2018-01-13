@@ -85,23 +85,24 @@ public class SimpleRpgCamera : MonoBehaviour
 		}
 	}
 
-	bool mIsMonsterSelected;
+	bool mIsUnControllAblePointDown;
 	void Update()
 	{
-		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
-			return;
-
 		if(Input.GetMouseButtonDown(0)){
-			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),Mathf.Infinity,1<<LayerConstant.LAYER_UNIT)){
-				mIsMonsterSelected = true;
+			if (EventSystem.current.IsPointerOverGameObject ()) {
+				mIsUnControllAblePointDown = true;
+			} else {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+					mIsUnControllAblePointDown = true;
+				}
 			}
 		}
 
-		if(mIsMonsterSelected && Input.GetMouseButtonUp(0)){
-			mIsMonsterSelected = false;
+		if(Input.GetMouseButtonUp(0)){
+			mIsUnControllAblePointDown = false;
 		}
 
-		if(mIsMonsterSelected){
+		if(mIsUnControllAblePointDown){
 			return;
 		}
 
@@ -210,10 +211,7 @@ public class SimpleRpgCamera : MonoBehaviour
 	// seems to be working fine
 	void FixedUpdate()
 	{
-		if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) && EventSystem.current.IsPointerOverGameObject ())
-			return;
-		
-		if(mIsMonsterSelected){
+		if(mIsUnControllAblePointDown){
 			return;
 		}
 
