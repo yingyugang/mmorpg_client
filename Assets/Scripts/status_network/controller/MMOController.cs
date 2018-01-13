@@ -27,11 +27,11 @@ namespace MMO
 		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
-		public HeadUIBase headUIPrefab;
 		public GameObject handleSelectRing;
 		public MMOUnit selectedUnit;
 		public GameObject hitUITextPrefab;
 
+		HeadUIBase mHeadUIPrefab;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
@@ -55,6 +55,7 @@ namespace MMO
 			mMonsterDic = new Dictionary<int, GameObject> ();
 			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveServerActions;
+			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
 		}
 
 		void Update ()
@@ -256,7 +257,7 @@ namespace MMO
 			unitGo.SetActive (true);
 			MMOUnit mmoUnit = unitGo.GetComponent<MMOUnit> ();
 			mmoUnit.unitInfo = unitInfo;
-			GameObject go = Instantiate (headUIPrefab.gameObject);
+			GameObject go = Instantiate (mHeadUIPrefab.gameObject);
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			return unitGo;
 		}
