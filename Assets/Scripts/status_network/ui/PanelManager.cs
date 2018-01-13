@@ -27,6 +27,15 @@ namespace MMO
 			mainInterfacePanel.SetSkillDatas (mmoUnitSkill);
 		}
 
+		public void ShowBigMapMask(){
+			if(!mainInterfacePanel.img_bigmap_mask.gameObject.activeInHierarchy)
+				mainInterfacePanel.img_bigmap_mask.gameObject.SetActive (true);
+		}
+
+		public void HideBigMapMask(){
+			if(mainInterfacePanel.img_bigmap_mask.gameObject.activeInHierarchy)
+				mainInterfacePanel.img_bigmap_mask.gameObject.SetActive (false);
+		}
 
 	}
 }

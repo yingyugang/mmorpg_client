@@ -30,6 +30,7 @@ namespace MMO
 		public GameObject handleSelectRing;
 		public MMOUnit selectedUnit;
 		public GameObject hitUITextPrefab;
+		public KGFMapSystem miniMap;
 
 		HeadUIBase mHeadUIPrefab;
 		SimpleRpgAnimator mSimpleRpgAnimator;
@@ -56,6 +57,8 @@ namespace MMO
 			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveServerActions;
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
+			if (miniMap == null)
+				miniMap = FindObjectOfType<KGFMapSystem> ();
 		}
 
 		void Update ()
@@ -95,6 +98,14 @@ namespace MMO
 					}
 				}
 			}
+
+			if(miniMap!=null){
+				if(miniMap.GetFullscreen ())
+					PanelManager.Instance.ShowBigMapMask ();
+				else
+					PanelManager.Instance.HideBigMapMask ();
+			}
+
 		}
 
 		public void Connect (string ip, int port)
@@ -267,5 +278,6 @@ namespace MMO
 				return mPlayerInfo;
 			}
 		}
+
 	}
 }

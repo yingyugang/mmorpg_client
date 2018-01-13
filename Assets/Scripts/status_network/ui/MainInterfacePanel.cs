@@ -15,6 +15,7 @@ namespace MMO
 		public Text txt_name;
 		public Text txt_level;
 		public Slider slider_skill;
+		public Image img_bigmap_mask;
 
 		const int SKILL_ICON_COUNT = 20;
 		public List<Sprite> skillIconList;
