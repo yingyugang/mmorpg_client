@@ -7,12 +7,15 @@
 // #define KGFConsole
 
 // comment this, if you do not want to change values while in play mode
+
+
 #define OnlineChangeMode
 
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using MMO;
 
 /// <summary>
 /// This class contains all code neccessary to display and use the KGFMapSystem in a project. The KGFMapSystem will collect all KGFMapIcons in the scene and display them in a minimap/map
@@ -2400,6 +2403,7 @@ public class KGFMapSystem : KGFModule, KGFICustomGUI, KGFIValidator
 		itsCameraOutput.clearFlags = CameraClearFlags.Depth;
 		itsCameraOutput.depth = 50;
 		itsCameraOutput.cullingMask = 1 << itsLayerMinimap;
+		itsCameraOutput.gameObject.AddComponent<IgnoreFog> ();
 		
 		if(itsModeFullscreen)
 		{
