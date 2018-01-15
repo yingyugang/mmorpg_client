@@ -8,6 +8,7 @@ namespace MMO
 	public class MMOUnit : MonoBehaviour
 	{
 		public UnitInfo unitInfo;
+		public float animationSpeedOffset = 3;
 		Transform mTrans;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
@@ -35,7 +36,7 @@ namespace MMO
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {
 				mSimpleRpgAnimator.Action = action;
-				mSimpleRpgAnimator.SetSpeed (speed);
+				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
 			} else if (mAnimator !=null){
 				//TODO
 				if (mPreAction != action) {
@@ -43,7 +44,7 @@ namespace MMO
 						mAnimator.Play (action, 0, Random.Range (0, 1f));
 					else
 						mAnimator.Play (action, 0, 0);
-					mAnimator.speed = speed;
+					mAnimator.speed = speed * animationSpeedOffset;
 					mPreAction = action;
 				}
 			}
