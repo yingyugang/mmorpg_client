@@ -59,6 +59,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnExit()
 		{
+			Debug.Log ("OnExit");
 			recordParam.Value = false;
 			mAnimator.SetBool (animatorParam.Value,false);
 		}

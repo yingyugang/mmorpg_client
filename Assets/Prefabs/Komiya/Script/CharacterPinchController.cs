@@ -113,10 +113,10 @@ public class CharacterPinchController : MonoBehaviour {
 	private Rigidbody rigid;
 	private bool loadFirst = true;
 
-	private Animator animation;
+	private Animator mAnimation;
 
 	void Start () {
-		animation = GetComponent<Animator> ();
+		mAnimation = GetComponent<Animator> ();
 		rigid = GetComponent<Rigidbody> ();
 	}
 	
@@ -276,7 +276,7 @@ public class CharacterPinchController : MonoBehaviour {
 				footFallStartY = transform.position.y;
 			}
 		}
-		animation.enabled = true;
+		mAnimation.enabled = true;
 		rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;	
 		rigid.useGravity = true;
 		rigid.isKinematic = false;
@@ -304,7 +304,7 @@ public class CharacterPinchController : MonoBehaviour {
 		
 		rigid.useGravity = false;
 		rigid.isKinematic = true;
-		animation.enabled = false;
+		mAnimation.enabled = false;
 		ancher.rotation = Quaternion.identity;
 		preAnchorPosition = ancher.position;
 		prepreAnchorPosition = preAnchorPosition;

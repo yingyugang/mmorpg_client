@@ -66,12 +66,12 @@ public class CharacterActionController : MonoBehaviour {
 	private float onTurnFlg=1.0f;
 
 	public AudioClip audioShot;
-	private AudioSource audio;
+	private AudioSource mAudio;
 
 	void Start () {
 		animator = GetComponent<Animator>();
 		rigid = GetComponent<Rigidbody> ();
-		audio = GetComponent<AudioSource> ();
+		mAudio = GetComponent<AudioSource> ();
 	}
 	
 	void Update () {
@@ -219,7 +219,7 @@ public class CharacterActionController : MonoBehaviour {
 
 			arrowObj.GetComponentInChildren<ArrowToched> ().startParticle ();
 		}
-		audio.PlayOneShot (audioShot);
+		mAudio.PlayOneShot (audioShot);
 
 		plullsetA = false;
 		plullsetB = false;
