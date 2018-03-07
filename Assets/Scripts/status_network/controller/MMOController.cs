@@ -175,13 +175,10 @@ namespace MMO
 					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerPosition);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerForward);
-//					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().Action = transferData.playerDatas [i].unitInfo.animation.action;
-//					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<SimpleRpgAnimator> ().SetSpeed (transferData.playerDatas [i].unitInfo.animation.animSpeed);
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				}
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
-//				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.transform = transferData.playerDatas [i].unitInfo.transform;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.skillIds = transferData.playerDatas [i].unitInfo.skillIds;
 				if (!string.IsNullOrEmpty (transferData.playerDatas [i].chat)) {
@@ -207,7 +204,7 @@ namespace MMO
 			}
 		}
 
-		//TODO 以后需要跟player info 合并，只保留更新其他npc和玩家自身两个api。
+		//TODO 以后需要跟playerinfo合并，只保留更新其他npc和玩家自身两个api。
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			TransferData data = msg.ReadMessage<TransferData> ();
