@@ -12,13 +12,16 @@ namespace MMO
 		Transform mTrans;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
+
 		CapsuleCollider mCapsuleCollider;
+		CharacterController mCharacterController;
 
 		void Awake(){
 			mTrans = transform;
 			mSimpleRpgAnimator = GetComponent<SimpleRpgAnimator> ();
 			mAnimator =  GetComponentInChildren<Animator> (true);
 			mCapsuleCollider = GetComponent<CapsuleCollider> ();
+			mCharacterController = GetComponent<CharacterController> ();
 		}
 
 		void Update(){
@@ -29,7 +32,12 @@ namespace MMO
 		}
 
 		public Vector3 GetHeadPos(){
-			return mTrans.position + new Vector3 (0,mCapsuleCollider.height,0);
+			if (mCharacterController != null)
+				return mTrans.position + new Vector3 (0, mCharacterController.height, 0);
+			else if (mCapsuleCollider != null)
+				return mTrans.position + new Vector3 (0, mCapsuleCollider.height, 0);
+			else
+				return mTrans.position;
 		}
 
 		string mPreAction;

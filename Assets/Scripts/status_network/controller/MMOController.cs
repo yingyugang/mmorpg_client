@@ -167,6 +167,7 @@ namespace MMO
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
 					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
 					mOtherPlayerIds.Add (transferData.playerDatas [i].playerId);
+					Debug.Log (transferData.playerDatas [i].unitInfo.attribute.unitId);
 					if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
 						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, playerGO);
 					}
@@ -239,6 +240,7 @@ namespace MMO
 			for (int i = 0; i < hitInfo.hitObjectIds.Length; i++) {
 				GameObject prefab = this.hitPrefabs [hitInfo.hitObjectIds [i]];
 				GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (hitInfo.hitPositions [i]), Quaternion.identity);
+				go.transform.position += new Vector3 (0, 1, 0);//TODO
 				Destroy (go, 10);
 			}
 			ShowHitUIInfo (hitInfo);
@@ -247,9 +249,9 @@ namespace MMO
 		void ShowHitUIInfo (HitInfo hitInfo)
 		{
 			for (int j = 0; j < hitInfo.hitIds.Length; j++) {
-				if (mMonsterDic.ContainsKey (hitInfo.hitIds [j])) {
-					GameObject go = mMonsterDic [hitInfo.hitIds [j]];
-					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, go.GetComponent<MMOUnit> ().GetHeadPos (), Quaternion.identity);
+				if (mUnitDic.ContainsKey (hitInfo.hitIds[j])) {
+					GameObject go = mUnitDic [hitInfo.hitIds [j]];
+					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, go.GetComponent<MMOUnit> ().GetHeadPos () + new Vector3(Random.Range(-0.5f,0.5f),0,Random.Range(-0.5f,0.5f)), Quaternion.identity);
 					uiGo.GetComponent<TextMeshPro> ().text = hitInfo.damages [j].ToString ();
 					uiGo.SetActive (true);
 				}
