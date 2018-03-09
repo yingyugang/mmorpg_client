@@ -28,6 +28,9 @@ namespace MMO
 		protected override void Awake ()
 		{
 			base.Awake ();
+		}
+
+		void Start(){
 			StartLoading ();
 		}
 
@@ -88,19 +91,19 @@ namespace MMO
 					if (mUnit.unitSkillList == null) {
 						mUnit.unitSkillList = new List<MUnitSkill> ();
 					}
-					if(mUnit.skillIdList == null){
-						mUnit.skillIdList = new List<int> ();
-					}
-					mUnit.skillIdList.Add(mUnitSkill.skill_id);
+//					if(mUnit.skillIdList == null){
+//						mUnit.skillIdList = new List<int> ();
+//					}
+//					mUnit.skillIdList.Add(mUnitSkill.skill_id);
 					mUnit.unitSkillList.Add (mUnitSkill);
 				}
 			}
-			for(int i=0;i<mUnitList.Count;i++){
-				if(mUnitList [i].skillIdList!=null)
-					mUnitList [i].skillIds = mUnitList [i].skillIdList.ToArray ();
-				else
-					mUnitList [i].skillIds = new int[0];
-			}
+//			for(int i=0;i<mUnitList.Count;i++){
+//				if(mUnitList [i].skillIdList!=null)
+//					mUnitList [i].skillIds = mUnitList [i].skillIdList.ToArray ();
+//				else
+//					mUnitList [i].skillIds = new int[0];
+//			}
 		}
 
 		List<T> CreateCSVList<T> (string csvname) where T:BaseCSVStructure, new()

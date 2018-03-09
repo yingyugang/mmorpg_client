@@ -99,6 +99,46 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	bool mIsUnControllAblePointDown;
 	void Update()
 	{
+//		#if UNITY_IOS || UNITY_ANDROID
+//		if(Input.touchCount>0)
+//		{
+//
+//			if (EventSystem.current.IsPointerOverGameObject ()) {
+//				return;
+//			} else {
+//				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+//					return;
+//				}
+//			}
+//
+//			Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+//			RaycastHit[] hits = Physics.RaycastAll(ray);
+//
+//			foreach(RaycastHit hit in hits)
+//			{
+//				bool done = false;
+//
+//				foreach(string tag in clickableTags)
+//				{
+//					if(hit.transform.CompareTag(tag))
+//					{
+//						_wanted_position = hit.point;
+//						_last_distance = Vector3.Distance(_t.position, _wanted_position);
+//						done = true;
+//						break;
+//					}
+//				}
+//
+//				if(done)
+//				{
+//					break;
+//				}
+//			}
+//		}
+//		return;
+//		#endif
+
+
 		if(Input.GetMouseButtonDown(0)){
 			if (EventSystem.current.IsPointerOverGameObject ()) {
 				mIsUnControllAblePointDown = true;
@@ -146,7 +186,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		{
 			if(clickToMove)
 			{
-				if(Input.GetMouseButton(0))
+				if(Input.GetMouseButtonDown(0))
 				{
 					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 					RaycastHit[] hits = Physics.RaycastAll(ray);
