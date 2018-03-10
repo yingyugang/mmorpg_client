@@ -14,7 +14,7 @@ public class PlatformController : MonoBehaviour {
 		simpleRpgPlayerController.keyboardControl = true;
 		simpleRpgCamera.allowRotation = true;
 		simpleRpgCamera.minAngle = 10;
-		simpleRpgCamera.minAngle = 90;
+		simpleRpgCamera.maxAngle = 90;
 		#elif UNITY_IOS || UNITY_ANDROID
 			simpleRpgPlayerController.clickToMove = true;
 			simpleRpgPlayerController.keyboardControl = false;

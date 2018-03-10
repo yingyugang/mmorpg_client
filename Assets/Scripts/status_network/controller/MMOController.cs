@@ -177,7 +177,11 @@ namespace MMO
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerPosition);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerForward);
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
+				} else {
+					SetCurrentPlayer (transferData.playerDatas [i]);
+					mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
 				}
+
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
@@ -204,6 +208,17 @@ namespace MMO
 				}
 			}
 		}
+
+		void SetCurrentPlayer(PlayerInfo playInfo){
+			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
+			simpleRpgPlayerController.enabled = false;
+			if (playInfo.unitInfo.attribute.currentHP <= 0) {
+				PanelManager.Instance.ShowCommonDialog ("TITLE_DEATH","MSG_DEATH",()=>{
+					MMOClient.Instance.SendRespawn();
+				});
+			}
+		}
+
 
 		//TODO 以后需要跟playerinfo合并，只保留更新其他npc和玩家自身两个api。
 		void OnRecieveServerActions (NetworkMessage msg)

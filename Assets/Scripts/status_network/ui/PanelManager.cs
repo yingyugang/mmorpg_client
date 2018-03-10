@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace MMO
@@ -13,6 +14,8 @@ namespace MMO
 		public MainInterfacePanel mainInterfacePanel;
 		public ChatPanel chatPanel;
 		public ServerListPanel serverListPanel;
+		//TODO
+		public CommonDialogPanel commonDialogPanel;
 
 		protected override void Awake ()
 		{
@@ -36,6 +39,11 @@ namespace MMO
 			if(mainInterfacePanel.img_bigmap_mask.gameObject.activeInHierarchy)
 				mainInterfacePanel.img_bigmap_mask.gameObject.SetActive (false);
 		}
+
+		public void ShowCommonDialog(string title,string msg,UnityAction onOk){
+			commonDialogPanel.ShowCommonDialog (title,msg,onOk);
+		}
+
 
 	}
 }

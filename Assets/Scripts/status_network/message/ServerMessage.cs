@@ -111,6 +111,12 @@ namespace MMO
 		}
 	}
 
+	[System.Serializable]
+	public class MMORespawn:MessageBase
+	{
+		public int playerId;
+	}
+
 
 	[System.Serializable]
 	public struct IntVector3
