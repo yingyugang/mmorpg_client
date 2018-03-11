@@ -70,7 +70,6 @@ namespace MMO
 
 		public void SetSkillDatas (MMOUnitSkill unitSkill)
 		{
-			Debug.Log ("SetSkillDatas");
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;

@@ -137,7 +137,6 @@ namespace MMO
 		void OnRecieveGameStartInfo (NetworkMessage msg)
 		{
 			mPlayerInfo = msg.ReadMessage<PlayerInfo> ();
-			Debug.Log (mPlayerInfo.skillId);
 			mPlayerId = mPlayerInfo.playerId;
 			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
@@ -165,7 +164,6 @@ namespace MMO
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
 					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
 					mOtherPlayerIds.Add (transferData.playerDatas [i].playerId);
-					Debug.Log (transferData.playerDatas [i].unitInfo.attribute.unitId);
 					if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
 						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, playerGO);
 					}
@@ -221,11 +219,13 @@ namespace MMO
 			simpleRpgPlayerController.enabled = false;
 			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
+				PerformManager.Instance.ShowDeathEffect ();
 				PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
 					MMOClient.Instance.SendRespawn ();
 				});
 			} else {
 				PanelManager.Instance.HideCommonDialog ();
+				PerformManager.Instance.HideDeathEffect ();
 			}
 		}
 

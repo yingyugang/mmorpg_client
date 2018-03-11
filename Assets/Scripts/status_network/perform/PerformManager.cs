@@ -45,6 +45,14 @@ namespace MMO
 			uiGo.GetComponent<TextMeshPro> ().text = damage.ToString ();
 			uiGo.SetActive (true);
 		}
-	
+
+		public void ShowDeathEffect(){
+			ImageEffectManager.Instance.ShowGray ();
+		}
+
+		public void HideDeathEffect(){
+			ImageEffectManager.Instance.HideGray ();
+		}
+
 	}
 }

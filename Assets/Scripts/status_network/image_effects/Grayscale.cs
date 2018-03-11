@@ -11,10 +11,14 @@ namespace UnityStandardAssets.ImageEffects
         [Range(-1.0f,1.0f)]
         public float    rampOffset;
 
+		[Range(0.0f,1.0f)]
+		public float    lerp;
+
         // Called by camera to apply image effect
         void OnRenderImage (RenderTexture source, RenderTexture destination) {
             material.SetTexture("_RampTex", textureRamp);
             material.SetFloat("_RampOffset", rampOffset);
+			material.SetFloat ("_Lerp", lerp);
             Graphics.Blit (source, destination, material);
         }
     }

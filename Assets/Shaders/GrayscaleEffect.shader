@@ -2,6 +2,7 @@ Shader "Hidden/Grayscale Effect" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "white" {}
 	_RampTex ("Base (RGB)", 2D) = "grayscaleRamp" {}
+	_Lerp("_Lerp", Float) = 0.5
 }
 
 SubShader {
@@ -17,6 +18,7 @@ uniform sampler2D _MainTex;
 uniform sampler2D _RampTex;
 uniform half _RampOffset;
 half4 _MainTex_ST;
+half _Lerp;
 
 fixed4 frag (v2f_img i) : SV_Target
 {
@@ -25,6 +27,7 @@ fixed4 frag (v2f_img i) : SV_Target
 	half2 remap = half2 (grayscale + _RampOffset, .5);
 	fixed4 output = tex2D(_RampTex, remap);
 	output.a = original.a;
+	output.rgb = lerp(original.rgb,output.rgb,_Lerp);
 	return output;
 }
 ENDCG
