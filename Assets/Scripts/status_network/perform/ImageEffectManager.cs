@@ -52,30 +52,7 @@ namespace MMO
 
 		void Update(){
 			UpdateGray ();
-		}
-
-
-		IEnumerator _ShowGray(float duration){
-			Grayscale grayscale = imageEffectCamera.gameObject.GetOrAddComponent<Grayscale> ();
-			imageEffectCamera.gameObject.GetOrAddComponent<Grayscale> ().enabled = true;
-			float t = 0;
-			while(t < 1){
-
-				yield return null;
-			}
-		}
-
-		IEnumerator _HideGray(){
-			Grayscale grayscale = imageEffectCamera.gameObject.GetOrAddComponent<Grayscale> ();
-
-			float t = 0;
-			while(t < 1){
-
-				yield return null;
-			}
-			imageEffectCamera.gameObject.GetOrAddComponent<Grayscale> ().enabled = false;
-		}
-
+   		}
 
 	}
 
