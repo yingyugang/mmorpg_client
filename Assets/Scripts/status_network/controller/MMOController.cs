@@ -22,14 +22,12 @@ namespace MMO
 		public SimpleRpgCamera rpgCamera;
 		public List<ShootObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
-		public List<GameObject> hitPrefabs;
 		public List<GameObject> unitPrefabs;
 		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
 		public MMOUnit selectedUnit;
-		public GameObject hitUITextPrefab;
 		public KGFMapSystem miniMap;
 
 		HeadUIBase mHeadUIPrefab;
@@ -180,6 +178,15 @@ namespace MMO
 				} else {
 					SetCurrentPlayer (transferData.playerDatas [i]);
 					mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
+
+				}
+
+				//TODO temp change the mmounit when respawn;
+				if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
+					if (mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
+						//TODO need remove old unit.
+						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId,mPlayerDic [transferData.playerDatas [i].playerId]);
+					}
 				}
 
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
@@ -212,13 +219,15 @@ namespace MMO
 		void SetCurrentPlayer(PlayerInfo playInfo){
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
 			simpleRpgPlayerController.enabled = false;
+			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
-				PanelManager.Instance.ShowCommonDialog ("TITLE_DEATH","MSG_DEATH",()=>{
-					MMOClient.Instance.SendRespawn();
+				PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
+					MMOClient.Instance.SendRespawn ();
 				});
+			} else {
+				PanelManager.Instance.HideCommonDialog ();
 			}
 		}
-
 
 		//TODO 以后需要跟playerinfo合并，只保留更新其他npc和玩家自身两个api。
 		void OnRecieveServerActions (NetworkMessage msg)
@@ -252,25 +261,7 @@ namespace MMO
 
 		void OnHit (HitInfo hitInfo)
 		{
-			for (int i = 0; i < hitInfo.hitObjectIds.Length; i++) {
-				GameObject prefab = this.hitPrefabs [hitInfo.hitObjectIds [i]];
-				GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (hitInfo.hitPositions [i]), Quaternion.identity);
-				go.transform.position += new Vector3 (0, 1, 0);//TODO
-				Destroy (go, 10);
-			}
-			ShowHitUIInfo (hitInfo);
-		}
-
-		void ShowHitUIInfo (HitInfo hitInfo)
-		{
-			for (int j = 0; j < hitInfo.hitIds.Length; j++) {
-				if (mUnitDic.ContainsKey (hitInfo.hitIds[j])) {
-					GameObject go = mUnitDic [hitInfo.hitIds [j]];
-					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, go.GetComponent<MMOUnit> ().GetHeadPos () + new Vector3(Random.Range(-0.5f,0.5f),0,Random.Range(-0.5f,0.5f)), Quaternion.identity);
-					uiGo.GetComponent<TextMeshPro> ().text = hitInfo.damages [j].ToString ();
-					uiGo.SetActive (true);
-				}
-			}
+			PerformManager.Instance.ShowHitInfo (hitInfo,mUnitDic);
 		}
 
 		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
