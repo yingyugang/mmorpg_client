@@ -11,6 +11,7 @@ namespace MMO
 		public Button btn_ok;
 		public Text txt_title;
 		public Text txt_msg;
+		public Text txt_ok;
 		public GameObject uiRoot;
 		UnityAction mOnOk;
 
@@ -24,10 +25,11 @@ namespace MMO
 			});
 		}
 
-		public void ShowCommonDialog(string title,string msg,UnityAction onOk){
+		public void ShowCommonDialog(string title,string msg,string ok,UnityAction onOk){
 			mOnOk = onOk;
 			txt_title.text = title;
 			txt_msg.text = msg;
+			txt_ok.text = ok;
 			gameObject.SetActive(true);
 		}
 	}

@@ -40,8 +40,13 @@ namespace MMO
 				mainInterfacePanel.img_bigmap_mask.gameObject.SetActive (false);
 		}
 
-		public void ShowCommonDialog(string title,string msg,UnityAction onOk){
-			commonDialogPanel.ShowCommonDialog (title,msg,onOk);
+		public void HideCommonDialog(){
+			if (commonDialogPanel.gameObject.activeInHierarchy)
+				commonDialogPanel.gameObject.SetActive (false);
+		}
+
+		public void ShowCommonDialog(string title,string msg,string ok,UnityAction onOk){
+			commonDialogPanel.ShowCommonDialog (title,msg,ok,onOk);
 		}
 
 
