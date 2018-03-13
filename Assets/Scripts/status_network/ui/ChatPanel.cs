@@ -42,12 +42,12 @@ namespace MMO
 
 			//TODO
 			if (EventSystem.current.currentSelectedGameObject != input_send.gameObject) {
-				MMOController.Instance.simpleRpgPlayerController.enabled = true;
+//				MMOController.Instance.simpleRpgPlayerController.enabled = true;
 				mAlpha -= Time.deltaTime;
 			}
 			else {
 				mAlpha = 3;
-				MMOController.Instance.simpleRpgPlayerController.enabled = false;
+//				MMOController.Instance.simpleRpgPlayerController.enabled = false;
 			}
 			mAlpha = Mathf.Max (mAlpha,0.5f);
 			mCanvasGroup.alpha = mAlpha;
