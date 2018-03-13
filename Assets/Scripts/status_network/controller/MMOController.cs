@@ -219,13 +219,13 @@ namespace MMO
 			simpleRpgPlayerController.enabled = false;
 			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
-				PerformManager.Instance.ShowDeathEffect ();
+				PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
 				PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
 					MMOClient.Instance.SendRespawn ();
 				});
 			} else {
 				PanelManager.Instance.HideCommonDialog ();
-				PerformManager.Instance.HideDeathEffect ();
+				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 			}
 		}
 

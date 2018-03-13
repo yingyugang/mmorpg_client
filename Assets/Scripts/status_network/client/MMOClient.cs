@@ -37,7 +37,7 @@ namespace MMO
 
 		public void SendRespawn(){
 			MMORespawn respawn = new MMORespawn ();
-			Send (MessageConstant.CLIENT_TO_SERVER_RESPAWN,respawn);
+			Send (MessageConstant.CLIENT_TO_SERVER_PLAYER_RESPAWN,respawn);
 		}
 
 		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInfo, UnityAction<NetworkMessage> onRecieveMessage)

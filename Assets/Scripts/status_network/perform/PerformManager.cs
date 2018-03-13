@@ -26,7 +26,6 @@ namespace MMO
 		void ShowHitEffect(int objectId,IntVector3 pos){
 			GameObject prefab = this.hitPrefabs [objectId];
 			GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (pos), Quaternion.identity);
-			go.transform.position += new Vector3 (0, 1, 0);//TODO
 			Destroy (go, 10);
 		}
 
@@ -39,18 +38,28 @@ namespace MMO
 			}
 		}
 
+		//TODO change hit ui info color.
 		void ShowHitUIInfo (MMOUnit mmoUnit,int damage)
 		{
-			GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, mmoUnit.GetHeadPos () + new Vector3(Random.Range(-0.5f,0.5f),0,Random.Range(-0.5f,0.5f)), Quaternion.identity);
-			uiGo.GetComponent<TextMeshPro> ().text = damage.ToString ();
-			uiGo.SetActive (true);
+			if (damage != null) {
+				
+					GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, mmoUnit.GetHeadPos () + new Vector3 (Random.Range (-0.5f, 0.5f), 0, Random.Range (-0.5f, 0.5f)), Quaternion.identity);
+				if (damage > 0) {
+					uiGo.GetComponent<TextMeshPro> ().text = damage.ToString ();
+					uiGo.GetComponent<TextMeshPro> ().color = Color.red;
+				} else {
+					uiGo.GetComponent<TextMeshPro> ().text = -damage.ToString ();
+					uiGo.GetComponent<TextMeshPro> ().color = Color.green;
+				}
+				uiGo.SetActive (true);
+			}
 		}
 
-		public void ShowDeathEffect(){
+		public void ShowCurrentPlayerDeathEffect(MMOUnit playerUnit){
 			ImageEffectManager.Instance.ShowGray ();
 		}
 
-		public void HideDeathEffect(){
+		public void HideCurrentPlayerDeathEffect(){
 			ImageEffectManager.Instance.HideGray ();
 		}
 
