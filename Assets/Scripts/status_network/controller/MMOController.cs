@@ -207,9 +207,9 @@ namespace MMO
 						PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
 					}
 				}
-				if (mmoUnit.unitInfo.action.attackType > 0) {
-					mmoUnit.GetComponent<MMOUnitSkill> ().PlayServerSkill (mmoUnit.unitInfo.action.attackType);
-					mmoUnit.unitInfo.action.attackType = -1;
+				if (mmoUnit.unitInfo.action.actionId > 0) {
+					mmoUnit.GetComponent<MMOUnitSkill> ().PlayServerSkill (mmoUnit.unitInfo.action.actionId);
+					mmoUnit.unitInfo.action.actionId = -1;
 				}
 			}
 		}
@@ -249,9 +249,9 @@ namespace MMO
 				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.playerForward);
 				monster.unitInfo = unitInfo;
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
-				if (data.monsterDatas [i].action.attackType >= 0) {
-					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.attackType);
-					data.monsterDatas [i].action.attackType = -1;
+				if (data.monsterDatas [i].action.actionId >= 0) {
+					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.actionId);
+					data.monsterDatas [i].action.actionId = -1;
 				}
 			}
 			if (data.hitDatas.Length > 0) {
@@ -294,5 +294,22 @@ namespace MMO
 		public void ReleaseControll(){
 			simpleRpgPlayerController.enabled = true;
 		}
+
+		//Send the action to the server.
+		public void DoServerPlayerAction(int actionType,int actionId){
+			MMOAction action = new MMOAction ();
+			action.actionType = actionType;
+			action.actionId = actionId;
+			if(selectedUnit!=null)
+				action.targetId = selectedUnit.unitInfo.attribute.unitId;
+			MMOClient.Instance.SendAction (action);
+		}
+
+		//do the action from server.
+		public void DoClientPlayerAction(){
+			
+		}
+
+
 	}
 }

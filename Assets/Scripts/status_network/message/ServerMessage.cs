@@ -101,12 +101,21 @@ namespace MMO
 	[System.Serializable]
 	public class MMOAction:MessageBase
 	{
-		public int attackType;
+		//when  is the player and is send from client to server, the unitId is not be used,because it will be get the unit by the connectid.
+		public int casterId;
+		//the actionId of caster;(must)
+		public int actionId;
+		//1:unit skill,2:other action;(must)
+		public int actionType;
+
+		//the cast target unit id;(maybe)
 		public int targetId;
+		//the cast target position;(maybe)
 		public IntVector3 targetPos;
 
 		public MMOAction(){
-			attackType = -1;
+			actionId = -1;
+			actionType = 1;
 			targetPos = new IntVector3 ();
 		}
 	}

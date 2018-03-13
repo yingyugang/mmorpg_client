@@ -16,5 +16,6 @@ namespace MMO
 		public const short CLIENT_TO_SERVER_PLAYER_INFO = 9002;
 		public const short CLIENT_TO_SERVER_PLAYER_RESPAWN = 9003;
 
+		public const short PLAYER_ACTION = 10001;
 	}
 }

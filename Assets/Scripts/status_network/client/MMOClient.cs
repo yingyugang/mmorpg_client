@@ -41,6 +41,10 @@ namespace MMO
 			Send (MessageConstant.CLIENT_TO_SERVER_PLAYER_RESPAWN,respawn);
 		}
 
+		public void SendAction(MMOAction action){
+			Send (MessageConstant.PLAYER_ACTION, action);
+		}
+
 		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInfo, UnityAction<NetworkMessage> onRecieveMessage)
 		{
 			Debug.Log (string.Format ("{0},{1}", ip, port));
