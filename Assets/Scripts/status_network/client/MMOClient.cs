@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace MMO
 {
@@ -56,8 +57,12 @@ namespace MMO
 				onConnect (nm);
 		}
 
+		//TODO
 		void OnDisconnect (NetworkMessage nm)
 		{
+			MessageReciever.Instance.StopReceive ();
+			Scene currentScene = SceneManager.GetActiveScene ();
+			SceneManager.LoadScene (currentScene.name);
 			Debug.logger.Log ("<color=red>Disconnect</color>");
 		}
 
