@@ -175,8 +175,8 @@ namespace MMO
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				} else {
 					SetCurrentPlayer (transferData.playerDatas [i]);
-					mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
-
+					if(mPlayerInfo!=null)
+						mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
 				}
 
 				//TODO temp change the mmounit when respawn;
@@ -219,11 +219,13 @@ namespace MMO
 			simpleRpgPlayerController.enabled = false;
 			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
+				StopControll ();
 				PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
 				PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
 					MMOClient.Instance.SendRespawn ();
 				});
 			} else {
+				ReleaseControll ();
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 			}
@@ -285,5 +287,12 @@ namespace MMO
 			}
 		}
 
+		public void StopControll(){
+			simpleRpgPlayerController.enabled = false;
+		}
+
+		public void ReleaseControll(){
+			simpleRpgPlayerController.enabled = true;
+		}
 	}
 }
