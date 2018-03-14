@@ -136,6 +136,12 @@ namespace MMO
 
 		public const int MULTIPLE = 1000;
 
+		public IntVector3(int x,int y,int z){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
 		public static IntVector3 ToIntVector3 (Vector3 vector)
 		{
 			IntVector3 pos = new IntVector3 ();
@@ -149,6 +155,30 @@ namespace MMO
 		{
 			Vector3 pos = new Vector3 (((float)intPos.x) / MULTIPLE, ((float)intPos.y) / MULTIPLE, ((float)intPos.z) / MULTIPLE);
 			return pos;
+		}
+
+		public static IntVector3 operator+ (IntVector3 b, IntVector3 c) {
+			IntVector3 v = new IntVector3();
+			v.x = b.x + c.x;
+			v.y = b.y + c.y;
+			v.z = b.z + c.z;
+			return v;
+		}
+
+		public static IntVector3 operator* (IntVector3 b, int c) {
+			IntVector3 v = new IntVector3();
+			v.x = b.x * c;
+			v.y = b.y * c;
+			v.z = b.z * c;
+			return v;
+		}
+
+		public static IntVector3 operator/ (IntVector3 b, int c) {
+			IntVector3 v = new IntVector3();
+			v.x = b.x / c;
+			v.y = b.y / c;
+			v.z = b.z / c;
+			return v;
 		}
 	}
 }
