@@ -69,8 +69,8 @@ namespace MMO
 					mPreAction = mSimpleRpgAnimator.Action;
 					mPreSpeed = simpleRpgPlayerController._animation_speed;
 //					SendPlayerMessage (player);
-					mPlayerInfo.unitInfo.transform.playerForward = IntVector3.ToIntVector3 (player.forward);
-					mPlayerInfo.unitInfo.transform.playerPosition = IntVector3.ToIntVector3 (player.position);
+					mPlayerInfo.unitInfo.transform.forward = IntVector3.ToIntVector3 (player.forward);
+					mPlayerInfo.unitInfo.transform.position = IntVector3.ToIntVector3 (player.position);
 					if (selectedUnit != null) {
 						mPlayerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
 					} else {
@@ -170,8 +170,8 @@ namespace MMO
 				}
 				if (transferData.playerDatas [i].playerId != mPlayerId) {
 					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerPosition);
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.playerForward);
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.position);
+					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.forward);
 					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				} else {
 					SetCurrentPlayer (transferData.playerDatas [i]);
@@ -245,8 +245,8 @@ namespace MMO
 				}
 				UnitInfo unitInfo = data.monsterDatas [i];
 				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ();
-				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.playerPosition);
-				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.playerForward);
+				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.position);
+				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.forward);
 				monster.unitInfo = unitInfo;
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 				if (data.monsterDatas [i].action.actionId >= 0) {

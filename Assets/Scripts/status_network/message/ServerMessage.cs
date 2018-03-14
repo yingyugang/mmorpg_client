@@ -82,12 +82,12 @@ namespace MMO
 	[System.Serializable]
 	public class MMOTransform:MessageBase
 	{
-		public IntVector3 playerPosition;
-		public IntVector3 playerForward;
+		public IntVector3 position;
+		public IntVector3 forward;
 
 		public MMOTransform(){
-			playerPosition = new IntVector3 ();
-			playerForward = new IntVector3 ();
+			position = new IntVector3 ();
+			forward = new IntVector3 ();
 		}
 	}
 
