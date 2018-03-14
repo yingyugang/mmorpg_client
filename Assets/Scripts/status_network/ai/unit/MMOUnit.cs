@@ -40,6 +40,15 @@ namespace MMO
 				return mTrans.position;
 		}
 
+		public Vector3 GetBodyPos(){
+			if (mCharacterController != null)
+				return mTrans.position + new Vector3 (0, mCharacterController.height / 2, 0);
+			else if (mCapsuleCollider != null)
+				return mTrans.position + new Vector3 (0, mCapsuleCollider.height / 2, 0);
+			else
+				return mTrans.position;
+		}
+
 		string mPreAction;
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {
