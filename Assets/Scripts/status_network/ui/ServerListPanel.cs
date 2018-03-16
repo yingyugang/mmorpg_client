@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace MMO
 {
@@ -11,6 +12,7 @@ namespace MMO
 		public GameObject itemPrefab;
 		public GameObject txt_search;
 		public Transform listParent;
+		public UnityAction onBtnIpClick;
 		Dictionary<string,GameObject> mServerBtns;
 
 		float mCheckIpInterval = 1;
@@ -33,29 +35,34 @@ namespace MMO
 					if (!mServerBtns.ContainsKey (ip)) {
 						GameObject go = Instantiate (itemPrefab);
 						Text text = go.GetComponentInChildren<Text> (true);
-						string serverName = mServerNames[0];
+						string serverName = mServerNames [0];
 						text.text = serverName;
 						go.SetActive (true);
 						go.transform.SetParent (listParent);
 						go.transform.localScale = Vector3.one;
 						mServerBtns.Add (ip, go);
 						txt_search.SetActive (false);
-						go.GetComponent<Button> ().onClick.AddListener (()=>{
+						go.GetComponent<Button> ().onClick.AddListener (() => {
 							targetIp = ip;
-							gameObject.SetActive(false);
-							PanelManager.Instance.loginPanel.gameObject.SetActive(true);
+							gameObject.SetActive (false);
+							if (PanelManager.Instance != null)
+								PanelManager.Instance.loginPanel.gameObject.SetActive (true);
+							if (onBtnIpClick != null)
+								onBtnIpClick ();
 						});
 					}
 				}
 			}
 		}
 
-		void OnDisable(){
+		void OnDisable ()
+		{
 			MessageReciever.Instance.StopReceive ();
 		}
 
-		string[] GetServerNames(){
-			string[] serverNames = new string[]{
+		string[] GetServerNames ()
+		{
+			string[] serverNames = new string[] {
 				"トゥルーマンの世界",//灵感来自于The Truman Show。
 				"费尔威泽(Felwithe)",
 				"自由港(Freeport)",
@@ -73,7 +80,8 @@ namespace MMO
 				"尼瑞克(Neriak)",
 				"卡拉丁(Kaladim)",
 				"艾露丁(Erudin)",
-				"阿克农(Ak'Anon)"};
+				"阿克农(Ak'Anon)"
+			};
 			return serverNames;
 		}
 	}

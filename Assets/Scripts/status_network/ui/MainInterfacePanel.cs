@@ -18,7 +18,6 @@ namespace MMO
 		public Image img_bigmap_mask;
 
 		const int SKILL_ICON_COUNT = 20;
-		public List<Sprite> skillIconList;
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
@@ -36,8 +35,6 @@ namespace MMO
 
 		protected override void Start(){
 			base.Start ();
-//			MMOUnitSkill unitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill>();
-//			SetSkillDatas (unitSkill);
 		}
 
 		//TODO
@@ -47,8 +44,6 @@ namespace MMO
 			item.transform.localScale = Vector3.one;
 			item.transform.localPosition = Vector3.zero;
 			item.SetActive (true);
-			Image imgIcon = item.GetComponent<Image>();
-			imgIcon.sprite = skillIconList[skillBase.skillId];
 			Button skillBtn = item.GetComponentInChildren<Button> (true);
 			skillButtonList.Add (skillBtn);
 			mSkillButtonDic.Add (skillBtn,skillBase);
@@ -62,8 +57,6 @@ namespace MMO
 				item.transform.localScale = Vector3.one;
 				item.transform.localPosition = Vector3.zero;
 				item.SetActive (true);
-				Image imgIcon = item.GetComponent<Image>();
-				imgIcon.sprite = skillIconList[i % skillIconList.Count];
 				skillButtonList.Add (item.GetComponentInChildren<Button>(true));
 			}
 		}
@@ -82,7 +75,8 @@ namespace MMO
 					ShowSkillSilder(3f,unitSkill,skillBase);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
-				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
+				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
+				Debug.Log(imgIcon.sprite);
 				imgIcon.gameObject.SetActive (true);
 			}
 		}
@@ -102,9 +96,6 @@ namespace MMO
 				} else {
 					imgCooldown.gameObject.SetActive (true);
 				}
-				Image imgIcon = btnSkill.GetComponent<Image>();
-				imgIcon.sprite = skillIconList[sb.skillId % skillIconList.Count];
-				imgIcon.gameObject.SetActive (true);
 			}
 		}
 

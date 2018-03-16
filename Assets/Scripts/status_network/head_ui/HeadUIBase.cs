@@ -7,8 +7,13 @@ namespace MMO
 {
 	public class HeadUIBase : MonoBehaviour
 	{
-		TextMesh mTextMesh;
+		public GameObject container_head_info;
 		public SpriteRenderer healthBar;
+		public TextMesh txt_name;
+
+		public GameObject container_bubble;
+		public TextMeshPro txt_bubble;
+
 		float mDefaultHealthSize;
 		public MMOUnit mmoUnit;
 		Transform mTrans;
@@ -17,7 +22,10 @@ namespace MMO
 		{
 			if (healthBar != null)
 				mDefaultHealthSize = healthBar.size.x;
-			mTextMesh = GetComponentInChildren<TextMesh> (true);
+			if(txt_name==null)
+				txt_name = GetComponentInChildren<TextMesh> (true);
+			if (txt_bubble == null)
+				txt_bubble = GetComponentInChildren<TextMeshPro> (true);
 			mTrans = transform;
 		}
 
@@ -46,11 +54,23 @@ namespace MMO
 		{
 //			Debug.Log(mmoUnit.unitInfo.attribute.unitName);
 			this.mmoUnit = mmoUnit;
-			mTextMesh.text = mmoUnit.unitInfo.attribute.unitName;
+			txt_name.text = mmoUnit.unitInfo.attribute.unitName;
 			CapsuleCollider capsuleCollider = mmoUnit.GetComponent<CapsuleCollider> ();
 			transform.SetParent (mmoUnit.transform);
 			transform.localScale = Vector3.one;
 			transform.localPosition = new Vector3 (0, capsuleCollider.height, 0);
 		}
+
+		public void SwitchToBubble(string text){
+			container_head_info.SetActive (false);
+			container_bubble.SetActive (true);
+			txt_bubble.SetText (text);
+		}
+
+		public void SwitchToHeadInfo(){
+			container_head_info.SetActive (true);
+			container_bubble.SetActive (false);
+		}
+
 	}
 }

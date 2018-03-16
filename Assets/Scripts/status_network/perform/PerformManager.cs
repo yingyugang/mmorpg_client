@@ -29,6 +29,7 @@ namespace MMO
 		{
 			GameObject prefab = this.hitPrefabs [objectId];
 			GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (pos), Quaternion.identity);
+			Debug.Log (IntVector3.ToVector3 (pos));
 			Destroy (go, 10);
 		}
 

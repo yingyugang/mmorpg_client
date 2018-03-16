@@ -20,6 +20,7 @@ namespace MMO
 
 		public string targetIp;
 		public SimpleRpgCamera rpgCamera;
+		//TODO csvに遷移するが必要。
 		public List<ShootObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
@@ -124,6 +125,13 @@ namespace MMO
 			selectedUnit = mmoUnit;
 			handleSelectRing.transform.SetParent (mmoUnit.transform);
 			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);//大会集材
+		}
+
+		public MMOUnit GetUnitByUnitId(int unitId){
+			if (mUnitDic.ContainsKey (unitId)) {
+				return mUnitDic [unitId].GetComponent<MMOUnit>();
+			}
+			return null;
 		}
 
 		void OnConnected (NetworkMessage msg)
@@ -305,11 +313,10 @@ namespace MMO
 			MMOClient.Instance.SendAction (action);
 		}
 
-		//do the action from server.
-		public void DoClientPlayerAction(){
-			
+		//Do the action from server.
+		public void DoClientPlayerAction(MMOAction action){
+			ActionManager.Instance.DoAction (action);
 		}
-
 
 	}
 }

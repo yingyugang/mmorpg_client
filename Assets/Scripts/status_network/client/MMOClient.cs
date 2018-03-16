@@ -23,6 +23,7 @@ namespace MMO
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MONSTER_INFO, OnRecieveMonsterInfos);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_PLAYER_INFO, OnRecievePlayerInfo);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
+			client.RegisterHandler (MessageConstant.PLAYER_ACTION, OnRecievePlayerAction);
 		}
 
 		public bool IsConnected {
@@ -65,8 +66,8 @@ namespace MMO
 		void OnDisconnect (NetworkMessage nm)
 		{
 			MessageReciever.Instance.StopReceive ();
-			Scene currentScene = SceneManager.GetActiveScene ();
-			SceneManager.LoadScene (currentScene.name);
+			Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene ();
+			UnityEngine.SceneManagement.SceneManager.LoadScene (currentScene.name);
 			Debug.logger.Log ("<color=red>Disconnect</color>");
 		}
 
@@ -79,6 +80,11 @@ namespace MMO
 		void OnRecieveMonsterInfos(NetworkMessage msg){
 			if (onRecieveMonsterInfos != null)
 				onRecieveMonsterInfos (msg);
+		}
+
+		void OnRecievePlayerAction(NetworkMessage msg){
+			MMOAction mmoAction = msg.ReadMessage<MMOAction> ();
+			MMOController.Instance.DoClientPlayerAction (mmoAction);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)

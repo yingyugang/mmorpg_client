@@ -58,6 +58,10 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 		Debug.Log ("Thread Done!");
 	} 
 
+	void OnDestroy(){
+		thread.Abort();
+	}
+
 	void OnApplicationQuit(){
 		thread.Abort();
 	}

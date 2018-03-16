@@ -11,6 +11,7 @@ namespace MMO
 	public class HitInfo:MessageBase
 	{
 		public int casterId;
+		public IntVector3 hitCenterPosition;
 		public int[] hitIds;
 		public int[] damages;
 		public int[] hitObjectIds;
@@ -105,7 +106,7 @@ namespace MMO
 		public int casterId;
 		//the actionId of caster;(must)
 		public int actionId;
-		//1:unit skill,2:other action;(must)
+		//1:unit skill,2:create projectile object;3:create hit object(must)
 		public int actionType;
 
 		//the cast target unit id;(maybe)
@@ -125,7 +126,6 @@ namespace MMO
 	{
 		public int playerId;
 	}
-
 
 	[System.Serializable]
 	public struct IntVector3
