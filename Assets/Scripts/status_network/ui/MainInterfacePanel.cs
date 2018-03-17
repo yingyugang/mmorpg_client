@@ -24,12 +24,11 @@ namespace MMO
 		Dictionary<Button,SkillBase> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
-
+		bool mIsIconInited = false;
 		protected override void Awake ()
 		{
 			base.Awake ();
 			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
-			skillButtonList = new List<Button> ();
 			InitIconItems ();
 		}
 
@@ -37,20 +36,11 @@ namespace MMO
 			base.Start ();
 		}
 
-		//TODO
-		public void AddSkillIcon(SkillBase skillBase){
-			GameObject item = Instantiate (skillItemPrefab);
-			item.transform.SetParent (skillGrid.transform);
-			item.transform.localScale = Vector3.one;
-			item.transform.localPosition = Vector3.zero;
-			item.SetActive (true);
-			Button skillBtn = item.GetComponentInChildren<Button> (true);
-			skillButtonList.Add (skillBtn);
-			mSkillButtonDic.Add (skillBtn,skillBase);
-		}
-
 		void InitIconItems ()
 		{
+			if (mIsIconInited)
+				return;
+			skillButtonList = new List<Button> ();
 			for (int i = 0; i < SKILL_ICON_COUNT; i++) {
 				GameObject item = Instantiate (skillItemPrefab);
 				item.transform.SetParent (skillGrid.transform);
@@ -59,13 +49,16 @@ namespace MMO
 				item.SetActive (true);
 				skillButtonList.Add (item.GetComponentInChildren<Button>(true));
 			}
+			mIsIconInited = true;
 		}
 
 		public void SetSkillDatas (MMOUnitSkill unitSkill)
 		{
+			InitIconItems ();
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;
+			Debug.Log (skillButtonList.Count);
 			for (int i = 0; i < skills.Count; i++) {
 				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
