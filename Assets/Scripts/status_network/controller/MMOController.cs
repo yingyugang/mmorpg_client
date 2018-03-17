@@ -98,7 +98,10 @@ namespace MMO
 				}
 			}
 			if (selectedUnit != null) {
+				handleSelectRing.gameObject.SetActive (true);
 				handleSelectRing.transform.position = selectedUnit.transform.position;
+			} else {
+				handleSelectRing.gameObject.SetActive (false);
 			}
 
 			if(miniMap!=null){
