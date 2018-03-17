@@ -23,17 +23,10 @@ public class AssetBundleWindow : EditorWindow
 	static string[] allStreamAssetPath;
 	static string fullResourceAssetPath;
 	static string tempResourceAssetPath;
-	#if UNITY_IOS
 	static string fullStreamPath;
 	static string fullTmpOutputPath;
 	static string fullTmpVersionOutputPath;
 	static string fullServerCSVPath;
-	#elif UNITY_ANDROID
-	static string fullStreamPath;
-	static string fullTmpOutputPath;
-	static string fullTmpVersionOutputPath;
-	static string fullServerCSVPath;
-	#endif
 	static string serverCSV;
 
 	static void InitPath ()
@@ -239,7 +232,7 @@ public class AssetBundleWindow : EditorWindow
 			#elif UNITY_ANDROID
 			BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
 			#else
-			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None);
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal);
 			#endif
 		} else {
 			List<AssetBundleBuild> abList = new List<AssetBundleBuild> ();
@@ -261,7 +254,7 @@ public class AssetBundleWindow : EditorWindow
 				BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None, BuildTarget.Android);
 			}
 			#else
-			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None);
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal);
 			#endif
 		}
 
