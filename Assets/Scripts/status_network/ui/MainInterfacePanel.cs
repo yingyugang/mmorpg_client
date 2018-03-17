@@ -69,7 +69,6 @@ namespace MMO
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
-				Debug.Log(imgIcon.sprite);
 				imgIcon.gameObject.SetActive (true);
 			}
 		}

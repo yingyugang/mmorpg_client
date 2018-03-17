@@ -45,7 +45,7 @@ namespace MMO
 		//TODO change hit ui info color.
 		void ShowHitUIInfo (MMOUnit mmoUnit, int damage)
 		{
-			if (damage != damage) {
+			if (damage != 0) {
 				GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, mmoUnit.GetHeadPos () + new Vector3 (Random.Range (-0.5f, 0.5f), 0, Random.Range (-0.5f, 0.5f)), Quaternion.identity);
 				if (damage > 0) {
 					uiGo.GetComponent<TextMeshPro> ().text = damage.ToString ();

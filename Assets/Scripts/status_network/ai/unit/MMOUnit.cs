@@ -9,6 +9,9 @@ namespace MMO
 	{
 		public UnitInfo unitInfo;
 		public float animationSpeedOffset = 3;
+		//用于判断是否是当前帧数据
+		public int frame;
+		Collider mCollider;
 		Transform mTrans;
 		SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
@@ -22,6 +25,7 @@ namespace MMO
 			mAnimator =  GetComponentInChildren<Animator> (true);
 			mCapsuleCollider = GetComponent<CapsuleCollider> ();
 			mCharacterController = GetComponent<CharacterController> ();
+			mCollider = GetComponent<Collider> ();
 		}
 
 		void Update(){
@@ -29,6 +33,13 @@ namespace MMO
 			unitInfo.transform.playerPosition = mTrans.position;
 			unitInfo.transform.playerForward = mTrans.forward;
 			#endif
+		}
+
+		public void Death(){
+		}
+
+		public void UnCollider(){
+			mCollider.enabled = false;
 		}
 
 		public Vector3 GetHeadPos(){

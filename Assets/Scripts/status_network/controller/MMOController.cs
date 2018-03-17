@@ -97,6 +97,9 @@ namespace MMO
 					}
 				}
 			}
+			if (selectedUnit != null) {
+				handleSelectRing.transform.position = selectedUnit.transform.position;
+			}
 
 			if(miniMap!=null){
 				if(miniMap.GetFullscreen ())
@@ -123,8 +126,8 @@ namespace MMO
 		{
 			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
 			selectedUnit = mmoUnit;
-			handleSelectRing.transform.SetParent (mmoUnit.transform);
-			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);//大会集材
+//			handleSelectRing.transform.SetParent (mmoUnit.transform);
+//			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);//大会集材
 		}
 
 		public MMOUnit GetUnitByUnitId(int unitId){
@@ -239,10 +242,12 @@ namespace MMO
 			}
 		}
 
+		int mCurrentFrame = 0;
 		//TODO 以后需要跟playerinfo合并，只保留更新其他npc和玩家自身两个api。
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			TransferData data = msg.ReadMessage<TransferData> ();
+			mCurrentFrame ++;
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey (data.monsterDatas [i].attribute.unitId)) {
 					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType, data.monsterDatas [i]);
@@ -251,17 +256,34 @@ namespace MMO
 					if (!mUnitDic.ContainsKey (data.monsterDatas [i].attribute.unitId))
 						mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
 				}
+				mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ().frame = mCurrentFrame;
 				UnitInfo unitInfo = data.monsterDatas [i];
 				MMOUnit monster = mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ();
 				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.position);
 				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.forward);
 				monster.unitInfo = unitInfo;
+				if (monster.unitInfo.attribute.currentHP <= 0) {
+					monster.Death ();
+				}
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 				if (data.monsterDatas [i].action.actionId >= 0) {
 					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.actionId);
 					data.monsterDatas [i].action.actionId = -1;
 				}
 			}
+			List<int> removeList = new List<int> ();
+			foreach(int id in mMonsterDic.Keys){
+				if(mMonsterDic[id].GetComponent<MMOUnit>().frame!=mCurrentFrame){
+					removeList.Add (id);
+				}
+			}
+
+			for(int i=0;i<removeList.Count;i++){
+				Destroy (mMonsterDic [removeList[i]]);
+				mMonsterDic.Remove (removeList[i]);
+				mUnitDic.Remove (removeList[i]);
+			}
+
 			if (data.hitDatas.Length > 0) {
 				for (int i = 0; i < data.hitDatas.Length; i++) {
 					OnHit (data.hitDatas [i]);
