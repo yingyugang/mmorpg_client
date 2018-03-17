@@ -267,6 +267,11 @@ namespace MMO
 					OnHit (data.hitDatas [i]);
 				}
 			}
+			if(data.actions.Length > 0){
+				for(int i = 0; i < data.actions.Length; i++) {
+					DoClientPlayerAction (data.actions[i]);
+				}
+			}
 		}
 
 		void OnHit (HitInfo hitInfo)
