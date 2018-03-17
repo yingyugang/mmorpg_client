@@ -185,7 +185,6 @@ namespace MMO
 				string iconName = CSVManager.Instance.skillDic[skillId].skill_icon;
 				string path = "Images/SkillIcons/" + iconName;
 				sprite = LoadAsset<Sprite> (path);
-				Debug.Log (path + "||" + sprite);
 			}
 			return sprite;
 		}

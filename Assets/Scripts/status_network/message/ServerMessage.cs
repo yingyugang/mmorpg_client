@@ -58,12 +58,14 @@ namespace MMO
 		public PlayerInfo[] playerDatas;
 		public UnitInfo[] monsterDatas;
 		public HitInfo[] hitDatas;
+		public MMOAction[] actions;
 
 		public TransferData ()
 		{
 			playerDatas = new PlayerInfo[0];
 			monsterDatas = new UnitInfo[0];
 			hitDatas = new HitInfo[0];
+			actions = new MMOAction[0];
 		}
 	}
 

@@ -9,6 +9,7 @@ namespace MMO
 	{
 		public void DoAction (MMOAction action)
 		{
+			Debug.Log (JsonUtility.ToJson(action));
 			switch (action.actionType) {
 			case 1:
 				//MMOSkillManager.Instance.DoSkill (playerUnit,targetUnit,action);
@@ -32,7 +33,7 @@ namespace MMO
 			//TODO need to get the real skill information from csv.
 			//now the action.actionId means the skill id.
 			switch (action.actionId) {
-			case 1:
+			case 21:
 				CreateProjectileShoot (action);
 				break;
 			case 2:
@@ -44,7 +45,7 @@ namespace MMO
 				break;
 
 			default:
-
+				CreateProjectileShoot (action);
 				break;
 			}
 		}
@@ -61,7 +62,7 @@ namespace MMO
 			ShootProjectileObject so = shootGo.GetComponent<ShootProjectileObject> ();
 			if (action.targetId > 0) {
 				MMOUnit target = MMOController.Instance.GetUnitByUnitId (action.targetId);
-				so.Shoot (caster, target.GetBodyPos(), Vector3.zero);
+				so.Shoot (caster, target.transform, Vector3.zero);
 			} else {
 				so.Shoot (caster,IntVector3.ToVector3(action.targetPos), Vector3.zero);
 			}
