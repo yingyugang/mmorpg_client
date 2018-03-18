@@ -157,7 +157,8 @@ namespace MMO
 			mPlayerInfo.unitInfo.attribute.unitName = playerName;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive (true);
-			PanelManager.Instance.chatPanel.gameObject.SetActive (true);
+			//TODO
+//			PanelManager.Instance.chatPanel.gameObject.SetActive (true);
 			if (minimap != null)
 				minimap.SetActive (true);
 			isStart = true;
