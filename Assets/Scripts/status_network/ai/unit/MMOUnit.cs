@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MMO
 {
@@ -35,7 +36,12 @@ namespace MMO
 			#endif
 		}
 
+		public UnityAction onDeath;
 		public void Death(){
+			if (onDeath != null) {
+				onDeath ();
+				onDeath = null;
+			}
 		}
 
 		public void UnCollider(){

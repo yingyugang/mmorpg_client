@@ -35,6 +35,7 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 	}
 
 	public void StopReceive(){
+		udp.Close ();
 		thread.Abort();
 	}
 
