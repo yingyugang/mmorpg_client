@@ -64,12 +64,31 @@ namespace MMO
 				Button btnSkill = skillButtonList [i];
 				SkillBase skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
+					if(mSelectButton!=null){
+						UnSelectSkillButton(mSelectButton);
+					}
 					mSelectButton = btnSkill;
+					SelectSkillButton(mSelectButton);
 					ShowSkillSilder(3f,unitSkill,skillBase);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
 				imgIcon.gameObject.SetActive (true);
+			}
+		}
+
+		void UnSelectSkillButton(Button skillBtn){
+			if(skillBtn!=null){
+				Transform activeTrans = skillBtn.transform.parent.Find ("img_active");
+				activeTrans.gameObject.SetActive (false);
+				skillBtn = null;
+			}
+		}
+
+		void SelectSkillButton(Button skillBtn){
+			if(skillBtn!=null){
+				Transform activeTrans = skillBtn.transform.parent.Find ("img_active");
+				activeTrans.gameObject.SetActive (true);
 			}
 		}
 
@@ -118,17 +137,14 @@ namespace MMO
 
 		Coroutine mCoroutine;
 		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
-			if (mCoroutine != null)
+			if (mCoroutine != null) {
 				StopCoroutine (mCoroutine);
+			}
 			mCoroutine = StartCoroutine (_ShowSkillSilder(duration,unitSkill,skillBase));
 		}
 
 		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (1,0.1f);
-			if(mSelectButton!=null){
-				Transform activeTrans = mSelectButton.transform.parent.Find ("img_active");
-				activeTrans.gameObject.SetActive (true);
-			}
 			float t = 0;
 			slider_skill.value = 0;
 			while(t < 1){
@@ -137,11 +153,7 @@ namespace MMO
 				yield return null;
 			}
 			unitSkill.PlayClientSkill(skillBase);
-			if(mSelectButton!=null){
-				Transform activeTrans = mSelectButton.transform.parent.Find ("img_active");
-				activeTrans.gameObject.SetActive (false);
-				mSelectButton = null;
-			}
+			UnSelectSkillButton (mSelectButton);
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
 		}
 	}
