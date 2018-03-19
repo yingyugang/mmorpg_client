@@ -27,6 +27,7 @@ namespace MMO
 				PlayerPrefs.SetString(TARGET_PORT,input_port.text);
 				PlayerPrefs.SetString(TARGET_NAME,input_name.text);
 				PlayerPrefs.Save();
+				PlatformController.Instance.ShowJoystick();
 				uiRoot.SetActive(false);
 			});
 		}

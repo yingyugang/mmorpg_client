@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using HedgehogTeam.EasyTouch;
 
 public enum CameraCollisionStyle
 {
@@ -88,15 +89,24 @@ public class SimpleRpgCamera : MonoBehaviour
 	bool mIsUnControllAblePointDown;
 	void Update()
 	{
-		if(Input.GetMouseButtonDown(0)){
-			if (EventSystem.current.IsPointerOverGameObject ()) {
+		
+
+
+		#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+
+		#else
+		if(!Input.GetMouseButtonUp(0)){
+			mIsUnControllAblePointDown = false;
+		}
+		if ((Input.GetMouseButtonDown(0)  &&  EventSystem.current.IsPointerOverGameObject())) {
+			Debug.Log ("EventSystem.current.IsPointerOverGameObject");
+			mIsUnControllAblePointDown = true;
+		} else {
+			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
 				mIsUnControllAblePointDown = true;
-			} else {
-				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
-					mIsUnControllAblePointDown = true;
-				}
 			}
 		}
+		#endif
 
 		if(Input.GetMouseButtonUp(0)){
 			mIsUnControllAblePointDown = false;
@@ -241,22 +251,31 @@ public class SimpleRpgCamera : MonoBehaviour
 				{
 					if(invertX)
 					{
-						_input_rotation.x -= Input.GetAxis("Mouse X") * sensitivity.x;
+//						_input_rotation.x -= Input.GetAxis("Mouse X") * sensitivity.x;
+//						_input_rotation.x -= ETCInput.GetAxis("Horizontal") * sensitivity.x / 30;
+						_input_rotation.x -= EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
 					}
 					else
 					{
-						_input_rotation.x += Input.GetAxis("Mouse X") * sensitivity.x;
+//						_input_rotation.x += Input.GetAxis("Mouse X") * sensitivity.x;
+//						_input_rotation.x += ETCInput.GetAxis("Horizontal") * sensitivity.x / 30;
+						_input_rotation.x += EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
 					}
 
 					ClampRotation();
 
 					if(invertY)
 					{
-						_input_rotation.y += Input.GetAxis("Mouse Y") * sensitivity.y;
+						//Horizontal
+//						_input_rotation.y += Input.GetAxis("Mouse Y") * sensitivity.y;
+//						_input_rotation.y += ETCInput.GetAxis("Vertical") * sensitivity.y /30 ;
+						_input_rotation.y += EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
 					}
 					else
 					{
-						_input_rotation.y -= Input.GetAxis("Mouse Y") * sensitivity.y;
+//						_input_rotation.y -= Input.GetAxis("Mouse Y") * sensitivity.y;
+//						_input_rotation.y -= ETCInput.GetAxis("Vertical") * sensitivity.y/30;
+						_input_rotation.y -= EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
 					}
 
 					_input_rotation.y = Mathf.Clamp(_input_rotation.y, minAngle, maxAngle);
@@ -266,6 +285,10 @@ public class SimpleRpgCamera : MonoBehaviour
 					// Force the target's y rotation to face forward (if enabled) when right clicking
 					if(rotateObjects)
 					{
+						#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+
+
+						#else
 						if(Input.GetMouseButton(1))
 						{
 							foreach(Transform o in objectsToRotate)
@@ -273,14 +296,20 @@ public class SimpleRpgCamera : MonoBehaviour
 								o.rotation = Quaternion.Euler(0, _input_rotation.x, 0);
 							}
 						}
+						#endif
 					}
 
 					// If user is right clicking, set the default position to the current position
+					#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+
+
+					#else
 					if(Input.GetMouseButton(1))
 					{
 						originRotation = _input_rotation;
 						ClampRotation();
 					}
+					#endif
 				}
 			}
 			else
@@ -312,7 +341,6 @@ public class SimpleRpgCamera : MonoBehaviour
 			{
 				// Linecast to test if there are objects between the camera and the target using collision layers
 				RaycastHit hit;
-
 				if(Physics.Linecast(current_position, wanted_position, out hit, collisionLayers))
 				{
 					distance = Vector3.Distance(current_position, hit.point) - 0.2f;

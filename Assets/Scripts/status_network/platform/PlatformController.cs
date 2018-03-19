@@ -2,23 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour {
+namespace MMO
+{
+	public class PlatformController : SingleMonoBehaviour<PlatformController>
+	{
 
-	public SimpleRpgPlayerController simpleRpgPlayerController;
+		public SimpleRpgPlayerController simpleRpgPlayerController;
 
-	public SimpleRpgCamera simpleRpgCamera;
+		public SimpleRpgCamera simpleRpgCamera;
 
-	void Awake(){
-		#if UNITY_EDITOR
-		simpleRpgPlayerController.clickToMove = false;
-		simpleRpgPlayerController.keyboardControl = true;
-		simpleRpgCamera.allowRotation = true;
-		simpleRpgCamera.minAngle = 10;
-		simpleRpgCamera.maxAngle = 90;
-		#elif UNITY_IOS || UNITY_ANDROID
-			simpleRpgPlayerController.clickToMove = true;
-			simpleRpgPlayerController.keyboardControl = false;
-			simpleRpgCamera.allowRotation = false;
-		#endif
+		public GameObject etcJoystick;
+
+		void Awake ()
+		{
+			#if UNITY_EDITOR
+			simpleRpgPlayerController.clickToMove = false;
+			simpleRpgPlayerController.keyboardControl = true;
+			simpleRpgCamera.allowRotation = true;
+			simpleRpgCamera.minAngle = 10;
+			simpleRpgCamera.maxAngle = 90;
+			etcJoystick.SetActive (false);
+			#elif UNITY_IOS || UNITY_ANDROID
+			simpleRpgPlayerController.clickToMove = false;
+			simpleRpgPlayerController.keyboardControl = true;
+			simpleRpgCamera.allowRotation = true;
+			#endif
+		}
+
+		public void ShowJoystick(){
+			#if UNITY_EDITOR
+
+			#elif UNITY_IOS || UNITY_ANDROID
+			etcJoystick.SetActive(true) ;
+			#endif
+		}
+
 	}
 }

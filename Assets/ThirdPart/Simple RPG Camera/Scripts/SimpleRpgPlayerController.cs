@@ -41,6 +41,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	private Transform _t;
 	private CharacterController _controller;
 	private SimpleRpgAnimator _animator;
+	ETCJoystick mETCJoystick;
 
 	public bool Grounded
 	{
@@ -91,7 +92,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		_t = transform;
 		_controller = GetComponent<CharacterController>();
 		_animator = GetComponent<SimpleRpgAnimator>();
-
+		mETCJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 		_controller.slopeLimit = slopeLimit;
 		_wanted_position = _t.position;
 	}
@@ -139,20 +140,36 @@ public class SimpleRpgPlayerController : MonoBehaviour
 //		#endif
 
 
-		if(Input.GetMouseButtonDown(0)){
-			if (EventSystem.current.IsPointerOverGameObject ()) {
-				mIsUnControllAblePointDown = true;
-			} else {
-				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
-					mIsUnControllAblePointDown = true;
-				}
-			}
-		}
-
-		if(Input.GetMouseButtonUp(0)){
+		#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+		if (clickToMove && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+			Debug.Log ("EventSystem.current.IsPointerOverGameObject");
+			mIsUnControllAblePointDown = true;
+		} 
+		#else
+		if(!Input.GetMouseButton(0)){
 			mIsUnControllAblePointDown = false;
 		}
 
+		if(clickToMove && (Input.GetMouseButtonDown(0)  &&  EventSystem.current.IsPointerOverGameObject())){
+			Debug.Log ("EventSystem.current.IsPointerOverGameObject");
+			mIsUnControllAblePointDown = true;
+		}
+		#endif
+		else {
+			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+				mIsUnControllAblePointDown = true;
+			}
+		}
+
+		#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended){
+			mIsUnControllAblePointDown = false;
+		}
+		#else
+		if(Input.GetMouseButtonUp(0)){
+			mIsUnControllAblePointDown = false;
+		}
+		#endif
 		if(mIsUnControllAblePointDown){
 			return;
 		}
@@ -232,8 +249,16 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		{
 			if(keyboardControl)
 			{
+				#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+				if(mETCJoystick!=null){
+					_input_x = mETCJoystick.axisX.axisValue;
+					_input_y = mETCJoystick.axisY.axisValue;
+				}
+				#else
 				_input_x = Input.GetAxis("Horizontal");
 				_input_y = Input.GetAxis("Vertical");
+				#endif
+
 
 				/*
 				 * Uncomment this code if you want to add a strafing axis
