@@ -98,14 +98,14 @@ public class SimpleRpgCamera : MonoBehaviour
 		if(!Input.GetMouseButtonUp(0)){
 			mIsUnControllAblePointDown = false;
 		}
-		if ((Input.GetMouseButtonDown(0)  &&  EventSystem.current.IsPointerOverGameObject())) {
-			Debug.Log ("EventSystem.current.IsPointerOverGameObject");
-			mIsUnControllAblePointDown = true;
-		} else {
-			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
-				mIsUnControllAblePointDown = true;
-			}
-		}
+//		if ((Input.GetMouseButtonDown(0)  &&  EventSystem.current.IsPointerOverGameObject())) {
+//			Debug.Log ("EventSystem.current.IsPointerOverGameObject");
+//			mIsUnControllAblePointDown = true;
+//		} else {
+//			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+//				mIsUnControllAblePointDown = true;
+//			}
+//		}
 		#endif
 
 		if(Input.GetMouseButtonUp(0)){
@@ -251,15 +251,15 @@ public class SimpleRpgCamera : MonoBehaviour
 				{
 					if(invertX)
 					{
-//						_input_rotation.x -= Input.GetAxis("Mouse X") * sensitivity.x;
+						_input_rotation.x -= Input.GetAxis("Mouse X") * sensitivity.x;
 //						_input_rotation.x -= ETCInput.GetAxis("Horizontal") * sensitivity.x / 30;
-						_input_rotation.x -= EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
+//						_input_rotation.x -= EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
 					}
 					else
 					{
-//						_input_rotation.x += Input.GetAxis("Mouse X") * sensitivity.x;
+						_input_rotation.x += Input.GetAxis("Mouse X") * sensitivity.x;
 //						_input_rotation.x += ETCInput.GetAxis("Horizontal") * sensitivity.x / 30;
-						_input_rotation.x += EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
+//						_input_rotation.x += EasyTouch.current.deltaPosition.x * sensitivity.x / 30;
 					}
 
 					ClampRotation();
@@ -267,15 +267,15 @@ public class SimpleRpgCamera : MonoBehaviour
 					if(invertY)
 					{
 						//Horizontal
-//						_input_rotation.y += Input.GetAxis("Mouse Y") * sensitivity.y;
+						_input_rotation.y += Input.GetAxis("Mouse Y") * sensitivity.y;
 //						_input_rotation.y += ETCInput.GetAxis("Vertical") * sensitivity.y /30 ;
-						_input_rotation.y += EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
+//						_input_rotation.y += EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
 					}
 					else
 					{
-//						_input_rotation.y -= Input.GetAxis("Mouse Y") * sensitivity.y;
+						_input_rotation.y -= Input.GetAxis("Mouse Y") * sensitivity.y;
 //						_input_rotation.y -= ETCInput.GetAxis("Vertical") * sensitivity.y/30;
-						_input_rotation.y -= EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
+//						_input_rotation.y -= EasyTouch.current.deltaPosition.y * sensitivity.y / 30;
 					}
 
 					_input_rotation.y = Mathf.Clamp(_input_rotation.y, minAngle, maxAngle);
