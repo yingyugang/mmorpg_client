@@ -300,16 +300,12 @@ public class SimpleRpgCamera : MonoBehaviour
 					}
 
 					// If user is right clicking, set the default position to the current position
-					#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-
-
-					#else
+				
 					if(Input.GetMouseButton(1))
 					{
 						originRotation = _input_rotation;
 						ClampRotation();
 					}
-					#endif
 				}
 			}
 			else
