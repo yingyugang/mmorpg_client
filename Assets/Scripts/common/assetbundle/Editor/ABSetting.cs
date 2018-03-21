@@ -8,23 +8,40 @@ using System.Collections.Generic;
 public class ABSetting : EditorWindow
 {
 
+	static string assetbundleRoot = "/AssetBundleResources";
 	static string voicePath = "/sounds/voices";
 
 	[MenuItem ("Tools/Auto Set AB Name")] 
 	static void SetAssetbundleNames ()
 	{
-		SetVoiceABNames ();
+		SetABNames ();
 		Debug.Log ("Voice AB Reset Done!");
 	}
 
 	static void SetVoiceABNames ()
 	{
+
 		string[] dirs = FileManager.GetDirectories (Application.dataPath + voicePath, "*", SearchOption.TopDirectoryOnly);
 		for (int i = 0; i < dirs.Length; i++) {
-			string subDir1 = dirs[i].Substring (dirs[i].LastIndexOf ("/Assets/") + 1);
-			string dirName = dirs [i].Substring (dirs[i].LastIndexOf ("/") + 1);
+			string subDir1 = dirs [i].Substring (dirs [i].LastIndexOf ("/Assets/") + 1);
+			string dirName = dirs [i].Substring (dirs [i].LastIndexOf ("/") + 1);
 			AssetImporter assetImporter = AssetImporter.GetAtPath (subDir1);
-			assetImporter.SetAssetBundleNameAndVariant (dirName,"assetbundle");
+			assetImporter.SetAssetBundleNameAndVariant (dirName, "assetbundle");
+		}
+	}
+
+	static void SetABNames ()
+	{
+		string[] firstDirs = FileManager.GetDirectories (Application.dataPath + assetbundleRoot, "*", SearchOption.TopDirectoryOnly);
+		for (int i = 0; i < firstDirs.Length; i++) {
+			string[] secondDirs = FileManager.GetDirectories (firstDirs [i], "*", SearchOption.TopDirectoryOnly);
+			for (int j = 0; j < secondDirs.Length; j++) {
+				string subDir1 = secondDirs [j].Substring (secondDirs [j].IndexOf ("/Assets/") + 1);
+				string abName = secondDirs [j].Substring (secondDirs [j].IndexOf (assetbundleRoot) + assetbundleRoot.Length + 1);
+				Debug.Log (subDir1);
+				AssetImporter assetImporter = AssetImporter.GetAtPath (subDir1);
+				assetImporter.SetAssetBundleNameAndVariant (abName, "ab");
+			}
 		}
 	}
 

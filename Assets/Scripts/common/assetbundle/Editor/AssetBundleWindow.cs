@@ -21,15 +21,18 @@ public class AssetBundleWindow : EditorWindow
 	static List<ABBuildEntity> allAssetBundleEntitys;
 	static string[] allStreamAssetBundleNames;
 	static string[] allStreamAssetPath;
-	static string fullResourceAssetPath ;
-	static string tempResourceAssetPath ;
+	static string fullResourceAssetPath;
+	static string tempResourceAssetPath;
 	static string fullStreamPath;
 	static string fullTmpOutputPath;
 	static string fullTmpVersionOutputPath;
 	static string fullServerCSVPath;
+	const string localABServerPath = "/Applications/XAMPP/xamppfiles/htdocs/mmorpg/";
 
 	static string serverCSV;
-	static void InitPath(){
+
+	static void InitPath ()
+	{
 		fullResourceAssetPath = Application.dataPath + "/DownloadResources/assets/";
 		tempResourceAssetPath = Application.dataPath + "/Assetbundles/temp/";
 		#if UNITY_IOS
@@ -135,6 +138,12 @@ public class AssetBundleWindow : EditorWindow
 		if (GUILayout.Button ("CopyToTemp", GUILayout.Width (120))) {
 			CopyToTemp ();
 		}
+		if (GUILayout.Button ("ABToServer", GUILayout.Width (120))) {
+			CopyToLocalServer ();
+		}
+		if (GUILayout.Button ("VersionToServer", GUILayout.Width (120))) {
+			CopyToLocalVersionServer ();
+		}
 //		if(GUILayout.Button("CopyToServerCSV",GUILayout.Width(120))){
 //			CopyToServerCSV ();
 //			serverHash = FileManager.GetFileHash (fullServerCSVPath);
@@ -183,7 +192,8 @@ public class AssetBundleWindow : EditorWindow
 	}
 
 	static void InitBuild ()
-	{	InitPath ();
+	{
+		InitPath ();
 		allAssetBundleNames = AssetDatabase.GetAllAssetBundleNames ();
 		allAssetBundleEntitys = new List<ABBuildEntity> ();
 		for (int i = 0; i < allAssetBundleNames.Length; i++) {
@@ -264,9 +274,15 @@ public class AssetBundleWindow : EditorWindow
 //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
 //		}
 		#elif UNITY_STANDALONE_OSX
-		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal );
-		#else
-		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows64);
+		if (abList.Count > 0) {
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath, abList.ToArray (), BuildAssetBundleOptions.None, BuildTarget.StandaloneOSXUniversal);
+		}
+//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal );
+		#elif UNITY_STANDALONE
+		if(abList.Count>0){
+		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+		}
+//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows64);
 		#endif
 
 //		InitBuild ();
@@ -293,32 +309,50 @@ public class AssetBundleWindow : EditorWindow
 		CreateVersion ();
 	}
 
-//	static	string GetMovieHash ()
-//	{
-//		string[] movies = FileManager.GetFiles (movieResourceAssetPath, "*.mp4", SearchOption.AllDirectories);
-//		string str = "";
-//		for (int i = 0; i < movies.Length; i++) {
-//			string fileName = movies [i].Substring (movies [i].LastIndexOf ("/") + 1);
-//			string hash = FileManager.GetFileHash (movies [i]);
-//			long length = new FileInfo (movies [i]).Length;
-////			string lengthStr = GetLengthStr (length);
-//			str += (fileName + "," + length + ",0," + hash + "\r\n");
-//		}
-//		return str;
-//	}
+	//	static	string GetMovieHash ()
+	//	{
+	//		string[] movies = FileManager.GetFiles (movieResourceAssetPath, "*.mp4", SearchOption.AllDirectories);
+	//		string str = "";
+	//		for (int i = 0; i < movies.Length; i++) {
+	//			string fileName = movies [i].Substring (movies [i].LastIndexOf ("/") + 1);
+	//			string hash = FileManager.GetFileHash (movies [i]);
+	//			long length = new FileInfo (movies [i]).Length;
+	////			string lengthStr = GetLengthStr (length);
+	//			str += (fileName + "," + length + ",0," + hash + "\r\n");
+	//		}
+	//		return str;
+	//	}
 
 
 	void CopyToTemp ()
 	{
-		FileManager.DeleteFolder (tempResourceAssetPath);
-		Directory.CreateDirectory (tempResourceAssetPath);
 		for (int i = 0; i < allAssetBundleEntitys.Count; i++) {
 			if (allAssetBundleEntitys [i].isSelected) {
-				if(FileManager.Exists(fullTmpOutputPath + allAssetBundleEntitys [i].abName))
-				FileManager.CopyFile (fullTmpOutputPath + allAssetBundleEntitys [i].abName, tempResourceAssetPath + allAssetBundleEntitys [i].abName);
+				if (FileManager.Exists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
+					FileManager.CopyFile (fullTmpOutputPath + allAssetBundleEntitys [i].abName, tempResourceAssetPath + allAssetBundleEntitys [i].abName);
 			}
 		}
 		AssetDatabase.Refresh ();
+		Debug.Log ("Done");
+	}
+
+	void CopyToLocalServer ()
+	{
+		for (int i = 0; i < allAssetBundleEntitys.Count; i++) {
+			if (allAssetBundleEntitys [i].isSelected) {
+				if (FileManager.Exists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
+					FileManager.CopyFile (fullTmpOutputPath + allAssetBundleEntitys [i].abName, localABServerPath + fullTmpOutputPath.Replace (Application.dataPath, "") + allAssetBundleEntitys [i].abName);
+			}
+		}
+		AssetDatabase.Refresh ();
+		Debug.Log ("Done");
+	}
+
+	void CopyToLocalVersionServer ()
+	{
+		FileManager.CopyFile (fullServerCSVPath, localABServerPath + fullServerCSVPath.Replace (Application.dataPath, ""));
+		AssetDatabase.Refresh ();
+		Debug.Log ("Done");
 	}
 
 	void CopyToResources ()
@@ -329,6 +363,7 @@ public class AssetBundleWindow : EditorWindow
 			}
 		}
 		AssetDatabase.Refresh ();
+		Debug.Log ("Done");
 	}
 
 	void CopyToStream ()

@@ -150,6 +150,12 @@ public class FileManager
 
 	public static void CopyFile (string filePath, string destFilePath)
 	{
+		if (destFilePath.LastIndexOf ("/") != -1) {
+			string dirctory = destFilePath.Substring (0, destFilePath.LastIndexOf ("/"));
+			if (!DirectoryExists(dirctory)) {
+				CreateDirectory (dirctory);
+			}
+		}
 		FileInfo info = new FileInfo (filePath);
 		info.CopyTo (destFilePath, true);
 		#if  UNITY_IOS
