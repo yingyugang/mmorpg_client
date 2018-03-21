@@ -27,7 +27,7 @@ namespace MMO
 		void SignIn ()
 		{
 			string ip = ServerListPanel.targetIp;
-			PathConstant.SERVER_DOWNLOAD_PATH = string.Format("http://{0}/kingofhero/",ip.Trim());
+			PathConstant.SERVER_DOWNLOAD_PATH = string.Format("http://{0}/mmorpg/",ip.Trim());
 			//TODO change to mmorpg
 //			PathConstant.SERVER_PATH = string.Format("http://{0}/kingofhero/",ip.Trim());
 //		

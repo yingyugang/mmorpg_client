@@ -19,12 +19,16 @@ namespace MMO
 		}
 
 		void LoadManifestAssetbundle(){
-			mManifestAB = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + SystemConstant.GetPlatformName());
-			if (mManifestAB != null) {
-				mManifest = mManifestAB.LoadAsset<AssetBundleManifest> ("assetbundlemanifest");
+			string path = PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + SystemConstant.GetPlatformName();
+			if (FileManager.Exists (path)) {
+				mManifestAB = AssetBundle.LoadFromFile (path);
+				if (mManifestAB != null) {
+					mManifest = mManifestAB.LoadAsset<AssetBundleManifest> ("assetbundlemanifest");
+				}
 			}
 		}
 
+		//get the assetbundle with depend assetbundles.
 		public AssetBundle GetAssetbundleFromLocal (string abName)
 		{
 			abName = (abName + "." + PathConstant.AB_VARIANT).ToLower ();
@@ -33,20 +37,32 @@ namespace MMO
 
 			if (mManifestAB == null)
 				LoadManifestAssetbundle ();
-
-			if (mManifest == null)
-				return null;
-			
-			string[] dependABs = mManifest.GetAllDependencies (abName);
-			for(int i=0;i<dependABs.Length;i++){
-				if (!mCachedAssetbundles.ContainsKey (dependABs[i])) {
-					AssetBundle ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + dependABs[i]);
-					mCachedAssetbundles.Add (dependABs[i],ab);
+			if (mManifest != null) {
+				string[] dependABs = mManifest.GetAllDependencies (abName);
+				for (int i = 0; i < dependABs.Length; i++) {
+					if (!mCachedAssetbundles.ContainsKey (dependABs [i])) {
+						AssetBundle ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + dependABs [i]);
+						mCachedAssetbundles.Add (dependABs [i], ab);
+					}
 				}
 			}
+			Debug.Log (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
 			AssetBundle ab0 = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
 			mCachedAssetbundles.Add (abName,ab0);
 			return ab0;
+		}
+
+		public void UnloadAssetBundle(string abName,bool isForce){
+			if(mCachedAssetbundles.ContainsKey(abName)){
+				AssetBundle ab = mCachedAssetbundles [abName];
+				ab.Unload (isForce);
+				mCachedAssetbundles.Remove (abName);
+			}
+		}
+
+		//TODO need to make sure there is not another ab that use those depends.
+		public void UnloadAssetBundleWithDepend(string abName,bool isForce){
+			Debug.Log ("this fantion is todo.");
 		}
 
 		public T GetAssetFromLocal<T>(string abName,string assetName) where T : Object{

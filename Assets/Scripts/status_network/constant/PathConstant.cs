@@ -27,7 +27,7 @@ public static class PathConstant
 	private const string VERSION_PATH = "";
 	private const string ID_PATH = "ID/";
 
-	public const string AB_VARIANT = "assetbundle";
+	public const string AB_VARIANT = "ab";
 	public const string HERO_AB_PATH = "/Prefabs/Heros/";
 	public const string HERO_AB_FRONT = "hero_";
 	public const string SOLDIER_AB_PATH = "/Prefabs/Soldiers/";
@@ -48,7 +48,8 @@ public static class PathConstant
 		#if UNITY_EDITOR
 		"http://127.0.0.1/kingofhero/";
 		#else
-		"http://192.168.10.101/kingofhero/";
+		"http://127.0.0.1/mmorpg/";
+//		"http://192.168.10.101/kingofhero/";
 		#endif
 //		"http://192.168.102.158/kingofhero/";
 //		#endif
@@ -62,9 +63,9 @@ public static class PathConstant
 //		"http://183.182.46.212/";
 //		#else
 		#if UNITY_EDITOR
-		"http://127.0.0.1/kingofhero/";
+		"http://127.0.0.1/mmorpg/";
 		#else
-		"http://192.168.10.101/kingofhero/";
+		"http://127.0.0.1/mmorpg/";
 		#endif
 //		"http://192.168.102.158/kingofhero/";
 //		#endif
@@ -161,6 +162,12 @@ public static class PathConstant
 	public static string SERVER_VERSION_CSV {
 		get {
 			return Path.Combine (SERVER_VERSION_PATH, SERVER_CSV);
+		}
+	}
+
+	public static string SERVER_RESOURCE_VERSION_CSV {
+		get {
+			return Path.Combine (SERVER_VERSION_PATH, SERVER_RESOURCE_CSV);
 		}
 	}
 

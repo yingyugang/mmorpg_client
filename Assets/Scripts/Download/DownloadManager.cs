@@ -56,7 +56,7 @@ namespace MMO
 		private IEnumerator _StartDownloadCSV ()
 		{
 			Debug.Log ("_StartDownloadCSV".AliceblueColor ());
-			string URL = PathConstant.SERVER_VERSION_CSV;
+			string URL = PathConstant.SERVER_RESOURCE_VERSION_CSV;
 			Debug.Log (URL);
 			var www = new WWW (URL);
 			yield return www;
