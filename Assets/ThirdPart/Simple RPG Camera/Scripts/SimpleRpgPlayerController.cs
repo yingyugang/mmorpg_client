@@ -41,6 +41,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 	private Transform _t;
 	private CharacterController _controller;
 	private SimpleRpgAnimator _animator;
+	public SimpleRpgCamera rpgCamera;
 	ETCJoystick mETCJoystick;
 
 	public bool Grounded
@@ -258,7 +259,10 @@ public class SimpleRpgPlayerController : MonoBehaviour
 				_input_x = Input.GetAxis("Horizontal");
 				_input_y = Input.GetAxis("Vertical");
 				#endif
-
+				if(mETCJoystick!=null){
+					_input_x = mETCJoystick.axisX.axisValue;
+					_input_y = mETCJoystick.axisY.axisValue;
+				}
 
 				/*
 				 * Uncomment this code if you want to add a strafing axis
@@ -285,15 +289,18 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		{
 			_input_x = _input_s;
 		}
-		
+		if(mETCJoystick!=null){
+			_input_x = mETCJoystick.axisX.axisValue;
+			_input_y = mETCJoystick.axisY.axisValue;
+		}
 		// If the user is not holding right-mouse button, rotate the player with the X axis instead of strafing
 		if(!Input.GetMouseButton(1) &&
 		_input_x != 0 &&
 		_input_s == 0)
 		{
-			_t.Rotate(new Vector3(0, _input_x * (turnSpeed / 2.0f), 0));
-			_rotation = _input_x;
-			_input_x = 0;
+//			_t.Rotate(new Vector3(0, _input_x * (turnSpeed / 2.0f), 0));
+//			_rotation = _input_x;
+//			_input_x = 0;
 		}
 		else
 		{
@@ -482,6 +489,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 
 		_velocity.y -= gravity * Time.deltaTime;
 		_controller.Move(_velocity * Time.deltaTime);
+//		_controller.transform.forward = _velocity.normalized;
 	}
 	
 	void OnControllerColliderHit(ControllerColliderHit col)
