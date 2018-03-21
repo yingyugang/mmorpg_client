@@ -259,10 +259,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 				_input_x = Input.GetAxis("Horizontal");
 				_input_y = Input.GetAxis("Vertical");
 				#endif
-				if(mETCJoystick!=null){
-					_input_x = mETCJoystick.axisX.axisValue;
-					_input_y = mETCJoystick.axisY.axisValue;
-				}
+
 
 				/*
 				 * Uncomment this code if you want to add a strafing axis
@@ -289,7 +286,7 @@ public class SimpleRpgPlayerController : MonoBehaviour
 		{
 			_input_x = _input_s;
 		}
-		if(mETCJoystick!=null){
+		if(mETCJoystick!=null && mETCJoystick.gameObject.activeInHierarchy){
 			_input_x = mETCJoystick.axisX.axisValue;
 			_input_y = mETCJoystick.axisY.axisValue;
 		}
@@ -366,8 +363,8 @@ public class SimpleRpgPlayerController : MonoBehaviour
 			{
 				if(_move_speed > 0.07f)
 				{
-					if(Input.GetMouseButton(1) &&
-					_input_x != 0)
+//					if(Input.GetMouseButton(1) && _input_x != 0)
+					if(_input_x != 0)
 					{
 						if(_input_x < 0)
 						{

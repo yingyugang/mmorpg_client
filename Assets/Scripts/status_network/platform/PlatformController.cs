@@ -19,7 +19,7 @@ namespace MMO
 			simpleRpgPlayerController.clickToMove = false;
 			simpleRpgPlayerController.keyboardControl = true;
 			simpleRpgCamera.allowRotation = true;
-			simpleRpgCamera.minAngle = 10;
+			simpleRpgCamera.minAngle = -90;
 			simpleRpgCamera.maxAngle = 90;
 			etcJoystick.SetActive (false);
 			#elif UNITY_IOS || UNITY_ANDROID

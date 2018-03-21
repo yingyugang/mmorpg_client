@@ -58,6 +58,7 @@ namespace MMO
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
 			if (miniMap == null)
 				miniMap = FindObjectOfType<KGFMapSystem> ();
+			gameObject.GetOrAddComponent<AssetbundleManager> ();
 		}
 
 		void Update ()
