@@ -38,23 +38,23 @@ public class AssetBundleWindow : EditorWindow
 		#if UNITY_IOS
 		fullStreamPath = Application.dataPath + "/StreamingAssets/ios/";
 		fullTmpOutputPath = Application.dataPath + "/Assetbundles/ios/";
-		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/ios_version/";
-		fullServerCSVPath = Application.dataPath + "/Assetbundles/ios_version/server_resource.csv";
+		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/ios/";
+		fullServerCSVPath = Application.dataPath + "/Assetbundles/ios/server_resource.csv";
 		#elif UNITY_ANDROID
 		fullStreamPath = Application.dataPath + "/StreamingAssets/android/";
 		fullTmpOutputPath = Application.dataPath + "/Assetbundles/android/";
-		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/android_version/";
-		fullServerCSVPath = Application.dataPath + "/Assetbundles/android_version/server_resource.csv";
+		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/android/";
+		fullServerCSVPath = Application.dataPath + "/Assetbundles/android/server_resource.csv";
 		#elif UNITY_STANDALONE_OSX
 		fullStreamPath = Application.dataPath + "/StreamingAssets/mac/";
 		fullTmpOutputPath = Application.dataPath + "/Assetbundles/mac/";
-		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/mac_version/";
-		fullServerCSVPath = Application.dataPath + "/Assetbundles/mac_version/server_resource.csv";
+		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/mac/";
+		fullServerCSVPath = Application.dataPath + "/Assetbundles/mac/server_resource.csv";
 		#else
 		fullStreamPath = Application.dataPath + "/StreamingAssets/windows/";
 		fullTmpOutputPath = Application.dataPath + "/Assetbundles/windows/";
-		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/windows_version/";
-		fullServerCSVPath = Application.dataPath + "/Assetbundles/windows_version/server_resource.csv";
+		fullTmpVersionOutputPath = Application.dataPath + "/Assetbundles/windows/";
+		fullServerCSVPath = Application.dataPath + "/Assetbundles/windows/server_resource.csv";
 		#endif
 		serverCSV = "server_resource.csv";
 	}
