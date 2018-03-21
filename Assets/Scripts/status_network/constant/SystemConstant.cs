@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+#if UNITY_IOS
 using UnityEngine.iOS;
+#endif
 
 #if UNITY_EDITOR
 using UnityEditor;
