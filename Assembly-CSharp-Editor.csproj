@@ -74,7 +74,8 @@
      <Compile Include="Assets\AssetBundles-Browser-master\Tests\Editor\Util\ABModelUtil.cs" />
      <Compile Include="Assets\AssetBundles-Browser-master\Tests\Editor\Util\TestUtil.cs" />
      <Compile Include="Assets\Scripts\common\assetbundle\Editor\ABSetting.cs" />
-     <Compile Include="Assets\Scripts\common\assetbundle\Editor\AssetBundlePacker.cs" />
+     <Compile Include="Assets\Scripts\common\assetbundle\Editor\AssetBundleInfo.cs" />
+     <Compile Include="Assets\Scripts\common\assetbundle\Editor\AssetBundleInfoWindow.cs" />
      <Compile Include="Assets\Scripts\common\assetbundle\Editor\AssetBundleWindow.cs" />
      <Compile Include="Assets\Scripts\common\assetbundle\Editor\CopyCSV.cs" />
      <Compile Include="Assets\Scripts\common\csv\Editor\CreateClassFromCSV.cs" />
@@ -151,6 +152,9 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="CSV">
+ <HintPath>/Users/yingyugang/mmorpg_resource/Assets/Scripts/CSV.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Users/yingyugang/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@1.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -165,9 +169,6 @@
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>/Users/yingyugang/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="CSV">
- <HintPath>/Users/yingyugang/mmorpg_resource/Assets/Scripts/CSV.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

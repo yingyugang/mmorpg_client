@@ -6,7 +6,6 @@ class AssetBundleInfo
 {
 	static AssetBundleInfo ()
 	{
-		Debug.Log("AssetBundleInfo");
 		EditorWindow.GetWindow<AssetBundleInfoWindow> (true, "AssetBundleInfo", true); 
 //		EditorApplication.update += Update;
 	}
