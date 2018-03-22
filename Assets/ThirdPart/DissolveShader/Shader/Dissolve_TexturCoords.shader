@@ -22,7 +22,7 @@ SubShader {
 	
 	
 CGPROGRAM
-//#pragma target 3.0
+#pragma target 3.0
 #pragma surface surf BlinnPhong addshadow
 
 
@@ -53,14 +53,20 @@ struct Input {
 void vert (inout appdata_full v, out Input o) {}
 
 void surf (Input IN, inout SurfaceOutput o) {
-	fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
+
+//	fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
+	fixed4 tex = tex2Dlod(_MainTex, float4(IN.uv_MainTex,0,0));
+//	tex2Dlod (A, float4 (B, 0, 0))
 	o.Albedo = tex.rgb * _Color.rgb;
 	
-	float ClipTex = tex2D (_DissolveSrc, IN.uv_MainTex/_Tile).r ;
+//	float ClipTex = tex2D (_DissolveSrc, IN.uv_MainTex/_Tile).r ;
+	float ClipTex = tex2Dlod (_DissolveSrc, float4(IN.uv_MainTex/_Tile,0,0)).r ;
 	float ClipAmount = ClipTex - _Amount;
 	float Clip = 0;
-	float4 DematBump =  tex2D (_DissolveSrcBump,IN.uv_MainTex/_Tile);
-	o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+//	float4 DematBump =  tex2D (_DissolveSrcBump,IN.uv_MainTex/_Tile);
+	float4 DematBump =  tex2Dlod (_DissolveSrcBump,float4(IN.uv_MainTex/_Tile,0,0));
+//	o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+	o.Normal = UnpackNormal(tex2Dlod(_BumpMap, float4(IN.uv_BumpMap,0,0)));
 if (_Amount > 0)
 {
 	if (ClipAmount <0)
