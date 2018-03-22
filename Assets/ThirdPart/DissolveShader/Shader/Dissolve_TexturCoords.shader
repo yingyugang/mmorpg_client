@@ -22,7 +22,7 @@ SubShader {
 	
 	
 CGPROGRAM
-#pragma target 3.0
+//#pragma target 3.0
 #pragma surface surf BlinnPhong addshadow
 
 
