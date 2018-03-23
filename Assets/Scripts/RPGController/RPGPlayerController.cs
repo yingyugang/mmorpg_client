@@ -19,6 +19,8 @@ public class RPGPlayerController : MonoBehaviour {
 	void Awake(){
 		mCharacterController = GetComponent<CharacterController>();
 		_animator = GetComponent<SimpleRpgAnimator> ();
+		if (rpgCameraController == null)
+			rpgCameraController = FindObjectOfType<RPGCameraController> ();
 		mTrans = transform;
 		mETCJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 	}

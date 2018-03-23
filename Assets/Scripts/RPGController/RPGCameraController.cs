@@ -25,7 +25,7 @@ public class RPGCameraController : MonoBehaviour
 		mDirect = (new Vector3 (mTrans.position.x - target.position.x, 0, mTrans.position.z - target.position.z)).normalized;
 	}
 
-	void Update ()
+	void LateUpdate ()
 	{
 		if (!is3D) {
 			angle = angle_2_5D;
@@ -46,35 +46,38 @@ public class RPGCameraController : MonoBehaviour
 		}
 	}
 
-	Touch mCurrentTouch;
+	bool isTouchMoved = false;
+	int mFingerId;
 
 	void Ratate ()
 	{
-		#if UNITY_IOS || UNITY_ANDROID
+		#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
 		foreach (Touch touch in Input.touches) {
 			if (touch.phase == TouchPhase.Began) {
-				if (mCurrentTouch == null) {
+				if (!isTouchMoved) {
 					if (!EventSystem.current.IsPointerOverGameObject (touch.fingerId)) {
-						mCurrentTouch = touch;
+						mFingerId = touch.fingerId;
+						isTouchMoved = true;
 					}
 				}
 			}
 			if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
-				if (mCurrentTouch == touch) {
-					mCurrentTouch = null;
+				if (mFingerId == touch.fingerId) {
+					isTouchMoved = false;
 				}
 			}
 		}
 
-		if(mCurrentTouch!=null){
-			if (mCurrentTouch.deltaPosition.x != 0 ) {
-				mDirect = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
-				target.forward = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
+		if(isTouchMoved){
+			if (Input.GetTouch(mFingerId).deltaPosition.x != 0 ) {
+				mDirect = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
+				target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
 			}
-			if (is3D && mCurrentTouch.deltaPosition.y != 0 ) {
-				angle -= mCurrentTouch.deltaPosition.y * speed;
+			if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0 ) {
+				angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed;
 			}
 		}
+//		Debug.Log(string.Format("{0}:{1}:{2}",Input.GetTouch(mFingerId).fingerId,isTouchMoved,Input.GetTouch(mFingerId).deltaPosition.x));
 		#else
 		if (Input.GetAxis ("Mouse X") != 0 && Input.GetMouseButton (1)) {
 			mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * mDirect;
