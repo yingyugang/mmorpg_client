@@ -16,16 +16,16 @@ namespace MMO
 		void Awake ()
 		{
 			#if UNITY_EDITOR
-			simpleRpgPlayerController.clickToMove = false;
-			simpleRpgPlayerController.keyboardControl = true;
-			simpleRpgCamera.allowRotation = true;
-			simpleRpgCamera.minAngle = -90;
-			simpleRpgCamera.maxAngle = 90;
+//			simpleRpgPlayerController.clickToMove = false;
+//			simpleRpgPlayerController.keyboardControl = true;
+//			simpleRpgCamera.allowRotation = true;
+//			simpleRpgCamera.minAngle = -90;
+//			simpleRpgCamera.maxAngle = 90;
 			etcJoystick.SetActive (false);
 			#elif UNITY_IOS || UNITY_ANDROID
-			simpleRpgPlayerController.clickToMove = false;
-			simpleRpgPlayerController.keyboardControl = true;
-			simpleRpgCamera.allowRotation = true;
+//			simpleRpgPlayerController.clickToMove = false;
+//			simpleRpgPlayerController.keyboardControl = true;
+//			simpleRpgCamera.allowRotation = true;
 			#endif
 		}
 

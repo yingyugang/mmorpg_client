@@ -19,12 +19,12 @@ namespace MMO
 		public string playerName;
 
 		public string targetIp;
-		public SimpleRpgCamera rpgCamera;
+//		public SimpleRpgCamera rpgCamera;
 		//TODO csvに遷移するが必要。
 		public List<ShootObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
-		public SimpleRpgPlayerController simpleRpgPlayerController;
+//		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
@@ -49,7 +49,7 @@ namespace MMO
 			if (kgf != null)
 				minimap = kgf.gameObject;
 			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
-			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
+//			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mPlayerDic = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
@@ -65,11 +65,11 @@ namespace MMO
 		{
 			if (isStart) {
 				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction ||
-				    simpleRpgPlayerController._animation_speed != mPreSpeed || mPlayerInfo.skillId > -1) {
+				     mPlayerInfo.skillId > -1) {
 					mPrePosition = player.position;
 					mPreForward = player.forward;
 					mPreAction = mSimpleRpgAnimator.Action;
-					mPreSpeed = simpleRpgPlayerController._animation_speed;
+//					mPreSpeed = simpleRpgPlayerController._animation_speed;
 //					SendPlayerMessage (player);
 					mPlayerInfo.unitInfo.transform.forward = IntVector3.ToIntVector3 (player.forward);
 					mPlayerInfo.unitInfo.transform.position = IntVector3.ToIntVector3 (player.position);
@@ -153,7 +153,7 @@ namespace MMO
 		{
 			mPlayerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = mPlayerInfo.playerId;
-			rpgCamera.enabled = true;
+//			rpgCamera.enabled = true;
 			player.gameObject.SetActive (true);
 			mPlayerInfo.unitInfo.attribute.unitName = playerName;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
@@ -232,7 +232,7 @@ namespace MMO
 
 		void SetCurrentPlayer(PlayerInfo playInfo){
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
-			simpleRpgPlayerController.enabled = false;
+//			simpleRpgPlayerController.enabled = false;
 			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
 				StopControll ();
@@ -328,11 +328,11 @@ namespace MMO
 		}
 
 		public void StopControll(){
-			simpleRpgPlayerController.enabled = false;
+//			simpleRpgPlayerController.enabled = false;
 		}
 
 		public void ReleaseControll(){
-			simpleRpgPlayerController.enabled = true;
+//			simpleRpgPlayerController.enabled = true;
 		}
 
 		//Send the action to the server.
