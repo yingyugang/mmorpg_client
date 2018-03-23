@@ -13,6 +13,7 @@ public class RPGCameraController : MonoBehaviour
 	public float distance = 10;
 	public float angle = 45;
 	public float angle_2_5D = 40;
+	public float speed = 2;
 	public bool is3D = true;
 	public bool isRotate = true;
 	Vector3 mDirect;
@@ -67,20 +68,20 @@ public class RPGCameraController : MonoBehaviour
 
 		if(mCurrentTouch!=null){
 			if (mCurrentTouch.deltaPosition.x != 0 ) {
-				mDirect = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x, new Vector3 (0, 1, 0)) * mDirect;
-				target.forward = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x, new Vector3 (0, 1, 0)) * target.forward;
+				mDirect = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
+				target.forward = Quaternion.AngleAxis (mCurrentTouch.deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
 			}
 			if (is3D && mCurrentTouch.deltaPosition.y != 0 ) {
-				angle -= mCurrentTouch.deltaPosition.y;
+				angle -= mCurrentTouch.deltaPosition.y * speed;
 			}
 		}
 		#else
 		if (Input.GetAxis ("Mouse X") != 0 && Input.GetMouseButton (1)) {
-			mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X"), new Vector3 (0, 1, 0)) * mDirect;
-			target.forward = Quaternion.AngleAxis (Input.GetAxis ("Mouse X"), new Vector3 (0, 1, 0)) * target.forward;
+			mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * mDirect;
+			target.forward = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * target.forward;
 		}
 		if (is3D && Input.GetAxis ("Mouse Y") != 0 && Input.GetMouseButton (1)) {
-			angle -= Input.GetAxis ("Mouse Y");
+			angle -= Input.GetAxis ("Mouse Y") * speed;
 		}
 		#endif
 	}
