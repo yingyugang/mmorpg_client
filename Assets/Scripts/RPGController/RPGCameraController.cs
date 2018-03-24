@@ -25,7 +25,7 @@ public class RPGCameraController : MonoBehaviour
 		mDirect = (new Vector3 (mTrans.position.x - target.position.x, 0, mTrans.position.z - target.position.z)).normalized;
 	}
 
-	void Update ()
+	void LateUpdate ()
 	{
 		if (!is3D) {
 			angle = angle_2_5D;

@@ -21,6 +21,7 @@ namespace MMO
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
+		public Button btn_normal_attack;
 		Dictionary<Button,SkillBase> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
@@ -30,6 +31,19 @@ namespace MMO
 			base.Awake ();
 			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
 			InitIconItems ();
+//			RPGPlayerController.Instance.onRun = () => {
+////				StopAllCoroutines();
+//				ShopSkill();
+//			};
+			btn_normal_attack.onClick.AddListener (OnNormalAttack);
+//			#if UNITY_IOS || UNITY_ANDROID
+			skillGrid.gameObject.SetActive(false);
+			btn_normal_attack.gameObject.SetActive(true);
+//			#else
+//			skillGrid.gameObject.SetActive(true);
+//			btn_normal_attack.gameObject.SetActive(false);
+//			#endif
+
 		}
 
 		protected override void Start(){
@@ -69,7 +83,7 @@ namespace MMO
 					}
 					mSelectButton = btnSkill;
 					SelectSkillButton(mSelectButton);
-					ShowSkillSilder(3f,unitSkill,skillBase);
+					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skillBase);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
 				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
@@ -135,12 +149,34 @@ namespace MMO
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}
 
+//		int mIndex = 0;
+		void OnNormalAttack(){
+			Debug.Log ("OnNormalAttack");
+			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
+				mUnitSkill.mmoUnit.SetTrigger ("attack4");
+			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
+				mUnitSkill.mmoUnit.SetTrigger ("attack3");
+			} else if (mUnitSkill.mmoUnit.IsInState ("attack1") ) {
+				mUnitSkill.mmoUnit.SetTrigger ("attack2");
+			} else {
+				mUnitSkill.mmoUnit.SetTrigger ("attack1");
+			}
+		}
+
 		Coroutine mCoroutine;
 		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+			//TODO to check the animation clip name;
+			StartCoroutine (_PlayAnimation("cast",2));
 			if (mCoroutine != null) {
 				StopCoroutine (mCoroutine);
 			}
 			mCoroutine = StartCoroutine (_ShowSkillSilder(duration,unitSkill,skillBase));
+		}
+
+		IEnumerator _PlayAnimation(string clip,float length){
+			this.mUnitSkill.mmoUnit.SetAnimation(clip,1f);
+			yield return new WaitForSeconds (length);
+//			this.mUnitSkill.mmoUnit.SetAnimation ("idle",1f);
 		}
 
 		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
@@ -153,6 +189,10 @@ namespace MMO
 				yield return null;
 			}
 			unitSkill.PlayClientSkill(skillBase);
+			ShopSkill ();
+		}
+
+		void ShopSkill(){
 			UnSelectSkillButton (mSelectButton);
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
 		}

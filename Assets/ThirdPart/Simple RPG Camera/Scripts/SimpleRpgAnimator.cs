@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class SimpleRpgAnimator : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class SimpleRpgAnimator : MonoBehaviour
 	private string _animation = string.Empty;
 
 	Animation mAnimation;
-	Animator mAnimator;
+	public Animator mAnimator;
+	public UnityAction onIdle;
 
 	public string Action
 	{
@@ -45,14 +47,52 @@ public class SimpleRpgAnimator : MonoBehaviour
 			// CrossFade the animation to match the action
 			if(_animation != _action)
 			{
-				_animation = _action;
-				if (mAnimation != null) {
-					mAnimation.Play (_animation);
-				} else {
-					mAnimator.Play (_animation);
-				}
+				Play (_action);
 			}
 		}
+		CheckOnIdle ();
+	}
+
+	public void SetMoveSpeed(float speed){
+		mAnimator.SetFloat ("MoveSpeed",speed);
+	}
+
+	public bool IsRun(){
+		return mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("run");
+	}
+
+	public bool IsInState(string state){
+		return mAnimator.GetCurrentAnimatorStateInfo (0).IsName (state);
+	}
+
+	bool mIsIdle;
+	void CheckOnIdle(){
+		if (!mIsIdle && mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")) {
+			mIsIdle = true;
+			if (onIdle != null) {
+				onIdle ();
+			}
+		} else if(mIsIdle && !mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")){
+			mIsIdle = false;
+		}
+	}
+
+	public bool GetTrigger(string trigger){
+		return mAnimator.GetBool (trigger);
+	}
+
+	public void SetTrigger(string trigger){
+		mAnimator.SetTrigger (trigger);
+	}
+
+	public void Play(string clip){
+		if (mAnimation != null) {
+			mAnimation.Play (clip);
+		} else {
+			mAnimator.Play (clip);
+		}
+		_action = clip;
+		_animation = _action;
 	}
 
 	public void SetSpeed(float n)

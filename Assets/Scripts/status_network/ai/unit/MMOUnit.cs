@@ -9,7 +9,7 @@ namespace MMO
 	public class MMOUnit : MonoBehaviour
 	{
 		public UnitInfo unitInfo;
-		public float animationSpeedOffset = 3;
+		public float animationSpeedOffset = 1;
 		//用于判断是否是当前帧数据
 		public int frame;
 		Collider mCollider;
@@ -66,10 +66,23 @@ namespace MMO
 				return mTrans.position;
 		}
 
+		public bool IsInState(string state){
+			return mSimpleRpgAnimator.IsInState (state);
+		}
+
+		public bool GetTrigger(string trigger){
+			return mSimpleRpgAnimator.GetTrigger (trigger);
+		}
+
+		public void SetTrigger(string trigger){
+			mSimpleRpgAnimator.SetTrigger (trigger);
+		}
+
 		string mPreAction;
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {
-				mSimpleRpgAnimator.Action = action;
+				Debug.Log (action);
+				mSimpleRpgAnimator.Play (action);
 				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
 			} else if (mAnimator !=null){
 				//TODO
