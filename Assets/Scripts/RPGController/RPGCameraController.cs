@@ -68,13 +68,15 @@ public class RPGCameraController : MonoBehaviour
 			}
 		}
 
-		if(isTouchMoved){
-			if (Input.GetTouch(mFingerId).deltaPosition.x != 0 ) {
-				mDirect = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
-				target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
-			}
-			if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0 ) {
-				angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed;
+		if(Input.touchCount>0){
+			if(isTouchMoved){
+				if (Input.GetTouch(mFingerId).deltaPosition.x != 0 ) {
+					mDirect = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
+					target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
+				}
+				if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0 ) {
+					angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed;
+				}
 			}
 		}
 //		Debug.Log(string.Format("{0}:{1}:{2}",Input.GetTouch(mFingerId).fingerId,isTouchMoved,Input.GetTouch(mFingerId).deltaPosition.x));
