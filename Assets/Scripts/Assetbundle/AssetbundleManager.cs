@@ -14,7 +14,6 @@ namespace MMO
 		protected override void Awake ()
 		{
 			base.Awake ();
-			DontDestroyOnLoad (gameObject);
 			mCachedAssetbundles = new Dictionary<string, AssetBundle> ();
 		}
 
