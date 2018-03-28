@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace MMO
 {
-	public class SkillBase
+	public class BaseSkill
 	{
 		public int skillId;
 		public float coolDown = 5f;
 		float mNextActiveTime;
 		public MMOUnit mmoUnit;
+		public MSkill mSkill;
 
 		public virtual void OnAwake ()
 		{

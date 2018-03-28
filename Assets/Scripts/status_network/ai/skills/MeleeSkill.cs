@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MMO
 {
-	public class SkillDefault : SkillBase
+	public class MeleeSkill : BaseSkill
 	{
 
 		public override bool Play ()
@@ -16,6 +16,11 @@ namespace MMO
 		{
 			base.OnActive ();
 			//DO somthing.
+			Melee();
+		}
+
+		void Melee(){
+		
 		}
 
 	}

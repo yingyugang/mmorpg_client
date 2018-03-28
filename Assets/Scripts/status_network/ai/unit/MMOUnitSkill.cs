@@ -7,8 +7,8 @@ namespace MMO
 	public class MMOUnitSkill : MonoBehaviour
 	{
 
-		public List<SkillBase> skillList;
-		public Dictionary<int,SkillBase> skillDic;
+		public List<BaseSkill> skillList;
+		public Dictionary<int,BaseSkill> skillDic;
 		public MMOUnit mmoUnit;
 		Transform mTrans;
 		bool mIsInitted;
@@ -30,10 +30,10 @@ namespace MMO
 			if (mIsInitted)
 				return;
 			mIsInitted = true;
-			skillList = new List<SkillBase> ();
-			skillDic = new Dictionary<int, SkillBase> ();
+			skillList = new List<BaseSkill> ();
+			skillDic = new Dictionary<int, BaseSkill> ();
 			for (int i = 0; i < mmoUnit.unitInfo.skillIds.Length; i++) {
-				SkillShoot skillBase = new SkillShoot ();
+				ShootSkill skillBase = new ShootSkill ();
 				skillBase.mmoUnit = mmoUnit;
 				skillBase.skillId = mmoUnit.unitInfo.skillIds[i];
 				skillList.Add (skillBase);
@@ -42,7 +42,7 @@ namespace MMO
 		}
 
 		//スキルidがサーバーに通信される
-		public void PlayClientSkill (SkillBase skillBase)
+		public void PlayClientSkill (BaseSkill skillBase)
 		{
 			Debug.Log ("PlayClientSkill");
 			if (skillBase.IsUseAble ()) {
@@ -58,7 +58,7 @@ namespace MMO
 		public void PlayServerSkill (int skillId)
 		{
 			Debug.Log (skillId);
-			SkillBase skillBase = skillDic [skillId];
+			BaseSkill skillBase = skillDic [skillId];
 			skillBase.Play ();
 		}
 

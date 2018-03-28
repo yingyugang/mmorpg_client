@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MMO
 {
-	public class SkillShoot : SkillBase
+	public class ShootSkill : BaseSkill
 	{
 
 		public override bool Play ()
@@ -15,11 +15,11 @@ namespace MMO
 		protected override void OnActive ()
 		{
 			base.OnActive ();
-			PlaySkillEffects ();
+			Shoot ();
 		}
 
 		//interface layer.
-		public void PlaySkillEffects ()
+		public void Shoot ()
 		{
 			mmoUnit = MMOController.Instance.player.GetComponent<MMOUnit>();
 			Debug.Log ("PlaySkillEffects");

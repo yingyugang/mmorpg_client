@@ -22,14 +22,14 @@ namespace MMO
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
 		public Button btn_normal_attack;
-		Dictionary<Button,SkillBase> mSkillButtonDic;
+		Dictionary<Button,BaseSkill> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
 		bool mIsIconInited = false;
 		protected override void Awake ()
 		{
 			base.Awake ();
-			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
+			mSkillButtonDic = new Dictionary<Button, BaseSkill> ();
 			InitIconItems ();
 //			RPGPlayerController.Instance.onRun = () => {
 ////				StopAllCoroutines();
@@ -71,12 +71,12 @@ namespace MMO
 			InitIconItems ();
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
-			List<SkillBase> skills = unitSkill.skillList;
+			List<BaseSkill> skills = unitSkill.skillList;
 			Debug.Log (skillButtonList.Count);
 			for (int i = 0; i < skills.Count; i++) {
-				SkillBase sb = skills [i];
+				BaseSkill sb = skills [i];
 				Button btnSkill = skillButtonList [i];
-				SkillBase skillBase = skills [i];
+				BaseSkill skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
 					if(mSelectButton!=null){
 						UnSelectSkillButton(mSelectButton);
@@ -109,11 +109,11 @@ namespace MMO
 		void UpdateCooldowns(){
 			if (mUnitSkill == null || mUnitSkill.skillList == null)
 				return;
-			List<SkillBase> skills = mUnitSkill.skillList;
+			List<BaseSkill> skills = mUnitSkill.skillList;
 			for (int i = 0; i < skills.Count; i++) {
-				SkillBase sb = skills [i];
+				BaseSkill sb = skills [i];
 				Button btnSkill = skillButtonList [i];
-				SkillBase skillBase = skills [i];
+				BaseSkill skillBase = skills [i];
 				Image imgCooldown = btnSkill.transform.parent.Find ("img_cooldown").GetComponent<Image> ();
 				imgCooldown.fillAmount = Mathf.Max(0,skillBase.GetCooldown());
 				if (imgCooldown.fillAmount == 0) {
@@ -164,7 +164,7 @@ namespace MMO
 		}
 
 		Coroutine mCoroutine;
-		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,BaseSkill skillBase){
 			//TODO to check the animation clip name;
 			StartCoroutine (_PlayAnimation("cast",2));
 			if (mCoroutine != null) {
@@ -179,7 +179,7 @@ namespace MMO
 //			this.mUnitSkill.mmoUnit.SetAnimation ("idle",1f);
 		}
 
-		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,BaseSkill skillBase){
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (1,0.1f);
 			float t = 0;
 			slider_skill.value = 0;
