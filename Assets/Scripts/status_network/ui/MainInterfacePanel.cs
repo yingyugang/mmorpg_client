@@ -23,27 +23,21 @@ namespace MMO
 		public List<Button> skillButtonList;
 		public Button btn_normal_attack;
 		Dictionary<Button,BaseSkill> mSkillButtonDic;
+		public MobileSkillButtonGroup mobileSkillButtonGroup;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
 		bool mIsIconInited = false;
+		float mTimeToCloseMobileSkillButtonGroup;
+		const float DurationToCloseMobileSkillButtonGroup = 5f;
+
 		protected override void Awake ()
 		{
 			base.Awake ();
 			mSkillButtonDic = new Dictionary<Button, BaseSkill> ();
 			InitIconItems ();
-//			RPGPlayerController.Instance.onRun = () => {
-////				StopAllCoroutines();
-//				ShopSkill();
-//			};
 			btn_normal_attack.onClick.AddListener (OnNormalAttack);
-//			#if UNITY_IOS || UNITY_ANDROID
 			skillGrid.gameObject.SetActive(false);
 			btn_normal_attack.gameObject.SetActive(true);
-//			#else
-//			skillGrid.gameObject.SetActive(true);
-//			btn_normal_attack.gameObject.SetActive(false);
-//			#endif
-
 		}
 
 		protected override void Start(){
@@ -137,6 +131,10 @@ namespace MMO
 		{
 			UpdatePlayerInfo ();
 			UpdateCooldowns ();
+			//TODO to update the time on sub skill button.
+			if(mTimeToCloseMobileSkillButtonGroup < Time.time && mobileSkillButtonGroup.isShow){
+				mobileSkillButtonGroup.HideSkills ();
+			}
 		}
 
 		void UpdatePlayerInfo ()
@@ -149,9 +147,13 @@ namespace MMO
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}
 
-//		int mIndex = 0;
+
 		void OnNormalAttack(){
-			Debug.Log ("OnNormalAttack");
+			mTimeToCloseMobileSkillButtonGroup = Time.time + DurationToCloseMobileSkillButtonGroup;
+			if (!mobileSkillButtonGroup.isShow) {
+				mobileSkillButtonGroup.ShowSkills ();
+				return;
+			}
 			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
 				mUnitSkill.mmoUnit.SetTrigger ("attack4");
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
