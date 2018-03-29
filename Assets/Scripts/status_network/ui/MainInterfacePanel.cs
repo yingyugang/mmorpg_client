@@ -69,19 +69,18 @@ namespace MMO
 			List<SkillBase> skills = unitSkill.skillList;
 			Debug.Log (skillButtonList.Count);
 			for (int i = 0; i < skills.Count; i++) {
-				SkillBase sb = skills [i];
+//				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
-				SkillBase skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
 					if(mSelectButton!=null){
 						UnSelectSkillButton(mSelectButton);
 					}
 					mSelectButton = btnSkill;
 					SelectSkillButton(mSelectButton);
-					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skillBase);
+					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skills[i]);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
-				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
+				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (skills[i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
 				imgIcon.gameObject.SetActive (true);
 			}
 		}
@@ -147,7 +146,6 @@ namespace MMO
 			if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}
-
 
 		void OnNormalAttack(){
 			mTimeToCloseMobileSkillButtonGroup = Time.time + DurationToCloseMobileSkillButtonGroup;

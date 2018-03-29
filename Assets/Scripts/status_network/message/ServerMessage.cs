@@ -13,7 +13,7 @@ namespace MMO
 		public int casterId;
 		public IntVector3 hitCenterPosition;
 		public int[] hitIds;
-		public int[] damages;
+		public int[] nums;
 		public int[] hitObjectIds;
 		public IntVector3[] hitPositions;
 	}
@@ -24,16 +24,16 @@ namespace MMO
 		public MMOAttribute attribute;
 		public MMOTransform transform;
 		public MMOAnimation animation;
-		public MMOAction action;
-		public int[] skillIds;
+		public ActionInfo action;
+		public int[] unitSkillIds;
 
 		public UnitInfo ()
 		{
 			attribute = new MMOAttribute ();
 			transform = new MMOTransform ();
 			animation = new MMOAnimation ();
-			action = new MMOAction ();
-			skillIds = new int[0];
+			action = new ActionInfo ();
+			unitSkillIds = new int[0];
 		}
 	}
 
@@ -58,14 +58,14 @@ namespace MMO
 		public PlayerInfo[] playerDatas;
 		public UnitInfo[] monsterDatas;
 		public HitInfo[] hitDatas;
-		public MMOAction[] actions;
+		public ActionInfo[] actions;
 
 		public TransferData ()
 		{
 			playerDatas = new PlayerInfo[0];
 			monsterDatas = new UnitInfo[0];
 			hitDatas = new HitInfo[0];
-			actions = new MMOAction[0];
+			actions = new ActionInfo[0];
 		}
 	}
 
@@ -102,7 +102,7 @@ namespace MMO
 	}
 
 	[System.Serializable]
-	public class MMOAction:MessageBase
+	public class ActionInfo:MessageBase
 	{
 		//when  is the player and is send from client to server, the unitId is not be used,because it will be get the unit by the connectid.
 		public int casterId;
@@ -110,13 +110,12 @@ namespace MMO
 		public int actionId;
 		//1:unit skill,2:create projectile object;3:create hit object(must)
 		public int actionType;
-
 		//the cast target unit id;(maybe)
 		public int targetId;
 		//the cast target position;(maybe)
 		public IntVector3 targetPos;
 
-		public MMOAction(){
+		public ActionInfo(){
 			actionId = -1;
 			actionType = 1;
 			targetPos = new IntVector3 ();

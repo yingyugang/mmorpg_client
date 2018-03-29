@@ -91,9 +91,36 @@ namespace MMO
 		//受影响的单位数
 		[CsvColumn (CanBeNull = true)]
 		public int impact_count{ get; set; }
-		//攻击距离(近战为0)
+		//攻击距离
 		[CsvColumn (CanBeNull = true)]
-		public int range{ get; set; }
+		public float range{ get; set; }
+
+		//是否为遠距離攻撃()
+		[CsvColumn (CanBeNull = true)]
+		public int is_remote{get; set; }
+		//遠距離動くテーマ(0:default line,1:projectile)
+		[CsvColumn (CanBeNull = true)]
+		public int shoot_move_type{get; set;}
+		//遠距離動く速度
+		[CsvColumn (CanBeNull = true)]
+		public float shoot_move_speed{ get;set;}
+
+		//命中にチェック種類
+		[CsvColumn (CanBeNull = true)]
+		public int hit_check_type{ get; set;}
+		//0-360;
+		[CsvColumn (CanBeNull = true)]
+		public int hit_check_radiu{ get; set;}
+
+		//skillの持続時間,skill 終わり時点はskill起こした時点プラスduration.
+		[CsvColumn (CanBeNull = true)]
+		public int duration{ get; set;}
+		//skillが役割する時点
+		[CsvColumn (CanBeNull = true)]
+		public int active{ get; set;}
+		//skillの冷却持続時間
+		[CsvColumn (CanBeNull = true)]
+		public int cooldown{ get; set;}
 
 		string m_sub_skills;
 		//与技能同时释放的子技能(0.8,1|1,2 “｜”分隔多个，“，”分隔时间和子技能id)

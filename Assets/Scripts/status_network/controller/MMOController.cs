@@ -206,7 +206,7 @@ namespace MMO
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
-				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.skillIds = transferData.playerDatas [i].unitInfo.skillIds;
+				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.unitSkillIds = transferData.playerDatas [i].unitInfo.unitSkillIds;
 				if (!string.IsNullOrEmpty (transferData.playerDatas [i].chat)) {
 					if (onChat != null) {
 						if (transferData.playerDatas [i].playerId != mPlayerId)
@@ -222,10 +222,6 @@ namespace MMO
 						mmoUnitSkill.InitSkills ();
 						PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
 					}
-				}
-				if (mmoUnit.unitInfo.action.actionId > 0) {
-					mmoUnit.GetComponent<MMOUnitSkill> ().PlayServerSkill (mmoUnit.unitInfo.action.actionId);
-					mmoUnit.unitInfo.action.actionId = -1;
 				}
 			}
 		}
@@ -248,7 +244,6 @@ namespace MMO
 		}
 
 		int mCurrentFrame = 0;
-		//TODO 以后需要跟playerinfo合并，只保留更新其他npc和玩家自身两个api。
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			TransferData data = msg.ReadMessage<TransferData> ();
@@ -271,10 +266,6 @@ namespace MMO
 					monster.Death ();
 				}
 				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
-				if (data.monsterDatas [i].action.actionId >= 0) {
-					monster.GetComponent<MMOUnitSkill> ().PlayServerSkill (data.monsterDatas [i].action.actionId);
-					data.monsterDatas [i].action.actionId = -1;
-				}
 			}
 			List<int> removeList = new List<int> ();
 			foreach(int id in mMonsterDic.Keys){
@@ -337,7 +328,7 @@ namespace MMO
 
 		//Send the action to the server.
 		public void DoServerPlayerAction(int actionType,int actionId){
-			MMOAction action = new MMOAction ();
+			ActionInfo action = new ActionInfo ();
 			action.actionType = actionType;
 			action.actionId = actionId;
 			if(selectedUnit!=null)
@@ -346,7 +337,7 @@ namespace MMO
 		}
 
 		//Do the action from server.
-		public void DoClientPlayerAction(MMOAction action){
+		public void DoClientPlayerAction(ActionInfo action){
 			ActionManager.Instance.DoAction (action);
 		}
 

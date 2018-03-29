@@ -37,7 +37,7 @@ namespace MMO
 			for (int j = 0; j < hitInfo.hitIds.Length; j++) {
 				if (unitDic.ContainsKey (hitInfo.hitIds [j])) {
 					GameObject go = unitDic [hitInfo.hitIds [j]];
-					ShowHitUIInfo (go.GetComponent<MMOUnit> (), hitInfo.damages [j]);
+					ShowHitUIInfo (go.GetComponent<MMOUnit> (), hitInfo.nums [j]);
 				}
 			}
 		}

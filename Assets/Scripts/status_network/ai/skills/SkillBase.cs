@@ -7,18 +7,23 @@ namespace MMO
 	public class SkillBase
 	{
 		public int skillId;
+		public int unitSkillId;
 		public float coolDown = 5f;
+
+		public MSkill mSkill;
+		public MUnitSkill mUnitSkill;
+
 		float mNextActiveTime;
-		public MMOUnit mmoUnit;
+		MMOUnit mMMOUnit;
 
-		public virtual void OnAwake ()
-		{
-		
-		}
-
-		public virtual void OnEnable ()
-		{
-
+		public SkillBase(int unitSkillId,MMOUnit mmoUnit){
+			this.mMMOUnit = mmoUnit;
+			MUnitSkill unitSkill = CSVManager.Instance.unitSkillDic [unitSkillId];
+			MSkill skill = CSVManager.Instance.skillDic[mUnitSkill.skill_id];
+			this.coolDown = skill.cooldown;
+			this.mMMOUnit = mmoUnit;
+			this.mSkill = skill;
+			this.mUnitSkill = unitSkill;
 		}
 
 		public virtual bool IsUseAble ()
@@ -28,15 +33,11 @@ namespace MMO
 
 		public virtual bool Play ()
 		{
-//			bool playAble = IsUseAble ();
-//			if(playAble){
-				OnActive ();
-//			}
-			return true;
-		}
-
-		protected virtual void OnActive(){
-			mNextActiveTime = Time.time + coolDown;
+			if(IsUseAble()){
+				mNextActiveTime = Time.time + coolDown;
+				return true;
+			}
+			return false;
 		}
 
 		public float GetCooldown(){

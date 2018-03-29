@@ -189,6 +189,17 @@ namespace MMO
 			return sprite;
 		}
 
+		public Sprite GetMobileSkillIcon(int skillId){
+			Sprite sprite = null;
+			if(CSVManager.Instance.skillDic.ContainsKey(skillId)){
+				string iconName = CSVManager.Instance.skillDic[skillId].skill_icon;
+				string path = "Images/MobileSkillIcons/" + iconName;
+				sprite = LoadAsset<Sprite> (path);
+			}
+			return sprite;
+		}
+
+
 		T LoadAsset<T>(string path) where T : UnityEngine.Object{
 			return Resources. Load<T> (path);
 		}

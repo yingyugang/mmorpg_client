@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 
 namespace MMO
 {
+	//the message types from server,
+	//1.message of monster pos and rot.(以后同步方向和速度就好了，在方向改变的时候同步位置和朝向)
+	//2.actions of monster.
+	//3.message of player pos and rot.(像魔兽世界一样，是每个主控端向服务器端同步控制玩家的pos和rot，以后同步方向和速度就好了，在方向改变的时候同步位置和朝向)
+	//4.actions of player.
+	//5.hit infos.
+	//6.chat infos.
+	//7.unit infos. (HP,Buffs,Status)
 	public class MMOClient : SingleMonoBehaviour<MMOClient>
 	{
 		NetworkClient client;
@@ -42,7 +50,7 @@ namespace MMO
 			Send (MessageConstant.CLIENT_TO_SERVER_PLAYER_RESPAWN,respawn);
 		}
 
-		public void SendAction(MMOAction action){
+		public void SendAction(ActionInfo action){
 			Send (MessageConstant.PLAYER_ACTION, action);
 		}
 
@@ -83,7 +91,7 @@ namespace MMO
 		}
 
 		void OnRecievePlayerAction(NetworkMessage msg){
-			MMOAction mmoAction = msg.ReadMessage<MMOAction> ();
+			ActionInfo mmoAction = msg.ReadMessage<ActionInfo> ();
 			MMOController.Instance.DoClientPlayerAction (mmoAction);
 		}
 

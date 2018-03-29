@@ -75,6 +75,7 @@ namespace MMO
 		}
 
 		public void SetTrigger(string trigger){
+			if(mSimpleRpgAnimator!=null)
 			mSimpleRpgAnimator.SetTrigger (trigger);
 		}
 

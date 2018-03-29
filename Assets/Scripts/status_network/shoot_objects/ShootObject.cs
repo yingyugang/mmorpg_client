@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace MMO
 {
-
 	//飞行过程中的击中判断类型
 	public enum ShootCheckType
 	{
@@ -13,14 +12,14 @@ namespace MMO
 		//射线检测
 		LineCast,
 		//球形物理检查
-		SphereCast
-	};
+		SphereCast}
+
+	;
 
 	//Base class of all shoot object;
 	//按照策略模式，一个SO应该分为三个部分，1.运动轨迹控制，2.击中判断，3.击中效果
 	public abstract class ShootObject : MonoBehaviour
 	{
-
 		protected Transform thisT;
 		protected Transform target;
 		protected Vector3 offset;
@@ -38,62 +37,62 @@ namespace MMO
 		protected int calculatedLayer;
 		//当用球形检查时，求的半径
 		public float sphereRadius = 0.2f;
-		//	public BaseDamage damageObj;
 		//是否造成伤害，有一些情况下只是一个美术表现，不需要有伤害。
 		public bool damageAble = true;
 		//是否加上目标的相对位移
 		public bool addTargetMoveDeltaPos = true;
 		public AudioClip shootAudio;
 		public GameObject shootEffect;
-		public GameObject hitObject;
+		public MMOUnit attacker;
+
+		public Animation shootAnimation;
+		const string HIT_ANIM_CLIP = "hit";
+		const float DEFAULT_UNSPAWN_DELAY = 3;
 
 		protected virtual void Awake ()
 		{
 			thisT = transform;
-//		if (damageObj == null)
-//			damageObj = new TowerDamage ();
+			shootAnimation = GetComponent<Animation> ();
 		}
 
 		public virtual void Shoot (MMOUnit attacker, Vector3 targetPos, Vector3 offset)
 		{
-			//		damageObj.attacker = attacker;
-			//		damageObj.GetDamage ();
+			this.targetPos = targetPos + offset;
+			this.attacker = attacker;
+			this.target = null;
+			this.offset = offset;
 		}
 
-		public virtual void Shoot (MMOUnit attacker, Transform target, Vector3 offset, int[] targetLayers)
+		public virtual void Shoot (MMOUnit attacker, MMOUnit target, Vector3 offset)
 		{
-//		damageObj.attacker = attacker;
-//		damageObj.GetDamage ();
+			Shoot (attacker,target.transform,offset);
 		}
 
 		public virtual void Shoot (MMOUnit attacker, Transform target, Vector3 offset)
 		{
-//		damageObj.attacker = attacker;
-//		damageObj.GetDamage ();
+			this.attacker = attacker;
+			this.target = target;
+			this.offset = offset;
 		}
 
+		//TODO dirction move shootobject.
 		public virtual void Shoot (MMOUnit attacker, Vector3 direction)
 		{
-//		damageObj.attacker = attacker;
-//		damageObj.GetDamage ();
+			this.attacker = attacker;
 		}
 
-		public virtual void Hit ()
+		//TODO need to set to ヒットするエフェクト。
+		public virtual void OnHit ()
 		{
-			if (hitObject != null) {
-				GameObject go = Instantiater.Spawn (true, hitObject.gameObject, transform.position, Quaternion.identity);
-				//TODO
-//			HitObject hitObj = go.GetComponent<HitObject>();
-//			if(damageAble)
-//			{
-//				hitObj.damageObj = damageObj;
-//				hitObj.Hit(target);
-//			}
-//			else
-//			{
-//				hitObj.Hit(null);
-//			}
+			if (shootAnimation != null) {
+				shootAnimation.Play (HIT_ANIM_CLIP);
 			}
+			StartCoroutine (_UnSpawnDelay(DEFAULT_UNSPAWN_DELAY));
+		}
+
+		IEnumerator _UnSpawnDelay(float delay){
+			yield return new WaitForSeconds (delay);
+			Instantiater.UnSpawn (false, gameObject);
 		}
 
 		//设置进行碰撞物理检查的层
@@ -102,7 +101,6 @@ namespace MMO
 			targetLayers = layers;
 			this.CalculateLayer ();
 		}
-
 
 		protected int CalculateLayer ()
 		{

@@ -53,5 +53,26 @@ namespace MMO
 			isShow = false;
 		}
 
+		MMOUnitSkill mMMOUnitSkill;
+		public void SetSkillDatas (MMOUnitSkill unitSkill)
+		{
+			//TODO get normal attack
+			//TODO get skill
+			this.mMMOUnitSkill = unitSkill;
+			List<SkillBase> skills = unitSkill.skillList;
+			for(int i=0;i<skills.Count;i++){
+				SkillBase sb = skills [i];
+				Button btnSkill = btn_skills [i];
+				Sprite iconSprite = ResourcesManager.Instance.GetMobileSkillIcon (sb.skillId);
+				MobileSkillButton mobileSkillButton = btnSkill.gameObject.GetOrAddComponent<MobileSkillButton> ();
+				mobileSkillButton.InitSkillButton (iconSprite,3,i,OnSkill);
+			}
+		}
+
+		//TODO 需要使用实际的技能id
+		void OnSkill(int skillIndex){
+			SkillBase skillBase = mMMOUnitSkill.skillList [skillIndex];
+			Debug.Log (string.Format("skill id : {0}",skillBase.skillId));
+		}
 	}
 }

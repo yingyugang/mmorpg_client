@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace MMO
 {
@@ -18,8 +19,10 @@ namespace MMO
 		Transform mTrans;
 		public float speed = 5;
 		private SimpleRpgAnimator _animator;
-//		public UnityAction onRun;
-		ETCJoystick mETCJoystick;
+
+		public Canvas joystickCanvas;
+		public ETCJoystick etcJoystick;
+
 
 		protected override void Awake ()
 		{
@@ -27,7 +30,7 @@ namespace MMO
 			mCharacterController = GetComponent<CharacterController> ();
 			_animator = GetComponent<SimpleRpgAnimator> ();
 			mTrans = transform;
-			mETCJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
+			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 		}
 
 		void Update ()
@@ -35,12 +38,11 @@ namespace MMO
 			mInputX = Input.GetAxis ("Horizontal");
 			mInputY = Input.GetAxis ("Vertical");
 
-			if (mETCJoystick != null && mETCJoystick.gameObject.activeInHierarchy) {
-				mInputX = mETCJoystick.axisX.axisValue;
-				mInputY = mETCJoystick.axisY.axisValue;
+			if (etcJoystick != null && etcJoystick.gameObject.activeInHierarchy) {
+				mInputX = etcJoystick.axisX.axisValue;
+				mInputY = etcJoystick.axisY.axisValue;
 			}
 
-			//以camera的forward为基准。
 			Vector3 forward = rpgCameraController.transform.forward;
 			forward = new Vector3 (forward.x, 0, forward.z).normalized;
 
@@ -50,19 +52,12 @@ namespace MMO
 			if (mInputY < 0) {
 				d = -1;
 			}
-//		Debug.Log (Mathf.Acos(angle) * 180 /Mathf.PI * d - 90);
 			float angleY = Mathf.Acos (angle) * 180 / Mathf.PI * d - 90;
 			mTrans.forward = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
 			if (mInputX != 0 || mInputY != 0) {
-//			if(string.IsNullOrEmpty(_animator.Action) ||  _animator.Action=="idle")
-//				if (onRun != null)
-//					onRun ();
-				_animator.SetMoveSpeed (3f);//_animator.SetSpeed(3f) .Action = "run";
+				_animator.SetMoveSpeed (3f);
 			} else {
-//				if (string.IsNullOrEmpty (_animator.Action) || _animator.Action == "run") {
-//					_animator.Action = "idle";
-					_animator.SetMoveSpeed(0);
-//				}
+				_animator.SetMoveSpeed (0);
 			}
 			RaycastHit hit;
 			if (Physics.Raycast (mTrans.position, -Vector3.up, out hit, Mathf.Infinity)) {
@@ -72,5 +67,14 @@ namespace MMO
 				mCharacterController.Move (mTrans.forward * Time.deltaTime * speed);
 			}
 		}
+
+		void UpdateETCJoystickPos(){
+			if(etcJoystick.activated){
+				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint(Input.GetTouch(etcJoystick.pointId).position,this.joystickCanvas.transform,this.joystickCanvas);
+//				etcJoystick.pointId
+
+			}
+		}
+
 	}
 }
