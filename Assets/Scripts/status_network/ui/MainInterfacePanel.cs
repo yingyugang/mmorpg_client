@@ -22,6 +22,8 @@ namespace MMO
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
 		public Button btn_normal_attack;
+		public Button btn_voice;
+		bool isRecording;
 		public MobileSkillButtonGroup mobileSkillButtonGroup;
 
 		Dictionary<Button,SkillBase> mSkillButtonDic;
@@ -39,6 +41,16 @@ namespace MMO
 			btn_normal_attack.onClick.AddListener (OnNormalAttack);
 			skillGrid.gameObject.SetActive(false);
 			btn_normal_attack.gameObject.SetActive(true);
+			btn_voice.onClick.AddListener (()=>{
+				if(!isRecording){
+					MicrophoneManager.Instance.StartMicrophone();
+					isRecording = true;
+				}else{
+					float[] datas = MicrophoneManager.Instance.EndMicrophone();
+					MMOController.Instance.SendVoice(datas);
+					isRecording = false;
+				}
+			});
 		}
 
 		protected override void Start(){
@@ -80,8 +92,10 @@ namespace MMO
 					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skills[i]);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
-				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (skills[i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
-				imgIcon.gameObject.SetActive (true);
+				if (imgIcon != null && skills [i].mSkill != null) {
+					imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (skills [i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
+					imgIcon.gameObject.SetActive (true);
+				}
 			}
 		}
 
@@ -153,6 +167,8 @@ namespace MMO
 				mobileSkillButtonGroup.ShowSkills ();
 				return;
 			}
+			Debug.Log (mUnitSkill);
+			Debug.Log (mUnitSkill.mmoUnit);
 			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
 				mUnitSkill.mmoUnit.SetTrigger ("attack4");
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {

@@ -19,12 +19,12 @@ namespace MMO
 		public string playerName;
 
 		public string targetIp;
-//		public SimpleRpgCamera rpgCamera;
+		//		public SimpleRpgCamera rpgCamera;
 		//TODO csvに遷移するが必要。
 		public List<ShootObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
-//		public SimpleRpgPlayerController simpleRpgPlayerController;
+		//		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
@@ -65,7 +65,7 @@ namespace MMO
 		{
 			if (isStart) {
 				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction ||
-				     mPlayerInfo.skillId > -1) {
+				    mPlayerInfo.skillId > -1) {
 					mPrePosition = player.position;
 					mPreForward = player.forward;
 					mPreAction = mSimpleRpgAnimator.Action;
@@ -78,8 +78,6 @@ namespace MMO
 					} else {
 						mPlayerInfo.targetId = -1;
 					}
-					mPlayerInfo.unitInfo.animation.action = mPreAction;
-					mPlayerInfo.unitInfo.animation.animSpeed = mPreSpeed;
 					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 					mPlayerInfo.skillId = -1;
 				}
@@ -105,8 +103,8 @@ namespace MMO
 				handleSelectRing.gameObject.SetActive (false);
 			}
 
-			if(miniMap!=null){
-				if(miniMap.GetFullscreen ())
+			if (miniMap != null) {
+				if (miniMap.GetFullscreen ())
 					PanelManager.Instance.ShowBigMapMask ();
 				else
 					PanelManager.Instance.HideBigMapMask ();
@@ -126,6 +124,10 @@ namespace MMO
 			mPlayerInfo.chat = "";
 		}
 
+		public void SendVoice(float[] data){
+			client.SendVoice (data);
+		}
+
 		void SelectUnit (RaycastHit hit)
 		{
 			MMOUnit mmoUnit = hit.transform.GetComponent<MMOUnit> ();
@@ -134,9 +136,10 @@ namespace MMO
 //			handleSelectRing.transform.localPosition = new Vector3 (0, 0.1f, 0);//大会集材
 		}
 
-		public MMOUnit GetUnitByUnitId(int unitId){
+		public MMOUnit GetUnitByUnitId (int unitId)
+		{
 			if (mUnitDic.ContainsKey (unitId)) {
-				return mUnitDic [unitId].GetComponent<MMOUnit>();
+				return mUnitDic [unitId].GetComponent<MMOUnit> ();
 			}
 			return null;
 		}
@@ -188,10 +191,10 @@ namespace MMO
 					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.position);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.forward);
-					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
+//					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				} else {
 					SetCurrentPlayer (transferData.playerDatas [i]);
-					if(mPlayerInfo!=null)
+					if (mPlayerInfo != null)
 						mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
 				}
 
@@ -199,11 +202,11 @@ namespace MMO
 				if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
 					if (mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
 						//TODO need remove old unit.
-						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId,mPlayerDic [transferData.playerDatas [i].playerId]);
+						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, mPlayerDic [transferData.playerDatas [i].playerId]);
 					}
 				}
 
-				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
+//				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.unitSkillIds = transferData.playerDatas [i].unitInfo.unitSkillIds;
@@ -218,7 +221,7 @@ namespace MMO
 				MMOUnit mmoUnit = mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ();
 				if (transferData.playerDatas [i].playerId == mPlayerId) {
 					MMOUnitSkill mmoUnitSkill = mmoUnit.GetComponent<MMOUnitSkill> ();
-					if(!mmoUnitSkill.IsInitted){
+					if (!mmoUnitSkill.IsInitted) {
 						mmoUnitSkill.InitSkills ();
 						PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
 					}
@@ -226,7 +229,8 @@ namespace MMO
 			}
 		}
 
-		void SetCurrentPlayer(PlayerInfo playInfo){
+		void SetCurrentPlayer (PlayerInfo playInfo)
+		{
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
 //			simpleRpgPlayerController.enabled = false;
 			//TODO イベントの形になればいい。
@@ -244,10 +248,11 @@ namespace MMO
 		}
 
 		int mCurrentFrame = 0;
+
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			TransferData data = msg.ReadMessage<TransferData> ();
-			mCurrentFrame ++;
+			mCurrentFrame++;
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
 				if (!mMonsterDic.ContainsKey (data.monsterDatas [i].attribute.unitId)) {
 					GameObject monsterGo = InstantiateUnit (data.monsterDatas [i].attribute.unitType, data.monsterDatas [i]);
@@ -262,39 +267,50 @@ namespace MMO
 				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.position);
 				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.forward);
 				monster.unitInfo = unitInfo;
-				if (monster.unitInfo.attribute.currentHP <= 0) {
-					monster.Death ();
-				}
-				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
+//				if (monster.unitInfo.attribute.currentHP <= 0) {
+//					monster.Death ();
+//				}
+//				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 			}
 			List<int> removeList = new List<int> ();
-			foreach(int id in mMonsterDic.Keys){
-				if(mMonsterDic[id].GetComponent<MMOUnit>().frame!=mCurrentFrame){
+			foreach (int id in mMonsterDic.Keys) {
+				if (mMonsterDic [id].GetComponent<MMOUnit> ().frame != mCurrentFrame) {
 					removeList.Add (id);
 				}
 			}
 
-			for(int i=0;i<removeList.Count;i++){
-				Destroy (mMonsterDic [removeList[i]]);
-				mMonsterDic.Remove (removeList[i]);
-				mUnitDic.Remove (removeList[i]);
+			for (int i = 0; i < removeList.Count; i++) {
+				Destroy (mMonsterDic [removeList [i]]);
+				mMonsterDic.Remove (removeList [i]);
+				mUnitDic.Remove (removeList [i]);
 			}
 
-			if (data.hitDatas.Length > 0) {
-				for (int i = 0; i < data.hitDatas.Length; i++) {
-					OnHit (data.hitDatas [i]);
+			UpdateHits (data.hitDatas);
+			UpdateActions (data.actions);
+		}
+
+		void UpdateActions (StatusInfo[] actions)
+		{
+			if (actions.Length > 0) {
+				for (int i = 0; i < actions.Length; i++) {
+					DoClientPlayerAction (actions [i]);
 				}
 			}
-			if(data.actions.Length > 0){
-				for(int i = 0; i < data.actions.Length; i++) {
-					DoClientPlayerAction (data.actions[i]);
+		}
+
+		void UpdateHits (HitInfo[] hitInfos)
+		{
+			if (hitInfos.Length > 0) {
+				for (int i = 0; i < hitInfos.Length; i++) {
+					OnHit (hitInfos [i]);
 				}
 			}
 		}
 
 		void OnHit (HitInfo hitInfo)
 		{
-			PerformManager.Instance.ShowHitInfo (hitInfo,mUnitDic);
+			Debug.Log (JsonUtility.ToJson (hitInfo));
+			PerformManager.Instance.ShowHitInfo (hitInfo, mUnitDic);
 		}
 
 		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
@@ -311,33 +327,37 @@ namespace MMO
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			return unitGo;
 		}
-	
-		public PlayerInfo playerInfo{
-			get{
+
+		public PlayerInfo playerInfo {
+			get {
 				return mPlayerInfo;
 			}
 		}
 
-		public void StopControll(){
+		public void StopControll ()
+		{
 //			simpleRpgPlayerController.enabled = false;
 		}
 
-		public void ReleaseControll(){
+		public void ReleaseControll ()
+		{
 //			simpleRpgPlayerController.enabled = true;
 		}
 
 		//Send the action to the server.
-		public void DoServerPlayerAction(int actionType,int actionId){
-			ActionInfo action = new ActionInfo ();
-			action.actionType = actionType;
+		public void DoServerPlayerAction (int actionType, int actionId)
+		{
+			StatusInfo action = new StatusInfo ();
+			action.status = actionType;
 			action.actionId = actionId;
-			if(selectedUnit!=null)
+			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
 			MMOClient.Instance.SendAction (action);
 		}
 
 		//Do the action from server.
-		public void DoClientPlayerAction(ActionInfo action){
+		public void DoClientPlayerAction (StatusInfo action)
+		{
 			ActionManager.Instance.DoAction (action);
 		}
 

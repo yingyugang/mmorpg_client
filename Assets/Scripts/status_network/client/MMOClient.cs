@@ -32,6 +32,8 @@ namespace MMO
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_PLAYER_INFO, OnRecievePlayerInfo);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
 			client.RegisterHandler (MessageConstant.PLAYER_ACTION, OnRecievePlayerAction);
+			client.RegisterHandler (MessageConstant.PLAYER_VOICE, OnRecievePlayerVoice);
+
 		}
 
 		public bool IsConnected {
@@ -50,8 +52,14 @@ namespace MMO
 			Send (MessageConstant.CLIENT_TO_SERVER_PLAYER_RESPAWN,respawn);
 		}
 
-		public void SendAction(ActionInfo action){
+		public void SendAction(StatusInfo action){
 			Send (MessageConstant.PLAYER_ACTION, action);
+		}
+
+		public void SendVoice(float[] data){
+			VoiceInfo voice = new VoiceInfo ();
+			voice.voice = data;
+			Send (MessageConstant.PLAYER_VOICE,voice);
 		}
 
 		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInfo, UnityAction<NetworkMessage> onRecieveMessage)
@@ -91,8 +99,13 @@ namespace MMO
 		}
 
 		void OnRecievePlayerAction(NetworkMessage msg){
-			ActionInfo mmoAction = msg.ReadMessage<ActionInfo> ();
+			StatusInfo mmoAction = msg.ReadMessage<StatusInfo> ();
 			MMOController.Instance.DoClientPlayerAction (mmoAction);
+		}
+
+		void OnRecievePlayerVoice(NetworkMessage msg){
+			VoiceInfos voices = msg.ReadMessage<VoiceInfos> ();
+			SoundManager.Instance.PlayVoice (voices);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)

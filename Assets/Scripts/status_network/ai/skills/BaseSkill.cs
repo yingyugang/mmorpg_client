@@ -18,12 +18,12 @@ namespace MMO
 
 		public SkillBase(int unitSkillId,MMOUnit mmoUnit){
 			this.mMMOUnit = mmoUnit;
-			MUnitSkill unitSkill = CSVManager.Instance.unitSkillDic [unitSkillId];
-			MSkill skill = CSVManager.Instance.skillDic[mUnitSkill.skill_id];
-			this.coolDown = skill.cooldown;
-			this.mMMOUnit = mmoUnit;
-			this.mSkill = skill;
-			this.mUnitSkill = unitSkill;
+//			MUnitSkill unitSkill = CSVManager.Instance.unitSkillDic [unitSkillId];
+//			MSkill skill = CSVManager.Instance.skillDic[mUnitSkill.skill_id];
+//			this.coolDown = skill.cooldown;
+//			this.mMMOUnit = mmoUnit;
+//			this.mSkill = skill;
+//			this.mUnitSkill = unitSkill;
 		}
 
 		public virtual bool IsUseAble ()

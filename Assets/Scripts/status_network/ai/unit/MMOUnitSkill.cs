@@ -37,8 +37,8 @@ namespace MMO
 				int unitSkillId = mmoUnit.unitInfo.unitSkillIds[i];
 				SkillBase skillBase = new SkillBase (unitSkillId,this.mmoUnit);
 				skillList.Add (skillBase);
-				if(!skillDic.ContainsKey(skillBase.mSkill.id))
-					skillDic.Add (skillBase.mSkill.id,skillBase);
+//				if(!skillDic.ContainsKey(skillBase.mSkill.id))
+//					skillDic.Add (skillBase.mSkill.id,skillBase);
 			}
 		}
 
