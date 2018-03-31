@@ -22,7 +22,7 @@ public class SimpleRpgAnimator : MonoBehaviour
 
 	void Start()
 	{
-		mAnimation = model.GetComponent<Animation> ();
+		mAnimation = model.GetComponentInChildren<Animation> (true);
 		mAnimator = model.GetComponent<Animator> ();
 		// Check to make sure the model is selected and has animation
 		if(!model)

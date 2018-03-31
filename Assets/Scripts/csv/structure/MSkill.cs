@@ -121,7 +121,9 @@ namespace MMO
 		//skillの冷却持続時間
 		[CsvColumn (CanBeNull = true)]
 		public int cooldown{ get; set;}
-
+		//击中的检测范围
+		[CsvColumn (CanBeNull = true)]
+		public float hit_range{ get; set; }
 		string m_sub_skills;
 		//与技能同时释放的子技能(0.8,1|1,2 “｜”分隔多个，“，”分隔时间和子技能id)
 		[CsvColumn (CanBeNull = true)]

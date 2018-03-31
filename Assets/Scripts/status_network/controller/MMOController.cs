@@ -40,7 +40,8 @@ namespace MMO
 		int mPlayerId;
 		Vector3 mPrePosition;
 		Vector3 mPreForward;
-		string mPreAction;
+		int mPreSelectId = -1;
+//		string mPreAction;
 		float mPreSpeed;
 
 		void Start ()
@@ -64,22 +65,17 @@ namespace MMO
 		void Update ()
 		{
 			if (isStart) {
-				if (player.position != mPrePosition || player.forward != mPreForward || mSimpleRpgAnimator.Action != mPreAction ||
-				    mPlayerInfo.skillId > -1) {
+				int mCurrentSelectId = selectedUnit == null ? -1 : selectedUnit.unitInfo.attribute.unitId;
+				//Postion and rotation を同期する
+				if (player.position != mPrePosition || player.forward != mPreForward || mPreSelectId != mCurrentSelectId) {
+					//TODO 通信を減ったら
 					mPrePosition = player.position;
 					mPreForward = player.forward;
-					mPreAction = mSimpleRpgAnimator.Action;
-//					mPreSpeed = simpleRpgPlayerController._animation_speed;
-//					SendPlayerMessage (player);
+					mPreSelectId = mCurrentSelectId;
 					mPlayerInfo.unitInfo.transform.forward = IntVector3.ToIntVector3 (player.forward);
 					mPlayerInfo.unitInfo.transform.position = IntVector3.ToIntVector3 (player.position);
-					if (selectedUnit != null) {
-						mPlayerInfo.targetId = selectedUnit.unitInfo.attribute.unitId;
-					} else {
-						mPlayerInfo.targetId = -1;
-					}
+					mPlayerInfo.targetId = mCurrentSelectId;
 					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
-					mPlayerInfo.skillId = -1;
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -154,6 +150,7 @@ namespace MMO
 		//主要是玩家自己的操作
 		void OnRecieveGameStartInfo (NetworkMessage msg)
 		{
+			Debug.Log ("OnRecieveGameStartInfo");
 			mPlayerInfo = msg.ReadMessage<PlayerInfo> ();
 			mPlayerId = mPlayerInfo.playerId;
 //			rpgCamera.enabled = true;
@@ -170,6 +167,8 @@ namespace MMO
 
 		void OnRecievePlayerMessage (NetworkMessage msg)
 		{
+			if (!isStart)
+				return;
 			TransferData transferData = msg.ReadMessage<TransferData> ();
 			HashSet<int> activedPlayerIds = new HashSet<int> ();
 			for (int i = 0; i < transferData.playerDatas.Length; i++) {
@@ -248,9 +247,11 @@ namespace MMO
 		}
 
 		int mCurrentFrame = 0;
-
+		public bool isDebug;
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
+			if (!isStart)
+				return;
 			TransferData data = msg.ReadMessage<TransferData> ();
 			mCurrentFrame++;
 			for (int i = 0; i < data.monsterDatas.Length; i++) {
@@ -293,6 +294,8 @@ namespace MMO
 		{
 			if (actions.Length > 0) {
 				for (int i = 0; i < actions.Length; i++) {
+					if (isDebug)
+						Debug.Log (JsonUtility.ToJson(actions[i]));
 					DoClientPlayerAction (actions [i]);
 				}
 			}
@@ -302,6 +305,8 @@ namespace MMO
 		{
 			if (hitInfos.Length > 0) {
 				for (int i = 0; i < hitInfos.Length; i++) {
+					if (isDebug)
+						Debug.Log (JsonUtility.ToJson(hitInfos[i]));
 					OnHit (hitInfos [i]);
 				}
 			}
@@ -309,7 +314,7 @@ namespace MMO
 
 		void OnHit (HitInfo hitInfo)
 		{
-			Debug.Log (JsonUtility.ToJson (hitInfo));
+//			Debug.Log (JsonUtility.ToJson (hitInfo));
 			PerformManager.Instance.ShowHitInfo (hitInfo, mUnitDic);
 		}
 

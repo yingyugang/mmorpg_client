@@ -11,13 +11,19 @@ namespace MMO
 		public void DoAction (StatusInfo action)
 		{
 			MMOUnit unit = MMOController.Instance.GetUnitByUnitId (action.casterId);
+			if (unit == null) {
+				Debug.Log ("unit is null.");
+				return;
+			}
+//			unit.ResetAllTrigger ();
 			switch (action.status) {
-			case 1:
-				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL,1);
+			case BattleConst.UnitMachineStatus.STANDBY:
+				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL, 1);
 				break;
 			case BattleConst.UnitMachineStatus.MOVE:
 				//TODO walk or run.
-				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_WALK,1);
+//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
+				unit.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
 				break;
 			case BattleConst.UnitMachineStatus.CAST:
 				DoSkill(action);
@@ -94,7 +100,7 @@ namespace MMO
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, caster.GetBodyPos (), caster.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootObject shootObj = shootGo.GetComponent<ShootObject> ();
 			shootObj.speed = speed;
-			shootObj.Shoot (caster,target, Vector3.zero);
+			shootObj.Shoot (caster,target, new Vector3(0,target.GetBodyHeight() / 2f,0));
 		}
 
 	}
