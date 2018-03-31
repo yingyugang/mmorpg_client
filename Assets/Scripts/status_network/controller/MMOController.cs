@@ -67,6 +67,7 @@ namespace MMO
 			if (isStart) {
 				int mCurrentSelectId = selectedUnit == null ? -1 : selectedUnit.unitInfo.attribute.unitId;
 				//Postion and rotation を同期する
+				//TODO 动画状态同步
 				if (player.position != mPrePosition || player.forward != mPreForward || mPreSelectId != mCurrentSelectId) {
 					//TODO 通信を減ったら
 					mPrePosition = player.position;

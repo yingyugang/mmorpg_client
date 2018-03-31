@@ -12,7 +12,6 @@ public class SimpleRpgAnimator : MonoBehaviour
 
 	Animation mAnimation;
 	public Animator mAnimator;
-	public UnityAction onIdle;
 
 	public string Action
 	{
@@ -67,11 +66,8 @@ public class SimpleRpgAnimator : MonoBehaviour
 
 	bool mIsIdle;
 	void CheckOnIdle(){
-		if (!mIsIdle && mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")) {
+		if (mAnimator!=null && !mIsIdle && mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")) {
 			mIsIdle = true;
-			if (onIdle != null) {
-				onIdle ();
-			}
 		} else if(mIsIdle && !mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")){
 			mIsIdle = false;
 		}
