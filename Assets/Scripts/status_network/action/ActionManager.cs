@@ -15,15 +15,16 @@ namespace MMO
 				Debug.Log ("unit is null.");
 				return;
 			}
-//			unit.ResetAllTrigger ();
 			switch (action.status) {
 			case BattleConst.UnitMachineStatus.STANDBY:
 				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL, 1);
+				if(unit.mSimpleRpgAnimator!=null)
+					unit.mSimpleRpgAnimator.SetMoveSpeed (0);
 				break;
 			case BattleConst.UnitMachineStatus.MOVE:
-				//TODO walk or run.
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
 				unit.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
+				if(unit.mSimpleRpgAnimator!=null)
+					unit.mSimpleRpgAnimator.SetMoveSpeed (3.0f);
 				break;
 			case BattleConst.UnitMachineStatus.CAST:
 				DoSkill(action);
@@ -65,7 +66,6 @@ namespace MMO
 //				break;
 //			}
 //		}
-
 		//TODO use trigger to controll the cast clip;
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.

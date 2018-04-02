@@ -47,9 +47,9 @@ namespace MMO
 		{
 			Debug.Log ("PlayClientSkill");
 			if (skillBase.IsUseAble ()) {
-				MMOController.Instance.DoServerPlayerAction (1, skillBase.skillId);
+				MMOController.Instance.SendPlayerAction (1, skillBase.mUnitSkill.id);
 				//TODO remove later.
-				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
+//				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
 			}
 		}
 

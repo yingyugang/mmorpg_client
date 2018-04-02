@@ -63,7 +63,7 @@ namespace MMO
 			for(int i=0;i<skills.Count;i++){
 				SkillBase sb = skills [i];
 				Button btnSkill = btn_skills [i];
-				Sprite iconSprite = ResourcesManager.Instance.GetMobileSkillIcon (sb.skillId);
+				Sprite iconSprite = ResourcesManager.Instance.GetMobileSkillIcon (sb.mSkill.id);
 				MobileSkillButton mobileSkillButton = btnSkill.gameObject.GetOrAddComponent<MobileSkillButton> ();
 				mobileSkillButton.InitSkillButton (iconSprite,3,i,OnSkill);
 			}
@@ -72,7 +72,6 @@ namespace MMO
 		//TODO 需要使用实际的技能id
 		void OnSkill(int skillIndex){
 			SkillBase skillBase = mMMOUnitSkill.skillList [skillIndex];
-			Debug.Log (string.Format("skill id : {0}",skillBase.skillId));
 		}
 	}
 }

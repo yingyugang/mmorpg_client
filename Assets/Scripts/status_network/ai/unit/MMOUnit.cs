@@ -14,7 +14,7 @@ namespace MMO
 		public int frame;
 		Collider mCollider;
 		Transform mTrans;
-		SimpleRpgAnimator mSimpleRpgAnimator;
+		public SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
 
 		CapsuleCollider mCapsuleCollider;
@@ -102,7 +102,6 @@ namespace MMO
 		string mPreAction;
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {
-				Debug.Log (action);
 				mSimpleRpgAnimator.Play (action);
 				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
 			} else if (mAnimator !=null){

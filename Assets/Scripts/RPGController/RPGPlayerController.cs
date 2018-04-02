@@ -33,6 +33,8 @@ namespace MMO
 			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 		}
 
+		bool mIsRuning;
+
 		void Update ()
 		{
 			mInputX = Input.GetAxis ("Horizontal");
@@ -65,6 +67,16 @@ namespace MMO
 			}
 			if (_animator.IsRun ()) {
 				mCharacterController.Move (mTrans.forward * Time.deltaTime * speed);
+				//TODO 暂时只能同步move和idle，attack无法同步。
+				if (!mIsRuning) {
+					mIsRuning = true;
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1);
+				}
+			} else {
+				if (mIsRuning) {
+					mIsRuning = false;
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1);
+				}
 			}
 		}
 

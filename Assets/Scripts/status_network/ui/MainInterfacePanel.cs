@@ -79,7 +79,6 @@ namespace MMO
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;
-			Debug.Log (skillButtonList.Count);
 			for (int i = 0; i < skills.Count; i++) {
 //				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
@@ -167,15 +166,19 @@ namespace MMO
 				mobileSkillButtonGroup.ShowSkills ();
 				return;
 			}
-			Debug.Log (mUnitSkill);
-			Debug.Log (mUnitSkill.mmoUnit);
+			//need a area to place the config at user handled skill.
+			//this is not in default mmorpg.
 			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[0].mUnitSkill.id);
 				mUnitSkill.mmoUnit.SetTrigger ("attack4");
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[1].mUnitSkill.id);
 				mUnitSkill.mmoUnit.SetTrigger ("attack3");
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack1") ) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[2].mUnitSkill.id);
 				mUnitSkill.mmoUnit.SetTrigger ("attack2");
 			} else {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[3].mUnitSkill.id);
 				mUnitSkill.mmoUnit.SetTrigger ("attack1");
 			}
 		}

@@ -291,6 +291,13 @@ namespace MMO
 			UpdateActions (data.actions);
 		}
 
+		void OnRecievePlayerStatus(NetworkMessage msg){
+			StatusInfo statusInfo = msg.ReadMessage<StatusInfo> ();
+			if (isDebug)
+				Debug.Log (JsonUtility.ToJson(statusInfo));
+			DoClientPlayerAction (statusInfo);
+		}
+
 		void UpdateActions (StatusInfo[] actions)
 		{
 			if (actions.Length > 0) {
@@ -350,12 +357,14 @@ namespace MMO
 //			simpleRpgPlayerController.enabled = true;
 		}
 
-		//Send the action to the server.
-		public void DoServerPlayerAction (int actionType, int actionId)
+		//Send the status to the server.
+		//例えば　遷移とか、待機どか。
+		public void SendPlayerAction (int actionType, int actionId)
 		{
 			StatusInfo action = new StatusInfo ();
 			action.status = actionType;
 			action.actionId = actionId;
+			Debug.Log (action.actionId);
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
 			MMOClient.Instance.SendAction (action);
