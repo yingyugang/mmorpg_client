@@ -39,6 +39,7 @@ namespace MMO
 
 		public void Init(MMOUnitSkill unitSkill){
 			this.mUnitSkill = unitSkill;
+			SetSkillDatas (this.mUnitSkill);
 		}
 
 		public void ShowSkills ()
@@ -70,24 +71,33 @@ namespace MMO
 		}
 
 		MMOUnitSkill mMMOUnitSkill;
-		public void SetSkillDatas (MMOUnitSkill unitSkill)
+		static int skillStartIndex = 4;
+		void SetSkillDatas (MMOUnitSkill unitSkill)
 		{
 			//TODO get normal attack
 			//TODO get skill
 			this.mMMOUnitSkill = unitSkill;
 			List<SkillBase> skills = unitSkill.skillList;
-			for(int i=0;i<skills.Count;i++){
+			for(int i= skillStartIndex;i<skills.Count;i++){
 				SkillBase sb = skills [i];
-				Button btnSkill = btn_skills [i];
+				Button btnSkill = btn_skills [i-skillStartIndex];
 				Sprite iconSprite = ResourcesManager.Instance.GetMobileSkillIcon (sb.mSkill.id);
 				MobileSkillButton mobileSkillButton = btnSkill.gameObject.GetOrAddComponent<MobileSkillButton> ();
-				mobileSkillButton.InitSkillButton (iconSprite,3,i,OnSkill);
+				mobileSkillButton.InitSkillButton (iconSprite,3f,sb,OnSkill);
 			}
 		}
 
 		//TODO 需要使用实际的技能id
-		void OnSkill(int skillIndex){
-			SkillBase skillBase = mMMOUnitSkill.skillList [skillIndex];
+		void OnSkill(SkillBase skillBase){
+			Debug.Log (skillBase);
+			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,skillBase.mUnitSkill.id);
+			StatusInfo statusInfo = new StatusInfo ();
+			statusInfo.casterId = this.mMMOUnitSkill.mmoUnit.unitInfo.attribute.unitId;
+			statusInfo.actionId = skillBase.mUnitSkill.id;
+			if (MMOController.Instance.selectedUnit != null)
+				statusInfo.targetId = MMOController.Instance.selectedUnit.unitInfo.attribute.unitId;
+			ActionManager.Instance.DoSkill (statusInfo);
+			mUnitSkill.mmoUnit.SetTrigger ("cast");
 		}
 
 		void OnNormalAttack(){

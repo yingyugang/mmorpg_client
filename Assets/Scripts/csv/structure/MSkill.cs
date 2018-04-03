@@ -88,6 +88,19 @@ namespace MMO
 		public int impact_type { get; set; }
 
 		MSkillEffectBaseCSVStructure mSkillEffectBaseCSVStructure;
+
+		public MSkillEffectBaseCSVStructure GetMSkillEffectBaseCSVStructure(){
+			return mSkillEffectBaseCSVStructure;
+		}
+
+		public int effect_base_type_id{
+			get{ 
+				if (mSkillEffectBaseCSVStructure != null)
+					return mSkillEffectBaseCSVStructure.id;
+				return -1;
+			}
+		}
+
 		//受影响的单位数
 		[CsvColumn (CanBeNull = true)]
 		public int impact_count{ get; set; }

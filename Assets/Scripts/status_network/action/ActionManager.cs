@@ -39,7 +39,7 @@ namespace MMO
 			}
 		}
 		//Do Skill.
-		void DoSkill (StatusInfo action)
+		public void DoSkill (StatusInfo action)
 		{
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
@@ -86,21 +86,26 @@ namespace MMO
 				ShootObject shootObj = null;
 				switch(mSkill.shoot_move_type){
 				case 1:
-					Shoot (MMOController.Instance.shootPrefabs [0].gameObject,mSkill.shoot_move_speed,caster,target);
+					Shoot (MMOController.Instance.shootPrefabs [0].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
 					break;
 				default:
-					Shoot (MMOController.Instance.shootPrefabs [1].gameObject,mSkill.shoot_move_speed,caster,target);
+					Shoot (MMOController.Instance.shootPrefabs [1].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
 					break;
 				}
 			}
 			yield return null;
 		}
 		//Shoot Action.
-		void Shoot(GameObject shootPrefab,float speed,MMOUnit caster,MMOUnit target){
+		public void Shoot(GameObject shootPrefab,float speed,MMOUnit caster,MMOUnit target,float range){
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, caster.GetBodyPos (), caster.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootObject shootObj = shootGo.GetComponent<ShootObject> ();
 			shootObj.speed = speed;
-			shootObj.Shoot (caster,target, new Vector3(0,target.GetBodyHeight() / 2f,0));
+			if (target != null) {
+				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));// (caster, new Vector3(0,target.GetBodyHeight() / 2f, Vector3.zero));
+			} else {
+				Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * range);
+				shootObj.Shoot (caster,targetPos,Vector3.zero);
+			}
 		}
 
 	}

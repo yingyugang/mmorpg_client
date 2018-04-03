@@ -14,26 +14,26 @@ namespace MMO
 		Text txt_cooldown;
 		Image img_cooldown_mask;
 		float mCooldown;
-		int mUnitSkillId;
-		UnityAction<int> onSkillButtonClick;
+		SkillBase mSkillBase;
+		UnityAction<SkillBase> onSkillButtonClick;
 
 		void Awake(){
+			btn_skill = transform.GetComponent<Button>();
 			btn_skill.onClick.AddListener (OnClickSkillButton);
-			btn_skill = transform.Find ("").GetComponent<Button>();
-			img_skill = btn_skill.GetComponent<Image> ();
-			txt_cooldown = transform.Find ("").GetComponent<Text> ();
-			img_cooldown_mask = transform.Find ("").GetComponent<Image> ();
+//			img_skill = btn_skill.GetComponent<Image> ();
+//			txt_cooldown = transform.Find ("").GetComponent<Text> ();
+//			img_cooldown_mask = transform.Find ("").GetComponent<Image> ();
 		}
 	
 		void OnClickSkillButton(){
-			img_cooldown_mask.fillAmount = 1;
-			img_cooldown_mask.enabled = true;
-			img_cooldown_mask.DOFillAmount (0,mCooldown).OnComplete(()=>{
-				img_cooldown_mask.enabled = false;
-			});
-			StartCoroutine (_Cooldown());
+//			img_cooldown_mask.fillAmount = 1;
+//			img_cooldown_mask.enabled = true;
+//			img_cooldown_mask.DOFillAmount (0,mCooldown).OnComplete(()=>{
+//				img_cooldown_mask.enabled = false;
+//			});
+//			StartCoroutine (_Cooldown());
 			if (onSkillButtonClick != null)
-				onSkillButtonClick (mUnitSkillId);
+				onSkillButtonClick (mSkillBase);
 		}
 
 		IEnumerator _Cooldown(){
@@ -48,10 +48,10 @@ namespace MMO
 			img_cooldown_mask.enabled = false;
 		}
 
-		public void InitSkillButton(Sprite skillIcon,float cooldown,int unitSkillId,UnityAction<int> onClick){
-			this.img_skill.sprite = skillIcon;
+		public void InitSkillButton(Sprite skillIcon,float cooldown,SkillBase baseSkill,UnityAction<SkillBase> onClick){
+//			this.img_skill.sprite = skillIcon;
 			this.mCooldown = cooldown;
-			this.mUnitSkillId = unitSkillId;
+			this.mSkillBase = baseSkill;
 			this.onSkillButtonClick = onClick;
 		}
 

@@ -12,6 +12,7 @@ namespace MMO
 	{
 		public int casterId;
 		public IntVector3 hitCenterPosition;
+		public int skillId;
 		public int[] hitIds;
 		public int[] nums;
 		public int[] hitObjectIds;
@@ -129,6 +130,7 @@ namespace MMO
 		public StatusInfo(){
 			actionId = -1;
 			status = 1;
+			targetId = -1;
 			targetPos = new IntVector3 ();
 		}
 	}

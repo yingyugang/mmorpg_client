@@ -43,6 +43,7 @@ namespace MMO
 		int mPreSelectId = -1;
 //		string mPreAction;
 		float mPreSpeed;
+		Terrain mTerrain;
 
 		void Start ()
 		{
@@ -60,6 +61,7 @@ namespace MMO
 			if (miniMap == null)
 				miniMap = FindObjectOfType<KGFMapSystem> ();
 			gameObject.GetOrAddComponent<AssetbundleManager> ();
+			mTerrain = FindObjectOfType<Terrain> ();
 		}
 
 		void Update ()
@@ -345,6 +347,11 @@ namespace MMO
 			get {
 				return mPlayerInfo;
 			}
+		}
+
+		public Vector3 GetTerrainPos(Vector3 pos){
+			Vector3 terrainPos = new Vector3 (pos.x,mTerrain.SampleHeight (pos),pos.z);
+			return terrainPos;
 		}
 
 		public void StopControll ()
