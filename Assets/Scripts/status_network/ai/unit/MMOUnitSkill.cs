@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace MMO
 {
+	//player has only. 
 	public class MMOUnitSkill : MonoBehaviour
 	{
-
+		//cooldown,skill,unitskill.
 		public List<SkillBase> skillList;
 		public Dictionary<int,SkillBase> skillDic;
 		public MMOUnit mmoUnit;
@@ -32,12 +33,12 @@ namespace MMO
 			mIsInitted = true;
 			skillList = new List<SkillBase> ();
 			skillDic = new Dictionary<int, SkillBase> ();
-			for (int i = 0; i < mmoUnit.unitInfo.skillIds.Length; i++) {
-				SkillShoot skillBase = new SkillShoot ();
-				skillBase.mmoUnit = mmoUnit;
-				skillBase.skillId = mmoUnit.unitInfo.skillIds[i];
+			for (int i = 0; i < mmoUnit.unitInfo.unitSkillIds.Length; i++) {
+				int unitSkillId = mmoUnit.unitInfo.unitSkillIds[i];
+				SkillBase skillBase = new SkillBase (unitSkillId,this.mmoUnit);
 				skillList.Add (skillBase);
-				skillDic.Add (skillBase.skillId, skillBase);
+//				if(!skillDic.ContainsKey(skillBase.mSkill.id))
+//					skillDic.Add (skillBase.mSkill.id,skillBase);
 			}
 		}
 
@@ -46,20 +47,10 @@ namespace MMO
 		{
 			Debug.Log ("PlayClientSkill");
 			if (skillBase.IsUseAble ()) {
-				MMOController.Instance.DoServerPlayerAction (1, skillBase.skillId);
+				MMOController.Instance.SendPlayerAction (1, skillBase.mUnitSkill.id);
 				//TODO remove later.
-				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
+//				MMOController.Instance.playerInfo.skillId = skillBase.skillId;
 			}
-		}
-
-		//サーバーから通信されたスキルidで実行する
-		//这是一个演出，没有具体的伤害逻辑，只需要使用跟服务器一样的判断逻辑，不需要非常精准。
-		//必须要服务器验证过返回过后才能调用，防止延迟，否则需要在冷却部分加上逻辑。
-		public void PlayServerSkill (int skillId)
-		{
-			Debug.Log (skillId);
-			SkillBase skillBase = skillDic [skillId];
-			skillBase.Play ();
 		}
 
 	}

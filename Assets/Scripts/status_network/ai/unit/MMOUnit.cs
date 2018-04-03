@@ -9,12 +9,12 @@ namespace MMO
 	public class MMOUnit : MonoBehaviour
 	{
 		public UnitInfo unitInfo;
-		public float animationSpeedOffset = 3;
+		public float animationSpeedOffset = 1;
 		//用于判断是否是当前帧数据
 		public int frame;
 		Collider mCollider;
 		Transform mTrans;
-		SimpleRpgAnimator mSimpleRpgAnimator;
+		public SimpleRpgAnimator mSimpleRpgAnimator;
 		Animator mAnimator;
 
 		CapsuleCollider mCapsuleCollider;
@@ -66,21 +66,55 @@ namespace MMO
 				return mTrans.position;
 		}
 
+		public float GetBodyHeight(){
+			if (mCharacterController != null)
+				return mCharacterController.height;
+			else if (mCapsuleCollider != null)
+				return mCapsuleCollider.height;
+			else
+				return 1;
+		}
+
+		public bool IsInState(string state){
+			return mSimpleRpgAnimator.IsInState (state);
+		}
+
+		public bool GetTrigger(string trigger){
+			return mSimpleRpgAnimator.GetTrigger (trigger);
+		}
+
+		public void SetTrigger(string trigger){
+			if(mSimpleRpgAnimator!=null)
+				mSimpleRpgAnimator.SetTrigger (trigger);
+			else if(mAnimator !=null){
+				mAnimator.SetTrigger (trigger);
+			}
+		}
+
+		public void ResetAllTrigger(){
+			if(mAnimator !=null){
+				for(int i=0;i<mAnimator.parameters.Length;i++){
+					mAnimator.SetBool (mAnimator.parameters[0].name,false);
+				}
+			}
+		}
+
 		string mPreAction;
 		public void SetAnimation(string action,float speed){
 			if (mSimpleRpgAnimator != null) {
-				mSimpleRpgAnimator.Action = action;
+				mSimpleRpgAnimator.Play (action);
 				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
 			} else if (mAnimator !=null){
+				mAnimator.Play (action, 0, 0);
 				//TODO
-				if (mPreAction != action) {
-					if (mPreAction == "walk")
-						mAnimator.Play (action, 0, Random.Range (0, 1f));
-					else
-						mAnimator.Play (action, 0, 0);
-					mAnimator.speed = speed * animationSpeedOffset;
-					mPreAction = action;
-				}
+//				if (mPreAction != action) {
+//					if (mPreAction == "walk")
+//						mAnimator.Play (action, 0, Random.Range (0, 1f));
+//					else
+//						mAnimator.Play (action, 0, 0);
+//					mAnimator.speed = speed * animationSpeedOffset;
+//					mPreAction = action;
+//				}
 			}
 		}
 	}

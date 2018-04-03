@@ -13,6 +13,13 @@ namespace MMO
 		[CsvColumn (CanBeNull = true)]
 		public int unlock_level{ get; set; }
 		[CsvColumn (CanBeNull = true)]
+		//この三つアニメ属性が前端に役に立つ
+		public string anim_name{ get; set; }
+		[CsvColumn (CanBeNull = true)]
+		public float anim_length{ get; set; }
+		[CsvColumn (CanBeNull = true)]
+		public float anim_action_point{ get; set; }
+		[CsvColumn (CanBeNull = true)]
 		public int skill_id{ 
 			get{
 				if(skill!=null){
@@ -26,8 +33,6 @@ namespace MMO
 				}
 			}
 		}
-
 		public MSkill skill;
-
 	}
 }

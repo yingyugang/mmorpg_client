@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace MMO
 {
@@ -7,26 +8,23 @@ namespace MMO
 	{
 
 		public float maxShootAngle = 30;
+		public int hitObjectId = 0;
 
-		public bool hitWater = false;
-		int waterLayer = 4;
-		public GameObject hitWaterPrefab;
+		public override void Shoot (MMOUnit attacker, Vector3 targetPos, Vector3 offset)
+		{
+			base.Shoot (attacker, targetPos, offset);
+			StartCoroutine (ProjectileRoutine ());
+		}
 
-		public override void Shoot(MMOUnit attacker,Vector3 targetPos, Vector3 offset){
+		public override void Shoot (MMOUnit attacker, MMOUnit target, Vector3 offset)
+		{
 			base.Shoot (attacker, target, offset);
-			this.targetPos =  targetPos + offset;
-			this.target = null;
-			this.offset = offset;
-			hitWater = false;
 			StartCoroutine (ProjectileRoutine ());
 		}
 
 		public override void Shoot (MMOUnit attacker, Transform target, Vector3 offset)
 		{
 			base.Shoot (attacker, target, offset);
-			this.target = target;
-			this.offset = offset;
-			hitWater = false;
 			StartCoroutine (ProjectileRoutine ());
 		}
 
@@ -39,7 +37,7 @@ namespace MMO
 			bool hit = false;
 			if (target != null)
 				targetPos = target.position + offset;
-			
+
 			//make sure the shootObject is facing the target and adjust the projectile angle
 			thisT.LookAt (targetPos);
 			float angle = Mathf.Min (1, Vector3.Distance (thisT.position, targetPos) / maxShootRange) * maxShootAngle;
@@ -49,7 +47,6 @@ namespace MMO
 			float iniRotX = thisT.rotation.eulerAngles.x;
 			float y = Mathf.Min (targetPos.y, startPos.y);
 			float totalDist = Vector3.Distance (startPos, targetPos);
-			RaycastHit rayHit;
 			Vector3 prePos = thisT.transform.position;
 			//while the shootObject havent hit the target
 			while (!hit) {
@@ -61,6 +58,7 @@ namespace MMO
 				//calculating distance to targetPos
 				Vector3 curPos = thisT.position;
 				curPos.y = y;
+				//TODO Distanceがコストが高いそうだ。SqrMagnitudeに置き換えしていい。
 				float currentDist = Vector3.Distance (curPos, targetPos);
 				float curDist = Vector3.Distance (thisT.position, targetPos);
 				if (Time.time - timeShot < 3.5f) {
@@ -80,23 +78,6 @@ namespace MMO
 					thisT.LookAt (targetPos);
 				}
 
-				//TODO
-//				if (checkType == ShootCheckType.LineCast && Vector3.Distance (transform.position, prePos) > hitThreshold) {
-//					if (Physics.Raycast (prePos, transform.forward, out rayHit, Vector3.Distance (transform.position, prePos), 1 << waterLayer)) {
-//						targetPos = rayHit.point;
-//						hit = true;
-//						hitWater = true;
-//						if (hitWaterPrefab != null) {
-//							Instantiater.Spawn (true, hitWaterPrefab, rayHit.point, Quaternion.identity);
-//						}
-//						break;
-//					} else if (Physics.Raycast (prePos, transform.forward, out rayHit, Vector3.Distance (transform.position, prePos), calculatedLayer)) {
-//						targetPos = rayHit.point;
-//						hit = true;
-//						break;
-//					}
-//				}
-
 				if (curDist <= hitThreshold && !hit) {
 					hit = true;
 					break;
@@ -104,30 +85,10 @@ namespace MMO
 				prePos = thisT.position;
 				//move forward
 				thisT.Translate (Vector3.forward * Mathf.Min (speed * Time.deltaTime, curDist));
-//				Debug.Log (string.Format( "targetPos:{0}",targetPos.ToString()));
 				yield return null;
 			}
-			if (hitObject != null && !hitWater) {
-//			if(!hit)
-//			{
-//				GameObject hitObj = Instantiater.Spawn(true,hitObject.gameObject,targetPos,Quaternion.identity);
-//
-//				//如果没有击中,则表示没击中的特效。
-//				hitObj.GetComponent<HitObject>().Hit(null);
-//			}
-//			else
-//			{
-				GameObject hitObj = Instantiater.Spawn (true, hitObject.gameObject, targetPos, Quaternion.identity);
-				//TODO
-//				if (damageAble) {
-//					hitObj.GetComponent<HitObject> ().damageObj = damageObj;
-//					hitObj.GetComponent<HitObject> ().Hit (target);
-//				} else
-//					hitObj.GetComponent<HitObject> ().Hit (null);
-//			}
-			}
-//			Instantiater.UnSpawn (true, gameObject);
-			Destroy (gameObject,3);
+			OnHit ();
 		}
+
 	}
 }

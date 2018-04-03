@@ -21,15 +21,34 @@ namespace MMO
 		public GridLayoutGroup skillGrid;
 		public GameObject skillItemPrefab;
 		public List<Button> skillButtonList;
+		public Button btn_normal_attack;
+		public Button btn_voice;
+		bool isRecording;
+		public MobileSkillButtonGroup mobileSkillButtonGroup;
+
 		Dictionary<Button,SkillBase> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
 		Button mSelectButton;
 		bool mIsIconInited = false;
+		float mTimeToCloseMobileSkillButtonGroup;
+		const float DurationToCloseMobileSkillButtonGroup = 5f;
+
 		protected override void Awake ()
 		{
 			base.Awake ();
 			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
 			InitIconItems ();
+			skillGrid.gameObject.SetActive(false);
+			btn_voice.onClick.AddListener (()=>{
+				if(!isRecording){
+					MicrophoneManager.Instance.StartMicrophone();
+					isRecording = true;
+				}else{
+					float[] datas = MicrophoneManager.Instance.EndMicrophone();
+					MMOController.Instance.SendVoice(datas);
+					isRecording = false;
+				}
+			});
 		}
 
 		protected override void Start(){
@@ -57,23 +76,24 @@ namespace MMO
 			InitIconItems ();
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
+			this.mobileSkillButtonGroup.Init (unitSkill);
 			List<SkillBase> skills = unitSkill.skillList;
-			Debug.Log (skillButtonList.Count);
 			for (int i = 0; i < skills.Count; i++) {
-				SkillBase sb = skills [i];
+//				SkillBase sb = skills [i];
 				Button btnSkill = skillButtonList [i];
-				SkillBase skillBase = skills [i];
 				btnSkill.onClick.AddListener (()=>{
 					if(mSelectButton!=null){
 						UnSelectSkillButton(mSelectButton);
 					}
 					mSelectButton = btnSkill;
 					SelectSkillButton(mSelectButton);
-					ShowSkillSilder(3f,unitSkill,skillBase);
+					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skills[i]);
 				});
 				Image imgIcon = btnSkill.GetComponent<Image>();
-				imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (sb.skillId);// skillIconList[sb.skillId % skillIconList.Count];
-				imgIcon.gameObject.SetActive (true);
+				if (imgIcon != null && skills [i].mSkill != null) {
+					imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (skills [i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
+					imgIcon.gameObject.SetActive (true);
+				}
 			}
 		}
 
@@ -123,6 +143,7 @@ namespace MMO
 		{
 			UpdatePlayerInfo ();
 			UpdateCooldowns ();
+		
 		}
 
 		void UpdatePlayerInfo ()
@@ -137,10 +158,18 @@ namespace MMO
 
 		Coroutine mCoroutine;
 		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
+			//TODO to check the animation clip name;
+			StartCoroutine (_PlayAnimation("cast",2));
 			if (mCoroutine != null) {
 				StopCoroutine (mCoroutine);
 			}
 			mCoroutine = StartCoroutine (_ShowSkillSilder(duration,unitSkill,skillBase));
+		}
+
+		IEnumerator _PlayAnimation(string clip,float length){
+			this.mUnitSkill.mmoUnit.SetAnimation(clip,1f);
+			yield return new WaitForSeconds (length);
+//			this.mUnitSkill.mmoUnit.SetAnimation ("idle",1f);
 		}
 
 		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
@@ -153,6 +182,10 @@ namespace MMO
 				yield return null;
 			}
 			unitSkill.PlayClientSkill(skillBase);
+			ShopSkill ();
+		}
+
+		void ShopSkill(){
 			UnSelectSkillButton (mSelectButton);
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
 		}
