@@ -10,5 +10,10 @@
 	public const string PREFAB_INTERFACE = "prefab_interface";
 	public const string BATTLE = "prefab_battles";
 	public const string CITY = "prefab_citys";
+
+	public const string IMAGE_SKILLICONS = "images/skillicons";
+	public const string TERRAIN = "terrains/";
+
+
 }
 

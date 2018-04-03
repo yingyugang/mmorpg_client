@@ -179,19 +179,25 @@ namespace MMO
 //			return null;
 //		}
 
+		public GameObject GetTerrain(string terrainName){
+			string abName = ABConstant.TERRAIN + terrainName;
+			GameObject go = LoadAsset<GameObject> (abName,terrainName);
+			Debug.Log (go);
+			return go;
+		}
+
 		public Sprite GetSkillIcon(int skillId){
 			Sprite sprite = null;
 			if(CSVManager.Instance.skillDic.ContainsKey(skillId)){
 				string iconName = CSVManager.Instance.skillDic[skillId].skill_icon;
 //				string path = "Images/SkillIcons/" + iconName;
-				sprite = LoadAsset<Sprite> (iconName);
+				sprite = LoadAsset<Sprite> (ABConstant.IMAGE_SKILLICONS,iconName);
 			}
 			return sprite;
 		}
 
-		T LoadAsset<T>(string assetName) where T : UnityEngine.Object{
-			return AssetbundleManager.Instance.GetAssetFromLocal<T> ("images/skillicons",assetName);
-//			return Resources. Load<T> (assetName);
+		T LoadAsset<T>(string abName,string assetName) where T : UnityEngine.Object{
+			return AssetbundleManager.Instance.GetAssetFromLocal<T> (abName.ToLower(),assetName);
 		}
 
 	}
