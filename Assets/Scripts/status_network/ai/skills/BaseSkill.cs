@@ -25,15 +25,31 @@ namespace MMO
 
 		public virtual bool IsUseAble ()
 		{
-			return mNextActiveTime < Time.time;
+			return !IsInCooldown();
+		}
+
+		bool IsInCooldown(){
+			if (mNextActiveTime < Time.time) {
+				return false;
+			} else {
+				Debug.Log (string.Format("skill {0} is in cooldown.{1}",mSkill.id,coolDown));
+				return true;
+			}
 		}
 
 		public virtual bool Play ()
 		{
-			if(IsUseAble()){
+			if (IsUseAble ()) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.id);
+				StatusInfo statusInfo = new StatusInfo ();
+				statusInfo.casterId = mMMOUnit.unitInfo.attribute.unitId;
+				statusInfo.actionId = mUnitSkill.id;
+				if (MMOController.Instance.selectedUnit != null)
+					statusInfo.targetId = MMOController.Instance.selectedUnit.unitInfo.attribute.unitId;
+				ActionManager.Instance.DoSkill (statusInfo);
 				mNextActiveTime = Time.time + coolDown;
 				return true;
-			}
+			} 
 			return false;
 		}
 
