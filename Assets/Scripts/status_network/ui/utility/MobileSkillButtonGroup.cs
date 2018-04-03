@@ -84,7 +84,7 @@ namespace MMO
 			for (int i = skillStartIndex; i < skills.Count; i++) {
 				SkillBase sb = skills [i];
 				Button btnSkill = btn_skills [i - skillStartIndex];
-				Sprite iconSprite = ResourcesManager.Instance.GetMobileSkillIcon (sb.mSkill.id);
+				Sprite iconSprite = ResourcesManager.Instance.GetSkillIcon (sb.mSkill.id);
 				MobileSkillButton mobileSkillButton = btnSkill.gameObject.GetOrAddComponent<MobileSkillButton> ();
 				mobileSkillButton.InitSkillButton (iconSprite, 3f, sb, OnSkill);
 			}
