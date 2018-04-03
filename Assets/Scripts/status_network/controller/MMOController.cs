@@ -359,12 +359,12 @@ namespace MMO
 
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
+		//为了更好的用户体验，这些操作都在客户端进行。
 		public void SendPlayerAction (int actionType, int actionId)
 		{
 			StatusInfo action = new StatusInfo ();
 			action.status = actionType;
 			action.actionId = actionId;
-			Debug.Log (action.actionId);
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
 			MMOClient.Instance.SendAction (action);

@@ -14,15 +14,31 @@ namespace MMO
 		public bool isShow;
 		List<Vector3> mDefaultPosList;
 		float duration = 0.6f;
+		float mTimeToCloseMobileSkillButtonGroup;
+		const float DurationToCloseMobileSkillButtonGroup = 5f;
+		MMOUnitSkill mUnitSkill;
 
 		void Awake ()
 		{
 			mDefaultPosList = new List<Vector3> ();
+			btn_normal_skill.onClick.AddListener (OnNormalAttack);
+			btn_normal_skill.gameObject.SetActive(true);
 			for (int i = 0; i < btn_skills.Count; i++) {
 				mDefaultPosList.Add (btn_skills[i].transform.localPosition);
 				btn_skills [i].GetComponent<Image> ().enabled = false;
 				btn_skills [i].transform.localPosition = Vector3.zero;
 			}
+		}
+
+		void Update(){
+			//TODO to update the time on sub skill button.
+			if(mTimeToCloseMobileSkillButtonGroup < Time.time && isShow){
+				HideSkills ();
+			}
+		}
+
+		public void Init(MMOUnitSkill unitSkill){
+			this.mUnitSkill = unitSkill;
 		}
 
 		public void ShowSkills ()
@@ -72,6 +88,29 @@ namespace MMO
 		//TODO 需要使用实际的技能id
 		void OnSkill(int skillIndex){
 			SkillBase skillBase = mMMOUnitSkill.skillList [skillIndex];
+		}
+
+		void OnNormalAttack(){
+			mTimeToCloseMobileSkillButtonGroup = Time.time + DurationToCloseMobileSkillButtonGroup;
+			if (!isShow) {
+				ShowSkills ();
+				return;
+			}
+			//need a area to place the config at user handled skill.
+			//this is not in default mmorpg.
+			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[0].mUnitSkill.id);
+				mUnitSkill.mmoUnit.SetTrigger ("attack4");
+			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[1].mUnitSkill.id);
+				mUnitSkill.mmoUnit.SetTrigger ("attack3");
+			} else if (mUnitSkill.mmoUnit.IsInState ("attack1") ) {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[2].mUnitSkill.id);
+				mUnitSkill.mmoUnit.SetTrigger ("attack2");
+			} else {
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[3].mUnitSkill.id);
+				mUnitSkill.mmoUnit.SetTrigger ("attack1");
+			}
 		}
 	}
 }

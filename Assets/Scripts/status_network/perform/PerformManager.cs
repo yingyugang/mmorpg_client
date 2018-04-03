@@ -46,13 +46,14 @@ namespace MMO
 		void ShowHitUIInfo (MMOUnit mmoUnit, int damage)
 		{
 			if (damage != 0) {
-				GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, mmoUnit.GetHeadPos () + new Vector3 (Random.Range (-0.5f, 0.5f), 0, Random.Range (-0.5f, 0.5f)), Quaternion.identity);
+				GameObject uiGo = Instantiater.Spawn (false, this.hitUITextPrefab, mmoUnit.GetHeadPos () , Quaternion.identity);
+				TextMeshPro textMeshPro = uiGo.GetComponentInChildren<TextMeshPro> (true);
 				if (damage > 0) {
-					uiGo.GetComponent<TextMeshPro> ().text = damage.ToString ();
-					uiGo.GetComponent<TextMeshPro> ().color = Color.red;
+					textMeshPro.text = damage.ToString ();
+					textMeshPro.color = Color.red;
 				} else {
-					uiGo.GetComponent<TextMeshPro> ().text = (-damage).ToString ();
-					uiGo.GetComponent<TextMeshPro> ().color = Color.green;
+					textMeshPro.text = (-damage).ToString ();
+					textMeshPro.color = Color.green;
 				}
 				uiGo.SetActive (true);
 			}

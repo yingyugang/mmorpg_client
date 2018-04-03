@@ -38,9 +38,7 @@ namespace MMO
 			base.Awake ();
 			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
 			InitIconItems ();
-			btn_normal_attack.onClick.AddListener (OnNormalAttack);
 			skillGrid.gameObject.SetActive(false);
-			btn_normal_attack.gameObject.SetActive(true);
 			btn_voice.onClick.AddListener (()=>{
 				if(!isRecording){
 					MicrophoneManager.Instance.StartMicrophone();
@@ -78,6 +76,7 @@ namespace MMO
 			InitIconItems ();
 			ResetSkillIcons ();
 			mUnitSkill = unitSkill;
+			this.mobileSkillButtonGroup.Init (unitSkill);
 			List<SkillBase> skills = unitSkill.skillList;
 			for (int i = 0; i < skills.Count; i++) {
 //				SkillBase sb = skills [i];
@@ -144,10 +143,7 @@ namespace MMO
 		{
 			UpdatePlayerInfo ();
 			UpdateCooldowns ();
-			//TODO to update the time on sub skill button.
-			if(mTimeToCloseMobileSkillButtonGroup < Time.time && mobileSkillButtonGroup.isShow){
-				mobileSkillButtonGroup.HideSkills ();
-			}
+		
 		}
 
 		void UpdatePlayerInfo ()
@@ -158,29 +154,6 @@ namespace MMO
 			txt_name.text = MMOController.Instance.playerInfo.unitInfo.attribute.unitName;
 			if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
-		}
-
-		void OnNormalAttack(){
-			mTimeToCloseMobileSkillButtonGroup = Time.time + DurationToCloseMobileSkillButtonGroup;
-			if (!mobileSkillButtonGroup.isShow) {
-				mobileSkillButtonGroup.ShowSkills ();
-				return;
-			}
-			//need a area to place the config at user handled skill.
-			//this is not in default mmorpg.
-			if (mUnitSkill.mmoUnit.IsInState ("attack3") ) {
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[0].mUnitSkill.id);
-				mUnitSkill.mmoUnit.SetTrigger ("attack4");
-			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[1].mUnitSkill.id);
-				mUnitSkill.mmoUnit.SetTrigger ("attack3");
-			} else if (mUnitSkill.mmoUnit.IsInState ("attack1") ) {
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[2].mUnitSkill.id);
-				mUnitSkill.mmoUnit.SetTrigger ("attack2");
-			} else {
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.skillList[3].mUnitSkill.id);
-				mUnitSkill.mmoUnit.SetTrigger ("attack1");
-			}
 		}
 
 		Coroutine mCoroutine;

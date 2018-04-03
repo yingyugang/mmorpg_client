@@ -14,13 +14,11 @@ namespace MMO
 		float mNextActiveTime;
 		MMOUnit mMMOUnit;
 
-		//TODO fix the csv bug.
 		public SkillBase(int unitSkillId,MMOUnit mmoUnit){
 			this.mMMOUnit = mmoUnit;
 			MUnitSkill unitSkill = CSVManager.Instance.unitSkillDic [unitSkillId];
 			MSkill skill = CSVManager.Instance.skillDic[unitSkill.skill_id];
 			this.coolDown = skill.cooldown;
-			this.mMMOUnit = mmoUnit;
 			this.mSkill = skill;
 			this.mUnitSkill = unitSkill;
 		}
