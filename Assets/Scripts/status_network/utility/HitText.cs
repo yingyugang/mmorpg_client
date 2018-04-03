@@ -16,10 +16,10 @@ namespace MMO
 
 		void Awake(){
 			mTrans = transform;
-			mTextMeshPro = GetComponent<TextMeshPro> ();
-			mTrans.DOMove (mTrans.position + new Vector3(0,moveHeight,0),moveDuration ).OnComplete(()=>{
-				Destroy(gameObject);
-			});
+			mTextMeshPro = transform.GetComponentInChildren<TextMeshPro> (true);
+//			mTrans.DOMove (mTrans.position + new Vector3(0,moveHeight,0),moveDuration ).OnComplete(()=>{
+//				Destroy(gameObject);
+//			});
 //			mTextMeshPro.DOColor (new Color(1,0,0,0),moveDuration);
 		}
 
