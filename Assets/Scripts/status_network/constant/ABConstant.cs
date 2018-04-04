@@ -13,6 +13,7 @@
 
 	public const string IMAGE_SKILLICONS = "images/skillicons";
 	public const string TERRAIN = "terrains/";
+	public const string TERRAIN_OBJECTS = "terrainobjects/";
 
 
 }

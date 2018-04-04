@@ -44,6 +44,7 @@ namespace MMO
 //		string mPreAction;
 		float mPreSpeed;
 		Terrain mTerrain;
+		GameObject mTerrainObjects;
 
 		void Start ()
 		{
@@ -64,6 +65,9 @@ namespace MMO
 //			mTerrain = FindObjectOfType<Terrain> ();
 			GameObject terrainPrefab = ResourcesManager.Instance.GetTerrain ("FarmTerrain");
 			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain>();
+
+			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
+			mTerrainObjects = Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
 		}
 
 		void Update ()

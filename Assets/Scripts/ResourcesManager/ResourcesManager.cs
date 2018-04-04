@@ -179,6 +179,13 @@ namespace MMO
 //			return null;
 //		}
 
+		public GameObject GetTerrainObjects(string terrainName){
+			string abName = ABConstant.TERRAIN_OBJECTS + terrainName;
+			GameObject go = LoadAsset<GameObject> (abName,terrainName);
+			Debug.Log (go);
+			return go;
+		}
+
 		public GameObject GetTerrain(string terrainName){
 			string abName = ABConstant.TERRAIN + terrainName;
 			GameObject go = LoadAsset<GameObject> (abName,terrainName);
