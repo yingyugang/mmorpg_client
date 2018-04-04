@@ -63,9 +63,12 @@ namespace MMO
 				miniMap = FindObjectOfType<KGFMapSystem> ();
 			gameObject.GetOrAddComponent<AssetbundleManager> ();
 //			mTerrain = FindObjectOfType<Terrain> ();
-			GameObject terrainPrefab = ResourcesManager.Instance.GetTerrain ("FarmTerrain");
+			GameObject terrainPrefab;
+			GameObject terrainPrefabT4M;
+			ResourcesManager.Instance.GetTerrain ("FarmTerrain",out terrainPrefab,out terrainPrefabT4M);
 			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain>();
-
+			if(terrainPrefabT4M!=null)
+				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
 			mTerrainObjects = Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
 		}

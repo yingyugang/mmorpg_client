@@ -182,15 +182,15 @@ namespace MMO
 		public GameObject GetTerrainObjects(string terrainName){
 			string abName = ABConstant.TERRAIN_OBJECTS + terrainName;
 			GameObject go = LoadAsset<GameObject> (abName,terrainName);
-			Debug.Log (go);
+			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			return go;
 		}
 
-		public GameObject GetTerrain(string terrainName){
+		public void GetTerrain(string terrainName,out GameObject terrain,out GameObject terrainT4M){
 			string abName = ABConstant.TERRAIN + terrainName;
-			GameObject go = LoadAsset<GameObject> (abName,terrainName);
-			Debug.Log (go);
-			return go;
+			terrain  = LoadAsset<GameObject> (abName,terrainName);
+			terrainT4M = LoadAsset<GameObject> (abName,string.Format("{0}{1}",terrainName,"T4M"));
+			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 		}
 
 		public Sprite GetSkillIcon(int skillId){
