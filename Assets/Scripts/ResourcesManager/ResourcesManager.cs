@@ -189,6 +189,7 @@ namespace MMO
 		public void GetTerrain(string terrainName,out GameObject terrain,out GameObject terrainT4M){
 			string abName = ABConstant.TERRAIN + terrainName;
 			terrain  = LoadAsset<GameObject> (abName,terrainName);
+			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			terrainT4M = LoadAsset<GameObject> (abName,string.Format("{0}{1}",terrainName,"T4M"));
 			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 		}

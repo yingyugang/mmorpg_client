@@ -19,12 +19,10 @@ namespace MMO
 		public string playerName;
 
 		public string targetIp;
-		//		public SimpleRpgCamera rpgCamera;
 		//TODO csvに遷移するが必要。
 		public List<ShootObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
-		//		public SimpleRpgPlayerController simpleRpgPlayerController;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
@@ -41,7 +39,6 @@ namespace MMO
 		Vector3 mPrePosition;
 		Vector3 mPreForward;
 		int mPreSelectId = -1;
-//		string mPreAction;
 		float mPreSpeed;
 		Terrain mTerrain;
 		GameObject mTerrainObjects;
@@ -52,7 +49,6 @@ namespace MMO
 			if (kgf != null)
 				minimap = kgf.gameObject;
 			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
-//			simpleRpgPlayerController = player.GetComponentInChildren<SimpleRpgPlayerController> (true);
 			mPlayerDic = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
@@ -61,14 +57,14 @@ namespace MMO
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
 			if (miniMap == null)
 				miniMap = FindObjectOfType<KGFMapSystem> ();
-			gameObject.GetOrAddComponent<AssetbundleManager> ();
-//			mTerrain = FindObjectOfType<Terrain> ();
 			GameObject terrainPrefab;
 			GameObject terrainPrefabT4M;
 			ResourcesManager.Instance.GetTerrain ("FarmTerrain",out terrainPrefab,out terrainPrefabT4M);
 			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain>();
-			if(terrainPrefabT4M!=null)
-				Instantiate (terrainPrefabT4M);
+			mTerrain.drawHeightmap = true;
+			//TODO the T4M terrain's 精度不够，需要重新制作。
+//			if(terrainPrefabT4M!=null)
+//				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
 			mTerrainObjects = Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
 		}

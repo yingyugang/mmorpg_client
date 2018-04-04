@@ -8,6 +8,7 @@ namespace MMO
 	public class HeadUIBase : MonoBehaviour
 	{
 		public GameObject container_head_info;
+		public GameObject container_health_bar;
 		public SpriteRenderer healthBar;
 		public TextMesh txt_name;
 

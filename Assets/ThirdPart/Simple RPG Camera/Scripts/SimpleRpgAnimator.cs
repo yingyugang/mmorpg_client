@@ -53,15 +53,20 @@ public class SimpleRpgAnimator : MonoBehaviour
 	}
 
 	public void SetMoveSpeed(float speed){
-		mAnimator.SetFloat ("MoveSpeed",speed);
+		if(mAnimator!=null)
+			mAnimator.SetFloat ("MoveSpeed",speed);
 	}
 
 	public bool IsRun(){
-		return mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("run");
+		if(mAnimator!=null)
+			return mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("run");
+		return false;
 	}
 
 	public bool IsInState(string state){
-		return mAnimator.GetCurrentAnimatorStateInfo (0).IsName (state);
+		if(mAnimator!=null)
+			return mAnimator.GetCurrentAnimatorStateInfo (0).IsName (state);
+		return false;
 	}
 
 	bool mIsIdle;
@@ -74,18 +79,30 @@ public class SimpleRpgAnimator : MonoBehaviour
 	}
 
 	public bool GetTrigger(string trigger){
-		return mAnimator.GetBool (trigger);
+		if(mAnimator!=null)
+			return mAnimator.GetBool (trigger);
+		return false;
 	}
 
 	public void SetTrigger(string trigger){
-		mAnimator.SetTrigger (trigger);
+		if(mAnimator!=null)
+			mAnimator.SetTrigger (trigger);
+	}
+
+	public void RemoveAllAttackTriggers(){
+		mAnimator.SetBool ("attack1",false);
+		mAnimator.SetBool ("attack2",false);
+		mAnimator.SetBool ("attack3",false);
+		mAnimator.SetBool ("attack4",false);
+		mAnimator.SetBool ("cast",false);
 	}
 
 	public void Play(string clip){
 		if (mAnimation != null) {
 			mAnimation.Play (clip);
 		} else {
-			mAnimator.Play (clip);
+			if(mAnimator!=null)
+				mAnimator.Play (clip);
 		}
 		_action = clip;
 		_animation = _action;

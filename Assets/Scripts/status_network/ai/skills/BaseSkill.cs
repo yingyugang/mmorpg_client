@@ -18,7 +18,7 @@ namespace MMO
 			this.mMMOUnit = mmoUnit;
 			MUnitSkill unitSkill = CSVManager.Instance.unitSkillDic [unitSkillId];
 			MSkill skill = CSVManager.Instance.skillDic[unitSkill.skill_id];
-			this.coolDown = skill.cooldown;
+			this.coolDown = skill.cooldown + unitSkill.anim_length;
 			this.mSkill = skill;
 			this.mUnitSkill = unitSkill;
 		}

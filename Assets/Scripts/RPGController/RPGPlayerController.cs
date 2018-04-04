@@ -45,6 +45,10 @@ namespace MMO
 				mInputY = etcJoystick.axisY.axisValue;
 			}
 
+			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
+				_animator.RemoveAllAttackTriggers ();
+			}
+
 			Vector3 forward = rpgCameraController.transform.forward;
 			forward = new Vector3 (forward.x, 0, forward.z).normalized;
 

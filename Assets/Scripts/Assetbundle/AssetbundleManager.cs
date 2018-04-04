@@ -13,6 +13,8 @@ namespace MMO
 
 		protected override void Awake ()
 		{
+			if(AssetbundleManager.Instance!=null)
+				DontDestroyOnLoad (gameObject);
 			base.Awake ();
 			mCachedAssetbundles = new Dictionary<string, AssetBundle> ();
 		}
@@ -52,7 +54,9 @@ namespace MMO
 		}
 
 		public void UnloadAssetBundle(string abName,bool isForce){
+			abName = (abName + "." + PathConstant.AB_VARIANT).ToLower ();
 			if(mCachedAssetbundles.ContainsKey(abName)){
+				Debug.Log ("abName:" + abName);
 				AssetBundle ab = mCachedAssetbundles [abName];
 				ab.Unload (isForce);
 				mCachedAssetbundles.Remove (abName);

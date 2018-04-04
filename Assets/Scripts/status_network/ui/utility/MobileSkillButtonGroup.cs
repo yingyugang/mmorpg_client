@@ -108,6 +108,7 @@ namespace MMO
 			}
 			//need a area to place the config at user handled skill.
 			//this is not in default mmorpg.
+			//这里就是动作mmo和传统mmo之间的区别.
 			if (mUnitSkill.mmoUnit.IsInState ("attack3")) {
 				if (mUnitSkill.skillList [0].Play ()) {
 					mMMOUnitSkill.mmoUnit.SetTrigger ("attack4");
