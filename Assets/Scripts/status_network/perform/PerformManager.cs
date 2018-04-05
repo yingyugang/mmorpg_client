@@ -21,14 +21,18 @@ namespace MMO
 		void ShowHitEffects (HitInfo hitInfo)
 		{
 			for (int i = 0; i < hitInfo.hitObjectIds.Length; i++) {
-				ShowHitEffect (hitInfo.hitObjectIds [i], hitInfo.hitPositions [i]);
+				ShowHitEffect (hitInfo.hitObjectIds [i],hitInfo.hitIds[i], hitInfo.hitPositions [i]);
 			}
 		}
 
-		void ShowHitEffect (int objectId, IntVector3 pos)
+		void ShowHitEffect (int objectId,int hitId, IntVector3 pos)
 		{
 			GameObject prefab = this.hitPrefabs [objectId];
-			GameObject go = Instantiater.Spawn (false, prefab, IntVector3.ToVector3 (pos), Quaternion.identity);
+			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (hitId);
+			Vector3 hitPos = IntVector3.ToVector3 (pos);
+			if (mmoUnit != null)
+				hitPos = mmoUnit.GetBodyPos ();
+			GameObject go = Instantiater.Spawn (false, prefab, hitPos, Quaternion.identity);
 			Destroy (go, 10);
 		}
 
@@ -78,7 +82,7 @@ namespace MMO
 			TextMeshPro textMeshPro = uiGo.GetComponentInChildren<TextMeshPro> (true);
 			if (val > 0) {
 				textMeshPro.text =  string.Format("{0} {1:G}",effectName,val );
-				textMeshPro.color = Color.red;
+				textMeshPro.color = Color.white;
 			} else {
 				textMeshPro.text =  string.Format("{0} {1:G}",effectName,-val );
 				textMeshPro.color = Color.green;

@@ -23,6 +23,10 @@ namespace MMO
 //			mTextMeshPro.DOColor (new Color(1,0,0,0),moveDuration);
 		}
 
+		void OnEnable(){
+			mTrans.forward = Camera.main.transform.forward;
+		}
+
 		void Update ()
 		{
 			mTrans.forward = Camera.main.transform.forward;

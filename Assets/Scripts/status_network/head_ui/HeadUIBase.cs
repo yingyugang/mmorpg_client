@@ -32,7 +32,6 @@ namespace MMO
 
 		void OnEnable(){
 			mTrans.forward = Camera.main.transform.forward;
-			UpdateHealthBar ();
 		}
 
 		void LateUpdate ()
@@ -46,7 +45,7 @@ namespace MMO
 
 		void UpdateHealthBar ()
 		{
-			if (healthBar != null && mmoUnit.unitInfo.attribute.maxHP > 0) {
+			if (healthBar != null && mmoUnit!=null && mmoUnit.unitInfo.attribute.maxHP > 0) {
 				if (mPreHP != mmoUnit.unitInfo.attribute.currentHP || mPreMaxHP != mmoUnit.unitInfo.attribute.maxHP) {
 					mPreHP = mmoUnit.unitInfo.attribute.currentHP;
 					mPreMaxHP = mmoUnit.unitInfo.attribute.maxHP;
