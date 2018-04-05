@@ -31,7 +31,33 @@ namespace MMO
 
 		static Dictionary<string,AnimatorState> mStatesDic;
 
-		[MenuItem ("Tools/InitAnimatorController")]
+
+		[MenuItem ("Tools/InitAnimatorStates")]
+		public static void InitStates ()
+		{
+			Object obj = Selection.activeObject;
+			for (int i = 0; i < Selection.objects.Length; i++) {
+				AnimatorController ac = obj as AnimatorController;
+				if (ac != null)
+					InitAnimatorStates (ac);
+			}
+		}
+
+		static void InitAnimatorStates(AnimatorController animator){
+			animator.layers [0].stateMachine.AddState (STATE_IDEL);
+			animator.layers [0].stateMachine.AddState (STATE_ATTACK1);
+			animator.layers [0].stateMachine.AddState (STATE_ATTACK2);
+			animator.layers [0].stateMachine.AddState (STATE_ATTACK3);
+			animator.layers [0].stateMachine.AddState (STATE_MAGIC);
+			animator.layers [0].stateMachine.AddState (STATE_RUN);
+			animator.layers [0].stateMachine.AddState (STATE_WALK);
+			animator.layers [0].stateMachine.AddState (STATE_DEAD);
+			animator.layers [0].stateMachine.AddState (STATE_HIT);
+			animator.layers [0].stateMachine.AddState (STATE_JUMP);
+		}
+
+
+		[MenuItem ("Tools/InitAnimatorTransformation")]
 		public static void Init ()
 		{
 			Object obj = Selection.activeObject;

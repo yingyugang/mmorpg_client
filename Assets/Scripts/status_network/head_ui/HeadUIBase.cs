@@ -30,6 +30,11 @@ namespace MMO
 			mTrans = transform;
 		}
 
+		void OnEnable(){
+			mTrans.forward = Camera.main.transform.forward;
+			UpdateHealthBar ();
+		}
+
 		void LateUpdate ()
 		{
 			mTrans.forward = Camera.main.transform.forward;

@@ -37,6 +37,7 @@ namespace MMO
 			www = null;
 			if (onComplete != null)
 				onComplete ();
+			Destroy (gameObject);
 		}
 
 	}
