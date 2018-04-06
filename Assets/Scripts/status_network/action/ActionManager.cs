@@ -44,7 +44,6 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
-
 		//Do Unit Actions.
 //		void DoUnitAction(StatusInfo action){
 //			MMOUnit unit = MMOController.Instance.GetUnitByUnitId (action.casterId);
@@ -102,7 +101,7 @@ namespace MMO
 			ShootObject shootObj = shootGo.GetComponent<ShootObject> ();
 			shootObj.speed = speed;
 			if (target != null) {
-				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));// (caster, new Vector3(0,target.GetBodyHeight() / 2f, Vector3.zero));
+				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
 				Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * range);
 				shootObj.Shoot (caster,targetPos,Vector3.zero);

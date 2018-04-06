@@ -18,11 +18,12 @@ namespace MMO
 		UnityAction<SkillBase> onSkillButtonClick;
 
 		void Awake(){
-			btn_skill = transform.GetComponent<Button>();
+			btn_skill = GetComponentInChildren<Button>();
 			btn_skill.onClick.AddListener (OnClickSkillButton);
 //			img_skill = btn_skill.GetComponent<Image> ();
-//			txt_cooldown = transform.Find ("").GetComponent<Text> ();
-//			img_cooldown_mask = transform.Find ("").GetComponent<Image> ();
+			txt_cooldown = transform.Find ("txt_cooldown").GetComponent<Text> ();
+			txt_cooldown.color = new Color (1,1,1,0);
+			img_cooldown_mask = btn_skill.GetComponent<Image> ();
 		}
 	
 		void OnClickSkillButton(){
@@ -31,21 +32,25 @@ namespace MMO
 //			img_cooldown_mask.DOFillAmount (0,mCooldown).OnComplete(()=>{
 //				img_cooldown_mask.enabled = false;
 //			});
-//			StartCoroutine (_Cooldown());
+			StartCoroutine (_Cooldown());
 			if (onSkillButtonClick != null)
 				onSkillButtonClick (mSkillBase);
 		}
 
 		IEnumerator _Cooldown(){
-			img_cooldown_mask.fillAmount = 1;
-			img_cooldown_mask.enabled = true;
+			img_cooldown_mask.fillAmount = 0;
+			img_cooldown_mask.raycastTarget = false;
+			txt_cooldown.DOFade (1,0.5f);
 			float t = 0;
 			while(t < 1){
-				img_cooldown_mask.fillAmount = 1 - t;
-				txt_cooldown.text = Mathf.CeilToInt (mCooldown * img_cooldown_mask.fillAmount).ToString();
+				img_cooldown_mask.fillAmount = t;
+				t += Time.deltaTime / mCooldown;
+				txt_cooldown.text = string.Format ("{0:N}", mCooldown * (1 - img_cooldown_mask.fillAmount));
 				yield return null;
 			}
-			img_cooldown_mask.enabled = false;
+			img_cooldown_mask.fillAmount = 1;
+			img_cooldown_mask.raycastTarget = true;
+			txt_cooldown.DOFade (0,0.5f);
 		}
 
 		public void InitSkillButton(Sprite skillIcon,float cooldown,SkillBase baseSkill,UnityAction<SkillBase> onClick){

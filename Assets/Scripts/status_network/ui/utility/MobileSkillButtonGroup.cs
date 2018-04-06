@@ -10,6 +10,7 @@ namespace MMO
 	{
 
 		public Button btn_normal_skill;
+		public List<GameObject> obj_skills;
 		public List<Button> btn_skills;
 		public bool isShow;
 		List<Vector3> mDefaultPosList;
@@ -23,9 +24,12 @@ namespace MMO
 			mDefaultPosList = new List<Vector3> ();
 			btn_normal_skill.onClick.AddListener (OnNormalAttack);
 			btn_normal_skill.gameObject.SetActive (true);
+			btn_skills = new List<Button> ();
+			for(int i=0;i< obj_skills.Count;i++){
+				btn_skills.Add (obj_skills[i].GetComponentInChildren<Button>());
+			}
 			for (int i = 0; i < btn_skills.Count; i++) {
 				mDefaultPosList.Add (btn_skills [i].transform.localPosition);
-				btn_skills [i].GetComponent<Image> ().enabled = false;
 				btn_skills [i].transform.localPosition = Vector3.zero;
 			}
 		}
@@ -85,7 +89,7 @@ namespace MMO
 				SkillBase sb = skills [i];
 				Button btnSkill = btn_skills [i - skillStartIndex];
 				Sprite iconSprite = ResourcesManager.Instance.GetSkillIcon (sb.mSkill.id);
-				MobileSkillButton mobileSkillButton = btnSkill.gameObject.GetOrAddComponent<MobileSkillButton> ();
+				MobileSkillButton mobileSkillButton = obj_skills[i - skillStartIndex].gameObject.GetOrAddComponent<MobileSkillButton> ();
 				mobileSkillButton.InitSkillButton (iconSprite, 3f, sb, OnSkill);
 			}
 		}
@@ -111,19 +115,19 @@ namespace MMO
 			//这里就是动作mmo和传统mmo之间的区别.
 			if (mUnitSkill.mmoUnit.IsInState ("attack3")) {
 				if (mUnitSkill.skillList [0].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger ("attack4");
+					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [0].mUnitSkill.anim_name);
 				}
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
 				if (mUnitSkill.skillList [1].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger ("attack3");
+					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [1].mUnitSkill.anim_name);
 				}
 			} else if (mUnitSkill.mmoUnit.IsInState ("attack1")) {
 				if (mUnitSkill.skillList [2].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger ("attack2");
+					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [2].mUnitSkill.anim_name);
 				}
 			} else {
 				if (mUnitSkill.skillList [3].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger ("attack1");
+					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [0].mUnitSkill.anim_name);
 				}
 			}
 		}
