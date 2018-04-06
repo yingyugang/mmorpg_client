@@ -44,6 +44,7 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
+
 		//Do Unit Actions.
 //		void DoUnitAction(StatusInfo action){
 //			MMOUnit unit = MMOController.Instance.GetUnitByUnitId (action.casterId);
@@ -80,16 +81,16 @@ namespace MMO
 			if (action.targetId > 0) {
 				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
 			}
-			yield return new WaitForSeconds (mSkill.active);
+			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
 			if (mSkill.is_remote > 0) {
 				//Remote attack;
 				ShootObject shootObj = null;
 				switch(mSkill.shoot_move_type){
 				case 1:
-					Shoot (MMOController.Instance.shootPrefabs [0].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
+					Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
 					break;
 				default:
-					Shoot (MMOController.Instance.shootPrefabs [1].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
+					Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
 					break;
 				}
 			}

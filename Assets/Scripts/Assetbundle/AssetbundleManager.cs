@@ -13,7 +13,7 @@ namespace MMO
 
 		protected override void Awake ()
 		{
-			if(AssetbundleManager.Instance!=null)
+			if (AssetbundleManager.Instance == null)
 				DontDestroyOnLoad (gameObject);
 			base.Awake ();
 			mCachedAssetbundles = new Dictionary<string, AssetBundle> ();

@@ -34,5 +34,10 @@ namespace MMO
 			}
 		}
 		public MSkill skill;
+
+		[CsvColumn (CanBeNull = true)]
+		public int shoot_object_id;
+		[CsvColumn (CanBeNull = true)]
+		public int hit_object_id;
 	}
 }

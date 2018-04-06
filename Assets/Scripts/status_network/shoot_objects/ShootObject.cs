@@ -46,6 +46,9 @@ namespace MMO
 		public MMOUnit attacker;
 
 		public Animation shootAnimation;
+
+		public List<GameObject> closeImme;
+
 		const string HIT_ANIM_CLIP = "hit";
 		const float DEFAULT_UNSPAWN_DELAY = 3;
 
@@ -91,6 +94,15 @@ namespace MMO
 		}
 
 		IEnumerator _UnSpawnDelay(float delay){
+			ParticleSystem[] pss = gameObject.GetComponentsInChildren<ParticleSystem> ();
+			for(int i=0;i<pss.Length;i++){
+				pss [i].Stop ();
+			}
+			if (closeImme.Count > 0) {
+				for(int i=0;i<closeImme.Count;i++){
+					closeImme [i].SetActive (false);
+				}
+			}
 			yield return new WaitForSeconds (delay);
 			Instantiater.UnSpawn (false, gameObject);
 		}

@@ -88,6 +88,7 @@ namespace MMO
 				textMeshPro.color = Color.green;
 			}
 			uiGo.SetActive (true);
+			Destroy (uiGo,5);
 		}
 
 		void ShowHealUI(string effectName,MMOUnit mmoUnit, int val){
@@ -96,6 +97,7 @@ namespace MMO
 			textMeshPro.text =  string.Format("{0} {1:G}",effectName,val );
 			textMeshPro.color = Color.green;
 			uiGo.SetActive (true);
+			Destroy (uiGo,5);
 		}
 
 		void ShowBuffUI(string effectName,MMOUnit mmoUnit, int val){
@@ -104,6 +106,7 @@ namespace MMO
 			textMeshPro.text = string.Format("{0} {1:P}",effectName,val / 10000f);
 			textMeshPro.color = Color.yellow;
 			uiGo.SetActive (true);
+			Destroy (uiGo,5);
 		}
 
 		public void ShowCurrentPlayerDeathEffect (MMOUnit playerUnit)

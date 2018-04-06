@@ -45,6 +45,9 @@ namespace MMO
 
 		void UpdateHealthBar ()
 		{
+//			//TODO this is bug,need to check the reason.
+//			if (mmoUnit.unitInfo.attribute.currentHP == mmoUnit.unitInfo.attribute.maxHP && mmoUnit.unitInfo.attribute.maxHP == 0 )
+//				return;
 			if (healthBar != null && mmoUnit!=null && mmoUnit.unitInfo.attribute.maxHP > 0) {
 				if (mPreHP != mmoUnit.unitInfo.attribute.currentHP || mPreMaxHP != mmoUnit.unitInfo.attribute.maxHP) {
 					mPreHP = mmoUnit.unitInfo.attribute.currentHP;
@@ -57,7 +60,6 @@ namespace MMO
 
 		public void SetUnit (MMOUnit mmoUnit)
 		{
-//			Debug.Log(mmoUnit.unitInfo.attribute.unitName);
 			this.mmoUnit = mmoUnit;
 			txt_name.text = mmoUnit.unitInfo.attribute.unitName;
 			CapsuleCollider capsuleCollider = mmoUnit.GetComponent<CapsuleCollider> ();
