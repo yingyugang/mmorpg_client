@@ -208,7 +208,6 @@ namespace MMO
 			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
 			Debug.Log (ABShared);
 			GameObject go = LoadAsset<GameObject> (abName,unitName);
-			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			return go;
 		}
 

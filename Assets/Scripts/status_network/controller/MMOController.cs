@@ -340,15 +340,23 @@ namespace MMO
 				mCachedUnitPrefabs = new Dictionary<int, GameObject> ();
 			MUnit mUnit = CSVManager.Instance.GetUnit (unitInfo.attribute.unitType);
 			GameObject unitPrebfab;
-			if (mCachedUnitPrefabs.ContainsKey (unitType)) {
-				unitPrebfab = mCachedUnitPrefabs [unitType];
-			}else {
-				unitPrebfab = ResourcesManager.Instance.GetUnit (mUnit.assetbundle,mUnit.resource_name);
-				mCachedUnitPrefabs.Add (unitType,unitPrebfab);
+
+			//TODO need amend players load to assetbundle.
+			if (unitType == 0) {
+				unitPrebfab = Resources.Load<GameObject> ("Units/Player");
+			} else {
+				if (mCachedUnitPrefabs.ContainsKey (unitType)) {
+					unitPrebfab = mCachedUnitPrefabs [unitType];
+				} else {
+					unitPrebfab = ResourcesManager.Instance.GetUnit (mUnit.assetbundle, mUnit.resource_name);
+					mCachedUnitPrefabs.Add (unitType, unitPrebfab);
+				}
 			}
+
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
+			unitGo.layer = LayerConstant.LAYER_UNIT;
 			MMOUnit mmoUnit = unitGo.GetOrAddComponent<MMOUnit> ();
 			mmoUnit.unitInfo = unitInfo;
 			GameObject go = Instantiate (mHeadUIPrefab.gameObject);
