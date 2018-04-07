@@ -10,6 +10,9 @@ namespace MMO
 
 		public string resource_name;
 
+		public float height;
+
+		public string assetbundle;
 //		private List<int> elementList;
 
 		public List<MUnitSkill> unitSkillList;
