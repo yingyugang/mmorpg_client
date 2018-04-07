@@ -340,11 +340,11 @@ namespace MMO
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
-			unitGo.SetActive (true);
-			MMOUnit mmoUnit = unitGo.GetComponent<MMOUnit> ();
+			MMOUnit mmoUnit = unitGo.GetOrAddComponent<MMOUnit> ();
 			mmoUnit.unitInfo = unitInfo;
 			GameObject go = Instantiate (mHeadUIPrefab.gameObject);
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
+			unitGo.SetActive (true);
 			return unitGo;
 		}
 
