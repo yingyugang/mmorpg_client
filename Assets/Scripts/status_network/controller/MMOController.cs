@@ -333,10 +333,19 @@ namespace MMO
 			PerformManager.Instance.ShowHitInfo (hitInfo, mUnitDic);
 		}
 
+		Dictionary<int,GameObject> mCachedUnitPrefabs;
 		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
 		{
+			if (mCachedUnitPrefabs == null)
+				mCachedUnitPrefabs = new Dictionary<int, GameObject> ();
 			MUnit mUnit = CSVManager.Instance.GetUnit (unitInfo.attribute.unitType);
-			GameObject unitPrebfab = Resources.Load<GameObject> (mUnit.resource_name);
+			GameObject unitPrebfab;
+			if (mCachedUnitPrefabs.ContainsKey (unitType)) {
+				unitPrebfab = mCachedUnitPrefabs [unitType];
+			}else {
+				unitPrebfab = ResourcesManager.Instance.GetUnit (mUnit.assetbundle,mUnit.resource_name);
+				mCachedUnitPrefabs.Add (unitType,unitPrebfab);
+			}
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();

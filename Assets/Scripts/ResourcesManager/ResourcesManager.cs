@@ -204,6 +204,14 @@ namespace MMO
 			return sprite;
 		}
 
+		public GameObject GetUnit(string abName,string unitName){
+			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
+			Debug.Log (ABShared);
+			GameObject go = LoadAsset<GameObject> (abName,unitName);
+			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
+			return go;
+		}
+
 		T LoadAsset<T>(string abName,string assetName) where T : UnityEngine.Object{
 			return AssetbundleManager.Instance.GetAssetFromLocal<T> (abName.ToLower(),assetName);
 		}
