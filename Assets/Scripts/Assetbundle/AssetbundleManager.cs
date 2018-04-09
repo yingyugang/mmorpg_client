@@ -63,6 +63,15 @@ namespace MMO
 			}
 		}
 
+		public void ClearAssetBundles(){
+			foreach(string key in mCachedAssetbundles.Keys){
+				if(mCachedAssetbundles[key] != null){
+					mCachedAssetbundles [key].Unload (true);
+				}
+			}
+			mCachedAssetbundles.Clear ();
+		}
+
 		//TODO need to make sure there is not another ab that use those depends.
 		public void UnloadAssetBundleWithDepend(string abName,bool isForce){
 			Debug.Log ("this fantion is todo.");

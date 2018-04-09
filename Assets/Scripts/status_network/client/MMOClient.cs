@@ -82,6 +82,7 @@ namespace MMO
 		void OnDisconnect (NetworkMessage nm)
 		{
 			MessageReciever.Instance.StopReceive ();
+			AssetbundleManager.Instance.ClearAssetBundles ();
 			Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene ();
 			UnityEngine.SceneManagement.SceneManager.LoadScene (currentScene.name);
 			Debug.logger.Log ("<color=red>Disconnect</color>");
