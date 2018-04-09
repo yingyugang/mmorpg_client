@@ -206,7 +206,6 @@ namespace MMO
 
 		public GameObject GetUnit(string abName,string unitName){
 			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
-			Debug.Log (ABShared);
 			GameObject go = LoadAsset<GameObject> (abName,unitName);
 			return go;
 		}
