@@ -35,9 +35,9 @@ namespace MMO
 			calculatedLayer = CalculateLayer ();//重新计算目标层
 			float timeShot = Time.time;
 			bool hit = false;
-			if (target != null)
+			if (target != null) {
 				targetPos = target.position + offset;
-
+			}
 			//make sure the shootObject is facing the target and adjust the projectile angle
 			thisT.LookAt (targetPos);
 			float angle = Mathf.Min (1, Vector3.Distance (thisT.position, targetPos) / maxShootRange) * maxShootAngle;

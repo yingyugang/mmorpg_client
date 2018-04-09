@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace MMO
 {
+	//TODO better set to every renderer.
 	public class UnitPerform : MonoBehaviour
 	{
-
 		public Material defaultMat;
 		public Material dissolveMat;
 		public float duration = 2f;
-		public Renderer bodyRenderer;
+		public List<Renderer> bodyRenderer;
+		public Transform shootPoint;
 
 		void Awake ()
 		{
@@ -21,13 +22,17 @@ namespace MMO
 
 		public void ShowDeathDissolve ()
 		{
-			bodyRenderer.material = new Material(dissolveMat);
+			for(int i=0;i<bodyRenderer.Count;i++){
+				bodyRenderer[i].material = new Material(dissolveMat);
+			}
 			StartCoroutine (_ShowDeathDissolve ());
 		}
 
 		public void ShowSpawnDissolve ()
 		{
-			bodyRenderer.material =  new Material(dissolveMat);
+			for(int i=0;i<bodyRenderer.Count;i++){
+				bodyRenderer[i].material = new Material(dissolveMat);
+			}
 			StartCoroutine (_ShowSpawnDissolve ());
 		}
 
@@ -37,7 +42,9 @@ namespace MMO
 			float t = 0;
 			while (t < 1) {
 				t += Time.deltaTime / duration;
-				bodyRenderer.material.SetFloat ("_Amount", t);
+				for(int i=0;i<bodyRenderer.Count;i++){
+					bodyRenderer[i].material.SetFloat ("_Amount", t);
+				}
 				yield return null;
 			}
 			gameObject.SetActive (false);
@@ -45,14 +52,20 @@ namespace MMO
 
 		IEnumerator _ShowSpawnDissolve ()
 		{
-			bodyRenderer.material.SetFloat ("_Amount", 1);
+			for(int i=0;i<bodyRenderer.Count;i++){
+				bodyRenderer[i].material.SetFloat ("_Amount", 1);
+			}
 			float t = 0;
 			while (t < 1) {
 				t += Time.deltaTime / duration;
-				bodyRenderer.material.SetFloat ("_Amount", 1 - t);
+				for(int i=0;i<bodyRenderer.Count;i++){
+					bodyRenderer[i].material.SetFloat ("_Amount", 1- t);
+				}
 				yield return null;
 			}
-			bodyRenderer.material = defaultMat;
+			for(int i=0;i<bodyRenderer.Count;i++){
+				bodyRenderer[i].material = defaultMat;
+			}
 		}
 	}
 }

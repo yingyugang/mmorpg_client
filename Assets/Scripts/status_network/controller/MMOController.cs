@@ -269,6 +269,9 @@ namespace MMO
 					mMonsterDic [data.monsterDatas [i].attribute.unitId].SetActive (true);
 					if (!mUnitDic.ContainsKey (data.monsterDatas [i].attribute.unitId))
 						mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
+					if (data.monsterDatas [i].attribute.currentHP <= 0) {
+						monsterGo.SetActive (false);
+					}
 				}
 				mMonsterDic [data.monsterDatas [i].attribute.unitId].GetComponent<MMOUnit> ().frame = mCurrentFrame;
 				UnitInfo unitInfo = data.monsterDatas [i];

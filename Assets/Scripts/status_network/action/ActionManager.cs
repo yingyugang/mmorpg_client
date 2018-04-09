@@ -23,6 +23,7 @@ namespace MMO
 				break;
 			case BattleConst.UnitMachineStatus.MOVE:
 				unit.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
+//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
 				if(unit.mSimpleRpgAnimator!=null)
 					unit.mSimpleRpgAnimator.SetMoveSpeed (3.0f);
 				break;
@@ -77,7 +78,7 @@ namespace MMO
 			//TODO need know the cast anim name from csv or from other area.
 			caster.SetTrigger(mUnitSkill.anim_name);
 			MMOUnit target = null;
-			if (action.targetId > 0) {
+			if (action.targetId >= 0) {
 				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
 			}
 			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
@@ -97,7 +98,14 @@ namespace MMO
 		}
 		//Shoot Action.
 		public void Shoot(GameObject shootPrefab,float speed,MMOUnit caster,MMOUnit target,float range){
-			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, caster.GetBodyPos (), caster.transform.rotation * Quaternion.Euler (60, 0, 0));
+			Vector3 spawnPos;
+			UnitPerform unitPerform = caster.GetComponent<UnitPerform> ();
+			if (unitPerform!=null && unitPerform.shootPoint != null) {
+				spawnPos = caster.GetComponent<UnitPerform> ().shootPoint.position;
+			} else {
+				spawnPos = caster.GetBodyPos ();
+			}
+			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, spawnPos, caster.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootObject shootObj = shootGo.GetComponent<ShootObject> ();
 			shootObj.speed = speed;
 			if (target != null) {
