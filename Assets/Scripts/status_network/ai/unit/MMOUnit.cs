@@ -14,16 +14,18 @@ namespace MMO
 		public int frame;
 		Collider mCollider;
 		Transform mTrans;
-		public SimpleRpgAnimator mSimpleRpgAnimator;
-		Animator mAnimator;
+//		public SimpleRpgAnimator mSimpleRpgAnimator;
+//		Animator mAnimator;
 
 		CapsuleCollider mCapsuleCollider;
 		CharacterController mCharacterController;
+		public UnitAnimator unitAnimator;
 
 		void Awake(){
 			mTrans = transform;
-			mSimpleRpgAnimator = GetComponent<SimpleRpgAnimator> ();
-			mAnimator =  GetComponentInChildren<Animator> (true);
+//			mSimpleRpgAnimator = GetComponent<SimpleRpgAnimator> ();
+//			mAnimator =  GetComponentInChildren<Animator> (true);
+			unitAnimator = gameObject.GetOrAddComponent<UnitAnimator> ();
 			mCapsuleCollider = GetComponent<CapsuleCollider> ();
 			mCharacterController = GetComponent<CharacterController> ();
 			mCollider = GetComponent<Collider> ();
@@ -78,47 +80,39 @@ namespace MMO
 				return 1;
 		}
 
-		public bool IsInState(string state){
-			return mSimpleRpgAnimator.IsInState (state);
-		}
+//		public void SetTrigger(string trigger){
+//			if(mSimpleRpgAnimator!=null)
+//				mSimpleRpgAnimator.SetTrigger (trigger);
+//			else if(mAnimator !=null){
+//				mAnimator.SetTrigger (trigger);
+//			}
+//		}
 
-		public bool GetTrigger(string trigger){
-			return mSimpleRpgAnimator.GetTrigger (trigger);
-		}
-
-		public void SetTrigger(string trigger){
-			if(mSimpleRpgAnimator!=null)
-				mSimpleRpgAnimator.SetTrigger (trigger);
-			else if(mAnimator !=null){
-				mAnimator.SetTrigger (trigger);
-			}
-		}
-
-		public void ResetAllTrigger(){
-			if(mAnimator !=null){
-				for(int i=0;i<mAnimator.parameters.Length;i++){
-					mAnimator.SetBool (mAnimator.parameters[0].name,false);
-				}
-			}
-		}
-
-		string mPreAction;
-		public void SetAnimation(string action,float speed){
-			if (mSimpleRpgAnimator != null) {
-				mSimpleRpgAnimator.Play (action);
-				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
-			} else if (mAnimator !=null){
-				mAnimator.Play (action, 0, 0);
-				//TODO
-//				if (mPreAction != action) {
-//					if (mPreAction == "walk")
-//						mAnimator.Play (action, 0, Random.Range (0, 1f));
-//					else
-//						mAnimator.Play (action, 0, 0);
-//					mAnimator.speed = speed * animationSpeedOffset;
-//					mPreAction = action;
+//		public void ResetAllTrigger(){
+//			if(mAnimator !=null){
+//				for(int i=0;i<mAnimator.parameters.Length;i++){
+//					mAnimator.SetBool (mAnimator.parameters[0].name,false);
 //				}
-			}
-		}
+//			}
+//		}
+
+//		string mPreAction;
+//		public void SetAnimation(string action,float speed){
+//			if (mSimpleRpgAnimator != null) {
+//				mSimpleRpgAnimator.Play (action);
+//				mSimpleRpgAnimator.SetSpeed (speed * animationSpeedOffset);
+//			} else if (mAnimator !=null){
+//				mAnimator.Play (action, 0, 0);
+//				//TODO
+////				if (mPreAction != action) {
+////					if (mPreAction == "walk")
+////						mAnimator.Play (action, 0, Random.Range (0, 1f));
+////					else
+////						mAnimator.Play (action, 0, 0);
+////					mAnimator.speed = speed * animationSpeedOffset;
+////					mPreAction = action;
+////				}
+//			}
+//		}
 	}
 }

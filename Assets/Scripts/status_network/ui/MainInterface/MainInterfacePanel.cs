@@ -167,7 +167,8 @@ namespace MMO
 		}
 
 		IEnumerator _PlayAnimation(string clip,float length){
-			this.mUnitSkill.mmoUnit.SetAnimation(clip,1f);
+			this.mUnitSkill.mmoUnit.unitAnimator.Play (clip);
+			this.mUnitSkill.mmoUnit.unitAnimator.SetSpeed (1);
 			yield return new WaitForSeconds (length);
 //			this.mUnitSkill.mmoUnit.SetAnimation ("idle",1f);
 		}

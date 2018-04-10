@@ -99,7 +99,7 @@ namespace MMO
 		{
 			mTimeToCloseMobileSkillButtonGroup = Time.time + DurationToCloseMobileSkillButtonGroup;
 			if (skillBase.Play ()) {
-				mMMOUnitSkill.mmoUnit.SetTrigger ("cast");
+				mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST);
 			}
 		}
 
@@ -113,21 +113,21 @@ namespace MMO
 			//need a area to place the config at user handled skill.
 			//this is not in default mmorpg.
 			//这里就是动作mmo和传统mmo之间的区别.
-			if (mUnitSkill.mmoUnit.IsInState ("attack3")) {
-				if (mUnitSkill.skillList [0].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [0].mUnitSkill.anim_name);
+			if (mmoUnitSkill.mmoUnit.unitAnimator.IsInState (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3)) {
+				if (mmoUnitSkill.skillList [0].Play ()) {
+					mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (mmoUnitSkill.skillList [0].mUnitSkill.anim_name);
 				}
-			} else if (mUnitSkill.mmoUnit.IsInState ("attack2")) {
-				if (mUnitSkill.skillList [1].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [1].mUnitSkill.anim_name);
+			} else if (mmoUnitSkill.mmoUnit.unitAnimator.IsInState (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2)) {
+				if (mmoUnitSkill.skillList [1].Play ()) {
+					mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (mmoUnitSkill.skillList [1].mUnitSkill.anim_name);
 				}
-			} else if (mUnitSkill.mmoUnit.IsInState ("attack1")) {
-				if (mUnitSkill.skillList [2].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [2].mUnitSkill.anim_name);
+			} else if (mmoUnitSkill.mmoUnit.unitAnimator.IsInState (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1)) {
+				if (mmoUnitSkill.skillList [2].Play ()) {
+					mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (mmoUnitSkill.skillList [2].mUnitSkill.anim_name);
 				}
 			} else {
-				if (mUnitSkill.skillList [3].Play ()) {
-					mMMOUnitSkill.mmoUnit.SetTrigger (mUnitSkill.skillList [0].mUnitSkill.anim_name);
+				if (mmoUnitSkill.skillList [3].Play ()) {
+					mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (mmoUnitSkill.skillList [0].mUnitSkill.anim_name);
 				}
 			}
 		}

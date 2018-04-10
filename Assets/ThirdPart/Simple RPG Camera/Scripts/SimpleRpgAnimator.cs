@@ -69,6 +69,10 @@ public class SimpleRpgAnimator : MonoBehaviour
 		return false;
 	}
 
+	public bool IsIdle(){
+		return mIsIdle;
+	}
+
 	bool mIsIdle;
 	void CheckOnIdle(){
 		if (mAnimator!=null && !mIsIdle && mAnimator.GetCurrentAnimatorStateInfo (0).IsName ("idle")) {

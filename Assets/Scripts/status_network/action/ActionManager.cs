@@ -17,25 +17,29 @@ namespace MMO
 			}
 			switch (action.status) {
 			case BattleConst.UnitMachineStatus.STANDBY:
-				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL, 1);
-				if(unit.mSimpleRpgAnimator!=null)
-					unit.mSimpleRpgAnimator.SetMoveSpeed (0);
+				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+				unit.unitAnimator.SetSpeed (1);
+				unit.unitAnimator.SetMoveSpeed (0);
+//				if(unit.mSimpleRpgAnimator!=null)
+//					unit.mSimpleRpgAnimator.SetMoveSpeed (0);
 				break;
 			case BattleConst.UnitMachineStatus.MOVE:
-				unit.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
+				unit.unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
 //				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
-				if(unit.mSimpleRpgAnimator!=null)
-					unit.mSimpleRpgAnimator.SetMoveSpeed (3.0f);
+//				if(unit.mSimpleRpgAnimator!=null)
+				unit.unitAnimator.SetMoveSpeed (3.0f);
 				break;
 			case BattleConst.UnitMachineStatus.CAST:
 				DoSkill(action);
 				break;
 			case BattleConst.UnitMachineStatus.DEATH:
 				unit.Death ();
-				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD,1);
+				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
+				unit.unitAnimator.SetSpeed (1);
 				break;
 			default:
-				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL,1);
+				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+				unit.unitAnimator.SetSpeed (1);
 				break;
 			}
 		}
@@ -45,28 +49,6 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
-		//Do Unit Actions.
-//		void DoUnitAction(StatusInfo action){
-//			MMOUnit unit = MMOController.Instance.GetUnitByUnitId (action.casterId);
-//			switch(action.actionId){
-//			case 1:
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL,1);
-//				break;
-//			case 2:
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_WALK,1);
-//				break;
-//			case 3:
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
-//				break;
-//			case 4:
-//				unit.Death ();
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD,1);
-//				break;
-//			default:
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL,1);
-//				break;
-//			}
-//		}
 		//TODO use trigger to controll the cast clip;
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.
@@ -76,7 +58,7 @@ namespace MMO
 			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
 			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (action.casterId);
 			//TODO need know the cast anim name from csv or from other area.
-			caster.SetTrigger(mUnitSkill.anim_name);
+			caster.unitAnimator.SetTrigger(mUnitSkill.anim_name);
 			MMOUnit target = null;
 			if (action.targetId >= 0) {
 				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
@@ -84,20 +66,12 @@ namespace MMO
 			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
 			if (mSkill.is_remote > 0) {
 				//Remote attack;
-				ShootObject shootObj = null;
-				switch(mSkill.shoot_move_type){
-				case 1:
-					Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
-					break;
-				default:
-					Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id].gameObject,mSkill.shoot_move_speed,caster,target,mSkill.range);
-					break;
-				}
+				Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id], mSkill,caster,target,mSkill.range);
 			}
 			yield return null;
 		}
 		//Shoot Action.
-		public void Shoot(GameObject shootPrefab,float speed,MMOUnit caster,MMOUnit target,float range){
+		public void Shoot(GameObject shootPrefab,MSkill mSkill,MMOUnit caster,MMOUnit target,float range){
 			Vector3 spawnPos;
 			UnitPerform unitPerform = caster.GetComponent<UnitPerform> ();
 			if (unitPerform!=null && unitPerform.shootPoint != null) {
@@ -106,8 +80,16 @@ namespace MMO
 				spawnPos = caster.GetBodyPos ();
 			}
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, spawnPos, caster.transform.rotation * Quaternion.Euler (60, 0, 0));
-			ShootObject shootObj = shootGo.GetComponent<ShootObject> ();
-			shootObj.speed = speed;
+			ShootObject shootObj = null;
+			switch(mSkill.shoot_move_type){
+			case 1:
+				shootObj = shootGo.GetOrAddComponent<ShootProjectileObject> ();
+				break;
+			default:
+				shootObj = shootGo.GetOrAddComponent<ShootLineObject> ();
+				break;
+			}
+			shootObj.speed = mSkill.shoot_move_speed;
 			if (target != null) {
 				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
