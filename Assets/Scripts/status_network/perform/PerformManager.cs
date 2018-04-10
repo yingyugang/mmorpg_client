@@ -38,10 +38,14 @@ namespace MMO
 
 		void ShowHitUIInfos (HitInfo hitInfo, Dictionary<int,GameObject> unitDic)
 		{
+			MMOUnit caster =  unitDic [hitInfo.casterId].GetComponent<MMOUnit>();
 			for (int j = 0; j < hitInfo.hitIds.Length; j++) {
 				if (unitDic.ContainsKey (hitInfo.hitIds [j])) {
 					GameObject go = unitDic [hitInfo.hitIds [j]];
-					ShowHitUIInfo (hitInfo.skillId , go.GetComponent<MMOUnit> (), hitInfo.nums [j]);
+					MMOUnit mmoUnit = go.GetComponent<MMOUnit> ();
+					if(MMOController.Instance.IsPlayer(caster) || MMOController.Instance.IsPlayer(mmoUnit) || MMOController.Instance.isDebug){
+						ShowHitUIInfo (hitInfo.skillId , go.GetComponent<MMOUnit> (), hitInfo.nums [j]);
+					}
 				}
 			}
 		}
