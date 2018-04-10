@@ -186,6 +186,13 @@ namespace MMO
 						playerGO = InstantiateUnit (0, transferData.playerDatas [i].unitInfo);
 					} else {
 						playerGO = MMOController.Instance.player.gameObject;
+						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
+						playerUnit.onDeath = () => {
+							PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
+							PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
+								MMOClient.Instance.SendRespawn ();
+							});
+						};
 					}
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
 					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
@@ -239,14 +246,8 @@ namespace MMO
 		void SetCurrentPlayer (PlayerInfo playInfo)
 		{
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
-//			simpleRpgPlayerController.enabled = false;
-			//TODO イベントの形になればいい。
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
 				StopControll ();
-				PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
-				PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
-					MMOClient.Instance.SendRespawn ();
-				});
 			} else {
 				ReleaseControll ();
 				PanelManager.Instance.HideCommonDialog ();

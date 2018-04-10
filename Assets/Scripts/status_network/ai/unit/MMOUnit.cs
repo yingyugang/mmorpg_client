@@ -43,7 +43,8 @@ namespace MMO
 				onDeath = null;
 			}
 			HeadUIBase headUIBase = GetComponentInChildren<HeadUIBase> (true);
-			headUIBase.container_health_bar.SetActive (false);
+			if(headUIBase!=null)
+				headUIBase.container_health_bar.SetActive (false);
 		}
 
 		public void UnCollider(){
