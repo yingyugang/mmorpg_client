@@ -47,10 +47,7 @@ namespace MMO
 
 		public Animation shootAnimation;
 
-		public List<GameObject> closeImme;
-
 		const string HIT_ANIM_CLIP = "hit";
-		const float DEFAULT_UNSPAWN_DELAY = 3;
 
 		protected virtual void Awake ()
 		{
@@ -90,21 +87,10 @@ namespace MMO
 			if (shootAnimation != null) {
 				shootAnimation.Play (HIT_ANIM_CLIP);
 			}
-			StartCoroutine (_UnSpawnDelay(DEFAULT_UNSPAWN_DELAY));
-		}
-
-		IEnumerator _UnSpawnDelay(float delay){
-			ParticleSystem[] pss = gameObject.GetComponentsInChildren<ParticleSystem> ();
-			for(int i=0;i<pss.Length;i++){
-				pss [i].Stop ();
+			ShootObjectPerform sop = GetComponent<ShootObjectPerform> ();
+			if(sop!=null){
+				sop.OnHit ();
 			}
-			if (closeImme.Count > 0) {
-				for(int i=0;i<closeImme.Count;i++){
-					closeImme [i].SetActive (false);
-				}
-			}
-			yield return new WaitForSeconds (delay);
-			Instantiater.UnSpawn (false, gameObject);
 		}
 
 		//设置进行碰撞物理检查的层
