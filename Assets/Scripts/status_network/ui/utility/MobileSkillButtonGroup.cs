@@ -11,13 +11,14 @@ namespace MMO
 
 		public Button btn_normal_skill;
 		public List<GameObject> obj_skills;
+		public List<MobileSkillButton> sorting_skills;
 		public List<Button> btn_skills;
 		public bool isShow;
 		List<Vector3> mDefaultPosList;
 		float duration = 0.6f;
 		float mTimeToCloseMobileSkillButtonGroup;
 		const float DurationToCloseMobileSkillButtonGroup = 5f;
-		MMOUnitSkill mUnitSkill;
+		public MMOUnitSkill mmoUnitSkill;
 
 		void Awake ()
 		{
@@ -25,6 +26,7 @@ namespace MMO
 			btn_normal_skill.onClick.AddListener (OnNormalAttack);
 			btn_normal_skill.gameObject.SetActive (true);
 			btn_skills = new List<Button> ();
+			sorting_skills = new List<MobileSkillButton> ();
 			for(int i=0;i< obj_skills.Count;i++){
 				btn_skills.Add (obj_skills[i].GetComponentInChildren<Button>());
 			}
@@ -34,31 +36,31 @@ namespace MMO
 			}
 		}
 
+		public float minNextCheckTime;
 		void Update ()
 		{
 			//TODO to update the time on sub skill button.
 			if (mTimeToCloseMobileSkillButtonGroup < Time.time && isShow) {
 				HideSkills ();
 			}
+			if(this.sorting_skills.Count>0 && minNextCheckTime < Time.time){
+				if(mmoUnitSkill.mmoUnit.unitAnimator.IsIdle () || mmoUnitSkill.mmoUnit.unitAnimator.IsRun ()){
+					this.sorting_skills [0].OnClickSkillButton ();
+				}
+			}
 		}
 
 		public void Init (MMOUnitSkill unitSkill)
 		{
-			this.mUnitSkill = unitSkill;
-			SetSkillDatas (this.mUnitSkill);
+			this.mmoUnitSkill = unitSkill;
+			SetSkillDatas (this.mmoUnitSkill);
 		}
 
 		public void ShowSkills ()
 		{
 			for (int i = 0; i < btn_skills.Count; i++) {
-				btn_skills [i].transform.DORotate (new Vector3 (0, 0, 180f), duration);
-				btn_skills [i].transform.DOLocalMove (mDefaultPosList [i], duration);
-				Image image = btn_skills [i].GetComponent<Image> ();
-				image.enabled = true;
-				image.raycastTarget = false;
-				image.DOFade (1f, duration).OnComplete (() => {
-					image.raycastTarget = true;
-				});
+				MobileSkillButton msb = obj_skills [i].GetComponent<MobileSkillButton> ();
+				msb.Show ();
 			}
 			isShow = true;
 		}
@@ -66,12 +68,9 @@ namespace MMO
 		public void HideSkills ()
 		{
 			for (int i = 0; i < btn_skills.Count; i++) {
-				btn_skills [i].transform.DORotate (new Vector3 (0, 0, 0), duration);
-				btn_skills [i].transform.DOLocalMove (new Vector3 (0, 0, 0), duration);
-				Image image = btn_skills [i].GetComponent<Image> ();//.enabled = false;
-				image.DOFade (0f, duration).OnComplete (() => {
-					image.raycastTarget = false;
-				});
+
+				MobileSkillButton msb = obj_skills [i].GetComponent<MobileSkillButton> ();
+				msb.Hide ();
 			}
 			isShow = false;
 		}
@@ -90,7 +89,7 @@ namespace MMO
 				Button btnSkill = btn_skills [i - skillStartIndex];
 				Sprite iconSprite = ResourcesManager.Instance.GetSkillIcon (sb.mSkill.id);
 				MobileSkillButton mobileSkillButton = obj_skills[i - skillStartIndex].gameObject.GetOrAddComponent<MobileSkillButton> ();
-				mobileSkillButton.InitSkillButton (iconSprite, 3f, sb, OnSkill);
+				mobileSkillButton.InitSkillButton (iconSprite, sb.coolDown, sb,this, OnSkill);
 			}
 		}
 

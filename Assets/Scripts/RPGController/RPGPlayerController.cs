@@ -31,12 +31,22 @@ namespace MMO
 			_animator = GetComponent<SimpleRpgAnimator> ();
 			mTrans = transform;
 			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
+			etcJoystick.onMoveStart.AddListener (()=>{
+				isPause = false;
+			});
 		}
 
 		bool mIsRuning;
-
+		public bool isPause;
 		void Update ()
 		{
+			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
+				isPause = false;
+			}
+			if (isPause) {
+				_animator.SetMoveSpeed (0);
+				return;
+			}
 			mInputX = Input.GetAxis ("Horizontal");
 			mInputY = Input.GetAxis ("Vertical");
 

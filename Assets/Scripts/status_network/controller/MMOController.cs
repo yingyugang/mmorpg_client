@@ -20,7 +20,7 @@ namespace MMO
 
 		public string targetIp;
 		//TODO csvに遷移するが必要。
-		public List<ShootObject> shootPrefabs;
+		public List<GameObject> shootPrefabs;
 		//TODO ResourcesManager に移動する必要だ。
 		public List<GameObject> unitPrefabs;
 		public GameObject minimap;
@@ -241,6 +241,13 @@ namespace MMO
 					}
 				}
 			}
+		}
+
+		public bool IsPlayer(MMOUnit mmoUnit){
+			if(mPlayerInfo!=null && mPlayerInfo.unitInfo!=null){
+				return mmoUnit.unitInfo.attribute.unitId == mPlayerInfo.unitInfo.attribute.unitId;
+			}
+			return false;
 		}
 
 		void SetCurrentPlayer (PlayerInfo playInfo)

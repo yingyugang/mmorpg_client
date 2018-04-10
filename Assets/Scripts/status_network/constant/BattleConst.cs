@@ -261,5 +261,8 @@ public class BattleConst
 
 	public const float MIN_SKILL_RANGE = 2;
 
+	public const float MOBILE_BUTTON_TOGGLE_DURATION = 0.6f;
+
+	public const float DEFAULT_UNSPAWN_DELAY = 3f;
 
 }

@@ -25,14 +25,14 @@ namespace MMO
 
 		public virtual bool IsUseAble ()
 		{
-			return !IsInCooldown();
+			return !IsInCooldown() ;
 		}
 
 		bool IsInCooldown(){
 			if (mNextActiveTime < Time.time) {
 				return false;
 			} else {
-				Debug.Log (string.Format("skill {0} is in cooldown.{1}",mSkill.id,coolDown));
+				Debug.Log (string.Format("skill {0} is in cooldown.remain {1}",mSkill.id,mNextActiveTime - Time.time));
 				return true;
 			}
 		}
