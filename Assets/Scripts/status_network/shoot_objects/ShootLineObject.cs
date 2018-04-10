@@ -40,8 +40,9 @@ namespace MMO
 					if(targetPos!=thisT.position)
 						thisT.LookAt (targetPos);
 				}
+				thisT.position += thisT.forward * speed * Time.deltaTime;
 				float sqrCurrentDistance = (targetPos - thisT.position).sqrMagnitude;
-				float sqrDeltaMove = speed * speed * Time.deltaTime;
+				float sqrDeltaMove = speed * speed * Time.deltaTime * Time.deltaTime;
 				if(sqrDeltaMove >= sqrCurrentDistance || sqrCurrentDistance <= sqrHitThreshold){
 					thisT.position = targetPos;
 					hit = true;
