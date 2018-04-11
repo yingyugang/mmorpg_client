@@ -8,14 +8,13 @@ using System.Collections.Generic;
 public class ABSetting : EditorWindow
 {
 
-	static string assetbundleRoot = "/AssetBundleResources";
+	public static string assetbundleRoot = "/AssetBundleResources";
 	static string voicePath = "/sounds/voices";
 
 	[MenuItem ("Tools/Auto Set AB Name")] 
 	static void SetAssetbundleNames ()
 	{
 		SetABNames ();
-		Debug.Log ("Voice AB Reset Done!");
 	}
 
 	static void SetVoiceABNames ()

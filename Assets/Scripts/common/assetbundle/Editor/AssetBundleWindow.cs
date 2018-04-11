@@ -328,7 +328,7 @@ public class AssetBundleWindow : EditorWindow
 	{
 		for (int i = 0; i < allAssetBundleEntitys.Count; i++) {
 			if (allAssetBundleEntitys [i].isSelected) {
-				if (FileManager.Exists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
+				if (FileManager.FileExists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
 					FileManager.CopyFile (fullTmpOutputPath + allAssetBundleEntitys [i].abName, tempResourceAssetPath + allAssetBundleEntitys [i].abName);
 			}
 		}
@@ -340,7 +340,7 @@ public class AssetBundleWindow : EditorWindow
 	{
 		for (int i = 0; i < allAssetBundleEntitys.Count; i++) {
 			if (allAssetBundleEntitys [i].isSelected) {
-				if (FileManager.Exists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
+				if (FileManager.FileExists (fullTmpOutputPath + allAssetBundleEntitys [i].abName))
 					FileManager.CopyFile (fullTmpOutputPath + allAssetBundleEntitys [i].abName, localABServerPath + fullTmpOutputPath.Replace (Application.dataPath, "") + allAssetBundleEntitys [i].abName);
 			}
 		}

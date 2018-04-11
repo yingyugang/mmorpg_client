@@ -699,7 +699,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1235396640249716}
-  m_LocalRotation: {x: -0.28322083, y: 0.31830457, z: 0.64595634, w: -0.6334104}
+  m_LocalRotation: {x: -0.2832208, y: 0.31830454, z: 0.6459563, w: -0.63341033}
   m_LocalPosition: {x: -0.0338645, y: 0.89189, z: -0.009937289}
   m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
   m_Children:
@@ -902,7 +902,10 @@ MonoBehaviour:
   defaultMat: {fileID: 2100000, guid: 4eba6bc593d97794bb90c320c1b6fc3d, type: 2}
   dissolveMat: {fileID: 2100000, guid: 6f7ce1497c5954aa0804816ad3dac781, type: 2}
   duration: 2
-  bodyRenderer: {fileID: 0}
+  bodyRenderer:
+  - {fileID: 137325441417631302}
+  - {fileID: 23822811658962146}
+  shootPoint: {fileID: 4259465274168920}
 --- !u!136 &136911855746651750
 CapsuleCollider:
   m_ObjectHideFlags: 1

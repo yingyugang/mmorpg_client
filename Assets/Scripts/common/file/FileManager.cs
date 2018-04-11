@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class FileManager
 {
-	public static bool Exists (string path)
+	public static bool FileExists (string path)
 	{
 		return File.Exists (path);
 	}
@@ -18,6 +18,12 @@ public class FileManager
 
 	public static void CreateDirectory(string path){
 		Directory.CreateDirectory (path);
+	}
+
+	public static void CreateFile(string path){
+		if(!File.Exists(path)){
+			File.Create (path).Close();
+		}
 	}
 
 	public static void WriteAllBytes (string filePath, byte[] bytes)
@@ -161,6 +167,25 @@ public class FileManager
 		#if  UNITY_IOS
 		UnityEngine.iOS.Device.SetNoBackupFlag (destFilePath);
 		#endif
+	}
+
+	public static string GetFileNameFromPath(string filePath){
+		if (filePath.LastIndexOf ("/") != -1) {
+			string dirctory = filePath.Substring (filePath.LastIndexOf ("/") + 1);
+			if(dirctory.LastIndexOf(".")!=-1){
+				dirctory = dirctory.Substring (0,dirctory.LastIndexOf ("."));
+			}
+			return dirctory;
+		}
+		return filePath;
+	}
+
+	public static string GetDirectoryNameFromPath(string directoryPath){
+		if(directoryPath.LastIndexOf("/")!=-1){
+			string directory = directoryPath.Substring (directoryPath.LastIndexOf ("/") + 1);
+			return directory;
+		}
+		return directoryPath;
 	}
 
 	public static void DeleteFile (string filePath)

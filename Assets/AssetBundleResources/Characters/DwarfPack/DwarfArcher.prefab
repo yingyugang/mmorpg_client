@@ -1016,7 +1016,10 @@ MonoBehaviour:
   defaultMat: {fileID: 2100000, guid: 16bbc676e290a414ba41d1045abd9e04, type: 2}
   dissolveMat: {fileID: 2100000, guid: 97c8c6f499cf64e309ec033777cdd985, type: 2}
   duration: 2
-  bodyRenderer: {fileID: 137301283001935842}
+  bodyRenderer:
+  - {fileID: 137301283001935842}
+  - {fileID: 23435344656721324}
+  shootPoint: {fileID: 4155972570088638}
 --- !u!136 &136003047344017584
 CapsuleCollider:
   m_ObjectHideFlags: 1
