@@ -9,7 +9,6 @@ namespace MMO
 	{
 
 		public GameObject hitUITextPrefab;
-		public List<GameObject> hitPrefabs;
 
 		//TODO 表示する場合が確認する
 		public void ShowHitInfo (HitInfo hitInfo, Dictionary<int,GameObject> unitDic)
@@ -20,19 +19,35 @@ namespace MMO
 
 		void ShowHitEffects (HitInfo hitInfo)
 		{
-			for (int i = 0; i < hitInfo.hitObjectIds.Length; i++) {
-				ShowHitEffect (hitInfo.hitObjectIds [i],hitInfo.hitIds[i], hitInfo.hitPositions [i]);
+			if (CSVManager.Instance.unitSkillDic.ContainsKey (hitInfo.unitSkillId)) {
+				MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic [hitInfo.unitSkillId];
+				for (int i = 0; i < hitInfo.hitPositions.Length; i++) {
+					Vector3 hitPos = IntVector3.ToVector3 (hitInfo.hitPositions[i]);
+					ShowHitEffect (mUnitSkill.main_hit_object_id, hitPos);
+				}
+				for (int i = 0; i < hitInfo.hitIds.Length; i++) {
+					MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (hitInfo.hitIds[i]);
+					Vector3 hitPos;
+					if (mmoUnit != null){
+						hitPos = mmoUnit.GetBodyPos ();
+						ShowHitEffect (mUnitSkill.sub_hit_object_id, hitPos);
+					}
+				}
+			} else {
+				Debug.LogError (string.Format("hitInfo.unitSkillId:{0} is not exiting.",hitInfo.unitSkillId));
 			}
 		}
 
-		void ShowHitEffect (int objectId,int hitId, IntVector3 pos)
+		void ShowHitEffect (int objectId,Vector3 pos)//   int hitId, IntVector3 pos)
 		{
-			GameObject prefab = this.hitPrefabs [objectId];
-			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (hitId);
-			Vector3 hitPos = IntVector3.ToVector3 (pos);
-			if (mmoUnit != null)
-				hitPos = mmoUnit.GetBodyPos ();
-			GameObject go = Instantiater.Spawn (false, prefab, hitPos, Quaternion.identity);
+			if (objectId <= 0)
+				return;
+			GameObject prefab = ResourcesManager.Instance.GetEffect (objectId);
+//			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (hitId);
+//			Vector3 hitPos = IntVector3.ToVector3 (pos);
+//			if (mmoUnit != null)
+//				hitPos = mmoUnit.GetBodyPos ();
+			GameObject go = Instantiater.Spawn (false, prefab, pos, Quaternion.identity);
 			Destroy (go, 10);
 		}
 
@@ -43,8 +58,13 @@ namespace MMO
 				if (unitDic.ContainsKey (hitInfo.hitIds [j])) {
 					GameObject go = unitDic [hitInfo.hitIds [j]];
 					MMOUnit mmoUnit = go.GetComponent<MMOUnit> ();
-					if(MMOController.Instance.IsPlayer(caster) || MMOController.Instance.IsPlayer(mmoUnit) || MMOController.Instance.isDebug){
-						ShowHitUIInfo (hitInfo.skillId , go.GetComponent<MMOUnit> (), hitInfo.nums [j]);
+					if (CSVManager.Instance.unitSkillDic.ContainsKey (hitInfo.unitSkillId)) {
+						MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic [hitInfo.unitSkillId];
+						if (MMOController.Instance.IsPlayer (caster) || MMOController.Instance.IsPlayer (mmoUnit) || MMOController.Instance.isDebug) {
+							ShowHitUIInfo (mUnitSkill.skill_id, go.GetComponent<MMOUnit> (), hitInfo.nums [j]);
+						}
+					} else {
+						Debug.LogError (string.Format("hitInfo.unitSkillId:{0} is not exiting.",hitInfo.unitSkillId));
 					}
 				}
 			}

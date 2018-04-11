@@ -53,6 +53,7 @@ namespace MMO
 		{
 			thisT = transform;
 			shootAnimation = GetComponent<Animation> ();
+			gameObject.GetOrAddComponent<ShootObjectPerform> ();
 		}
 
 		public virtual void Shoot (MMOUnit attacker, Vector3 targetPos, Vector3 offset)

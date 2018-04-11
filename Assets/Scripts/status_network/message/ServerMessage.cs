@@ -12,11 +12,20 @@ namespace MMO
 	{
 		public int casterId;
 		public IntVector3 hitCenterPosition;
-		public int skillId;
+		public int unitSkillId;
 		public int[] hitIds;
 		public int[] nums;
 		public int[] hitObjectIds;
 		public IntVector3[] hitPositions;
+	}
+
+	[Serializable]
+	public class ShootInfo:MessageBase
+	{
+		public int casterId;
+		public int unitSkillId;
+		public int targetId;
+		public IntVector3 targetPos;
 	}
 
 	[Serializable]
@@ -26,6 +35,7 @@ namespace MMO
 		public MMOTransform transform;
 		public StatusInfo action;
 		public int[] unitSkillIds;
+		public int camp;
 
 		public UnitInfo ()
 		{
@@ -33,6 +43,7 @@ namespace MMO
 			transform = new MMOTransform ();
 			action = new StatusInfo ();
 			unitSkillIds = new int[0];
+			camp = -1;
 		}
 	}
 
@@ -67,10 +78,12 @@ namespace MMO
 	[Serializable]
 	public class TransferData : MessageBase
 	{
+		//PlayerInfo do not send better.replace as other parameter.
 		public PlayerInfo[] playerDatas;
 		public UnitInfo[] monsterDatas;
 		public HitInfo[] hitDatas;
 		public StatusInfo[] actions;
+		public ShootInfo[] shoots;
 
 		public TransferData ()
 		{
@@ -78,6 +91,7 @@ namespace MMO
 			monsterDatas = new UnitInfo[0];
 			hitDatas = new HitInfo[0];
 			actions = new StatusInfo[0];
+			shoots = new ShootInfo[0];
 		}
 	}
 

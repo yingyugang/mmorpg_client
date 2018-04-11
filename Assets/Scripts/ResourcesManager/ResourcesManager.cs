@@ -210,6 +210,25 @@ namespace MMO
 			return go;
 		}
 
+		Dictionary<int,GameObject> mCachedEffect;
+		public GameObject GetEffect(int effectId){
+			if (mCachedEffect == null) {
+				mCachedEffect = new Dictionary<int, GameObject> ();
+			}
+			if (mCachedEffect.ContainsKey (effectId)) {
+				return mCachedEffect[effectId];
+			}
+			MEffect mEffect = null;
+			if (CSVManager.Instance.effectDic.ContainsKey (effectId)) {
+				mEffect = CSVManager.Instance.effectDic [effectId];
+			} else {
+				mEffect = CSVManager.Instance.effectDic [BattleConst.DEFAULT_EFFECT_ID];
+			}
+			GameObject go = LoadAsset<GameObject> ( mEffect.assetbundle,mEffect.effect_name);
+			mCachedEffect.Add (effectId,go);
+			return go;
+		}
+
 		T LoadAsset<T>(string abName,string assetName) where T : UnityEngine.Object{
 			return AssetbundleManager.Instance.GetAssetFromLocal<T> (abName.ToLower(),assetName);
 		}

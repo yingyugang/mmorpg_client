@@ -19,10 +19,6 @@ namespace MMO
 		public string playerName;
 
 		public string targetIp;
-		//TODO csvに遷移するが必要。
-		public List<GameObject> shootPrefabs;
-		//TODO ResourcesManager に移動する必要だ。
-		public List<GameObject> unitPrefabs;
 		public GameObject minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
@@ -307,6 +303,7 @@ namespace MMO
 
 			UpdateHits (data.hitDatas);
 			UpdateActions (data.actions);
+			UpdateShoots (data.shoots);
 		}
 
 		void OnRecievePlayerStatus(NetworkMessage msg){
@@ -334,6 +331,16 @@ namespace MMO
 					if (isDebug)
 						Debug.Log (JsonUtility.ToJson(hitInfos[i]));
 					OnHit (hitInfos [i]);
+				}
+			}
+		}
+
+		void UpdateShoots(ShootInfo[] shootInfos){
+			if (shootInfos.Length > 0) {
+				for (int i = 0; i < shootInfos.Length; i++) {
+					if (isDebug)
+						Debug.Log (JsonUtility.ToJson(shootInfos[i]));
+					ActionManager.Instance.DoShoot (shootInfos [i]);
 				}
 			}
 		}
@@ -370,6 +377,7 @@ namespace MMO
 			unitGo.layer = LayerConstant.LAYER_UNIT;
 			MMOUnit mmoUnit = unitGo.GetOrAddComponent<MMOUnit> ();
 			mmoUnit.unitInfo = unitInfo;
+			MiniMapManager.Instance.SetMiniIcon (mmoUnit);
 			GameObject go = Instantiate (mHeadUIPrefab.gameObject);
 			go.GetComponent<HeadUIBase> ().SetUnit (mmoUnit);
 			unitGo.SetActive (true);

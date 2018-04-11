@@ -14,6 +14,7 @@ namespace MMO
 		private const string CSV_SKILL = "m_skill";
 		private const string CSV_SKILL_EFFECT_BASE = "m_skill_effect_base";
 		private const string CSV_UNIT_SKILL = "m_unit_skill";
+		private const string CSV_EFFECT = "m_effect";
 
 		private CsvContext mCsvContext;
 		List<MUnit> mUnitList;
@@ -24,6 +25,8 @@ namespace MMO
 		public Dictionary<int,MSkill> skillDic;
 		List<MUnitSkill> mUnitSkillList;
 		public Dictionary<int,MUnitSkill> unitSkillDic;
+		public Dictionary<int,MEffect> effectDic;
+		List<MEffect> mEffectList;
 
 		protected override void Awake ()
 		{
@@ -50,7 +53,8 @@ namespace MMO
 			LoadUnitTable ();
 			LoadSkillEffectBaseTable ();
 			LoadSkillTable ();
-			ListUnitSkillTable ();
+			LoadUnitSkillTable ();
+			LoadEffect ();
 		}
 
 		public MUnit GetUnit (int unitId)
@@ -60,6 +64,11 @@ namespace MMO
 			else {
 				return mUnitList [0];
 			}
+		}
+
+		void LoadEffect(){
+			mEffectList = CreateCSVList<MEffect> (CSV_EFFECT);
+			effectDic = GetDictionary<MEffect> (mEffectList);
 		}
 
 		void LoadUnitTable ()
@@ -80,7 +89,7 @@ namespace MMO
 			skillDic = GetDictionary<MSkill> (mSkillList);
 		}
 
-		void ListUnitSkillTable ()
+		void LoadUnitSkillTable ()
 		{
 			mUnitSkillList = CreateCSVList<MUnitSkill> (CSV_UNIT_SKILL);
 			unitSkillDic = GetDictionary<MUnitSkill> (mUnitSkillList);

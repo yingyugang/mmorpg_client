@@ -20,7 +20,7 @@ namespace MMO
 			for (int i = 0; i < pss.Length; i++) {
 				pss [i].Stop ();
 			}
-			if (closeImmeGOs.Count > 0) {
+			if (closeImmeGOs!=null && closeImmeGOs.Count > 0) {
 				for (int i = 0; i < closeImmeGOs.Count; i++) {
 					closeImmeGOs [i].SetActive (false);
 				}

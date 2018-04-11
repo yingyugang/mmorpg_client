@@ -265,4 +265,6 @@ public class BattleConst
 
 	public const float DEFAULT_UNSPAWN_DELAY = 3f;
 
+	public const int DEFAULT_EFFECT_ID = 1;
+
 }

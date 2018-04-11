@@ -49,29 +49,44 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
+
+
+		public void DoShoot(ShootInfo shootInfo){
+			MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic[shootInfo.unitSkillId];
+			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
+			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (shootInfo.casterId);
+			MMOUnit target = null;
+			if (shootInfo.targetId >= 0) {
+				target = MMOController.Instance.GetUnitByUnitId (shootInfo.targetId);
+			}
+			GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
+			Shoot (effect, mSkill,caster,target);
+		}
+
 		//TODO use trigger to controll the cast clip;
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.
 		IEnumerator _Cast(StatusInfo action){
 //			MSkill mSkill = CSVManager.Instance.skillDic [action.actionId];
 			MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic[action.actionId];
-			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
+//			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
 			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (action.casterId);
 			//TODO need know the cast anim name from csv or from other area.
 			caster.unitAnimator.SetTrigger(mUnitSkill.anim_name);
-			MMOUnit target = null;
-			if (action.targetId >= 0) {
-				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
-			}
-			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
-			if (mSkill.is_remote > 0) {
-				//Remote attack;
-				Shoot (MMOController.Instance.shootPrefabs [mUnitSkill.shoot_object_id], mSkill,caster,target,mSkill.range);
-			}
+//			MMOUnit target = null;
+//			if (action.targetId >= 0) {
+//				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
+//			}
+//			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
+//			if (mSkill.is_remote > 0) {
+//				//Remote attack;
+//				GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
+//				Shoot (effect, mSkill,caster,target,mSkill.range);
+//			}
 			yield return null;
 		}
 		//Shoot Action.
-		public void Shoot(GameObject shootPrefab,MSkill mSkill,MMOUnit caster,MMOUnit target,float range){
+		public void Shoot(GameObject shootPrefab,MSkill mSkill,MMOUnit caster,MMOUnit target){
 			Vector3 spawnPos;
 			UnitPerform unitPerform = caster.GetComponent<UnitPerform> ();
 			if (unitPerform!=null && unitPerform.shootPoint != null) {
@@ -93,7 +108,7 @@ namespace MMO
 			if (target != null) {
 				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
-				Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * range);
+				Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range);
 				shootObj.Shoot (caster,targetPos,Vector3.zero);
 			}
 		}

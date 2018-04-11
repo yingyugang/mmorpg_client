@@ -38,6 +38,8 @@ namespace MMO
 		[CsvColumn (CanBeNull = true)]
 		public int shoot_object_id;
 		[CsvColumn (CanBeNull = true)]
-		public int hit_object_id;
+		public int main_hit_object_id;
+		[CsvColumn (CanBeNull = true)]
+		public int sub_hit_object_id;
 	}
 }
