@@ -42,7 +42,6 @@ namespace MMO
 		public void Death(){
 			if (onDeath != null) {
 				onDeath ();
-				onDeath = null;
 			}
 			HeadUIBase headUIBase = GetComponentInChildren<HeadUIBase> (true);
 			if(headUIBase!=null)

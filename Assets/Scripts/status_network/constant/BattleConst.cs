@@ -194,6 +194,7 @@ public class BattleConst
 		public const int CAST = 3;//cast
 		public const int DEATH = 4;//death
 		public const int MOVE_PATROL = 5;//patrol
+		public const int RESPAWN = 6;//respawn
 	}
 
 	public struct BattleLayers
@@ -266,5 +267,7 @@ public class BattleConst
 	public const float DEFAULT_UNSPAWN_DELAY = 3f;
 
 	public const int DEFAULT_EFFECT_ID = 1;
+
+	public const int RESPAWN_EFFECT_ID = 55;
 
 }

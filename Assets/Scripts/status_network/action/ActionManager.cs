@@ -37,6 +37,9 @@ namespace MMO
 				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
 				unit.unitAnimator.SetSpeed (1);
 				break;
+			case BattleConst.UnitMachineStatus.RESPAWN:
+				PerformManager.Instance.ShowRespawnEffect (unit.transform.position);
+				break;
 			default:
 				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
 				unit.unitAnimator.SetSpeed (1);

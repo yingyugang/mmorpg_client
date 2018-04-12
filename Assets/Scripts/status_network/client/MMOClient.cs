@@ -33,7 +33,7 @@ namespace MMO
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
 			client.RegisterHandler (MessageConstant.PLAYER_ACTION, OnRecievePlayerAction);
 			client.RegisterHandler (MessageConstant.PLAYER_VOICE, OnRecievePlayerVoice);
-
+			client.RegisterHandler (MessageConstant.PLAYER_RESPAWN, OnRecievePlayerRespawn);
 		}
 
 		public bool IsConnected {
@@ -48,8 +48,8 @@ namespace MMO
 		}
 
 		public void SendRespawn(){
-			MMORespawn respawn = new MMORespawn ();
-			Send (MessageConstant.CLIENT_TO_SERVER_PLAYER_RESPAWN,respawn);
+			RespawnInfo respawn = new RespawnInfo ();
+			Send (MessageConstant.PLAYER_RESPAWN,respawn);
 		}
 
 		public void SendAction(StatusInfo action){
@@ -107,6 +107,11 @@ namespace MMO
 		void OnRecievePlayerVoice(NetworkMessage msg){
 			VoiceInfos voices = msg.ReadMessage<VoiceInfos> ();
 			SoundManager.Instance.PlayVoice (voices);
+		}
+
+		void OnRecievePlayerRespawn(NetworkMessage msg){
+			RespawnInfo respawnInfo = msg.ReadMessage<RespawnInfo> ();
+			MMOController.Instance.DoRespawn (respawnInfo.unitId);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)

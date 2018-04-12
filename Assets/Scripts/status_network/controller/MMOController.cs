@@ -246,15 +246,20 @@ namespace MMO
 			return false;
 		}
 
+		public bool IsPlayer(int unitId){
+			if(mPlayerInfo!=null && mPlayerInfo.unitInfo!=null){
+				return unitId == mPlayerInfo.unitInfo.attribute.unitId;
+			}
+			return false;
+		}
+
 		void SetCurrentPlayer (PlayerInfo playInfo)
 		{
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
 				StopControll ();
 			} else {
-				ReleaseControll ();
-				PanelManager.Instance.HideCommonDialog ();
-				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
+
 			}
 		}
 
@@ -422,6 +427,18 @@ namespace MMO
 		public void DoClientPlayerAction (StatusInfo action)
 		{
 			ActionManager.Instance.DoAction (action);
+		}
+
+		public void DoRespawn(int unitId){
+			if (IsPlayer (unitId)) {
+				ReleaseControll ();
+				PanelManager.Instance.HideCommonDialog ();
+				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
+			} else {
+				//TODO Do other monster respawn;
+			}
+			MMOUnit mmoUnit = GetUnitByUnitId (unitId);
+			PerformManager.Instance.ShowRespawnEffect (mmoUnit.transform.position);
 		}
 
 	}

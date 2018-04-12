@@ -150,9 +150,10 @@ namespace MMO
 	}
 
 	[System.Serializable]
-	public class MMORespawn:MessageBase
+	public class RespawnInfo:MessageBase
 	{
 		public int playerId;
+		public int unitId;
 	}
 
 	[System.Serializable]

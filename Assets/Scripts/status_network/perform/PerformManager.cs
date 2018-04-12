@@ -38,6 +38,12 @@ namespace MMO
 			}
 		}
 
+		public void ShowRespawnEffect(Vector3 pos){
+			GameObject prefab = ResourcesManager.Instance.GetEffect (BattleConst.RESPAWN_EFFECT_ID);
+			GameObject go = Instantiater.Spawn (false, prefab, pos, Quaternion.identity);
+			Destroy (go, 10);
+		}
+
 		void ShowHitEffect (int objectId,Vector3 pos)//   int hitId, IntVector3 pos)
 		{
 			if (objectId <= 0)
