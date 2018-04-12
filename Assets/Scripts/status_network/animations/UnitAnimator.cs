@@ -22,7 +22,7 @@ namespace MMO
 			mParameters = new HashSet<string> ();
 			if(animator!=null){
 				for(int i=0;i<animator.parameters.Length;i++){
-					if(mParameters.Contains(animator.parameters[i].name)){
+					if(!mParameters.Contains(animator.parameters[i].name)){
 						mParameters.Add (animator.parameters[i].name);
 					}
 				}				
@@ -83,7 +83,7 @@ namespace MMO
 
 		public void SetTrigger (string trigger)
 		{
-			if (animator != null)
+			if (animator != null && ContainParameter(trigger))
 				animator.SetTrigger (trigger);
 		}
 
