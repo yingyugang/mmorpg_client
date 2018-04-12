@@ -36,6 +36,7 @@ namespace MMO
 		public StatusInfo action;
 		public int[] unitSkillIds;
 		public int camp;
+		public bool isPlayer;
 
 		public UnitInfo ()
 		{

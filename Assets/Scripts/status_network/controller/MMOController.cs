@@ -257,7 +257,7 @@ namespace MMO
 		{
 			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
 			if (playInfo.unitInfo.attribute.currentHP <= 0) {
-				StopControll ();
+//				StopControll ();
 			} else {
 
 			}
@@ -400,15 +400,15 @@ namespace MMO
 			return terrainPos;
 		}
 
-		public void StopControll ()
-		{
-//			simpleRpgPlayerController.enabled = false;
-		}
+//		public void StopControll ()
+//		{
+////			simpleRpgPlayerController.enabled = false;
+//		}
 
-		public void ReleaseControll ()
-		{
-//			simpleRpgPlayerController.enabled = true;
-		}
+//		public void ReleaseControll ()
+//		{
+////			simpleRpgPlayerController.enabled = true;
+//		}
 
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
@@ -431,7 +431,7 @@ namespace MMO
 
 		public void DoRespawn(int unitId){
 			if (IsPlayer (unitId)) {
-				ReleaseControll ();
+//				ReleaseControll ();
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 			} else {
