@@ -193,6 +193,12 @@ namespace MMO
 		public List<SubSkill> subSkills;
 		//just use for debug mode.
 		public bool isSelected{ get; set; }
+
+		[CsvColumn (CanBeNull = true)]
+		public float impact_check_radiu;
+
+		[CsvColumn (CanBeNull = true)]
+		public int hit_impact_count;
 	}
 
 	[System.Serializable]

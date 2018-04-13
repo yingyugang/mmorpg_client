@@ -27,6 +27,7 @@ namespace MMO
 
 		IEnumerator _Shoot ()
 		{
+			Debug.Log ("_Shoot");
 			if (target != null)
 				targetPos = target.position + offset;
 			if(targetPos!=thisT.position)

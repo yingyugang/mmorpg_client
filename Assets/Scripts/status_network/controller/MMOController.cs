@@ -26,7 +26,6 @@ namespace MMO
 		public KGFMapSystem miniMap;
 
 		HeadUIBase mHeadUIPrefab;
-		SimpleRpgAnimator mSimpleRpgAnimator;
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
 		Dictionary<int,GameObject> mMonsterDic;
@@ -37,14 +36,12 @@ namespace MMO
 		int mPreSelectId = -1;
 		float mPreSpeed;
 		Terrain mTerrain;
-		GameObject mTerrainObjects;
 
 		void Start ()
 		{
 			KGFMapSystem kgf = FindObjectOfType<KGFMapSystem> ();
 			if (kgf != null)
 				minimap = kgf.gameObject;
-			mSimpleRpgAnimator = player.GetComponentInChildren<SimpleRpgAnimator> (true);
 			mPlayerDic = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
@@ -62,7 +59,7 @@ namespace MMO
 //			if(terrainPrefabT4M!=null)
 //				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
-			mTerrainObjects = Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
+			Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
 		}
 
 		void Update ()

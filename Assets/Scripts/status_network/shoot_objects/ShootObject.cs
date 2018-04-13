@@ -66,7 +66,9 @@ namespace MMO
 
 		public virtual void Shoot (MMOUnit attacker, MMOUnit target, Vector3 offset)
 		{
-			Shoot (attacker,target.transform,offset);
+			this.attacker = attacker;
+			this.target = target.transform;
+			this.offset = offset;
 		}
 
 		public virtual void Shoot (MMOUnit attacker, Transform target, Vector3 offset)

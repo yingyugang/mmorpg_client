@@ -49,6 +49,7 @@ namespace MMO
 		//Do Skill.
 		public void DoSkill (StatusInfo action)
 		{
+			Debug.Log ("DoSkill");
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
