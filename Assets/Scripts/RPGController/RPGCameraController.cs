@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using MMO;
 
 public class RPGCameraController : MonoBehaviour
 {
@@ -72,7 +73,9 @@ public class RPGCameraController : MonoBehaviour
 			if(isTouchMoved){
 				if (Input.GetTouch(mFingerId).deltaPosition.x != 0 ) {
 					mDirect = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
-					target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
+					if(!target.GetComponent<MMOUnit>().isDead){				
+						target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
+					}
 				}
 				if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0 ) {
 					angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed;
@@ -81,13 +84,15 @@ public class RPGCameraController : MonoBehaviour
 		}
 //		Debug.Log(string.Format("{0}:{1}:{2}",Input.GetTouch(mFingerId).fingerId,isTouchMoved,Input.GetTouch(mFingerId).deltaPosition.x));
 		#else
-		if (Input.GetAxis ("Mouse X") != 0 && Input.GetMouseButton (1)) {
-			mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * mDirect;
-			target.forward = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * target.forward;
-		}
-		if (is3D && Input.GetAxis ("Mouse Y") != 0 && Input.GetMouseButton (1)) {
-			angle -= Input.GetAxis ("Mouse Y") * speed;
-		}
+			if (Input.GetAxis ("Mouse X") != 0 && Input.GetMouseButton (1)) {
+				mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * mDirect;
+				if(!target.GetComponent<MMOUnit>().isDead){
+					target.forward = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * target.forward;
+				}
+			}
+			if (is3D && Input.GetAxis ("Mouse Y") != 0 && Input.GetMouseButton (1)) {
+				angle -= Input.GetAxis ("Mouse Y") * speed;
+			}
 		#endif
 	}
 

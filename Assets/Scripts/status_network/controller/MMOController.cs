@@ -181,10 +181,18 @@ namespace MMO
 						playerGO = MMOController.Instance.player.gameObject;
 						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
 						playerUnit.onDeath = () => {
+							playerUnit.isDead = true;
+							if(playerGO.GetComponent<RPGPlayerController>()!=null)
+								playerGO.GetComponent<RPGPlayerController>().enabled =false;
 							PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
-							PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
+							PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(true);
+							PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener(()=>{
+								PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(false);
 								MMOClient.Instance.SendRespawn ();
 							});
+//							PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
+//								MMOClient.Instance.SendRespawn ();
+//							});
 						};
 					}
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
@@ -275,6 +283,7 @@ namespace MMO
 					mMonsterDic [data.monsterDatas [i].attribute.unitId].SetActive (true);
 					if (!mUnitDic.ContainsKey (data.monsterDatas [i].attribute.unitId))
 						mUnitDic.Add (data.monsterDatas [i].attribute.unitId, monsterGo);
+					//不显示已经死了的怪物
 					if (data.monsterDatas [i].attribute.currentHP <= 0) {
 						monsterGo.SetActive (false);
 					}
@@ -431,10 +440,15 @@ namespace MMO
 //				ReleaseControll ();
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
+				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
+				if(playerUnit.GetComponent<RPGPlayerController>()!=null)
+					playerUnit.GetComponent<RPGPlayerController>().enabled =true;
 			} else {
 				//TODO Do other monster respawn;
 			}
 			MMOUnit mmoUnit = GetUnitByUnitId (unitId);
+			mmoUnit.unitAnimator.ResetTriggers ();
+			mmoUnit.isDead = false;
 			PerformManager.Instance.ShowRespawnEffect (mmoUnit.transform.position);
 		}
 

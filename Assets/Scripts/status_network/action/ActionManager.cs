@@ -34,6 +34,7 @@ namespace MMO
 				break;
 			case BattleConst.UnitMachineStatus.DEATH:
 				unit.Death ();
+				//TODO change to parameter 
 				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
 				unit.unitAnimator.SetSpeed (1);
 				break;

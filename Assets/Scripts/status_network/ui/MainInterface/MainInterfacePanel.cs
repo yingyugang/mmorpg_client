@@ -23,6 +23,7 @@ namespace MMO
 		public List<Button> skillButtonList;
 		public Button btn_normal_attack;
 		public Button btn_voice;
+		public Button btn_respawn;
 		bool isRecording;
 		public MobileSkillButtonGroup mobileSkillButtonGroup;
 

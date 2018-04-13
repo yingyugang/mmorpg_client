@@ -9,6 +9,7 @@ namespace MMO
 	public class MMOUnit : MonoBehaviour
 	{
 		public UnitInfo unitInfo;
+		public bool isDead;
 		public float animationSpeedOffset = 1;
 		//用于判断是否是当前帧数据
 		public int frame;

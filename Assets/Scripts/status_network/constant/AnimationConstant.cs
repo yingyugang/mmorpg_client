@@ -24,6 +24,7 @@
 		public const string UNIT_ANIMATION_PARAMETER_ATTACK3= "attack3";
 		public const string UNIT_ANIMATION_PARAMETER_ATTACK4="attack4";
 		public const string UNIT_ANIMATION_PARAMETER_CAST = "cast";
+		public const string UNIT_ANIMATION_PARAMETER_HIT = "hit";
 
 	}
 }

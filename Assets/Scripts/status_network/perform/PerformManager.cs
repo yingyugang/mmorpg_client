@@ -64,6 +64,7 @@ namespace MMO
 				if (unitDic.ContainsKey (hitInfo.hitIds [j])) {
 					GameObject go = unitDic [hitInfo.hitIds [j]];
 					MMOUnit mmoUnit = go.GetComponent<MMOUnit> ();
+					mmoUnit.unitAnimator.PlayHit ();
 					if (CSVManager.Instance.unitSkillDic.ContainsKey (hitInfo.unitSkillId)) {
 						MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic [hitInfo.unitSkillId];
 						if (MMOController.Instance.IsPlayer (caster) || MMOController.Instance.IsPlayer (mmoUnit) || MMOController.Instance.isDebug) {

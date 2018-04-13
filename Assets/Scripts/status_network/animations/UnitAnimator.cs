@@ -38,6 +38,11 @@ namespace MMO
 			return this.mParameters.Contains (paramter);
 		}
 
+		public void PlayHit(){
+			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT) && IsIdle())
+				animator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT);
+		}
+
 		public void SetMoveSpeed (float speed)
 		{
 			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_MOVESPEED))
@@ -51,16 +56,17 @@ namespace MMO
 			return false;
 		}
 
+		public bool IsIdle(){
+			if (animator != null)
+				return animator.GetCurrentAnimatorStateInfo (0).IsName (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+			return false;
+		}
+
 		public bool IsInState (string state)
 		{
 			if (animator != null)
 				return animator.GetCurrentAnimatorStateInfo (0).IsName (state);
 			return false;
-		}
-
-		public bool IsIdle ()
-		{
-			return mIsIdle;
 		}
 
 		bool mIsIdle;
@@ -85,6 +91,17 @@ namespace MMO
 		{
 			if (animator != null && ContainParameter(trigger))
 				animator.SetTrigger (trigger);
+		}
+
+		public void ResetTriggers(){
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_RUN, false);
+			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_WALK, false);
 		}
 
 		public void RemoveAllAttackTriggers ()
