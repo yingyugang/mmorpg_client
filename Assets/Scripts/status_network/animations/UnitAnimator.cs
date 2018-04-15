@@ -45,8 +45,17 @@ namespace MMO
 
 		public void SetMoveSpeed (float speed)
 		{
-			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_MOVESPEED))
-				animator.SetFloat (AnimationConstant.UNIT_ANIMATION_PARAMETER_MOVESPEED, speed);
+			if (animator != null) {
+				if( ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_FRONT))
+					animator.SetFloat (AnimationConstant.UNIT_ANIMATION_PARAMETER_FRONT, speed);
+			} 
+		}
+
+		public void SetRight(float speed){
+			if (animator != null) {
+				if( ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_RIGHT))
+					animator.SetFloat (AnimationConstant.UNIT_ANIMATION_PARAMETER_RIGHT, speed);
+			} 
 		}
 
 		public bool IsRun ()
@@ -59,6 +68,12 @@ namespace MMO
 		public bool IsIdle(){
 			if (animator != null)
 				return animator.GetCurrentAnimatorStateInfo (0).IsName (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+			return false;
+		}
+
+		public bool IsFire(){
+			if (animator != null)
+				return animator.GetCurrentAnimatorStateInfo (0).IsName (AnimationConstant.UNIT_ANIMATION_CLIP_FIRE);
 			return false;
 		}
 
@@ -91,6 +106,16 @@ namespace MMO
 		{
 			if (animator != null && ContainParameter(trigger))
 				animator.SetTrigger (trigger);
+		}
+
+		public void StartFire(){
+			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE))
+				animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE,true);
+		}
+
+		public void StopFire(){
+			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE))
+				animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE,false);
 		}
 
 		public void ResetTriggers(){

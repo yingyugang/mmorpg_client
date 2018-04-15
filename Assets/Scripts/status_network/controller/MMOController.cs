@@ -8,22 +8,28 @@ using TMPro;
 
 namespace MMO
 {
+	public enum PlayType{RPG,TPS}
+
 	public class MMOController : SingleMonoBehaviour<MMOController>
 	{
 		public MMOClient client;
 		public bool isStart;
 
 		public Transform player;
+		public Camera playerCamera;
 		//if Serialized this while not run the construction function when game start;
 		PlayerInfo mPlayerInfo;
 		public string playerName;
 
 		public string targetIp;
-		public GameObject minimap;
+		public KGFMapSystem minimap;
 		public UnityAction<string> onChat;
 		public GameObject handleSelectRing;
 		public MMOUnit selectedUnit;
-		public KGFMapSystem miniMap;
+
+		public GameObject rpgPlayer;
+		public GameObject tpsPlayer;
+
 
 		HeadUIBase mHeadUIPrefab;
 		Dictionary<int,GameObject> mUnitDic;
@@ -36,30 +42,48 @@ namespace MMO
 		int mPreSelectId = -1;
 		float mPreSpeed;
 		Terrain mTerrain;
+		//0:rpg 1:tps 
+		public PlayType playType;
 
 		void Start ()
 		{
-			KGFMapSystem kgf = FindObjectOfType<KGFMapSystem> ();
-			if (kgf != null)
-				minimap = kgf.gameObject;
 			mPlayerDic = new Dictionary<int, GameObject> ();
 			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
 			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveServerActions;
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
-			if (miniMap == null)
-				miniMap = FindObjectOfType<KGFMapSystem> ();
 			GameObject terrainPrefab;
 			GameObject terrainPrefabT4M;
 			ResourcesManager.Instance.GetTerrain ("FarmTerrain",out terrainPrefab,out terrainPrefabT4M);
 			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain>();
 			mTerrain.drawHeightmap = true;
+			mTerrain.gameObject.layer = LayerConstant.LAYER_GROUND;
 			//TODO the T4M terrain's 精度不够，需要重新制作。
 //			if(terrainPrefabT4M!=null)
 //				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
 			Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
+			switch(playType){
+			case PlayType.RPG:
+				rpgPlayer.SetActive (false);
+				player = Instantiate (rpgPlayer).transform;
+				RPGCameraController rpgCameraController = playerCamera.gameObject.GetOrAddComponent<RPGCameraController> ();
+				rpgCameraController.target = player;
+				minimap.SetTarget (player.gameObject);
+				player.gameObject.GetOrAddComponent<RPGPlayerController> ().rpgCameraController = rpgCameraController;
+				break;
+			case PlayType.TPS:
+				tpsPlayer.SetActive (false);
+				player = Instantiate (tpsPlayer).transform;
+				TPSCameraController tpsCameraController = playerCamera.gameObject.GetOrAddComponent<TPSCameraController> ();
+				tpsCameraController.target = player;
+				minimap.SetTarget (player.gameObject);
+				player.gameObject.GetOrAddComponent<TPSPlayerController> ().tpsCameraController = tpsCameraController;
+				break;
+			default :
+				break;
+			}
 		}
 
 		void Update ()
@@ -100,8 +124,8 @@ namespace MMO
 				handleSelectRing.gameObject.SetActive (false);
 			}
 
-			if (miniMap != null) {
-				if (miniMap.GetFullscreen ())
+			if (minimap != null) {
+				if (minimap.GetFullscreen ())
 					PanelManager.Instance.ShowBigMapMask ();
 				else
 					PanelManager.Instance.HideBigMapMask ();
@@ -162,7 +186,7 @@ namespace MMO
 			//TODO
 //			PanelManager.Instance.chatPanel.gameObject.SetActive (true);
 			if (minimap != null)
-				minimap.SetActive (true);
+				minimap.gameObject.SetActive (true);
 			isStart = true;
 		}
 
@@ -182,8 +206,8 @@ namespace MMO
 						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
 						playerUnit.onDeath = () => {
 							playerUnit.isDead = true;
-							if(playerGO.GetComponent<RPGPlayerController>()!=null)
-								playerGO.GetComponent<RPGPlayerController>().enabled =false;
+							if(playerGO.GetComponent<BasePlayerController>()!=null)
+								playerGO.GetComponent<BasePlayerController>().enabled =false;
 							PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
 							PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(true);
 							PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener(()=>{
@@ -406,16 +430,6 @@ namespace MMO
 			return terrainPos;
 		}
 
-//		public void StopControll ()
-//		{
-////			simpleRpgPlayerController.enabled = false;
-//		}
-
-//		public void ReleaseControll ()
-//		{
-////			simpleRpgPlayerController.enabled = true;
-//		}
-
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
@@ -441,8 +455,8 @@ namespace MMO
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
-				if(playerUnit.GetComponent<RPGPlayerController>()!=null)
-					playerUnit.GetComponent<RPGPlayerController>().enabled =true;
+				if(playerUnit.GetComponent<BasePlayerController>()!=null)
+					playerUnit.GetComponent<BasePlayerController>().enabled =true;
 			} else {
 				//TODO Do other monster respawn;
 			}

@@ -15,6 +15,7 @@ namespace MMO
 		const float moveDuration = 0.2f;
 		const float startY = -57;
 		const float endY = 57;
+
 		void Awake(){
 			btn_arrow.onClick.AddListener (()=>{
 				if(!mIsShowed)
@@ -22,6 +23,11 @@ namespace MMO
 				else
 					HideEquipments();
 			});
+			for(int i=0;i<btn_items.Count;i++){
+				btn_items [i].onClick.AddListener (()=>{
+					
+				});
+			}
 		}
 
 		bool mIsShowed;

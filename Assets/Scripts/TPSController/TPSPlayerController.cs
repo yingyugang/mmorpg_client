@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 namespace MMO
 {
-	public class RPGPlayerController : SingleMonoBehaviour<RPGPlayerController>
+	public class TPSPlayerController : SingleMonoBehaviour<TPSPlayerController>
 	{
 
 		public float slopeLimit = 55;
-		public RPGCameraController rpgCameraController;
+		public TPSCameraController tpsCameraController;
 		CharacterController mCharacterController;
 		float mInputX;
 		float mInputY;
@@ -34,12 +34,28 @@ namespace MMO
 			etcJoystick.onMoveStart.AddListener (()=>{
 				isPause = false;
 			});
+			Cursor.lockState = CursorLockMode.Locked;
 		}
 
 		bool mIsRuning;
 		public bool isPause;
+		float mNextShoot;
 		void Update ()
 		{
+
+			if(Input.GetMouseButtonDown(0)){
+				_animator.StartFire ();
+			}
+			if(Input.GetMouseButton(0)){
+				if (mNextShoot < Time.time) {
+					PanelManager.Instance.mainInterfacePanel.Shoot ();
+					mNextShoot = Time.time + 0.1f;
+				}
+			}
+			if(Input.GetMouseButtonUp(0)){
+				_animator.StopFire ();
+			}
+
 			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
 				isPause = false;
 			}
@@ -59,7 +75,7 @@ namespace MMO
 				_animator.RemoveAllAttackTriggers ();
 			}
 
-			Vector3 forward = rpgCameraController.transform.forward;
+			Vector3 forward = tpsCameraController.transform.forward;
 			forward = new Vector3 (forward.x, 0, forward.z).normalized;
 
 			Vector3 plus = new Vector3 (mInputX, 0, mInputY).normalized;
@@ -69,9 +85,13 @@ namespace MMO
 				d = -1;
 			}
 			float angleY = Mathf.Acos (angle) * 180 / Mathf.PI * d - 90;
-			mTrans.forward = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
+//			mTrans.forward = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
+			Vector3 moveDirection = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
+			mTrans.forward = forward;
+
 			if (mInputX != 0 || mInputY != 0) {
-				_animator.SetMoveSpeed (3f);
+				_animator.SetMoveSpeed (mInputY);
+				_animator.SetRight (mInputX);
 			} else {
 				_animator.SetMoveSpeed (0);
 			}
@@ -79,8 +99,11 @@ namespace MMO
 			if (Physics.Raycast (mTrans.position, -Vector3.up, out hit, Mathf.Infinity)) {
 				mTrans.position = new Vector3 (mTrans.position.x, hit.point.y, mTrans.position.z);
 			}
-			if (_animator.IsRun ()) {
-				mCharacterController.Move (mTrans.forward * Time.deltaTime * speed);
+			if (_animator.IsIdle () || _animator.IsFire()) {
+				if(mInputY<0){
+					mInputY = mInputY / 4f;
+				}
+				mCharacterController.Move (moveDirection * Time.deltaTime * speed * new Vector3(mInputX * 0.5f, 0, mInputY).magnitude );
 				//TODO 暂时只能同步move和idle，attack无法同步。
 				if (!mIsRuning) {
 					mIsRuning = true;
@@ -97,8 +120,19 @@ namespace MMO
 		void UpdateETCJoystickPos(){
 			if(etcJoystick.activated){
 				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint(Input.GetTouch(etcJoystick.pointId).position,this.joystickCanvas.transform,this.joystickCanvas);
-//				etcJoystick.pointId
+				//				etcJoystick.pointId
 
+			}
+		}
+
+		bool CheckShootAble(){
+			return true;
+		}
+
+		void Shoot(){
+			if (CheckShootAble ()) {
+				_animator.StartFire ();
+				Debug.Log ("Shoot");
 			}
 		}
 

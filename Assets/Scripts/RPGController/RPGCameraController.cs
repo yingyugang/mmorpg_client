@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using MMO;
 
-public class RPGCameraController : MonoBehaviour
+public class RPGCameraController : BaseCameraController
 {
 
 	Camera mCamera;
@@ -13,9 +13,9 @@ public class RPGCameraController : MonoBehaviour
 	public Vector3 targetOffset = new Vector3 (0, 0, 3);
 	public float distance = 10;
 	public float angle = 45;
-	public float angle_2_5D = 40;
+	public float angle_2_5D = 30;
 	public float speed = 2;
-	public bool is3D = true;
+	public bool is3D = false;
 	public bool isRotate = true;
 	Vector3 mDirect;
 
@@ -23,6 +23,9 @@ public class RPGCameraController : MonoBehaviour
 	{
 		mTrans = transform;
 		mCamera = GetComponent<Camera> ();
+	}
+
+	void Start(){
 		mDirect = (new Vector3 (mTrans.position.x - target.position.x, 0, mTrans.position.z - target.position.z)).normalized;
 	}
 
@@ -31,6 +34,7 @@ public class RPGCameraController : MonoBehaviour
 		if (!is3D) {
 			angle = angle_2_5D;
 		}
+		angle = Mathf.Clamp (angle,-80,80);
 		//to set the camera position and rotation.
 		if (target != null) {
 			float y = distance * Mathf.Sin (angle / 180f * Mathf.PI);

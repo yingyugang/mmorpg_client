@@ -66,7 +66,9 @@ namespace MMO
 			if(skillBase.IsUseAble()){
 				if (this.mMobileSkillButtonGroup.mmoUnitSkill.mmoUnit.unitAnimator.IsIdle () || this.mMobileSkillButtonGroup.mmoUnitSkill.mmoUnit.unitAnimator.IsRun ()) {
 					this.mMobileSkillButtonGroup.minNextCheckTime = Time.time + skillBase.mUnitSkill.anim_length;
-					RPGPlayerController.Instance.isPause = true;
+					if(MMOController.Instance.player.GetComponent<BasePlayerController>()!=null)
+						MMOController.Instance.player.GetComponent<BasePlayerController>().enabled =true;
+
 					StartCoroutine (_Cooldown());
 					if (onSkillButtonClick != null)
 						onSkillButtonClick (skillBase);

@@ -54,8 +54,7 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
-
-
+		//Do Shoot
 		public void DoShoot(ShootInfo shootInfo){
 			MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic[shootInfo.unitSkillId];
 			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
@@ -67,7 +66,6 @@ namespace MMO
 			GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
 			Shoot (effect, mSkill,caster,target);
 		}
-
 		//TODO use trigger to controll the cast clip;
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.

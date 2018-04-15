@@ -16,6 +16,7 @@ namespace MMO
 		public Text txt_level;
 		public Slider slider_skill;
 		public Image img_bigmap_mask;
+		public Image img_aim;
 
 		const int SKILL_ICON_COUNT = 20;
 		public GridLayoutGroup skillGrid;
@@ -191,5 +192,26 @@ namespace MMO
 			UnSelectSkillButton (mSelectButton);
 			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
 		}
+
+		float mCurrentSize = 1;
+		Coroutine mAimCoroutine;
+		IEnumerator _Aim(){
+			 mCurrentSize = 1;
+			while(true){
+				mCurrentSize -= Mathf.Max(Time.deltaTime,(mCurrentSize - 1) * Time.deltaTime * 2);
+				mCurrentSize = Mathf.Max (1,mCurrentSize);
+				img_aim.transform.localScale = Vector3.one * mCurrentSize;
+				yield return null;
+			}
+		}
+
+		float deltaSize = 0.3f;
+		public void Shoot(){
+			if(mAimCoroutine==null)
+				mAimCoroutine = StartCoroutine (_Aim());
+			mCurrentSize += deltaSize;
+		}
+
+
 	}
 }
