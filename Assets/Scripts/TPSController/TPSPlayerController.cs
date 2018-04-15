@@ -87,13 +87,13 @@ namespace MMO
 			float angleY = Mathf.Acos (angle) * 180 / Mathf.PI * d - 90;
 //			mTrans.forward = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
 			Vector3 moveDirection = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
-			mTrans.forward = forward;
 
 			if (mInputX != 0 || mInputY != 0) {
 				_animator.SetMoveSpeed (mInputY);
 				_animator.SetRight (mInputX);
 			} else {
 				_animator.SetMoveSpeed (0);
+				_animator.SetRight (0);
 			}
 			RaycastHit hit;
 			if (Physics.Raycast (mTrans.position, -Vector3.up, out hit, Mathf.Infinity)) {
@@ -115,6 +115,12 @@ namespace MMO
 					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1);
 				}
 			}
+		}
+
+		void LateUpdate(){
+			Vector3 forward = tpsCameraController.transform.forward;
+			forward = new Vector3 (forward.x, 0, forward.z).normalized;
+			mTrans.forward = forward;
 		}
 
 		void UpdateETCJoystickPos(){
