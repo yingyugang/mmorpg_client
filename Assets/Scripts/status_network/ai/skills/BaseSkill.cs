@@ -10,7 +10,7 @@ namespace MMO
 
 		public MSkill mSkill;
 		public MUnitSkill mUnitSkill;
-
+		public IntVector3 targetPos;
 		float mNextActiveTime;
 		MMOUnit mMMOUnit;
 
@@ -40,16 +40,22 @@ namespace MMO
 		public virtual bool Play ()
 		{
 			if (IsUseAble ()) {
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.id);
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.CAST,mUnitSkill.id,targetPos);
 				StatusInfo statusInfo = new StatusInfo ();
 				statusInfo.casterId = mMMOUnit.unitInfo.attribute.unitId;
 				statusInfo.actionId = mUnitSkill.id;
+				statusInfo.targetPos = targetPos;
 				if (MMOController.Instance.selectedUnit != null)
 					statusInfo.targetId = MMOController.Instance.selectedUnit.unitInfo.attribute.unitId;
 				ActionManager.Instance.DoSkill (statusInfo);
 				mNextActiveTime = Time.time + coolDown;
 				return true;
 			} 
+			return false;
+		}
+
+		//TODO Need to stop the skill.
+		public virtual bool Stop(){
 			return false;
 		}
 

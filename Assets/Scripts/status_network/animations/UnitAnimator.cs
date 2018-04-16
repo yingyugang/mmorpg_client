@@ -77,6 +77,12 @@ namespace MMO
 			return false;
 		}
 
+		public bool IsJump(){
+			if (animator != null)
+				return animator.GetCurrentAnimatorStateInfo (0).IsName (AnimationConstant.UNIT_ANIMATION_CLIP_JUMP);
+			return false;
+		}
+
 		public bool IsInState (string state)
 		{
 			if (animator != null)
@@ -109,7 +115,7 @@ namespace MMO
 		}
 
 		public void StartFire(){
-			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE))
+			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE) && !IsFire())
 				animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_FIRE,true);
 		}
 
@@ -119,31 +125,37 @@ namespace MMO
 		}
 
 		public void ResetTriggers(){
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_RUN, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_WALK, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_RUN, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_WALK, false);
 		}
 
-		public void RemoveAllAttackTriggers ()
+		public void ResetAllAttackTriggers ()
 		{
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_CAST, false);
 		}
 
-		public void RemoveAllNormalAttackTriggers ()
+		public void ResetAllNormalAttackTriggers ()
 		{
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
-			animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK1, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK2, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK3, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_ATTACK4, false);
+		}
+
+		void SetBool(string triggerName,bool isTrue){
+			if(ContainParameter(triggerName)){
+				animator.SetBool (triggerName, isTrue);
+			}
 		}
 
 		public void Play (string clip)
@@ -159,6 +171,42 @@ namespace MMO
 			}
 		}
 
+		public bool Squat(){
+			if(animator!=null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT)){
+				if (ContainParameter (AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING) && animator.GetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING))
+					return false;
+				if (animator.GetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT)) {
+					animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT, false);
+					return false;
+				} else {
+					animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT, true);
+					return true;
+				}
+			}
+			return false;
+		}
 
+		public bool Lying(){
+			if(animator!=null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING)){
+				if (animator.GetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING)) {
+					animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING, false);
+					if(ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT))
+						animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT,false);
+					return false;
+				} else {
+					animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_LYING,true);
+					if(ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT))
+						animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_SQUAT,true);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public void Reload(){
+			if(animator!=null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_RELOAD)){
+				animator.SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_RELOAD,true);
+			}
+		}
 	}
 }

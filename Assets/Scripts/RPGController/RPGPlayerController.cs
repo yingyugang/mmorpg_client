@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace MMO
 {
-	public class RPGPlayerController : SingleMonoBehaviour<RPGPlayerController>
+	public class RPGPlayerController : BasePlayerController
 	{
 
 		public float slopeLimit = 55;
@@ -24,9 +24,8 @@ namespace MMO
 		public ETCJoystick etcJoystick;
 
 
-		protected override void Awake ()
+		void Awake ()
 		{
-			base.Awake ();
 			mCharacterController = GetComponent<CharacterController> ();
 			_animator = GetComponent<UnitAnimator> ();
 			mTrans = transform;
@@ -56,7 +55,7 @@ namespace MMO
 			}
 
 			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
-				_animator.RemoveAllAttackTriggers ();
+				_animator.ResetAllAttackTriggers ();
 			}
 
 			Vector3 forward = rpgCameraController.transform.forward;
@@ -84,12 +83,12 @@ namespace MMO
 				//TODO 暂时只能同步move和idle，attack无法同步。
 				if (!mIsRuning) {
 					mIsRuning = true;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1);
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1,IntVector3.zero);
 				}
 			} else {
 				if (mIsRuning) {
 					mIsRuning = false;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1);
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1,IntVector3.zero);
 				}
 			}
 		}

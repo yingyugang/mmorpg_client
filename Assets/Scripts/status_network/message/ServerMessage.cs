@@ -64,6 +64,13 @@ namespace MMO
 	}
 
 	[Serializable]
+	public class GameInitInfo: MessageBase
+	{
+		public int playType;
+		public PlayerInfo playerInfo;
+	}
+
+	[Serializable]
 	public class VoiceInfos : MessageBase
 	{
 		public VoiceInfo[] voices;
@@ -185,6 +192,12 @@ namespace MMO
 		{
 			Vector3 pos = new Vector3 (((float)intPos.x) / MULTIPLE, ((float)intPos.y) / MULTIPLE, ((float)intPos.z) / MULTIPLE);
 			return pos;
+		}
+
+		public static IntVector3 zero{
+			get{
+				return new IntVector3 (0, 0, 0);
+			}
 		}
 
 		public static IntVector3 operator+ (IntVector3 b, IntVector3 c) {

@@ -14,6 +14,7 @@
 		public const string UNIT_ANIMATION_CLIP_ATTACK4="attack4";
 		public const string UNIT_ANIMATION_CLIP_CAST = "cast";
 		public const string UNIT_ANIMATION_CLIP_FIRE = "fire";
+		public const string UNIT_ANIMATION_CLIP_JUMP = "jump";
 
 		public const string UNIT_ANIMATION_PARAMETER_FRONT = "front";
 		public const string UNIT_ANIMATION_PARAMETER_RIGHT = "right";
@@ -28,6 +29,10 @@
 		public const string UNIT_ANIMATION_PARAMETER_CAST = "cast";
 		public const string UNIT_ANIMATION_PARAMETER_HIT = "hit";
 		public const string UNIT_ANIMATION_PARAMETER_FIRE = "fire";
+		public const string UNIT_ANIMATION_PARAMETER_JUMP = "jump";
+		public const string UNIT_ANIMATION_PARAMETER_SQUAT = "squat";
+		public const string UNIT_ANIMATION_PARAMETER_LYING = "lying";
+		public const string UNIT_ANIMATION_PARAMETER_RELOAD = "reload";
 
 	}
 }

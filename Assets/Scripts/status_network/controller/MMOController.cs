@@ -8,7 +8,7 @@ using TMPro;
 
 namespace MMO
 {
-	public enum PlayType{RPG,TPS}
+	public enum PlayType{RPG=0,TPS=1}
 
 	public class MMOController : SingleMonoBehaviour<MMOController>
 	{
@@ -17,6 +17,7 @@ namespace MMO
 
 		public Transform player;
 		public Camera playerCamera;
+		public Camera uiCamera;
 		//if Serialized this while not run the construction function when game start;
 		PlayerInfo mPlayerInfo;
 		public string playerName;
@@ -30,6 +31,8 @@ namespace MMO
 		public GameObject rpgPlayer;
 		public GameObject tpsPlayer;
 
+		public BaseCameraController cameraController;
+		public BasePlayerController playerController;
 
 		HeadUIBase mHeadUIPrefab;
 		Dictionary<int,GameObject> mUnitDic;
@@ -64,22 +67,31 @@ namespace MMO
 //				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
 			Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
+		}
+
+		void InitPlayer(){
 			switch(playType){
 			case PlayType.RPG:
 				rpgPlayer.SetActive (false);
 				player = Instantiate (rpgPlayer).transform;
 				RPGCameraController rpgCameraController = playerCamera.gameObject.GetOrAddComponent<RPGCameraController> ();
 				rpgCameraController.target = player;
+				cameraController = rpgCameraController;
 				minimap.SetTarget (player.gameObject);
-				player.gameObject.GetOrAddComponent<RPGPlayerController> ().rpgCameraController = rpgCameraController;
+				RPGPlayerController rpgPlayerController = player.gameObject.GetOrAddComponent<RPGPlayerController> ();
+				rpgPlayerController.rpgCameraController = rpgCameraController;
+				playerController = rpgPlayerController;
 				break;
 			case PlayType.TPS:
 				tpsPlayer.SetActive (false);
 				player = Instantiate (tpsPlayer).transform;
 				TPSCameraController tpsCameraController = playerCamera.gameObject.GetOrAddComponent<TPSCameraController> ();
 				tpsCameraController.target = player;
+				cameraController = tpsCameraController;
 				minimap.SetTarget (player.gameObject);
-				player.gameObject.GetOrAddComponent<TPSPlayerController> ().tpsCameraController = tpsCameraController;
+				TPSPlayerController tpsPlayerController = player.gameObject.GetOrAddComponent<TPSPlayerController> ();
+				tpsPlayerController.tpsCameraController = tpsCameraController;
+				playerController = tpsPlayerController;
 				break;
 			default :
 				break;
@@ -118,7 +130,8 @@ namespace MMO
 				}
 			}
 			if (selectedUnit != null) {
-				handleSelectRing.gameObject.SetActive (true);
+				if(playType == PlayType.RPG)
+					handleSelectRing.gameObject.SetActive (true);
 				handleSelectRing.transform.position = selectedUnit.transform.position;
 			} else {
 				handleSelectRing.gameObject.SetActive (false);
@@ -176,15 +189,14 @@ namespace MMO
 		void OnRecieveGameStartInfo (NetworkMessage msg)
 		{
 			Debug.Log ("OnRecieveGameStartInfo");
-			mPlayerInfo = msg.ReadMessage<PlayerInfo> ();
+			GameInitInfo gameInitInto = msg.ReadMessage<GameInitInfo> ();
+			mPlayerInfo = gameInitInto.playerInfo;
 			mPlayerId = mPlayerInfo.playerId;
-//			rpgCamera.enabled = true;
-			player.gameObject.SetActive (true);
 			mPlayerInfo.unitInfo.attribute.unitName = playerName;
-			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive (true);
-			//TODO
-//			PanelManager.Instance.chatPanel.gameObject.SetActive (true);
+			playType = (PlayType)gameInitInto.playType;
+			InitPlayer ();
+			player.gameObject.SetActive (true);
 			if (minimap != null)
 				minimap.gameObject.SetActive (true);
 			isStart = true;
@@ -202,21 +214,10 @@ namespace MMO
 					if (transferData.playerDatas [i].playerId != mPlayerId) {
 						playerGO = InstantiateUnit (0, transferData.playerDatas [i].unitInfo);
 					} else {
-						playerGO = MMOController.Instance.player.gameObject;
+						playerGO = player.gameObject;
 						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
 						playerUnit.onDeath = () => {
-							playerUnit.isDead = true;
-							if(playerGO.GetComponent<BasePlayerController>()!=null)
-								playerGO.GetComponent<BasePlayerController>().enabled =false;
-							PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
-							PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(true);
-							PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener(()=>{
-								PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(false);
-								MMOClient.Instance.SendRespawn ();
-							});
-//							PanelManager.Instance.ShowCommonDialog ("Death", "you are killed", "復活", () => {
-//								MMOClient.Instance.SendRespawn ();
-//							});
+							OnCurrentPlayerDeath();
 						};
 					}
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
@@ -266,6 +267,30 @@ namespace MMO
 					}
 				}
 			}
+		}
+
+		void OnCurrentPlayerDeath(){
+			playerController.enabled =false;
+			MMOUnit playerUnit = player.gameObject.GetComponent<MMOUnit> ();
+			playerUnit.isDead = true;
+			if(player.gameObject.GetComponent<BasePlayerController>()!=null)
+				player.gameObject.GetComponent<BasePlayerController>().enabled =false;
+			PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
+			switch(this.playType){
+			case PlayType.RPG:
+				break;
+			case PlayType.TPS:
+				PanelManager.Instance.mainInterfacePanel.img_aim.gameObject.SetActive(false);
+				Cursor.lockState = CursorLockMode.Confined;
+				break;
+			default:
+				break;
+			}
+			PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(true);
+			PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener(()=>{
+				PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(false);
+				MMOClient.Instance.SendRespawn ();
+			});
 		}
 
 		public bool IsPlayer(MMOUnit mmoUnit){
@@ -318,10 +343,6 @@ namespace MMO
 				monster.transform.position = IntVector3.ToVector3 (data.monsterDatas [i].transform.position);
 				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.forward);
 				monster.unitInfo = unitInfo;
-//				if (monster.unitInfo.attribute.currentHP <= 0) {
-//					monster.Death ();
-//				}
-//				monster.SetAnimation (data.monsterDatas [i].animation.action, data.monsterDatas [i].animation.animSpeed);
 			}
 			List<int> removeList = new List<int> ();
 			foreach (int id in mMonsterDic.Keys) {
@@ -433,11 +454,12 @@ namespace MMO
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
-		public void SendPlayerAction (int actionType, int actionId)
+		public void SendPlayerAction (int actionType, int actionId,IntVector3 targetPos)
 		{
 			StatusInfo action = new StatusInfo ();
 			action.status = actionType;
 			action.actionId = actionId;
+			action.targetPos = targetPos;
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
 			MMOClient.Instance.SendAction (action);
@@ -457,6 +479,16 @@ namespace MMO
 				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
 				if(playerUnit.GetComponent<BasePlayerController>()!=null)
 					playerUnit.GetComponent<BasePlayerController>().enabled =true;
+				switch(this.playType){
+				case PlayType.RPG:
+					break;
+				case PlayType.TPS:
+					PanelManager.Instance.mainInterfacePanel.img_aim.gameObject.SetActive(true);
+					Cursor.lockState = CursorLockMode.Locked;
+					break;
+				default:
+					break;
+				}
 			} else {
 				//TODO Do other monster respawn;
 			}

@@ -20,7 +20,7 @@ namespace MMO
 		NetworkClient client;
 		UnityAction<NetworkMessage> onConnect;
 		UnityAction<NetworkMessage> onRecieveMessage;
-		UnityAction<NetworkMessage> onRecievePlayerInfo;
+		UnityAction<NetworkMessage> onRecievePlayerInitInfo;
 		public UnityAction<NetworkMessage> onRecieveMonsterInfos;
 
 		void Start ()
@@ -29,7 +29,7 @@ namespace MMO
 			client.RegisterHandler (MsgType.Connect, OnConnect);
 			client.RegisterHandler (MsgType.Disconnect, OnDisconnect);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MONSTER_INFO, OnRecieveMonsterInfos);
-			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_PLAYER_INFO, OnRecievePlayerInfo);
+			client.RegisterHandler (MessageConstant.PLYAER_INIT_INFO, OnRecievePlayerInitInfo);
 			client.RegisterHandler (MessageConstant.SERVER_TO_CLIENT_MSG, OnRecieveMessage);
 			client.RegisterHandler (MessageConstant.PLAYER_ACTION, OnRecievePlayerAction);
 			client.RegisterHandler (MessageConstant.PLAYER_VOICE, OnRecievePlayerVoice);
@@ -62,11 +62,11 @@ namespace MMO
 			Send (MessageConstant.PLAYER_VOICE,voice);
 		}
 
-		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInfo, UnityAction<NetworkMessage> onRecieveMessage)
+		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInitInfo, UnityAction<NetworkMessage> onRecieveMessage)
 		{
 			Debug.Log (string.Format ("{0},{1}", ip, port));
 			this.onConnect = onConnect;
-			this.onRecievePlayerInfo = onRecievePlayerInfo;
+			this.onRecievePlayerInitInfo = onRecievePlayerInitInfo;
 			this.onRecieveMessage = onRecieveMessage;
 			client.Connect (ip, port);
 		}
@@ -88,10 +88,10 @@ namespace MMO
 			Debug.logger.Log ("<color=red>Disconnect</color>");
 		}
 
-		void OnRecievePlayerInfo (NetworkMessage msg)
+		void OnRecievePlayerInitInfo (NetworkMessage msg)
 		{
-			if (onRecievePlayerInfo != null)
-				onRecievePlayerInfo (msg);
+			if (onRecievePlayerInitInfo != null)
+				onRecievePlayerInitInfo (msg);
 		}
 
 		void OnRecieveMonsterInfos(NetworkMessage msg){

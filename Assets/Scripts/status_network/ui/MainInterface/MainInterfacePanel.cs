@@ -212,6 +212,11 @@ namespace MMO
 			mCurrentSize += deltaSize;
 		}
 
+		public IntVector3 GetAimTargetPos(){
+//			RectTransformUtility.WorldToScreenPoint ();
+			return new IntVector3 ();
+		}
+
 
 	}
 }
