@@ -92,8 +92,7 @@ namespace MMO
 			RPGPlayerController rpgPlayerController = player.gameObject.GetOrAddComponent<RPGPlayerController> ();
 			rpgPlayerController.rpgCameraController = rpgCameraController;
 			playerController = rpgPlayerController;
-			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (true);
-			PanelManager.Instance.mainInterfacePanel.bulletGroup.SetWeapon (BattleConst.DEFAULT_BULLET_COUNT);
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (false);
 		}
 
 		void InitTPSPlayerAndInterface(){
@@ -106,7 +105,8 @@ namespace MMO
 			TPSPlayerController tpsPlayerController = player.gameObject.GetOrAddComponent<TPSPlayerController> ();
 			tpsPlayerController.tpsCameraController = tpsCameraController;
 			playerController = tpsPlayerController;
-			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (false);
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (true);
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.SetWeapon (BattleConst.DEFAULT_BULLET_COUNT);
 		}
 
 		void Update ()

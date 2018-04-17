@@ -42,7 +42,7 @@ namespace MMO
 			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
 			mTrans = transform;
 			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
-			etcJoystick.onMoveStart.AddListener (()=>{
+			etcJoystick.onMoveStart.AddListener (() => {
 				isPause = false;
 			});
 			Cursor.lockState = CursorLockMode.Locked;
@@ -51,42 +51,42 @@ namespace MMO
 		bool mIsRuning;
 		public bool isPause;
 		float mNextShoot;
+
 		void Update ()
 		{
 
-			if(Input.GetMouseButtonDown(0)){
+			if (Input.GetMouseButtonDown (0)) {
 				unitAnimator.StartFire ();
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.FIRE, -1, new IntVector3 ());
 			}
-			if(Input.GetMouseButton(0)){
+			if (Input.GetMouseButton (0)) {
 				if (mNextShoot < Time.time) {
-					PanelManager.Instance.mainInterfacePanel.Shoot ();
 					Shoot ();
 					mNextShoot = Time.time + 0.1f;
 				}
 			}
-			if(Input.GetMouseButtonUp(0)){
+			if (Input.GetMouseButtonUp (0)) {
 				unitAnimator.StopFire ();
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
 			}
 
-			if(Input.GetKeyDown(KeyCode.Space)){
+			if (Input.GetKeyDown (KeyCode.Space)) {
 				Jump ();
 			}
 
-			if(Input.GetKeyDown(KeyCode.LeftCommand)){
+			if (Input.GetKeyDown (KeyCode.LeftCommand)) {
 				Squat ();
 			}
 
-			if(Input.GetKeyDown(KeyCode.Z)){
+			if (Input.GetKeyDown (KeyCode.Z)) {
 				Lying ();
 			}
 
-			if(Input.GetKeyDown(KeyCode.R)){
+			if (Input.GetKeyDown (KeyCode.R)) {
 				Reload ();
 			}
 
-			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
+			if (Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.W)) {
 				isPause = false;
 			}
 			if (isPause) {
@@ -101,7 +101,7 @@ namespace MMO
 				mInputY = etcJoystick.axisY.axisValue;
 			}
 
-			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)){
+			if (Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.W)) {
 				unitAnimator.ResetAllAttackTriggers ();
 			}
 
@@ -126,44 +126,43 @@ namespace MMO
 				unitAnimator.SetRight (0);
 			}
 			RaycastHit hit;
-			if (_grounded && Physics.Raycast (mTrans.position + new Vector3(0,2,0), -Vector3.up, out hit, Mathf.Infinity,1<< LayerConstant.LAYER_GROUND | 1<<LayerConstant.LAYER_DEFAULT)) {
+			if (_grounded && Physics.Raycast (mTrans.position + new Vector3 (0, 2, 0), -Vector3.up, out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_GROUND | 1 << LayerConstant.LAYER_DEFAULT)) {
 				mTrans.position = new Vector3 (mTrans.position.x, hit.point.y, mTrans.position.z);
 			}
-			if (unitAnimator.IsIdle () || unitAnimator.IsFire() || unitAnimator.IsJump() || !_grounded) {
-				if(mInputY<0){
+			if (unitAnimator.IsIdle () || unitAnimator.IsFire () || unitAnimator.IsJump () || !_grounded) {
+				if (mInputY < 0) {
 					mInputY = mInputY / 4f;
 				}
-				Vector3 direct = moveDirection * Time.deltaTime * speed * new Vector3 (mInputX * 0.5f, 0, mInputY).magnitude ;
-				if(_grounded){
-					mCharacterController.Move (direct );
-				}else{
-					mCharacterController.Move (direct + new Vector3(0,_velocity.y * Time.deltaTime,0));
+				Vector3 direct = moveDirection * Time.deltaTime * speed * new Vector3 (mInputX * 0.5f, 0, mInputY).magnitude;
+				if (_grounded) {
+					mCharacterController.Move (direct);
+				} else {
+					mCharacterController.Move (direct + new Vector3 (0, _velocity.y * Time.deltaTime, 0));
 				}
 				//TODO 暂时只能同步move和idle，attack无法同步。
 				if (!mIsRuning) {
 					mIsRuning = true;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1,IntVector3.zero);
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
 				}
 			} else {
 				if (mIsRuning) {
 					mIsRuning = false;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1,IntVector3.zero);
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
 				}
 			}
 			_velocity.y -= gravity * Time.deltaTime;
 
 		}
 
-		void OnControllerColliderHit(ControllerColliderHit col)
+		void OnControllerColliderHit (ControllerColliderHit col)
 		{
 			// This keeps the player from sticking to walls
 			float angle = col.normal.y * 90;
 
-			if(angle < slopeLimit)
-			{
+			if (angle < slopeLimit) {
 //				if(_grounded)
 //				{
-					_velocity = Vector3.zero;
+				_velocity = Vector3.zero;
 //				}
 //				if(_velocity.y > 0)
 //				{
@@ -175,9 +174,7 @@ namespace MMO
 //				}
 //
 //				_grounded = false;
-			}
-			else
-			{
+			} else {
 				// Player is grounded here
 				// If player falls too far, trigger falling damage
 //				if(_t.position.y < _fall_start - fallThreshold)
@@ -192,36 +189,42 @@ namespace MMO
 			}
 		}
 
-		void LateUpdate(){
+		void LateUpdate ()
+		{
 			Vector3 forward = tpsCameraController.transform.forward;
 			forward = new Vector3 (forward.x, 0, forward.z).normalized;
 			mTrans.forward = forward;
 		}
 
-		void UpdateETCJoystickPos(){
-			if(etcJoystick.activated){
-				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint(Input.GetTouch(etcJoystick.pointId).position,this.joystickCanvas.transform,this.joystickCanvas);
+		void UpdateETCJoystickPos ()
+		{
+			if (etcJoystick.activated) {
+				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint (Input.GetTouch (etcJoystick.pointId).position, this.joystickCanvas.transform, this.joystickCanvas);
 			}
 		}
 
-		bool CheckShootAble(){
+		bool CheckShootAble ()
+		{
 			return true;
 		}
 
-		void Shoot(){
+		void Shoot ()
+		{
 			if (CheckShootAble ()) {
-				if(mMMOUnitSkill==null){
+				if (mMMOUnitSkill == null) {
 					mMMOUnitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill> ();
 				}
-				mMMOUnitSkill.skillList [0].targetPos = IntVector3.ToIntVector3(tpsCameraController.transform.forward);
-				if (mMMOUnitSkill.skillList [0].Play ()) {
-//					mMMOUnitSkill.mmoUnit.unitAnimator.SetTrigger (mMMOUnitSkill.skillList [0].mUnitSkill.anim_name);
-					if (characterEffectUtility) {
-						characterEffectUtility.ShowSlash ();
-					}
-					RaycastHit hit;
-					if(Physics.Raycast(tpsCameraController.transform.position,tpsCameraController.transform.forward,out hit,Mathf.Infinity,~(1 << LayerConstant.LAYER_PLAYER))){
-						PerformManager.Instance.ShowBulletHit (hit.point,hit.normal,hit.collider.gameObject.layer);
+				if (PanelManager.Instance.mainInterfacePanel.bulletGroup.Shoot ()) {
+					mMMOUnitSkill.skillList [0].targetPos = IntVector3.ToIntVector3 (tpsCameraController.transform.forward);
+					if (mMMOUnitSkill.skillList [0].Play ()) {
+						if (characterEffectUtility) {
+							characterEffectUtility.ShowSlash ();
+						}
+						PanelManager.Instance.mainInterfacePanel.Shoot ();
+						RaycastHit hit;
+						if (Physics.Raycast (tpsCameraController.transform.position, tpsCameraController.transform.forward, out hit, Mathf.Infinity, ~(1 << LayerConstant.LAYER_PLAYER))) {
+							PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
+						}
 					}
 				}
 			}
@@ -231,25 +234,28 @@ namespace MMO
 
 		float mToggleDuration = 1f;
 
-		IEnumerator _ToggleOffset(Vector3 target){
+		IEnumerator _ToggleOffset (Vector3 target)
+		{
 			float t = 0;
 			Vector3 startOffset = tpsCameraController.targetOffset;
-			Debug.Log (JsonUtility.ToJson(target));
-			Debug.Log (JsonUtility.ToJson(startOffset));
-			while(t<1){
+			Debug.Log (JsonUtility.ToJson (target));
+			Debug.Log (JsonUtility.ToJson (startOffset));
+			while (t < 1) {
 				t += Time.deltaTime / mToggleDuration;
-				tpsCameraController.targetOffset = Vector3.Lerp (startOffset,target,t);
+				tpsCameraController.targetOffset = Vector3.Lerp (startOffset, target, t);
 				yield return null;
 			}
 		}
 
-		void ToggleOffset(Vector3 target){
+		void ToggleOffset (Vector3 target)
+		{
 			if (mToggleOffsetCoroutine != null)
 				StopCoroutine (mToggleOffsetCoroutine);
-			mToggleOffsetCoroutine = StartCoroutine (_ToggleOffset(target));
+			mToggleOffsetCoroutine = StartCoroutine (_ToggleOffset (target));
 		}
 
-		void Squat(){
+		void Squat ()
+		{
 			if (unitAnimator.Squat ()) {
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.SQUAT, -1, new IntVector3 ());
 				ToggleOffset (new Vector3 (0, 1.8f, 0));
@@ -259,7 +265,8 @@ namespace MMO
 			}
 		}
 
-		void Lying(){
+		void Lying ()
+		{
 			if (unitAnimator.Lying ()) {
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.LYING, -1, new IntVector3 ());
 				ToggleOffset (new Vector3 (0, 1.2f, 0)); 
@@ -269,35 +276,50 @@ namespace MMO
 			}
 		}
 		//TODO need to check weather can reload.
-		void Reload(){
+		void Reload ()
+		{
 			unitAnimator.Reload ();
-			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD,-1,new IntVector3());
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.Clear ();
+			StartCoroutine (_Reload());
+			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD, -1, new IntVector3 ());
 		}
 
-		void Throw(){
-			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.THROWN,-1,new IntVector3());
+		//TODO
+		IEnumerator _Reload(){
+			yield return new WaitForSeconds (2);
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.Reload ();
 		}
 
-		void Melee(){
+		void Throw ()
+		{
+			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.THROWN, -1, new IntVector3 ());
+		}
+
+		void Melee ()
+		{
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MELEE, -1, new IntVector3 ());
 		}
 
 		//Jump 正式一点跳跃应该是3个动作
-		void Jump(){
+		void Jump ()
+		{
 //			StartCoroutine (_Jump());
 //			unitAnimator.GetComponent<Rigidbody> ().AddForce (0,force,0);
-			if(_grounded){
+			if (_grounded) {
 				unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
 				_velocity.y = jumpPower;
 				_grounded = false;
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.JUMP,-1,new IntVector3());
+				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.JUMP, -1, new IntVector3 ());
 			}
 		}
+
 		public float force = 10;
-		IEnumerator _Jump(){
-			unitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0,100,0);// AddForce (0,force,0);
+
+		IEnumerator _Jump ()
+		{
+			unitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 100, 0);// AddForce (0,force,0);
 			unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
-			while(true){
+			while (true) {
 				yield return null;
 			}
 		}

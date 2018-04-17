@@ -22,6 +22,12 @@ namespace MMO
 			Reload ();
 		}
 
+		public void Clear(){
+			for (int i = 0; i < mBullets.Count; i++) {
+				mBullets [i].gameObject.SetActive (false);
+			}
+		}
+
 		public void Reload ()
 		{
 			for (int i = 0; i < maxBullet; i++) {
@@ -39,11 +45,14 @@ namespace MMO
 			currentBulletIndex = maxBullet - 1;
 		}
 
-		public void Shoot ()
+		public bool Shoot ()
 		{
 			if (currentBulletIndex >= 0 && currentBulletIndex < maxBullet) {
 				mBullets [currentBulletIndex].SetActive (false);
+				currentBulletIndex--;
+				return true;
 			}
+			return false;
 		}
 
 	}
