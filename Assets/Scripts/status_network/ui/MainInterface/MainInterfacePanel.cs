@@ -17,6 +17,7 @@ namespace MMO
 		public Slider slider_skill;
 		public Image img_bigmap_mask;
 		public Image img_aim;
+		public Image img_aim1;
 
 		const int SKILL_ICON_COUNT = 20;
 		public GridLayoutGroup skillGrid;
@@ -56,6 +57,16 @@ namespace MMO
 
 		protected override void Start(){
 			base.Start ();
+		}
+
+		public void HideAims(){
+			img_aim.gameObject.SetActive (false);
+			img_aim1.gameObject.SetActive (false);
+		}
+
+		public void ShowAims(){
+			img_aim.gameObject.SetActive (true);
+			img_aim1.gameObject.SetActive (true);
 		}
 
 		void InitIconItems ()

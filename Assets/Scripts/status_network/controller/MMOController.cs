@@ -292,7 +292,7 @@ namespace MMO
 			case PlayType.RPG:
 				break;
 			case PlayType.TPS:
-				PanelManager.Instance.mainInterfacePanel.img_aim.gameObject.SetActive(false);
+				PanelManager.Instance.mainInterfacePanel.HideAims ();
 				Cursor.lockState = CursorLockMode.Confined;
 				break;
 			default:
@@ -495,7 +495,7 @@ namespace MMO
 				case PlayType.RPG:
 					break;
 				case PlayType.TPS:
-					PanelManager.Instance.mainInterfacePanel.img_aim.gameObject.SetActive(true);
+					PanelManager.Instance.mainInterfacePanel.ShowAims ();
 					Cursor.lockState = CursorLockMode.Locked;
 					break;
 				default:
