@@ -210,6 +210,13 @@ namespace MMO
 			return go;
 		}
 
+		//TODO need to be config.
+		public GameObject GetBulletHit(string prefabName){
+			string abName = ABConstant.EFFECTS + ABConstant.FPSPACK;
+			GameObject go = LoadAsset<GameObject> (abName,prefabName);
+			return go;
+		}
+
 		Dictionary<int,GameObject> mCachedEffect;
 		public GameObject GetEffect(int effectId){
 			if (mCachedEffect == null) {

@@ -195,6 +195,17 @@ public class BattleConst
 		public const int DEATH = 4;//death
 		public const int MOVE_PATROL = 5;//patrol
 		public const int RESPAWN = 6;//respawn
+		//now are for shooter.
+		public const int SQUAT = 7;
+		public const int LYING = 8;
+		public const int FIRE = 9;
+		public const int UNSQUAT = 10;
+		public const int UNLYING = 11;
+		public const int UNFIRE = 12;
+		public const int JUMP = 13;
+		public const int RELOAD = 14;
+		public const int THROWN = 15;
+		public const int MELEE = 16;
 	}
 
 	public struct BattleLayers
@@ -269,5 +280,7 @@ public class BattleConst
 	public const int DEFAULT_EFFECT_ID = 1;
 
 	public const int RESPAWN_EFFECT_ID = 55;
+
+	public const int DEFAULT_BULLET_COUNT = 30;
 
 }

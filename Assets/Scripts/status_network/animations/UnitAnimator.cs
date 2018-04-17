@@ -77,6 +77,11 @@ namespace MMO
 			return false;
 		}
 
+		public void Jump(){
+			if (animator != null && ContainParameter(AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP))
+				animator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
+		}
+
 		public bool IsJump(){
 			if (animator != null)
 				return animator.GetCurrentAnimatorStateInfo (0).IsName (AnimationConstant.UNIT_ANIMATION_CLIP_JUMP);

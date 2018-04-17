@@ -39,6 +39,7 @@ namespace MMO
 			if (onDeath != null) {
 				onDeath ();
 			}
+			mCollider.enabled = false;
 			HeadUIBase headUIBase = GetComponentInChildren<HeadUIBase> (true);
 			if(headUIBase!=null)
 				headUIBase.container_health_bar.SetActive (false);

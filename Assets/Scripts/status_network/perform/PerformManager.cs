@@ -140,6 +140,29 @@ namespace MMO
 			Destroy (uiGo,5);
 		}
 
+		public void ShowBulletHit(Vector3 hitPoint,Vector3 normal,int layer){
+			GameObject prefab = null;
+			switch(layer){
+			case LayerConstant.LAYER_GROUND:
+				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_DIRT);
+				break;
+			case LayerConstant.LAYER_UNIT:
+				//prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_BRICK);
+				break;
+			case LayerConstant.LAYER_DEFAULT:
+				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_CONCRETE);
+				break;
+			default:
+				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_DIRT);
+				break;
+			}
+			if (prefab != null) {
+				GameObject go = Instantiater.Spawn (false, prefab, hitPoint, Quaternion.identity);
+				go.transform.forward = normal;
+				Destroy (go, 3);
+			}
+		}
+
 		public void ShowCurrentPlayerDeathEffect (MMOUnit playerUnit)
 		{
 			ImageEffectManager.Instance.ShowGray ();

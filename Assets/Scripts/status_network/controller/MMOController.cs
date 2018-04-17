@@ -72,30 +72,41 @@ namespace MMO
 		void InitPlayer(){
 			switch(playType){
 			case PlayType.RPG:
-				rpgPlayer.SetActive (false);
-				player = Instantiate (rpgPlayer).transform;
-				RPGCameraController rpgCameraController = playerCamera.gameObject.GetOrAddComponent<RPGCameraController> ();
-				rpgCameraController.target = player;
-				cameraController = rpgCameraController;
-				minimap.SetTarget (player.gameObject);
-				RPGPlayerController rpgPlayerController = player.gameObject.GetOrAddComponent<RPGPlayerController> ();
-				rpgPlayerController.rpgCameraController = rpgCameraController;
-				playerController = rpgPlayerController;
+				InitRPGPlayerAndInterface ();
 				break;
 			case PlayType.TPS:
-				tpsPlayer.SetActive (false);
-				player = Instantiate (tpsPlayer).transform;
-				TPSCameraController tpsCameraController = playerCamera.gameObject.GetOrAddComponent<TPSCameraController> ();
-				tpsCameraController.target = player;
-				cameraController = tpsCameraController;
-				minimap.SetTarget (player.gameObject);
-				TPSPlayerController tpsPlayerController = player.gameObject.GetOrAddComponent<TPSPlayerController> ();
-				tpsPlayerController.tpsCameraController = tpsCameraController;
-				playerController = tpsPlayerController;
+				InitTPSPlayerAndInterface ();
 				break;
 			default :
 				break;
 			}
+		}
+
+		void InitRPGPlayerAndInterface(){
+			rpgPlayer.SetActive (false);
+			player = Instantiate (rpgPlayer).transform;
+			RPGCameraController rpgCameraController = playerCamera.gameObject.GetOrAddComponent<RPGCameraController> ();
+			rpgCameraController.target = player;
+			cameraController = rpgCameraController;
+			minimap.SetTarget (player.gameObject);
+			RPGPlayerController rpgPlayerController = player.gameObject.GetOrAddComponent<RPGPlayerController> ();
+			rpgPlayerController.rpgCameraController = rpgCameraController;
+			playerController = rpgPlayerController;
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (true);
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.SetWeapon (BattleConst.DEFAULT_BULLET_COUNT);
+		}
+
+		void InitTPSPlayerAndInterface(){
+			tpsPlayer.SetActive (false);
+			player = Instantiate (tpsPlayer).transform;
+			TPSCameraController tpsCameraController = playerCamera.gameObject.GetOrAddComponent<TPSCameraController> ();
+			tpsCameraController.target = player;
+			cameraController = tpsCameraController;
+			minimap.SetTarget (player.gameObject);
+			TPSPlayerController tpsPlayerController = player.gameObject.GetOrAddComponent<TPSPlayerController> ();
+			tpsPlayerController.tpsCameraController = tpsCameraController;
+			playerController = tpsPlayerController;
+			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (false);
 		}
 
 		void Update ()
@@ -120,7 +131,7 @@ namespace MMO
 			}
 			if (Input.GetMouseButtonDown (0)) {
 				RaycastHit hit;
-				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT)) {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT | 1 << LayerConstant.LAYER_PLAYER)) {
 					SelectUnit (hit);
 				} else {
 					if (!EventSystem.current.IsPointerOverGameObject ()) {
@@ -215,6 +226,7 @@ namespace MMO
 						playerGO = InstantiateUnit (0, transferData.playerDatas [i].unitInfo);
 					} else {
 						playerGO = player.gameObject;
+						playerGO.layer = LayerConstant.LAYER_PLAYER;
 						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
 						playerUnit.onDeath = () => {
 							OnCurrentPlayerDeath();

@@ -27,6 +27,7 @@ namespace MMO
 		public Button btn_respawn;
 		bool isRecording;
 		public MobileSkillButtonGroup mobileSkillButtonGroup;
+		public BulletGroup bulletGroup;
 
 		Dictionary<Button,SkillBase> mSkillButtonDic;
 		MMOUnitSkill mUnitSkill;
@@ -172,7 +173,6 @@ namespace MMO
 			this.mUnitSkill.mmoUnit.unitAnimator.Play (clip);
 			this.mUnitSkill.mmoUnit.unitAnimator.SetSpeed (1);
 			yield return new WaitForSeconds (length);
-//			this.mUnitSkill.mmoUnit.SetAnimation ("idle",1f);
 		}
 
 		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){

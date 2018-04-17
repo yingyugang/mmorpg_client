@@ -12,6 +12,8 @@ namespace MMO
 	{
 		public int casterId;
 		public IntVector3 hitCenterPosition;
+		public IntVector3 hitNormal;
+		public int hitLayer;
 		public int unitSkillId;
 		public int[] hitIds;
 		public int[] nums;

@@ -20,17 +20,16 @@ namespace MMO
 				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
 				unit.unitAnimator.SetSpeed (1);
 				unit.unitAnimator.SetMoveSpeed (0);
-//				if(unit.mSimpleRpgAnimator!=null)
-//					unit.mSimpleRpgAnimator.SetMoveSpeed (0);
 				break;
 			case BattleConst.UnitMachineStatus.MOVE:
 				unit.unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_CLIP_RUN);
-//				unit.SetAnimation (AnimationConstant.UNIT_ANIMATION_CLIP_RUN,1);
-//				if(unit.mSimpleRpgAnimator!=null)
 				unit.unitAnimator.SetMoveSpeed (3.0f);
 				break;
 			case BattleConst.UnitMachineStatus.CAST:
-				DoSkill(action);
+				//当たり前なプレーヤーのアクションは動かない。
+				if (!MMOController.Instance.IsPlayer (action.casterId)) {
+					DoSkill(action);
+				}
 				break;
 			case BattleConst.UnitMachineStatus.DEATH:
 				unit.Death ();
@@ -40,6 +39,30 @@ namespace MMO
 				break;
 			case BattleConst.UnitMachineStatus.RESPAWN:
 				PerformManager.Instance.ShowRespawnEffect (unit.transform.position);
+				break;
+			case BattleConst.UnitMachineStatus.FIRE:
+				unit.unitAnimator.StartFire ();
+				break;
+			case BattleConst.UnitMachineStatus.UNFIRE:
+				unit.unitAnimator.StopFire ();
+				break;
+			case BattleConst.UnitMachineStatus.JUMP:
+				unit.unitAnimator.Jump ();
+				break;
+			case BattleConst.UnitMachineStatus.LYING:
+				unit.unitAnimator.Lying ();
+				break;
+			case BattleConst.UnitMachineStatus.UNLYING:
+				unit.unitAnimator.Lying ();
+				break;
+			case BattleConst.UnitMachineStatus.RELOAD:
+				unit.unitAnimator.Reload ();
+				break;
+			case BattleConst.UnitMachineStatus.SQUAT:
+				unit.unitAnimator.Squat ();
+				break;
+			case BattleConst.UnitMachineStatus.UNSQUAT:
+				unit.unitAnimator.Squat ();
 				break;
 			default:
 				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
@@ -66,6 +89,7 @@ namespace MMO
 			GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
 			Shoot (effect, mSkill,caster,target);
 		}
+
 		//TODO use trigger to controll the cast clip;
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.
