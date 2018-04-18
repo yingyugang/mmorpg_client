@@ -169,15 +169,9 @@ namespace MMO
 			return null;
 		}
 
-//		public GameObject GetCharacterPrefab (int charaId, int sortLayer = 1)
-//		{
-//			return null;
-//		}
-//
-//		public byte[] GetCSV (string csvName)
-//		{
-//			return null;
-//		}
+		public AudioClip GetAudioClip(string audioName){
+			return Resources.Load<AudioClip> (audioName);
+		}
 
 		public GameObject GetTerrainObjects(string terrainName){
 			string abName = ABConstant.TERRAIN_OBJECTS + terrainName;
