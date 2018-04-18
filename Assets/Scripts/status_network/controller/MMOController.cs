@@ -34,8 +34,6 @@ namespace MMO
 		public BaseCameraController cameraController;
 		public BasePlayerController playerController;
 
-		public bool isShowDamageUI;
-
 		HeadUIBase mHeadUIPrefab;
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
@@ -482,7 +480,6 @@ namespace MMO
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
-				playerUnit.EnCollider ();
 				if(playerUnit.GetComponent<BasePlayerController>()!= null)
 					playerUnit.GetComponent<BasePlayerController>().enabled =true;
 				switch(this.playType){

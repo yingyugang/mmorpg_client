@@ -23,7 +23,12 @@ namespace MMO
 		}
 
 		void Start(){
-			loginPanel.gameObject.SetActive (true);
+			if (serverListPanel != null) {
+				serverListPanel.gameObject.SetActive (true);
+				serverListPanel.onBtnIpClick = () => {
+					loginPanel.gameObject.SetActive (true);
+				};
+			}
 		}
 
 		public void InitSkillIcons(MMOUnitSkill mmoUnitSkill){

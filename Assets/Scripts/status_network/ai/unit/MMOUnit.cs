@@ -17,13 +17,11 @@ namespace MMO
 		Transform mTrans;
 		CapsuleCollider mCapsuleCollider;
 		CharacterController mCharacterController;
-		AudioSource mAudioSource;
 		public UnitAnimator unitAnimator;
 
 		void Awake(){
 			mTrans = transform;
 			unitAnimator = gameObject.GetOrAddComponent<UnitAnimator> ();
-			mAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
 			mCapsuleCollider = GetComponent<CapsuleCollider> ();
 			mCharacterController = GetComponent<CharacterController> ();
 			mCollider = GetComponent<Collider> ();
@@ -81,10 +79,5 @@ namespace MMO
 			else
 				return 1;
 		}
-
-		public void PlayVoice(string voiceName){
-			SoundManager.Instance.PlayVoice (voiceName,this.mAudioSource);
-		}
-
 	}
 }

@@ -11,15 +11,15 @@ namespace MMO
 		AudioSource mMusicSource1;
 		AudioSource mVoiceSource;
 
-		Dictionary<string,AudioClip> mVoiceDic;
-
 		protected override void Awake ()
 		{
 			base.Awake ();
 			mVoiceSource = gameObject.GetComponent<AudioSource> ();
-			mVoiceDic = new Dictionary<string, AudioClip> ();
 //		mMusicSource = gameObject.GetOrAddComponent<AudioSource> ();
 //		mMusicSource.loop = true;
+			mShootClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.SHOOT);
+			mReloadClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.RELOAD);
+			mEmptyClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.EMPTY);
 		}
 
 		public void PlayBGM (string bgm)
@@ -40,15 +40,20 @@ namespace MMO
 			mVoiceSource.Play ();
 		}
 
-		public void PlayVoice(string voiceName,AudioSource audioSource){
-			AudioClip audioClip;
-			if (mVoiceDic.ContainsKey (voiceName)) {
-				audioClip = mVoiceDic [voiceName];
-			} else {
-				audioClip = ResourcesManager.Instance.GetAudioClip (voiceName);
+		AudioClip mShootClip;
+		public void PlayShoot(AudioSource audioSource){
+			if (mShootClip != null && audioSource != null) {
+				audioSource.clip = mShootClip;
+				audioSource.Play ();
 			}
-			audioSource.clip = audioClip;
-			audioSource.Play ();
+		}
+
+		AudioClip mReloadClip;
+		public void PlayReload(AudioSource audioSource){
+			if (mReloadClip != null && audioSource != null) {
+				audioSource.clip = mReloadClip;
+				audioSource.Play ();
+			}
 		}
 
 		AudioClip mEmptyClip;

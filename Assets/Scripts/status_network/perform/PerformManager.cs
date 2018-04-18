@@ -14,8 +14,7 @@ namespace MMO
 		public void ShowHitInfo (HitInfo hitInfo, Dictionary<int,GameObject> unitDic)
 		{
 			ShowHitEffects (hitInfo);
-			if(MMOController.Instance.isShowDamageUI)
-				ShowHitUIInfos (hitInfo, unitDic);
+			ShowHitUIInfos (hitInfo, unitDic);
 		}
 
 		void ShowHitEffects (HitInfo hitInfo)

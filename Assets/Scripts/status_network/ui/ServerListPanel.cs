@@ -47,7 +47,7 @@ namespace MMO
 							gameObject.SetActive (false);
 							if (PanelManager.Instance != null)
 								PanelManager.Instance.loginPanel.gameObject.SetActive (true);
-							if (onBtnIpClick != null)
+							if (onBtnIpClick != null )
 								onBtnIpClick ();
 						});
 					}
