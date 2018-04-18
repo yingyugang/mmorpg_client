@@ -17,6 +17,9 @@ namespace MMO
 			mVoiceSource = gameObject.GetComponent<AudioSource> ();
 //		mMusicSource = gameObject.GetOrAddComponent<AudioSource> ();
 //		mMusicSource.loop = true;
+			mShootClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.SHOOT);
+			mReloadClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.RELOAD);
+			mEmptyClip = ResourcesManager.Instance.GetAudioClip (BattleConst.BattleSounds.EMPTY);
 		}
 
 		public void PlayBGM (string bgm)
@@ -35,6 +38,30 @@ namespace MMO
 			}
 			mVoiceSource.clip = clip;
 			mVoiceSource.Play ();
+		}
+
+		AudioClip mShootClip;
+		public void PlayShoot(AudioSource audioSource){
+			if (mShootClip != null && audioSource != null) {
+				audioSource.clip = mShootClip;
+				audioSource.Play ();
+			}
+		}
+
+		AudioClip mReloadClip;
+		public void PlayReload(AudioSource audioSource){
+			if (mReloadClip != null && audioSource != null) {
+				audioSource.clip = mReloadClip;
+				audioSource.Play ();
+			}
+		}
+
+		AudioClip mEmptyClip;
+		public void PlayEmpty(AudioSource audioSource){
+			if (mEmptyClip != null && audioSource != null) {
+				audioSource.clip = mEmptyClip;
+				audioSource.Play ();
+			}
 		}
 
 	}

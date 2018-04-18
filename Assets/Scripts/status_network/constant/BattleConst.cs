@@ -283,4 +283,12 @@ public class BattleConst
 
 	public const int DEFAULT_BULLET_COUNT = 30;
 
+	public const int DEFAULT_GUN_SHOOT_ID = -1;
+
+	public struct BattleSounds{
+		public const string SHOOT = "Sounds/MiniGun";
+		public const string RELOAD = "Sounds/Reload";
+		public const string EMPTY = "Sounds/Empty";
+	}
+
 }
