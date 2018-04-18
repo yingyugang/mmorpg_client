@@ -11,7 +11,7 @@ namespace MMO
 	public class HitInfo:MessageBase
 	{
 		public int casterId;
-		public IntVector3 hitCenterPosition;
+		public IntVector3 hitOriginPosition;
 		public IntVector3 hitNormal;
 		public int hitLayer;
 		public int unitSkillId;
@@ -25,9 +25,21 @@ namespace MMO
 	public class ShootInfo:MessageBase
 	{
 		public int casterId;
+		//-1 means hit immediatly.
 		public int unitSkillId;
 		public int targetId;
-		public IntVector3 targetPos;
+		public IntVector3 position;
+		public IntVector3 forward;
+		public static ShootInfo Instance(int casterId,int unitSkillId,int targetId,IntVector3 targetPos,IntVector3 forward){
+			ShootInfo shootInfo = new ShootInfo ();
+			shootInfo.casterId = casterId;
+			shootInfo.unitSkillId = unitSkillId;
+			shootInfo.targetId = targetId;
+			shootInfo.position = targetPos;
+			shootInfo.forward = forward;
+			return shootInfo;
+		}
+
 	}
 
 	[Serializable]
@@ -148,14 +160,17 @@ namespace MMO
 		public int status;
 		//the cast target unit id;(maybe)
 		public int targetId;
-		//the cast target position;(maybe)
-		public IntVector3 targetPos;
+		//the cast target position or shoot begin position.
+		public IntVector3 position;
+
+		public IntVector3 forward;
 
 		public StatusInfo(){
 			actionId = -1;
 			status = 1;
 			targetId = -1;
-			targetPos = new IntVector3 ();
+			position = new IntVector3 ();
+			forward = new IntVector3 ();
 		}
 	}
 

@@ -243,9 +243,7 @@ namespace MMO
 					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.position);
 					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.forward);
-//					mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().SetAnimation (transferData.playerDatas [i].unitInfo.animation.action, transferData.playerDatas [i].unitInfo.animation.animSpeed);
 				} else {
-					SetCurrentPlayer (transferData.playerDatas [i]);
 					if (mPlayerInfo != null)
 						mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
 				}
@@ -257,8 +255,6 @@ namespace MMO
 						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, mPlayerDic [transferData.playerDatas [i].playerId]);
 					}
 				}
-
-//				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.animation = transferData.playerDatas [i].unitInfo.animation;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
 				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.unitSkillIds = transferData.playerDatas [i].unitInfo.unitSkillIds;
@@ -317,16 +313,6 @@ namespace MMO
 				return unitId == mPlayerInfo.unitInfo.attribute.unitId;
 			}
 			return false;
-		}
-
-		void SetCurrentPlayer (PlayerInfo playInfo)
-		{
-			MMOUnit playerUnit = mPlayerDic [playInfo.playerId].GetComponent<MMOUnit> ();
-			if (playInfo.unitInfo.attribute.currentHP <= 0) {
-//				StopControll ();
-			} else {
-
-			}
 		}
 
 		int mCurrentFrame = 0;
@@ -466,15 +452,20 @@ namespace MMO
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
-		public void SendPlayerAction (int actionType, int actionId,IntVector3 targetPos)
+		//ユーザー体験の為にする。
+		public void SendPlayerAction (int actionType,int actionId,IntVector3 targetPos)
 		{
 			StatusInfo action = new StatusInfo ();
 			action.status = actionType;
 			action.actionId = actionId;
-			action.targetPos = targetPos;
+			action.position = targetPos;
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
 			MMOClient.Instance.SendAction (action);
+		}
+
+		public void SendPlayerAction(StatusInfo statusInfo){
+			MMOClient.Instance.SendAction (statusInfo);
 		}
 
 		//Do the action from server.
@@ -489,7 +480,7 @@ namespace MMO
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
-				if(playerUnit.GetComponent<BasePlayerController>()!=null)
+				if(playerUnit.GetComponent<BasePlayerController>()!= null)
 					playerUnit.GetComponent<BasePlayerController>().enabled =true;
 				switch(this.playType){
 				case PlayType.RPG:

@@ -73,21 +73,29 @@ namespace MMO
 		//Do Skill.
 		public void DoSkill (StatusInfo action)
 		{
-//			Debug.Log ("DoSkill");
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
 		//Do Shoot
 		public void DoShoot(ShootInfo shootInfo){
-			MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic[shootInfo.unitSkillId];
-			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
 			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (shootInfo.casterId);
-			MMOUnit target = null;
-			if (shootInfo.targetId >= 0) {
-				target = MMOController.Instance.GetUnitByUnitId (shootInfo.targetId);
+			if (shootInfo.unitSkillId == BattleConst.DEFAULT_GUN_SHOOT_ID) {
+				RaycastHit hit;
+				caster.UnCollider ();
+				if (Physics.Raycast (IntVector3.ToVector3(shootInfo.position),IntVector3.ToVector3(shootInfo.forward), out hit, Mathf.Infinity)) {
+					PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
+				}
+				caster.EnCollider ();
+			} else {
+				MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic [shootInfo.unitSkillId];
+				MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
+				MMOUnit target = null;
+				if (shootInfo.targetId >= 0) {
+					target = MMOController.Instance.GetUnitByUnitId (shootInfo.targetId);
+				}
+				GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
+				Shoot (effect, mSkill, caster, target);
 			}
-			GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
-			Shoot (effect, mSkill,caster,target);
 		}
 
 		//TODO use trigger to controll the cast clip;

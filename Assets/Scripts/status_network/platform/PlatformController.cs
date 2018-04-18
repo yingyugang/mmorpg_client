@@ -13,8 +13,9 @@ namespace MMO
 
 		public GameObject etcJoystick;
 
-		void Awake ()
+		protected override void Awake ()
 		{
+			base.Awake ();
 			#if UNITY_EDITOR
 //			simpleRpgPlayerController.clickToMove = false;
 //			simpleRpgPlayerController.keyboardControl = true;

@@ -33,6 +33,7 @@ namespace MMO
 
 		public Canvas joystickCanvas;
 		public ETCJoystick etcJoystick;
+		AudioSource mPlayerAudioSource;
 
 
 		void Awake ()
@@ -40,6 +41,7 @@ namespace MMO
 			mCharacterController = GetComponent<CharacterController> ();
 			unitAnimator = GetComponent<UnitAnimator> ();
 			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
+			mPlayerAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
 			mTrans = transform;
 			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 			etcJoystick.onMoveStart.AddListener (() => {
@@ -160,6 +162,7 @@ namespace MMO
 			float angle = col.normal.y * 90;
 
 			if (angle < slopeLimit) {
+				Debug.Log (angle);
 //				if(_grounded)
 //				{
 				_velocity = Vector3.zero;
@@ -215,16 +218,24 @@ namespace MMO
 					mMMOUnitSkill = MMOController.Instance.player.GetComponent<MMOUnitSkill> ();
 				}
 				if (PanelManager.Instance.mainInterfacePanel.bulletGroup.Shoot ()) {
-					mMMOUnitSkill.skillList [0].targetPos = IntVector3.ToIntVector3 (tpsCameraController.transform.forward);
+					mMMOUnitSkill.skillList [0].position = IntVector3.ToIntVector3 (tpsCameraController.transform.position);
+					mMMOUnitSkill.skillList [0].forward = IntVector3.ToIntVector3 (tpsCameraController.transform.forward);
 					if (mMMOUnitSkill.skillList [0].Play ()) {
 						if (characterEffectUtility) {
 							characterEffectUtility.ShowSlash ();
 						}
 						PanelManager.Instance.mainInterfacePanel.Shoot ();
-						RaycastHit hit;
-						if (Physics.Raycast (tpsCameraController.transform.position, tpsCameraController.transform.forward, out hit, Mathf.Infinity, ~(1 << LayerConstant.LAYER_PLAYER))) {
-							PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
-						}
+						SoundManager.Instance.PlayShoot (this.mPlayerAudioSource);
+//						RaycastHit hit;
+//						if (Physics.Raycast (tpsCameraController.transform.position, tpsCameraController.transform.forward, out hit, Mathf.Infinity, ~(1 << LayerConstant.LAYER_PLAYER))) {
+//							PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
+//						}
+					}
+				} else {
+					SoundManager.Instance.PlayEmpty (this.mPlayerAudioSource); 
+					if (unitAnimator.IsFireBool ()) {
+						unitAnimator.StopFire ();
+						MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
 					}
 				}
 			}
@@ -280,12 +291,14 @@ namespace MMO
 		{
 			unitAnimator.Reload ();
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.Clear ();
-			StartCoroutine (_Reload());
+			StartCoroutine (_Reload ());
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD, -1, new IntVector3 ());
+			SoundManager.Instance.PlayReload (mPlayerAudioSource);
 		}
 
 		//TODO
-		IEnumerator _Reload(){
+		IEnumerator _Reload ()
+		{
 			yield return new WaitForSeconds (2);
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.Reload ();
 		}

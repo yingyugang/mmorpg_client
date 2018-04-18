@@ -49,6 +49,10 @@ namespace MMO
 			mCollider.enabled = false;
 		}
 
+		public void EnCollider(){
+			mCollider.enabled = true;
+		}
+
 		public Vector3 GetHeadPos(){
 			if (mCharacterController != null)
 				return mTrans.position + new Vector3 (0, mCharacterController.height, 0);
