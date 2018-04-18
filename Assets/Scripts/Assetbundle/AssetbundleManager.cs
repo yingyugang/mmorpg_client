@@ -6,7 +6,7 @@ namespace MMO
 {
 	public class AssetbundleManager : SingleMonoBehaviour<AssetbundleManager>
 	{
-
+		public bool isStreaming;
 		Dictionary<string,AssetBundle> mCachedAssetbundles;
 		AssetBundleManifest mManifest;
 		AssetBundle mManifestAB;
@@ -29,26 +29,34 @@ namespace MMO
 			}
 		}
 
+		AssetBundle LoadAssetbundle(string abName){
+			AssetBundle ab;
+			if(isStreaming)
+				ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_STREAMING_ASSETS_PATH + "/" + abName);
+			else
+				ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
+			return ab;
+		}
+
 		//get the assetbundle with depend assetbundles.
 		public AssetBundle GetAssetbundleFromLocal (string abName)
 		{
 			abName = (abName + "." + PathConstant.AB_VARIANT).ToLower ();
 			if(mCachedAssetbundles.ContainsKey(abName))
 				return mCachedAssetbundles[abName];
-
 			if (mManifestAB == null)
 				LoadManifestAssetbundle ();
 			if (mManifest != null) {
 				string[] dependABs = mManifest.GetAllDependencies (abName);
 				for (int i = 0; i < dependABs.Length; i++) {
 					if (!mCachedAssetbundles.ContainsKey (dependABs [i])) {
-						AssetBundle ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + dependABs [i]);
+						AssetBundle ab = LoadAssetbundle(dependABs [i]);
 						mCachedAssetbundles.Add (dependABs [i], ab);
 					}
 				}
 			}
 			Debug.Log (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
-			AssetBundle ab0 = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
+			AssetBundle ab0 = LoadAssetbundle(abName);
 			mCachedAssetbundles.Add (abName,ab0);
 			return ab0;
 		}

@@ -95,7 +95,7 @@ public static class PathConstant
 
 	public static string CLIENT_STREAMING_ASSETS_PATH {
 		get {
-			return Application.streamingAssetsPath;
+			return Path.Combine(Application.streamingAssetsPath,SystemConstant.GetPlatformName());
 		}
 	}
 

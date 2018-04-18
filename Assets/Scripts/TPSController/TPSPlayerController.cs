@@ -225,14 +225,14 @@ namespace MMO
 							characterEffectUtility.ShowSlash ();
 						}
 						PanelManager.Instance.mainInterfacePanel.Shoot ();
-						SoundManager.Instance.PlayShoot (this.mPlayerAudioSource);
+						SoundManager.Instance.PlayVoice (BattleConst.BattleSounds.SHOOT,this.mPlayerAudioSource);
 //						RaycastHit hit;
 //						if (Physics.Raycast (tpsCameraController.transform.position, tpsCameraController.transform.forward, out hit, Mathf.Infinity, ~(1 << LayerConstant.LAYER_PLAYER))) {
 //							PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
 //						}
 					}
 				} else {
-					SoundManager.Instance.PlayEmpty (this.mPlayerAudioSource); 
+					SoundManager.Instance.PlayVoice (BattleConst.BattleSounds.EMPTY,this.mPlayerAudioSource);
 					if (unitAnimator.IsFireBool ()) {
 						unitAnimator.StopFire ();
 						MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
@@ -293,7 +293,7 @@ namespace MMO
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.Clear ();
 			StartCoroutine (_Reload ());
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD, -1, new IntVector3 ());
-			SoundManager.Instance.PlayReload (mPlayerAudioSource);
+			SoundManager.Instance.PlayVoice (BattleConst.BattleSounds.RELOAD,  mPlayerAudioSource);
 		}
 
 		//TODO
