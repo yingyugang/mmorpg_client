@@ -471,7 +471,7 @@ TPS = 1
 		}
 
 		public void SendPlayerControll(float forward,float right){
-			PlayerControll playerControll = new PlayerControll ();
+			PlayerControllInfo playerControll = new PlayerControllInfo ();
 			playerControll.forward = forward;
 			playerControll.right = right;
 			MMOClient.Instance.Send (MessageConstant.PLAYER_CONTROLL, playerControll);
@@ -498,7 +498,7 @@ TPS = 1
 			MMOClient.Instance.SendAction (statusInfo);
 		}
 
-		public void DoPlayerControll(PlayerControll playerControll){
+		public void DoPlayerControll(PlayerControllInfo playerControll){
 			MMOUnit mmoUnit = GetUnitByUnitId (playerControll.unitId);
 			if(mmoUnit!=null){
 				mmoUnit.unitAnimator.SetMoveSpeed (playerControll.forward);

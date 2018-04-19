@@ -78,7 +78,7 @@ namespace MMO
 	}
 
 	[Serializable]
-	public class PlayerControll{
+	public class PlayerControllInfo : MessageBase{
 		public int unitId;
 		public float forward;
 		public float right;
