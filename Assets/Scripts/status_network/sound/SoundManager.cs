@@ -42,9 +42,10 @@ namespace MMO
 
 		AudioClip mShootClip;
 		public void PlayShoot(AudioSource audioSource){
-			if (mShootClip != null && audioSource != null) {
-				audioSource.clip = mShootClip;
-				audioSource.Play ();
+			if (mShootClip != null){
+				if (audioSource != null) {
+					audioSource.PlayOneShot (mShootClip);
+				}
 			}
 		}
 

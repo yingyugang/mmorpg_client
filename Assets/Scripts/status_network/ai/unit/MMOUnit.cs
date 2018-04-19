@@ -30,6 +30,7 @@ namespace MMO
 			mCollider = GetComponent<Collider> ();
 			playerAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
 			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
+			playerAudioSource.spatialBlend = 1;
 		}
 
 		void Update(){

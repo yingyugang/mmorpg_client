@@ -42,6 +42,7 @@ namespace MMO
 			unitAnimator = GetComponent<UnitAnimator> ();
 			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
 			mPlayerAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
+			mPlayerAudioSource.spatialBlend = 1;
 			mTrans = transform;
 			etcJoystick = MMO.PlatformController.Instance.etcJoystick.GetComponentInChildren<ETCJoystick> (true);
 			etcJoystick.onMoveStart.AddListener (() => {

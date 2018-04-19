@@ -92,8 +92,9 @@ namespace MMO
 				if (caster.characterEffectUtility) {
 					caster.characterEffectUtility.ShowSlash ();
 				}
-				SoundManager.Instance.PlayShoot (caster.playerAudioSource);
-
+				if (!MMOController.Instance.IsPlayer (shootInfo.casterId)) {
+					SoundManager.Instance.PlayShoot (caster.playerAudioSource);
+				}
 				if (Physics.Raycast (IntVector3.ToVector3(shootInfo.position),IntVector3.ToVector3(shootInfo.forward), out hit, Mathf.Infinity)) {
 					PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
 				}
