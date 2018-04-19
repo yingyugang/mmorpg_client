@@ -8,7 +8,12 @@ using TMPro;
 
 namespace MMO
 {
-	public enum PlayType{RPG=0,TPS=1}
+	public enum PlayType
+	{
+RPG = 0,
+TPS = 1
+
+	}
 
 	public class MMOController : SingleMonoBehaviour<MMOController>
 	{
@@ -45,7 +50,7 @@ namespace MMO
 		int mPreSelectId = -1;
 		float mPreSpeed;
 		Terrain mTerrain;
-		//0:rpg 1:tps 
+		//0:rpg 1:tps
 		public PlayType playType;
 
 		void Start ()
@@ -58,19 +63,20 @@ namespace MMO
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
 			GameObject terrainPrefab;
 			GameObject terrainPrefabT4M;
-			ResourcesManager.Instance.GetTerrain ("FarmTerrain",out terrainPrefab,out terrainPrefabT4M);
-			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain>();
+			ResourcesManager.Instance.GetTerrain ("FarmTerrain", out terrainPrefab, out terrainPrefabT4M);
+			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain> ();
 			mTerrain.drawHeightmap = true;
 			mTerrain.gameObject.layer = LayerConstant.LAYER_GROUND;
 			//TODO the T4M terrain's 精度不够，需要重新制作。
 //			if(terrainPrefabT4M!=null)
 //				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
-			Instantiate (terrainObjectPrefab).GetComponent<GameObject>();
+			Instantiate (terrainObjectPrefab).GetComponent<GameObject> ();
 		}
 
-		void InitPlayer(){
-			switch(playType){
+		void InitPlayer ()
+		{
+			switch (playType) {
 			case PlayType.RPG:
 				InitRPGPlayerAndInterface ();
 				break;
@@ -82,7 +88,8 @@ namespace MMO
 			}
 		}
 
-		void InitRPGPlayerAndInterface(){
+		void InitRPGPlayerAndInterface ()
+		{
 			rpgPlayer.SetActive (false);
 			player = Instantiate (rpgPlayer).transform;
 			RPGCameraController rpgCameraController = playerCamera.gameObject.GetOrAddComponent<RPGCameraController> ();
@@ -95,7 +102,8 @@ namespace MMO
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (false);
 		}
 
-		void InitTPSPlayerAndInterface(){
+		void InitTPSPlayerAndInterface ()
+		{
 			tpsPlayer.SetActive (false);
 			player = Instantiate (tpsPlayer).transform;
 			TPSCameraController tpsCameraController = playerCamera.gameObject.GetOrAddComponent<TPSCameraController> ();
@@ -141,7 +149,7 @@ namespace MMO
 				}
 			}
 			if (selectedUnit != null) {
-				if(playType == PlayType.RPG)
+				if (playType == PlayType.RPG)
 					handleSelectRing.gameObject.SetActive (true);
 				handleSelectRing.transform.position = selectedUnit.transform.position;
 			} else {
@@ -169,7 +177,8 @@ namespace MMO
 			mPlayerInfo.chat = "";
 		}
 
-		public void SendVoice(float[] data){
+		public void SendVoice (float[] data)
+		{
 			client.SendVoice (data);
 		}
 
@@ -223,13 +232,13 @@ namespace MMO
 				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
 					GameObject playerGO;
 					if (transferData.playerDatas [i].playerId != mPlayerId) {
-						playerGO = InstantiateUnit (0, transferData.playerDatas [i].unitInfo);
+						playerGO = InstantiateUnit (transferData.playerDatas [i].unitInfo.attribute.unitType, transferData.playerDatas [i].unitInfo);
 					} else {
 						playerGO = player.gameObject;
 						playerGO.layer = LayerConstant.LAYER_PLAYER;
 						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
 						playerUnit.onDeath = () => {
-							OnCurrentPlayerDeath();
+							OnCurrentPlayerDeath ();
 						};
 					}
 					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
@@ -277,14 +286,15 @@ namespace MMO
 			}
 		}
 
-		void OnCurrentPlayerDeath(){
-			playerController.enabled =false;
+		void OnCurrentPlayerDeath ()
+		{
+			playerController.enabled = false;
 			MMOUnit playerUnit = player.gameObject.GetComponent<MMOUnit> ();
 			playerUnit.isDead = true;
-			if(player.gameObject.GetComponent<BasePlayerController>()!=null)
-				player.gameObject.GetComponent<BasePlayerController>().enabled =false;
+			if (player.gameObject.GetComponent<BasePlayerController> () != null)
+				player.gameObject.GetComponent<BasePlayerController> ().enabled = false;
 			PerformManager.Instance.ShowCurrentPlayerDeathEffect (playerUnit);
-			switch(this.playType){
+			switch (this.playType) {
 			case PlayType.RPG:
 				break;
 			case PlayType.TPS:
@@ -294,22 +304,24 @@ namespace MMO
 			default:
 				break;
 			}
-			PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(true);
-			PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener(()=>{
-				PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive(false);
+			PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive (true);
+			PanelManager.Instance.mainInterfacePanel.btn_respawn.onClick.AddListener (() => {
+				PanelManager.Instance.mainInterfacePanel.btn_respawn.gameObject.SetActive (false);
 				MMOClient.Instance.SendRespawn ();
 			});
 		}
 
-		public bool IsPlayer(MMOUnit mmoUnit){
-			if(mPlayerInfo!=null && mPlayerInfo.unitInfo!=null){
+		public bool IsPlayer (MMOUnit mmoUnit)
+		{
+			if (mPlayerInfo != null && mPlayerInfo.unitInfo != null) {
 				return mmoUnit.unitInfo.attribute.unitId == mPlayerInfo.unitInfo.attribute.unitId;
 			}
 			return false;
 		}
 
-		public bool IsPlayer(int unitId){
-			if(mPlayerInfo!=null && mPlayerInfo.unitInfo!=null){
+		public bool IsPlayer (int unitId)
+		{
+			if (mPlayerInfo != null && mPlayerInfo.unitInfo != null) {
 				return unitId == mPlayerInfo.unitInfo.attribute.unitId;
 			}
 			return false;
@@ -317,6 +329,7 @@ namespace MMO
 
 		int mCurrentFrame = 0;
 		public bool isDebug;
+
 		void OnRecieveServerActions (NetworkMessage msg)
 		{
 			if (!isStart)
@@ -360,10 +373,11 @@ namespace MMO
 			UpdateShoots (data.shoots);
 		}
 
-		void OnRecievePlayerStatus(NetworkMessage msg){
+		void OnRecievePlayerStatus (NetworkMessage msg)
+		{
 			StatusInfo statusInfo = msg.ReadMessage<StatusInfo> ();
 			if (isDebug)
-				Debug.Log (JsonUtility.ToJson(statusInfo));
+				Debug.Log (JsonUtility.ToJson (statusInfo));
 			DoClientPlayerAction (statusInfo);
 		}
 
@@ -372,7 +386,7 @@ namespace MMO
 			if (actions.Length > 0) {
 				for (int i = 0; i < actions.Length; i++) {
 					if (isDebug)
-						Debug.Log (JsonUtility.ToJson(actions[i]));
+						Debug.Log (JsonUtility.ToJson (actions [i]));
 					DoClientPlayerAction (actions [i]);
 				}
 			}
@@ -383,17 +397,18 @@ namespace MMO
 			if (hitInfos.Length > 0) {
 				for (int i = 0; i < hitInfos.Length; i++) {
 					if (isDebug)
-						Debug.Log (JsonUtility.ToJson(hitInfos[i]));
+						Debug.Log (JsonUtility.ToJson (hitInfos [i]));
 					OnHit (hitInfos [i]);
 				}
 			}
 		}
 
-		void UpdateShoots(ShootInfo[] shootInfos){
+		void UpdateShoots (ShootInfo[] shootInfos)
+		{
 			if (shootInfos.Length > 0) {
 				for (int i = 0; i < shootInfos.Length; i++) {
 					if (isDebug)
-						Debug.Log (JsonUtility.ToJson(shootInfos[i]));
+						Debug.Log (JsonUtility.ToJson (shootInfos [i]));
 					ActionManager.Instance.DoShoot (shootInfos [i]);
 				}
 			}
@@ -406,7 +421,8 @@ namespace MMO
 		}
 
 		Dictionary<int,GameObject> mCachedUnitPrefabs;
-		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo)
+
+		GameObject InstantiateUnit (int unitType, UnitInfo unitInfo, bool isLocal = false)
 		{
 			if (mCachedUnitPrefabs == null)
 				mCachedUnitPrefabs = new Dictionary<int, GameObject> ();
@@ -414,17 +430,21 @@ namespace MMO
 			GameObject unitPrebfab;
 
 			//TODO need amend players load to assetbundle.
-			if (unitType == 0) {
-				unitPrebfab = Resources.Load<GameObject> ("Units/Player");
+//			if (unitType == 0) {
+//				unitPrebfab = Resources.Load<GameObject> ("Units/Player");
+//			} else {
+			if (mCachedUnitPrefabs.ContainsKey (unitType)) {
+				unitPrebfab = mCachedUnitPrefabs [unitType];
 			} else {
-				if (mCachedUnitPrefabs.ContainsKey (unitType)) {
-					unitPrebfab = mCachedUnitPrefabs [unitType];
+				if (isLocal) {
+					unitPrebfab = ResourcesManager.Instance.GetUnitFromLocal (mUnit.resource_name);
 				} else {
 					unitPrebfab = ResourcesManager.Instance.GetUnit (mUnit.assetbundle, mUnit.resource_name);
-					mCachedUnitPrefabs.Add (unitType, unitPrebfab);
 				}
+				mCachedUnitPrefabs.Add (unitType, unitPrebfab);
 			}
-
+//			}
+			Debug.Log (string.Format ("{0}||{1}", mUnit.assetbundle, mUnit.resource_name));
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
@@ -444,8 +464,9 @@ namespace MMO
 			}
 		}
 
-		public Vector3 GetTerrainPos(Vector3 pos){
-			Vector3 terrainPos = new Vector3 (pos.x,mTerrain.SampleHeight (pos),pos.z);
+		public Vector3 GetTerrainPos (Vector3 pos)
+		{
+			Vector3 terrainPos = new Vector3 (pos.x, mTerrain.SampleHeight (pos), pos.z);
 			return terrainPos;
 		}
 
@@ -453,7 +474,7 @@ namespace MMO
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
 		//ユーザー体験の為にする。
-		public void SendPlayerAction (int actionType,int actionId,IntVector3 targetPos)
+		public void SendPlayerAction (int actionType, int actionId, IntVector3 targetPos)
 		{
 			StatusInfo action = new StatusInfo ();
 			action.status = actionType;
@@ -464,7 +485,8 @@ namespace MMO
 			MMOClient.Instance.SendAction (action);
 		}
 
-		public void SendPlayerAction(StatusInfo statusInfo){
+		public void SendPlayerAction (StatusInfo statusInfo)
+		{
 			MMOClient.Instance.SendAction (statusInfo);
 		}
 
@@ -474,15 +496,16 @@ namespace MMO
 			ActionManager.Instance.DoAction (action);
 		}
 
-		public void DoRespawn(int unitId){
+		public void DoRespawn (int unitId)
+		{
 			if (IsPlayer (unitId)) {
 //				ReleaseControll ();
 				PanelManager.Instance.HideCommonDialog ();
 				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
 				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
-				if(playerUnit.GetComponent<BasePlayerController>()!= null)
-					playerUnit.GetComponent<BasePlayerController>().enabled =true;
-				switch(this.playType){
+				if (playerUnit.GetComponent<BasePlayerController> () != null)
+					playerUnit.GetComponent<BasePlayerController> ().enabled = true;
+				switch (this.playType) {
 				case PlayType.RPG:
 					break;
 				case PlayType.TPS:

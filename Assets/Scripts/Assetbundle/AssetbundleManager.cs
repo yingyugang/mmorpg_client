@@ -10,6 +10,7 @@ namespace MMO
 		Dictionary<string,AssetBundle> mCachedAssetbundles;
 		AssetBundleManifest mManifest;
 		AssetBundle mManifestAB;
+		public bool isStreaming;
 
 		protected override void Awake ()
 		{
@@ -28,29 +29,37 @@ namespace MMO
 				}
 			}
 		}
-
 		//get the assetbundle with depend assetbundles.
 		public AssetBundle GetAssetbundleFromLocal (string abName)
 		{
 			abName = (abName + "." + PathConstant.AB_VARIANT).ToLower ();
 			if(mCachedAssetbundles.ContainsKey(abName))
 				return mCachedAssetbundles[abName];
-
 			if (mManifestAB == null)
 				LoadManifestAssetbundle ();
 			if (mManifest != null) {
 				string[] dependABs = mManifest.GetAllDependencies (abName);
 				for (int i = 0; i < dependABs.Length; i++) {
 					if (!mCachedAssetbundles.ContainsKey (dependABs [i])) {
-						AssetBundle ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + dependABs [i]);
+						AssetBundle ab = LoadAssetBundle (dependABs [i]);// AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + dependABs [i]);
 						mCachedAssetbundles.Add (dependABs [i], ab);
 					}
 				}
 			}
 			Debug.Log (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
-			AssetBundle ab0 = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
+			AssetBundle ab0 = LoadAssetBundle (abName);// AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
 			mCachedAssetbundles.Add (abName,ab0);
 			return ab0;
+		}
+
+		AssetBundle LoadAssetBundle(string abName){
+			AssetBundle ab;
+			if (!isStreaming) {
+				ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_ASSETBUNDLES_PATH + "/" + abName);
+			} else {
+				ab = AssetBundle.LoadFromFile (PathConstant.CLIENT_STREAMING_ASSETS_PATH + "/" + abName);
+			}
+			return ab;
 		}
 
 		public void UnloadAssetBundle(string abName,bool isForce){
