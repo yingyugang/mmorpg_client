@@ -116,7 +116,7 @@ namespace MMO
 		}
 
 		void OnRecievePlayerControll(NetworkMessage msg){
-			PlayerControll playerControll = msg.ReadMessage<PlayerControll> ();
+			PlayerControllInfo playerControll = msg.ReadMessage<PlayerControllInfo> ();
 			MMOController.Instance.DoPlayerControll (playerControll);
 		}
 
