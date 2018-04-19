@@ -232,7 +232,7 @@ TPS = 1
 				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
 					GameObject playerGO;
 					if (transferData.playerDatas [i].playerId != mPlayerId) {
-						playerGO = InstantiateUnit (transferData.playerDatas [i].unitInfo.attribute.unitType, transferData.playerDatas [i].unitInfo);
+						playerGO = InstantiateUnit (transferData.playerDatas [i].unitInfo.attribute.unitType, transferData.playerDatas [i].unitInfo,true);
 					} else {
 						playerGO = player.gameObject;
 						playerGO.layer = LayerConstant.LAYER_PLAYER;
@@ -482,6 +482,7 @@ TPS = 1
 			action.position = targetPos;
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
+			Debug.Log ("actionType:" + actionType);
 			MMOClient.Instance.SendAction (action);
 		}
 

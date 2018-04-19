@@ -123,9 +123,17 @@ namespace MMO
 			if (mInputX != 0 || mInputY != 0) {
 				unitAnimator.SetMoveSpeed (mInputY);
 				unitAnimator.SetRight (mInputX);
+				if (!mIsRuning) {
+					mIsRuning = true;
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
+				}
 			} else {
 				unitAnimator.SetMoveSpeed (0);
 				unitAnimator.SetRight (0);
+				if (mIsRuning) {
+					mIsRuning = false;
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
+				}
 			}
 			RaycastHit hit;
 			if (_grounded && Physics.Raycast (mTrans.position + new Vector3 (0, 2, 0), -Vector3.up, out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_GROUND | 1 << LayerConstant.LAYER_DEFAULT)) {
@@ -142,15 +150,9 @@ namespace MMO
 					mCharacterController.Move (direct + new Vector3 (0, _velocity.y * Time.deltaTime, 0));
 				}
 				//TODO 暂时只能同步move和idle，attack无法同步。
-				if (!mIsRuning) {
-					mIsRuning = true;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
-				}
+
 			} else {
-				if (mIsRuning) {
-					mIsRuning = false;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
-				}
+				
 			}
 			_velocity.y -= gravity * Time.deltaTime;
 
@@ -249,8 +251,6 @@ namespace MMO
 		{
 			float t = 0;
 			Vector3 startOffset = tpsCameraController.targetOffset;
-			Debug.Log (JsonUtility.ToJson (target));
-			Debug.Log (JsonUtility.ToJson (startOffset));
 			while (t < 1) {
 				t += Time.deltaTime / mToggleDuration;
 				tpsCameraController.targetOffset = Vector3.Lerp (startOffset, target, t);
