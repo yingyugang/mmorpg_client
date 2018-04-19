@@ -204,6 +204,12 @@ namespace MMO
 			return go;
 		}
 
+		public GameObject GetUnitFromLocal(string unitName){
+			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
+			GameObject go = Resources.Load<GameObject> ("Units/" + unitName);//   LoadAsset<GameObject> (abName,unitName);
+			return go;
+		}
+
 		//TODO need to be config.
 		public GameObject GetBulletHit(string prefabName){
 			string abName = ABConstant.EFFECTS + ABConstant.FPSPACK;
