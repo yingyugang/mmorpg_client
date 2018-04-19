@@ -78,6 +78,13 @@ namespace MMO
 	}
 
 	[Serializable]
+	public class PlayerControll{
+		public int unitId;
+		public float forward;
+		public float right;
+	}
+
+	[Serializable]
 	public class GameInitInfo: MessageBase
 	{
 		public int playType;

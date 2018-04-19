@@ -50,7 +50,7 @@ namespace MMO
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
-		bool mIsRuning;
+//		bool mIsRuning;
 		public bool isPause;
 		float mNextShoot;
 
@@ -123,18 +123,20 @@ namespace MMO
 			if (mInputX != 0 || mInputY != 0) {
 				unitAnimator.SetMoveSpeed (mInputY);
 				unitAnimator.SetRight (mInputX);
-				if (!mIsRuning) {
-					mIsRuning = true;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
-				}
+//				if (!mIsRuning) {
+//					mIsRuning = true;
+//					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
+//				}
 			} else {
 				unitAnimator.SetMoveSpeed (0);
 				unitAnimator.SetRight (0);
-				if (mIsRuning) {
-					mIsRuning = false;
-					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
-				}
+//				if (mIsRuning) {
+//					mIsRuning = false;
+//					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
+//				}
 			}
+			MMOController.Instance.SendPlayerControll (mInputY,mInputX);
+
 			RaycastHit hit;
 			if (_grounded && Physics.Raycast (mTrans.position + new Vector3 (0, 2, 0), -Vector3.up, out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_GROUND | 1 << LayerConstant.LAYER_DEFAULT)) {
 				mTrans.position = new Vector3 (mTrans.position.x, hit.point.y, mTrans.position.z);

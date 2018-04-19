@@ -470,6 +470,13 @@ TPS = 1
 			return terrainPos;
 		}
 
+		public void SendPlayerControll(float forward,float right){
+			PlayerControll playerControll = new PlayerControll ();
+			playerControll.forward = forward;
+			playerControll.right = right;
+			MMOClient.Instance.Send (MessageConstant.PLAYER_CONTROLL, playerControll);
+		}
+
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
@@ -489,6 +496,14 @@ TPS = 1
 		public void SendPlayerAction (StatusInfo statusInfo)
 		{
 			MMOClient.Instance.SendAction (statusInfo);
+		}
+
+		public void DoPlayerControll(PlayerControll playerControll){
+			MMOUnit mmoUnit = GetUnitByUnitId (playerControll.unitId);
+			if(mmoUnit!=null){
+				mmoUnit.unitAnimator.SetMoveSpeed (playerControll.forward);
+				mmoUnit.unitAnimator.SetRight (playerControll.right);
+			}
 		}
 
 		//Do the action from server.

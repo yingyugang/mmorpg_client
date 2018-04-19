@@ -18,5 +18,6 @@ namespace MMO
 		public const short PLAYER_VOICE = 10003;
 
 		public const short PLAYER_SHOOT = 10004;
+		public const short PLAYER_CONTROLL = 10005;
 	}
 }

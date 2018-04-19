@@ -34,6 +34,7 @@ namespace MMO
 			client.RegisterHandler (MessageConstant.PLAYER_ACTION, OnRecievePlayerAction);
 			client.RegisterHandler (MessageConstant.PLAYER_VOICE, OnRecievePlayerVoice);
 			client.RegisterHandler (MessageConstant.PLAYER_RESPAWN, OnRecievePlayerRespawn);
+			client.RegisterHandler (MessageConstant.PLAYER_CONTROLL, OnRecievePlayerControll);
 		}
 
 		public bool IsConnected {
@@ -112,6 +113,11 @@ namespace MMO
 		void OnRecievePlayerRespawn(NetworkMessage msg){
 			RespawnInfo respawnInfo = msg.ReadMessage<RespawnInfo> ();
 			MMOController.Instance.DoRespawn (respawnInfo.unitId);
+		}
+
+		void OnRecievePlayerControll(NetworkMessage msg){
+			PlayerControll playerControll = msg.ReadMessage<PlayerControll> ();
+			MMOController.Instance.DoPlayerControll (playerControll);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)
