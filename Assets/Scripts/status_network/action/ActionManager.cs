@@ -37,7 +37,7 @@ namespace MMO
 			case BattleConst.UnitMachineStatus.DEATH:
 				unit.Death ();
 				//TODO 共通化が必要だ。
-				if (MMOController.Instance.playType == PlayType.RPG || !unit.unitInfo.isPlayer) {
+				if (!MMOController.Instance.IsPlayer(unit.unitInfo.attribute.unitId) && (MMOController.Instance.playType == PlayType.RPG || !unit.unitInfo.isPlayer)) {
 					unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
 				} else {
 					unit.unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_DEAD);
@@ -168,6 +168,9 @@ namespace MMO
 				MMOUnit playerUnit = MMOController.Instance.player.GetComponent<MMOUnit> ();
 				if (playerUnit.GetComponent<BasePlayerController> () != null)
 					playerUnit.GetComponent<BasePlayerController> ().enabled = true;
+				if(playerUnit.GetComponent<CharacterController>()!=null){
+					playerUnit.GetComponent<CharacterController> ().enabled = true;
+				}
 				switch (MMOController.Instance.playType) {
 				case PlayType.RPG:
 					break;
@@ -182,7 +185,10 @@ namespace MMO
 				//TODO Do other monster respawn;
 				MMOUnit playerUnit = MMOController.Instance.GetUnitByUnitId (unitId);
 				if(playerUnit !=null && playerUnit.headUIBase!=null){
-					playerUnit.headUIBase.gameObject.SetActive (true);
+					playerUnit.headUIBase.ShowHealthBar ();
+				}
+				if(playerUnit.GetComponent<Collider>()!=null){
+					playerUnit.GetComponent<Collider> ().enabled = true;
 				}
 			}
 			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (unitId);

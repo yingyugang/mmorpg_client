@@ -489,7 +489,6 @@ TPS = 1
 			action.position = targetPos;
 			if (selectedUnit != null)
 				action.targetId = selectedUnit.unitInfo.attribute.unitId;
-			Debug.Log ("actionType:" + actionType);
 			MMOClient.Instance.SendAction (action);
 		}
 

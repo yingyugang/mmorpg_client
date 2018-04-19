@@ -80,5 +80,13 @@ namespace MMO
 			container_bubble.SetActive (false);
 		}
 
+		public void ShowHealthBar(){
+			container_health_bar.SetActive (true);
+		}
+
+		public void HideHealthBar(){
+			container_health_bar.SetActive (false);
+		}
+
 	}
 }

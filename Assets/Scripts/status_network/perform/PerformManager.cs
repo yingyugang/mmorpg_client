@@ -149,7 +149,10 @@ namespace MMO
 				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_DIRT);
 				break;
 			case LayerConstant.LAYER_UNIT:
-				//prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_BRICK);
+				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_BRICK);
+				break;
+			case LayerConstant.LAYER_PLAYER:
+				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_BRICK);
 				break;
 			case LayerConstant.LAYER_DEFAULT:
 				prefab = ResourcesManager.Instance.GetBulletHit (ABConstant.FPSPACK_PREFAB_CONCRETE);
