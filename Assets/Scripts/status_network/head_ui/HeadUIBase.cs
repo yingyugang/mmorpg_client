@@ -64,6 +64,7 @@ namespace MMO
 			txt_name.text = mmoUnit.unitInfo.attribute.unitName;
 			CapsuleCollider capsuleCollider = mmoUnit.GetComponent<CapsuleCollider> ();
 			transform.SetParent (mmoUnit.transform);
+			mmoUnit.headUIBase = this;
 			transform.localScale = Vector3.one;
 			transform.localPosition = new Vector3 (0, capsuleCollider.height, 0);
 		}

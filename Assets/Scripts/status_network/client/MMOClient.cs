@@ -112,7 +112,7 @@ namespace MMO
 
 		void OnRecievePlayerRespawn(NetworkMessage msg){
 			RespawnInfo respawnInfo = msg.ReadMessage<RespawnInfo> ();
-			MMOController.Instance.DoRespawn (respawnInfo.unitId);
+			ActionManager.Instance.DoRespawn (respawnInfo.unitId);
 		}
 
 		void OnRecievePlayerControll(NetworkMessage msg){

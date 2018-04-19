@@ -18,6 +18,9 @@ namespace MMO
 		CapsuleCollider mCapsuleCollider;
 		CharacterController mCharacterController;
 		public UnitAnimator unitAnimator;
+		public AudioSource playerAudioSource;
+		public CharacterEffectUtility characterEffectUtility;
+		public HeadUIBase headUIBase;
 
 		void Awake(){
 			mTrans = transform;
@@ -25,6 +28,8 @@ namespace MMO
 			mCapsuleCollider = GetComponent<CapsuleCollider> ();
 			mCharacterController = GetComponent<CharacterController> ();
 			mCollider = GetComponent<Collider> ();
+			playerAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
+			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
 		}
 
 		void Update(){

@@ -144,6 +144,7 @@ namespace MMO
 			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_HIT, false);
 			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_RUN, false);
 			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_WALK, false);
+			SetBool (AnimationConstant.UNIT_ANIMATION_PARAMETER_DEAD, false);
 		}
 
 		public void ResetAllAttackTriggers ()

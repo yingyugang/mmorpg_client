@@ -199,13 +199,13 @@ namespace MMO
 		}
 
 		public GameObject GetUnit(string abName,string unitName){
-			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
+			AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
 			GameObject go = LoadAsset<GameObject> (abName,unitName);
 			return go;
 		}
 
 		public GameObject GetUnitFromLocal(string unitName){
-			AssetBundle ABShared = AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
+			AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
 			GameObject go = Resources.Load<GameObject> ("Units/" + unitName);//   LoadAsset<GameObject> (abName,unitName);
 			return go;
 		}

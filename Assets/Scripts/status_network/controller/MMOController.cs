@@ -512,33 +512,5 @@ TPS = 1
 			ActionManager.Instance.DoAction (action);
 		}
 
-		public void DoRespawn (int unitId)
-		{
-			if (IsPlayer (unitId)) {
-//				ReleaseControll ();
-				PanelManager.Instance.HideCommonDialog ();
-				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
-				MMOUnit playerUnit = player.GetComponent<MMOUnit> ();
-				if (playerUnit.GetComponent<BasePlayerController> () != null)
-					playerUnit.GetComponent<BasePlayerController> ().enabled = true;
-				switch (this.playType) {
-				case PlayType.RPG:
-					break;
-				case PlayType.TPS:
-					PanelManager.Instance.mainInterfacePanel.ShowAims ();
-					Cursor.lockState = CursorLockMode.Locked;
-					break;
-				default:
-					break;
-				}
-			} else {
-				//TODO Do other monster respawn;
-			}
-			MMOUnit mmoUnit = GetUnitByUnitId (unitId);
-			mmoUnit.unitAnimator.ResetTriggers ();
-			mmoUnit.isDead = false;
-			PerformManager.Instance.ShowRespawnEffect (mmoUnit.transform.position);
-		}
-
 	}
 }

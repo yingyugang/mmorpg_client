@@ -49,7 +49,6 @@ namespace MMO
 				statusInfo.position = position;
 				statusInfo.forward = forward;
 				MMOController.Instance.SendPlayerAction (statusInfo);
-				Debug.Log (string.Format("{0}:{1}:{1}",JsonUtility.ToJson(position),JsonUtility.ToJson(forward),statusInfo.casterId));
 				if (MMOController.Instance.selectedUnit != null)
 					statusInfo.targetId = MMOController.Instance.selectedUnit.unitInfo.attribute.unitId;
 				ActionManager.Instance.DoSkill (statusInfo);

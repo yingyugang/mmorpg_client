@@ -39,7 +39,6 @@ namespace MMO
 			shootInfo.forward = forward;
 			return shootInfo;
 		}
-
 	}
 
 	[Serializable]

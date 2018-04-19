@@ -17,7 +17,10 @@ namespace MMO
 			}
 			switch (action.status) {
 			case BattleConst.UnitMachineStatus.STANDBY:
-				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+				//TODO 共通化が必要だ。
+				if(MMOController.Instance.playType == PlayType.RPG || !unit.unitInfo.isPlayer){
+					unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_IDEL);
+				}
 				unit.unitAnimator.SetSpeed (1);
 				unit.unitAnimator.SetMoveSpeed (0);
 				break;
@@ -33,8 +36,12 @@ namespace MMO
 				break;
 			case BattleConst.UnitMachineStatus.DEATH:
 				unit.Death ();
-				//TODO change to parameter 
-				unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
+				//TODO 共通化が必要だ。
+				if (MMOController.Instance.playType == PlayType.RPG || !unit.unitInfo.isPlayer) {
+					unit.unitAnimator.Play (AnimationConstant.UNIT_ANIMATION_CLIP_DEAD);
+				} else {
+					unit.unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_DEAD);
+				}
 				unit.unitAnimator.SetSpeed (1);
 				break;
 			case BattleConst.UnitMachineStatus.RESPAWN:
@@ -82,6 +89,11 @@ namespace MMO
 			if (shootInfo.unitSkillId == BattleConst.DEFAULT_GUN_SHOOT_ID) {
 				RaycastHit hit;
 				caster.UnCollider ();
+				if (caster.characterEffectUtility) {
+					caster.characterEffectUtility.ShowSlash ();
+				}
+				SoundManager.Instance.PlayShoot (caster.playerAudioSource);
+
 				if (Physics.Raycast (IntVector3.ToVector3(shootInfo.position),IntVector3.ToVector3(shootInfo.forward), out hit, Mathf.Infinity)) {
 					PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
 				}
@@ -147,6 +159,38 @@ namespace MMO
 				shootObj.Shoot (caster,targetPos,Vector3.zero);
 			}
 		}
+
+		public void DoRespawn (int unitId)
+		{
+			if (MMOController.Instance.IsPlayer (unitId)) {
+				PanelManager.Instance.HideCommonDialog ();
+				PerformManager.Instance.HideCurrentPlayerDeathEffect ();
+				MMOUnit playerUnit = MMOController.Instance.player.GetComponent<MMOUnit> ();
+				if (playerUnit.GetComponent<BasePlayerController> () != null)
+					playerUnit.GetComponent<BasePlayerController> ().enabled = true;
+				switch (MMOController.Instance.playType) {
+				case PlayType.RPG:
+					break;
+				case PlayType.TPS:
+					PanelManager.Instance.mainInterfacePanel.ShowAims ();
+					Cursor.lockState = CursorLockMode.Locked;
+					break;
+				default:
+					break;
+				}
+			} else {
+				//TODO Do other monster respawn;
+				MMOUnit playerUnit = MMOController.Instance.GetUnitByUnitId (unitId);
+				if(playerUnit !=null && playerUnit.headUIBase!=null){
+					playerUnit.headUIBase.gameObject.SetActive (true);
+				}
+			}
+			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (unitId);
+			mmoUnit.unitAnimator.ResetTriggers ();
+			mmoUnit.isDead = false;
+			PerformManager.Instance.ShowRespawnEffect (mmoUnit.transform.position);
+		}
+
 
 	}
 }
