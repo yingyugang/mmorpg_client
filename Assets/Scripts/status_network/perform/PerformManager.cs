@@ -9,12 +9,14 @@ namespace MMO
 	{
 
 		public GameObject hitUITextPrefab;
+		public bool isShowHitUI;
 
 		//TODO 表示する場合が確認する
 		public void ShowHitInfo (HitInfo hitInfo, Dictionary<int,GameObject> unitDic)
 		{
 			ShowHitEffects (hitInfo);
-			ShowHitUIInfos (hitInfo, unitDic);
+			if(isShowHitUI)
+				ShowHitUIInfos (hitInfo, unitDic);
 		}
 
 		void ShowHitEffects (HitInfo hitInfo)
