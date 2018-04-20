@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_2_1;UNITY_2017_2;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_2_1;UNITY_2017_2;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -44,10 +44,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +55,15 @@
      <Compile Include="Assets\Scripts\common\constant\APIConstant.cs" />
      <Compile Include="Assets\Scripts\common\constant\GameConstant.cs" />
      <Compile Include="Assets\Scripts\common\csv\CSVFileReader.cs" />
+     <Compile Include="Assets\Scripts\common\csv\CSVManager.cs" />
      <Compile Include="Assets\Scripts\common\csv\CSVParser.cs" />
      <Compile Include="Assets\Scripts\common\csv\CSVReader.cs" />
+     <Compile Include="Assets\Scripts\common\csv\structure\BaseCSVStructure.cs" />
      <Compile Include="Assets\Scripts\common\csv\structure\ConventionCSVStructure.cs" />
+     <Compile Include="Assets\Scripts\common\csv\structure\MEffect.cs" />
      <Compile Include="Assets\Scripts\common\csv\structure\NGCSVStructure.cs" />
      <Compile Include="Assets\Scripts\common\csv\structure\VersionCSVStructure.cs" />
      <Compile Include="Assets\Scripts\common\csv\VersionCSV.cs" />
-     <Compile Include="Assets\Scripts\common\dataCenter\DataCenter.cs" />
      <Compile Include="Assets\Scripts\common\file\FileManager.cs" />
      <Compile Include="Assets\Scripts\common\file\SoCsv.cs" />
      <Compile Include="Assets\Scripts\common\json\AchievementDailyJson.cs" />
@@ -89,6 +91,8 @@
      <Compile Include="Assets\Scripts\common\json\UserJson.cs" />
      <Compile Include="Assets\Scripts\common\json\VoiceJson.cs" />
      <Compile Include="Assets\Scripts\common\language\LanguageJP.cs" />
+     <Compile Include="Assets\Scripts\common\performs\ShootObjectPerform.cs" />
+     <Compile Include="Assets\Scripts\common\performs\UnitPerform.cs" />
      <Compile Include="Assets\Scripts\common\SingleMonoBehivour.cs" />
      <Compile Include="Assets\Scripts\common\tween\TweenBase.cs" />
      <Compile Include="Assets\Scripts\common\tween\TweenCanvasGroup.cs" />
@@ -97,32 +101,315 @@
      <Compile Include="Assets\Scripts\common\tween\TweenPosition.cs" />
      <Compile Include="Assets\Scripts\common\tween\TweenRotate.cs" />
      <Compile Include="Assets\Scripts\common\tween\TweenSize.cs" />
+     <Compile Include="Assets\Scripts\common\utility\DestoryDelay.cs" />
+     <Compile Include="Assets\Scripts\common\utility\FPSLightCurves.cs" />
+     <Compile Include="Assets\Scripts\common\utility\FPSParticleSystemScaler.cs" />
+     <Compile Include="Assets\Scripts\common\utility\FPSRandomRotateAngle.cs" />
+     <Compile Include="Assets\Scripts\common\utility\FPSShaderColorGradient.cs" />
+     <Compile Include="Assets\Scripts\common\utility\FPSShaderFloatCurves.cs" />
+     <Compile Include="Assets\Scripts\common\utility\MaterialType.cs" />
+     <Compile Include="Assets\T4M\Scripts\T4MBillBObjSC.cs" />
+     <Compile Include="Assets\T4M\Scripts\T4MLodObjSC.cs" />
+     <Compile Include="Assets\T4M\Scripts\T4MObjSC.cs" />
+     <Compile Include="Assets\T4M\Scripts\T4MPartSC.cs" />
+     <Compile Include="Assets\T4M\Scripts\T4MPlantObjSC.cs" />
+     <Compile Include="Assets\T4M\Tutorial\Scripts\FlyCam.cs" />
+     <Compile Include="Assets\T4M\Tutorial\Scripts\WaypointCam.cs" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardInput.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardBRDF.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\ClippingMask.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\DirectionLM\T4M 3 TexturesBumped DLM.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-BumpVertexLit.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Overdraw.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\ShowLightMask.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Skybox-Procedural.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityGBuffer.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Specular\T4M 3 TexturesSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SoftOcclusion\TreeSoftOcclusionBarkRendertex.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Anim Alpha Blend.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\CharaSkin.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 3 TexturesUnified.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\CharaMain.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Cubemaps\CubeBlur.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardMeta.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Unlit-TextDetail.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\TextureUV.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Parallax.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Diffuse.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-BlitCopyDepth.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Standard-AddPass.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\TerrainEngine.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M 4 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Parallax.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel1\T4M 2 Textures ManualAdd BeastLM_1DC.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardShadow.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-Bumped.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M 3 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-BumpNolight.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityCG.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\BumpSpec\T4M 2 TexturesBumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\Lighting.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\4TexturesUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Standard.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityShaderUtilities.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\HLSLSupport.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Lightmap-Unlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SpeedTreeBillboard.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\SpatialMappingOcclusion.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-StencilWrite.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Bump\T4M 2 TexturesBumped Mobile.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardCore.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardCoreForwardSimple.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Lightmap-Bumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-Glossy.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Standard-FirstPass.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\internalskinning.compute" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\Tessellation.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Bump\T4M 3 TexturesBumped.shader" />
+     <None Include="Assets\AssetBundleResources\Terrains\FarmTerrain\T4M 3 Textures Farm.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Unlit-Text.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\AutoLight.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\BumpSpec\T4M 2 TexturesBumpSpec Mobile.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\6TexturesUnlitNoLM.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorLeavesRendertex.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Diffuse\T4M 3 Textures.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\BumpSpec\T4M 4 TexturesBumpSpec.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Specular\T4M 2 TexturesSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Unlit-Detail.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\PerformanceTools\FrameDebuggerRenderTargetDisplay.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Trees\BillboardTree.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Bump\T4M 4 TexturesBump.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorLeaves.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\DirectionLM\T4M 2 TexturesBumped DLM.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-Parallax.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M 6 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Lightmap-Glossy.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityCustomRenderTexture.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Details\VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityImageBasedLighting.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SoftOcclusion\TreeSoftOcclusionBark.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Specular-AddPass.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-DefaultFont.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-Alpha.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-DeferredShading.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Diffuse\T4M 4 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-Bumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Cubemaps\CubeBlend.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Blend.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Specular\T4M 4 Textures Spec.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Bump\T4M 4 TexturesBumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorBarkRendertex.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Bumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardUtils.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Bumped.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Diffuse\T4M 2 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Lit-RefractionDetail.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Specular\T4M 4 TexturesSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Alpha Blend.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\TerrainSplatmapCommon.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-DefaultETC1.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\BlitTexArraySlice.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Lightmap-VertexLit.shader" />
+     <None Include="Assets\T4M\READMEFIRST.txt" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityPBSLighting.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUIRoundedRect.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITexture.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VideoDecodeOSX.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-Glossy.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-DiffuseDetail.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\Internal-ErrorShader.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityBuiltin2xTreeLibrary.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M 2 Textures.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Toon\T4M 3 Textures Toon.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\Internal-VRDistortion.shader" />
+     <None Include="Assets\AssetBundleResources\Effects\FPSPack\Shaders\FPSProjectorBlended.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Diffuse\T4M 5 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\FirstPass.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Toon\T4M 2 Textures Toon.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\VertexColors.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-BumpSpec.shader" />
+     <None Include="Assets\AssetBundleResources\Effects\FPSPack\Shaders\FPSGlowAdditive.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle VertexLit Blended.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardCoreForward.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SoftOcclusion\TreeSoftOcclusionLeaves.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Lit-Refraction.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-Diffuse.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-BlitCopy.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-Diffuse.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\3TexturesUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Details\WavingGrass.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Sprites-Default.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Lit-Bumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Cubemaps\CubeCopy.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Decal.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Specular\T4M 3 Textures Spec.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\T4M World Projection Shader Unlit+LM.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Specular\T4M 2 Textures Spec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-VertexLit.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Bump\T4M 3 TexturesBump.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\SpeedTreeWind.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\VideoBackground.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Sprites-Diffuse.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\Shared\Dissolve_TexturCoords.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-ParallaxSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Lightmap-Diffuse.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle MultiplyDouble.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-Flare.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Specular-Base.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-MotionVectors.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorBark.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 4 TexturesUnified.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Default.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-ParallaxSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-Diffuse.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-Bumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Skybox.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityShaderVariables.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel1\T4M 2 Textures ManualAdd CustoLM 1DC.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Bump\T4M 2 TexturesBumped.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\AddPass.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 2 TexturesUnified.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITextureBlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\StandardRoughness.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Bumped.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\6TexturesUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-SoftEdgeUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-Glossy.shader" />
+     <None Include="Assets\AssetBundleResources\Effects\FPSPack\Shaders\FPSGlass.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-ParallaxSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Particle-Multiply.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\GLSLSupport.glslinc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Lightmap-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Glossy.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityCG.glslinc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Standard-Base.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Particle-Alpha-VertexLit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Glossy.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityGlobalIllumination.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-VertexLit.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\BumpSpec\T4M 3 TexturesBumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle AddMultiply.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorLeavesFast.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITextureClipText.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Diffuse\T4M 6 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AlphaTest-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\UV1sAsPositions.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-BumpSpec-1DirectionalLight.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SpeedTree.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-BlitCopyWithDepth.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Multiply.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\Internal-Colored.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Cubemaps\CubeBlurOdd.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityInstancing.cginc" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityMetaPass.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Alpha-ParallaxSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Skybox-Cubed.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Bump\T4M 3 TexturesBumped Mobile.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\SpeedTreeVertex.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\5TexturesUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-ScreenSpaceShadows.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Illumin-BumpSpec.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityStandardConfig.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Unlit-Transparent.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITextureClip.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Skybox.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Diffuse.shader" />
+     <None Include="Assets\builtin_shaders-2017\license.txt" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-VertexLit-OnlyDirectionalLights.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\SpeedTreeCommon.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorBarkOptimized.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-DiffuseFast.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-CompositeOverdraw.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnitySprites.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\SpatialMappingWireframe.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Diffuse.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Flare.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-Halo.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-DeferredReflections.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Details\WavingGrassBillboard.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-Normal.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Specular-FirstPass.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle AddSmooth.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityBuiltin3xTreeLibrary.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\SpeedTreeBillboardCommon.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorLeavesOptimized.shader" />
+     <None Include="Assets\AssetBundleResources\Effects\FPSPack\Shaders\FPSParticleBlendDirLight.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-ConvertTexture.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel1\T4M 2 Textures Auto BeastLM 2DrawCall.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\Bump\T4M 2 TexturesBump.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VideoDecode.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Add.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\AR\Shaders\TangoARRender.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Lit-Transparent.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-AlphaTest.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Normal-Parallax.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\SoftOcclusion\TreeSoftOcclusionLeavesRendertex.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityDeferredLibrary.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityLightingCommon.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Particle-Add.shader" />
+     <None Include="Assets\AssetBundleResources\Characters\PlayerPack\Suriyun\UnityChanShader\Shader\CharaOutline.cginc" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityDeprecated.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Toon\T4M 4 Textures Toon.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\UI\UI-Lit-Detail.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityUI.cginc" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Nature\TreeCreator\TreeCreatorLeavesFastOptimized.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unlit\2TexturesUnlit.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\VideoDecodeAndroid.shader" />
+     <None Include="Assets\builtin_shaders-2017\CGIncludes\UnityShadowLibrary.cginc" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M World Projection Shader.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel3\BumpSpec\T4M 3 TexturesBumpSpec.shader" />
+     <None Include="Assets\AssetBundleResources\Effects\FPSPack\Shaders\FPSWaterParticles.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\StandardSpecular.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\DirectionLM\T4M 2 TexturesBumped DLM mobile.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\Font.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-CombineDepthNormals.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-Color.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Diffuse\T4M 5 Textures.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResources\Internal-Clear.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Particle-Alpha.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-PrePassLighting.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Internal-DepthNormalsTexture.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Sprites-Mask.shader" />
+     <None Include="Assets\builtin_shaders-2017\DefaultResourcesExtra\Particle Premultiply Blend.shader" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\BumpSpec\T4M 2 TexturesBumpSpec.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Timeline">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UIAutomation">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.GoogleAudioSpatializer">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ <HintPath>/Applications/Unity2017.2.1f1のコピー/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="CSV">
  <HintPath>/Users/yingyugang/mmorpg_resource/Assets/Scripts/CSV.dll</HintPath>

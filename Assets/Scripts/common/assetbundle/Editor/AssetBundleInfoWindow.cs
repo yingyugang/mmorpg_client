@@ -15,7 +15,7 @@ public class AssetBundleInfoWindow : EditorWindow
 
 	static void Init ()
 	{ 
-		EditorWindow.GetWindow<AssetBundleInfoWindow> (true, "AssetBundleInfo", true); 
+//		EditorWindow.GetWindow<AssetBundleInfoWindow> (true, "AssetBundleInfo", true); 
 	}
 
 	void OnGUI ()

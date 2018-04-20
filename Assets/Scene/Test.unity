@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 2098124133}
   - component: {fileID: 2098124132}
   - component: {fileID: 2098124131}
+  - component: {fileID: 2098124135}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -251,10 +252,23 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2098124130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.27058282, y: -0, z: -0, w: 0.96269673}
+  m_LocalPosition: {x: 1049, y: 59, z: 905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.398, y: 0, z: 0}
+--- !u!114 &2098124135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2098124130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0cdaad795ae4f4badeaf189710e69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abName: farmterrain.ab
+  prefabName: FarmTerrain
