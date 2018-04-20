@@ -70,6 +70,7 @@ namespace MMO
 				StartCoroutine (_DownloadAssets ());
 			} else {
 				Debug.Log (www.error);
+				SceneManager.LoadMain ();
 			}
 			www.Dispose ();
 			www = null;
