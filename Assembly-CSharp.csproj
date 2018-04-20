@@ -46,53 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MeshBaker\Examples\BakeTexturesAtRuntime\BakeTexturesAtRuntime.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\BatchPrepareObjectsForDynamicBatching\MB_BatchPrepareObjectsForDynamicBatchingDescription.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\CharacterCustomization\MB_SwapShirts.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\PrepareObjectsForDynamicBatching\MB_PrepareObjectsForDynamicBatchingDescription.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\SceneDynamicAddDelete\MB_DynamicAddDeleteExample.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\SceneRuntimeExample\MB_Example.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\SceneRuntimeExample\MB_ExampleMover.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\SceneRuntimeExample\MB_ExampleSkinnedMeshDescription.cs" />
-     <Compile Include="Assets\MeshBaker\Examples\SkinnedMeshRenderer\MB_SkinnedMeshSceneController.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB2_TextureBakeResults.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBones.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBounds.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_BatchPrefabBaker.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_BoneWeightCopier.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_DisableHiddenAnimations.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MBVersionConcrete.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBaker.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerCommon.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerGrouper.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerRoot.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_MultiMeshBaker.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\MB3_TextureBaker.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlender.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderFallback.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyBumpDiffuse.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyDiffuse.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardMetallic.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardSpecular.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\_testing\MB2_TestShowHide.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\_testing\MB2_TestUpdate.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\_testing\MB3_TestAddingRemovingSkinnedMeshes.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\_testing\MB3_TestBakeAllWithSameMaterial.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\_testing\MB3_TestRenderTextureTestHarness.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB2_Core.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB2_Log.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB2_MBVersion.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB2_TexturePacker.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_AgglomerativeClustering.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_AtlasPackerRenderTexture.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_CopyBoneWeights.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_GrouperCluster.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombiner.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimple.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_MultiMeshCombiner.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_TextureCombiner.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB3_UVTransform.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\core\MB_Utility.cs" />
      <Compile Include="Assets\PlayMaker\Actions\ActivateGameObject.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AddAnimationClip.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AddComponent.cs" />
@@ -1570,7 +1523,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-BumpSpec.shader" />
      <None Include="Assets\Plugins\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-DeferredShading.shader" />
-     <None Include="Assets\MeshBaker\Examples\CharacterCustomization\CreditForModel.txt" />
      <None Include="Assets\ThirdPart\EasyTouchBundle\EasyTouchControls\Documentation\Version 2.0.txt" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityStandardUtils.cginc" />
@@ -1625,7 +1577,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityShadowLibrary.cginc" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Illumin-ParallaxSpec.shader" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
-     <None Include="Assets\MeshBaker\Resources\Shaders\NormalMapShader.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowEffectDownsample.shader" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CreaseApply.shader" />
@@ -1664,7 +1615,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITextureBlit.shader" />
      <None Include="Assets\ThirdPart\kolmich\KGFMapSystem\shaders\ShaderPhotoPlane.shader" />
      <None Include="Assets\ThirdPart\RPG and MMO UI 5\Changelog.txt" />
-     <None Include="Assets\MeshBaker\Release Notes.txt" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-Alpha.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
@@ -1773,7 +1723,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\TextureUV.shader" />
      <None Include="Assets\Plugins\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
-     <None Include="Assets\MeshBaker\README.txt" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\BlitTexArraySlice.shader" />
      <None Include="Assets\ThirdPart\Simple RPG Camera\Demo\Sources\Shaders\Toony-BasicOutline-Transparent.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-PrePassLighting.shader" />
@@ -1801,7 +1750,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Bumped.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\VertexColors.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Specular-AddPass.shader" />
-     <None Include="Assets\MeshBaker\Resources\Shaders\AlbedoShader.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Bumped.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Glossy.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityMetaPass.cginc" />

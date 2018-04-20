@@ -46,33 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_BatchPrefabBakerEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_BoneWeightCopierEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_DisableHiddenAnimationsEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_GameObjectMaterialInfo.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MBVersionConcreteEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MeshBakerEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MeshBakerEditorInternal.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MeshBakerEditorWindow.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MeshBakerGrouperEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_MultiMeshBakerEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_SearchFilters.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_ShaderTexturePropertyDrawer.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_TextureBakerEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\MB3_TextureBakerEditorInternal.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\core\MB3_BakeInPlace.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\core\MB3_MBVersionEditor.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\core\MB3_MeshBakerEditorFunctions.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\core\MB3_TextureCombinerEditorFunctions.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\core\MB_EditorUtil.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByAlreadyAdded.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByLightmapIndex.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByMaterial.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByOutOfBoundsUVs.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByRenderType.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByShader.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByStandardShaderType.cs" />
-     <Compile Include="Assets\MeshBaker\scripts\Editor\searchFilters\MB3_GroupByStatic.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\BaseClasses\OnAnimatorUpdateActionEditorBase.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorAnimatorRootActionEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorBoneGameObjectActionEditor.cs" />
@@ -401,7 +374,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-BumpSpec.shader" />
      <None Include="Assets\Plugins\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-DeferredShading.shader" />
-     <None Include="Assets\MeshBaker\Examples\CharacterCustomization\CreditForModel.txt" />
      <None Include="Assets\ThirdPart\EasyTouchBundle\EasyTouchControls\Documentation\Version 2.0.txt" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityStandardUtils.cginc" />
@@ -456,7 +428,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityShadowLibrary.cginc" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Illumin-ParallaxSpec.shader" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
-     <None Include="Assets\MeshBaker\Resources\Shaders\NormalMapShader.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowEffectDownsample.shader" />
      <None Include="Assets\ThirdPart\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CreaseApply.shader" />
@@ -495,7 +466,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-GUITextureBlit.shader" />
      <None Include="Assets\ThirdPart\kolmich\KGFMapSystem\shaders\ShaderPhotoPlane.shader" />
      <None Include="Assets\ThirdPart\RPG and MMO UI 5\Changelog.txt" />
-     <None Include="Assets\MeshBaker\Release Notes.txt" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Unlit\Unlit-Alpha.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
@@ -604,7 +574,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\TextureUV.shader" />
      <None Include="Assets\Plugins\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
      <None Include="Assets\ThirdPart\Autumn\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
-     <None Include="Assets\MeshBaker\README.txt" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\VR\Shaders\BlitTexArraySlice.shader" />
      <None Include="Assets\ThirdPart\Simple RPG Camera\Demo\Sources\Shaders\Toony-BasicOutline-Transparent.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Internal-PrePassLighting.shader" />
@@ -632,7 +601,6 @@
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Mobile\Mobile-Bumped.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\GIDebug\VertexColors.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\TerrainShaders\Splats\Specular-AddPass.shader" />
-     <None Include="Assets\MeshBaker\Resources\Shaders\AlbedoShader.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Alpha-Bumped.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\DefaultResourcesExtra\Reflect-Glossy.shader" />
      <None Include="Assets\ThirdPart\builtin_shaders-2017\CGIncludes\UnityMetaPass.cginc" />
