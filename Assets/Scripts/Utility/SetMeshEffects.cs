@@ -9,7 +9,7 @@ public class SetMeshEffects : MonoBehaviour
 
 	public Light directionLight;
 
-	public List<PSMeshRendererUpdater> mrus;
+//	public List<PSMeshRendererUpdater> mrus;
 
 	Color mDefaultColor;
 
@@ -18,22 +18,22 @@ public class SetMeshEffects : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		mrus = new List<PSMeshRendererUpdater> ();
-		MeshRenderer[] mrrs = GetComponentsInChildren<MeshRenderer> ();
-		mDefaultColor = directionLight.color;
-		mNeightColor = mDefaultColor / 4;
-		for (int i = 0; i < mrrs.Length; i++) {
-			GameObject prefab = effects [i % effects.Count];
-			GameObject go = Instantiate (prefab);
-			go.transform.SetParent (mrrs [i].transform);
-			go.transform.localPosition = Vector3.zero;
-			PSMeshRendererUpdater psMru = go.GetComponent<PSMeshRendererUpdater> ();
-			mrus.Add (psMru);
-			psMru.MeshObject = mrrs [i].gameObject;
-			psMru.UpdateMeshEffect ();
-			if (psMru.GetComponentInChildren<Light> () != null)
-				psMru.GetComponentInChildren<Light> ().enabled = false;
-		}
+//		mrus = new List<PSMeshRendererUpdater> ();
+//		MeshRenderer[] mrrs = GetComponentsInChildren<MeshRenderer> ();
+//		mDefaultColor = directionLight.color;
+//		mNeightColor = mDefaultColor / 4;
+//		for (int i = 0; i < mrrs.Length; i++) {
+//			GameObject prefab = effects [i % effects.Count];
+//			GameObject go = Instantiate (prefab);
+//			go.transform.SetParent (mrrs [i].transform);
+//			go.transform.localPosition = Vector3.zero;
+//			PSMeshRendererUpdater psMru = go.GetComponent<PSMeshRendererUpdater> ();
+//			mrus.Add (psMru);
+//			psMru.MeshObject = mrrs [i].gameObject;
+//			psMru.UpdateMeshEffect ();
+//			if (psMru.GetComponentInChildren<Light> () != null)
+//				psMru.GetComponentInChildren<Light> ().enabled = false;
+//		}
 	}
 
 
@@ -63,10 +63,10 @@ public class SetMeshEffects : MonoBehaviour
 			directionLight.color = Color.Lerp (fromColor, toColor, t);
 			yield return null;
 		}
-		for (int i = 0; i < mrus.Count; i++) {
-			if (mrus[i].GetComponentInChildren<Light> () != null)
-				mrus[i].GetComponentInChildren<Light> ().enabled = isLight;
-		}
+//		for (int i = 0; i < mrus.Count; i++) {
+//			if (mrus[i].GetComponentInChildren<Light> () != null)
+//				mrus[i].GetComponentInChildren<Light> ().enabled = isLight;
+//		}
 	}
 
 }
