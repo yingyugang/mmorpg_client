@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
-
+using MMO;
 public class CameraController : MonoBehaviour {
 
 	public BattlePerspective battlePerspective = BattlePerspective.StayBehind;
 	public CameraFollow cameraFollow;
-	public MobileSimpleRpgCamera mobileSimpleRpgCamera;
+	public RPGCameraController mobileSimpleRpgCamera;
 	public FixedCamera fixedCamera;
 	public Animation cameraAnimation;
 
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour {
 		}
 		if(mobileSimpleRpgCamera==null)
 		{
-			mobileSimpleRpgCamera = Camera.main.GetComponent<MobileSimpleRpgCamera> ();
+			mobileSimpleRpgCamera = Camera.main.GetComponent<RPGCameraController> ();
 		}
 		if (fixedCamera == null) 
 		{

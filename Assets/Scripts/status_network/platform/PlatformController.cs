@@ -7,26 +7,14 @@ namespace MMO
 	public class PlatformController : SingleMonoBehaviour<PlatformController>
 	{
 
-		public SimpleRpgPlayerController simpleRpgPlayerController;
-
-		public SimpleRpgCamera simpleRpgCamera;
-
 		public GameObject etcJoystick;
 
 		protected override void Awake ()
 		{
 			base.Awake ();
 			#if UNITY_EDITOR
-//			simpleRpgPlayerController.clickToMove = false;
-//			simpleRpgPlayerController.keyboardControl = true;
-//			simpleRpgCamera.allowRotation = true;
-//			simpleRpgCamera.minAngle = -90;
-//			simpleRpgCamera.maxAngle = 90;
 			etcJoystick.SetActive (false);
 			#elif UNITY_IOS || UNITY_ANDROID
-//			simpleRpgPlayerController.clickToMove = false;
-//			simpleRpgPlayerController.keyboardControl = true;
-//			simpleRpgCamera.allowRotation = true;
 			#endif
 		}
 
