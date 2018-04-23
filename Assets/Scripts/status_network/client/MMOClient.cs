@@ -35,6 +35,9 @@ namespace MMO
 			client.RegisterHandler (MessageConstant.PLAYER_VOICE, OnRecievePlayerVoice);
 			client.RegisterHandler (MessageConstant.PLAYER_RESPAWN, OnRecievePlayerRespawn);
 			client.RegisterHandler (MessageConstant.PLAYER_CONTROLL, OnRecievePlayerControll);
+			client.RegisterHandler (MessageConstant.PLAYER_ENTER, OnRecievePlayerEnter);
+			//TODO これはDisconnectと違う。たまでキャラクターを選ぶこと。
+			client.RegisterHandler (MessageConstant.PLAYER_LEAVE, OnRecievePlayerLeave);
 		}
 
 		public bool IsConnected {
@@ -49,7 +52,7 @@ namespace MMO
 		}
 
 		public void SendRespawn(){
-			RespawnInfo respawn = new RespawnInfo ();
+			SimplePlayerInfo respawn = new SimplePlayerInfo ();
 			Send (MessageConstant.PLAYER_RESPAWN,respawn);
 		}
 
@@ -63,22 +66,35 @@ namespace MMO
 			Send (MessageConstant.PLAYER_VOICE,voice);
 		}
 
-		public void Connect (string ip, int port, UnityAction<NetworkMessage> onConnect, UnityAction<NetworkMessage> onRecievePlayerInitInfo, UnityAction<NetworkMessage> onRecieveMessage)
+		public void Connect (string ip, int port, UnityAction<NetworkMessage> onRecieveMessage)
 		{
 			Debug.Log (string.Format ("{0},{1}", ip, port));
-			this.onConnect = onConnect;
-			this.onRecievePlayerInitInfo = onRecievePlayerInitInfo;
+//			this.onConnect = onConnect;
+//			this.onRecievePlayerInitInfo = onRecievePlayerInitInfo;
 			this.onRecieveMessage = onRecieveMessage;
 			client.Connect (ip, port);
 		}
 
 		void OnConnect (NetworkMessage nm)
 		{
-			Debug.logger.Log ("<color=green>Connect</color>");
-			if (onConnect != null)
-				onConnect (nm);
+			Debug.logger.Log ("<color=green>Connect</color>,new send the player information.");
+//			if (onConnect != null)
+//				onConnect (nm);
+			SendPlayerRegister(MMOController.Instance.playerName);
 		}
 
+		//TODO これで若干APIが必要だと思う。
+		//SendPlayerToken;this is get the user information (e.g. character list). now there is the "SendPlayerRegister" to instant it.
+		//SendSelectCharacter;
+		//SendCreateCharacter;
+
+		//Send the player info to server.
+		//例えば:プレーヤーの名前。PLAYER_REGISTER
+		public void SendPlayerRegister(string playerName){
+			FullPlayerInfo playerInitInfo = new FullPlayerInfo ();
+			playerInitInfo.playerName = playerName;
+			Send (MessageConstant.PLAYER_REGISTER,playerInitInfo);
+		}
 		//TODO
 		void OnDisconnect (NetworkMessage nm)
 		{
@@ -91,8 +107,8 @@ namespace MMO
 
 		void OnRecievePlayerInitInfo (NetworkMessage msg)
 		{
-			if (onRecievePlayerInitInfo != null)
-				onRecievePlayerInitInfo (msg);
+			GameInitInfo gameInitInfo = msg.ReadMessage<GameInitInfo> ();
+			MMOController.Instance.GameStart (gameInitInfo);
 		}
 
 		void OnRecieveMonsterInfos(NetworkMessage msg){
@@ -111,13 +127,23 @@ namespace MMO
 		}
 
 		void OnRecievePlayerRespawn(NetworkMessage msg){
-			RespawnInfo respawnInfo = msg.ReadMessage<RespawnInfo> ();
+			SimplePlayerInfo respawnInfo = msg.ReadMessage<SimplePlayerInfo> ();
 			ActionManager.Instance.DoRespawn (respawnInfo.unitId);
 		}
 
 		void OnRecievePlayerControll(NetworkMessage msg){
 			PlayerControllInfo playerControll = msg.ReadMessage<PlayerControllInfo> ();
 			MMOController.Instance.DoPlayerControll (playerControll);
+		}
+
+		void OnRecievePlayerLeave(NetworkMessage msg){
+			SimplePlayerInfo playerInfo = msg.ReadMessage<SimplePlayerInfo> ();
+			MMOController.Instance.DoRemovePlayer (playerInfo);
+		}
+
+		void OnRecievePlayerEnter(NetworkMessage msg){
+			GameInitInfo gameInitInfo = msg.ReadMessage<GameInitInfo> ();
+			MMOController.Instance.AddPlayer (gameInitInfo);
 		}
 
 		void OnRecieveMessage (NetworkMessage msg)

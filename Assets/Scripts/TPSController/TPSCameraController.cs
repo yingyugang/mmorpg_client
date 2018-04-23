@@ -50,7 +50,6 @@ namespace MMO
 				Vector3 targetPos = mDirect * mRealDistance * Mathf.Cos (angle / 180f * Mathf.PI) + new Vector3 (0, y, 0) + target.position + targetOffset;
 				mTrans.position = targetPos;
 				mTrans.LookAt (target.position + targetOffset);
-
 			}
 			//to move the position of target in the screen.
 			//		mTrans.position += new Vector3 (mTrans.forward.x, 0, mTrans.forward.z).normalized * targetOffset.z;
@@ -67,7 +66,7 @@ namespace MMO
 					mTrans.LookAt (target.position + targetOffset);
 				}
 			} else {
-				//			mRealDistance = Mathf.Min (distance,mRealDistance + DISTANCE_SPEED);
+				//mRealDistance = Mathf.Min (distance,mRealDistance + DISTANCE_SPEED);
 			}
 			if (!Physics.Raycast (target.position + targetOffset, (mTrans.position - target.position - targetOffset).normalized, out hit, currentDistance + DISTANCE_GROUND_OFFSET * 4, 1 << LayerConstant.LAYER_GROUND)) {
 				mRealDistance = Mathf.Min (distance, mRealDistance + DISTANCE_SPEED * Time.deltaTime);

@@ -12,7 +12,6 @@ namespace MMO
 	{
 RPG = 0,
 TPS = 1
-
 	}
 
 	public class MMOController : SingleMonoBehaviour<MMOController>
@@ -25,6 +24,7 @@ TPS = 1
 		public Camera uiCamera;
 		//if Serialized this while not run the construction function when game start;
 		PlayerInfo mPlayerInfo;
+		FullPlayerInfo mFullPlayerInfo;
 		public string playerName;
 
 		public string targetIp;
@@ -43,8 +43,7 @@ TPS = 1
 		Dictionary<int,GameObject> mUnitDic;
 		Dictionary<int,GameObject> mPlayerDic;
 		Dictionary<int,GameObject> mMonsterDic;
-		List<int> mOtherPlayerIds;
-		int mPlayerId;
+		int mCurrentPlayerId;
 		Vector3 mPrePosition;
 		Vector3 mPreForward;
 		int mPreSelectId = -1;
@@ -56,7 +55,6 @@ TPS = 1
 		void Start ()
 		{
 			mPlayerDic = new Dictionary<int, GameObject> ();
-			mOtherPlayerIds = new List<int> ();
 			mMonsterDic = new Dictionary<int, GameObject> ();
 			mUnitDic = new Dictionary<int, GameObject> ();
 			client.onRecieveMonsterInfos = OnRecieveServerActions;
@@ -74,7 +72,7 @@ TPS = 1
 			Instantiate (terrainObjectPrefab).GetComponent<GameObject> ();
 		}
 
-		void InitPlayer ()
+		void InitPlayerInterface ()
 		{
 			switch (playType) {
 			case PlayType.RPG:
@@ -167,16 +165,14 @@ TPS = 1
 
 		public void Connect (string ip, int port)
 		{
-			client.Connect (ip, port, OnConnected, OnRecieveGameStartInfo, OnRecievePlayerMessage);
+			client.Connect (ip, port, OnRecievePlayerMessage);
 		}
-
+		//TODO better to change to use photon api.
 		public void SendChat (string chat)
 		{
-			mPlayerInfo.chat = chat;
 			client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
-			mPlayerInfo.chat = "";
 		}
-
+		//TODO better to change to use photon api.
 		public void SendVoice (float[] data)
 		{
 			client.SendVoice (data);
@@ -198,90 +194,33 @@ TPS = 1
 			return null;
 		}
 
-		void OnConnected (NetworkMessage msg)
-		{
-			Debug.Log ("OnConnected");
-		}
-
-		//TODO 把通信数据放在一个主对象的不同参数里面，这个容易理解很保存数据。
-		//开发量也相对较少，否则分开的化需要不同的对象，方法，action，数量多，时间长不易于管理。
-		//主要是玩家自己的操作
-		void OnRecieveGameStartInfo (NetworkMessage msg)
-		{
-			Debug.Log ("OnRecieveGameStartInfo");
-			GameInitInfo gameInitInto = msg.ReadMessage<GameInitInfo> ();
-			mPlayerInfo = gameInitInto.playerInfo;
-			mPlayerId = mPlayerInfo.playerId;
+		public void GameStart(GameInitInfo gameInitInto){
+			PanelManager.Instance.mainInterfacePanel.name = gameInitInto.playerInfo.playerName;
+			mPlayerInfo = gameInitInto.playerInfo.playerInfo;
+			mFullPlayerInfo = gameInitInto.playerInfo;
+			mCurrentPlayerId = mPlayerInfo.playerId;
 			mPlayerInfo.unitInfo.attribute.unitName = playerName;
 			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive (true);
 			playType = (PlayType)gameInitInto.playType;
-			InitPlayer ();
+			InitPlayerInterface ();
 			player.gameObject.SetActive (true);
+			AddPlayer (gameInitInto);
 			if (minimap != null)
 				minimap.gameObject.SetActive (true);
 			isStart = true;
 		}
 
+		//TODO 这段逻辑有点复杂，最好是用事件的方式来进行处理，但是需要对初始化数据做好管理，如果关键帧丢失也需要做处理，不过只不过是表现方面。
+		int mCurrentPlayerFrame;
 		void OnRecievePlayerMessage (NetworkMessage msg)
 		{
 			if (!isStart)
 				return;
 			TransferData transferData = msg.ReadMessage<TransferData> ();
-			HashSet<int> activedPlayerIds = new HashSet<int> ();
+			mCurrentPlayerFrame++;
 			for (int i = 0; i < transferData.playerDatas.Length; i++) {
-				if (!mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
-					GameObject playerGO;
-					if (transferData.playerDatas [i].playerId != mPlayerId) {
-						playerGO = InstantiateUnit (transferData.playerDatas [i].unitInfo.attribute.unitType, transferData.playerDatas [i].unitInfo,true);
-					} else {
-						playerGO = player.gameObject;
-						playerGO.layer = LayerConstant.LAYER_PLAYER;
-						MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
-						playerUnit.onDeath = () => {
-							OnCurrentPlayerDeath ();
-						};
-					}
-					mPlayerDic.Add (transferData.playerDatas [i].playerId, playerGO);
-					mPlayerDic [transferData.playerDatas [i].playerId].SetActive (true);
-					mOtherPlayerIds.Add (transferData.playerDatas [i].playerId);
-					if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
-						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, playerGO);
-					}
-				}
-				if (transferData.playerDatas [i].playerId != mPlayerId) {
-					activedPlayerIds.Add (transferData.playerDatas [i].playerId);
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.position = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.position);
-					mPlayerDic [transferData.playerDatas [i].playerId].transform.forward = IntVector3.ToVector3 (transferData.playerDatas [i].unitInfo.transform.forward);
-				} else {
-					if (mPlayerInfo != null)
-						mPlayerInfo.unitInfo = transferData.playerDatas [i].unitInfo;
-				}
-
-				//TODO temp change the mmounit when respawn;
-				if (!mUnitDic.ContainsKey (transferData.playerDatas [i].unitInfo.attribute.unitId)) {
-					if (mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
-						//TODO need remove old unit.
-						mUnitDic.Add (transferData.playerDatas [i].unitInfo.attribute.unitId, mPlayerDic [transferData.playerDatas [i].playerId]);
-					}
-				}
-				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.attribute = transferData.playerDatas [i].unitInfo.attribute;
-				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.action = transferData.playerDatas [i].unitInfo.action;
-				mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ().unitInfo.unitSkillIds = transferData.playerDatas [i].unitInfo.unitSkillIds;
-				if (!string.IsNullOrEmpty (transferData.playerDatas [i].chat)) {
-					if (onChat != null) {
-						if (transferData.playerDatas [i].playerId != mPlayerId)
-							onChat (string.Format ("<color=yellow>{0}</color>:{1}", transferData.playerDatas [i].unitInfo.attribute.unitName, transferData.playerDatas [i].chat));
-						else
-							onChat (string.Format ("<color=yellow>{0}</color>:{1}", "you", transferData.playerDatas [i].chat));
-					}
-				}
-				MMOUnit mmoUnit = mPlayerDic [transferData.playerDatas [i].playerId].GetComponent<MMOUnit> ();
-				if (transferData.playerDatas [i].playerId == mPlayerId) {
-					MMOUnitSkill mmoUnitSkill = mmoUnit.GetComponent<MMOUnitSkill> ();
-					if (!mmoUnitSkill.IsInitted) {
-						mmoUnitSkill.InitSkills ();
-						PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
-					}
+				if (mPlayerDic.ContainsKey (transferData.playerDatas [i].playerId)) {
+					SetPlayerInfo (transferData.playerDatas [i]);
 				}
 			}
 		}
@@ -355,13 +294,13 @@ TPS = 1
 				monster.transform.forward = IntVector3.ToVector3 (data.monsterDatas [i].transform.forward);
 				monster.unitInfo = unitInfo;
 			}
+
 			List<int> removeList = new List<int> ();
 			foreach (int id in mMonsterDic.Keys) {
 				if (mMonsterDic [id].GetComponent<MMOUnit> ().frame != mCurrentFrame) {
 					removeList.Add (id);
 				}
 			}
-
 			for (int i = 0; i < removeList.Count; i++) {
 				Destroy (mMonsterDic [removeList [i]]);
 				mMonsterDic.Remove (removeList [i]);
@@ -428,11 +367,6 @@ TPS = 1
 				mCachedUnitPrefabs = new Dictionary<int, GameObject> ();
 			MUnit mUnit = CSVManager.Instance.GetUnit (unitInfo.attribute.unitType);
 			GameObject unitPrebfab;
-
-			//TODO need amend players load to assetbundle.
-//			if (unitType == 0) {
-//				unitPrebfab = Resources.Load<GameObject> ("Units/Player");
-//			} else {
 			if (mCachedUnitPrefabs.ContainsKey (unitType)) {
 				unitPrebfab = mCachedUnitPrefabs [unitType];
 			} else {
@@ -443,8 +377,6 @@ TPS = 1
 				}
 				mCachedUnitPrefabs.Add (unitType, unitPrebfab);
 			}
-//			}
-			Debug.Log (string.Format ("{0}||{1}", mUnit.assetbundle, mUnit.resource_name));
 			unitPrebfab.SetActive (false);
 			GameObject unitGo = Instantiate (unitPrebfab) as GameObject;
 			unitGo.GetOrAddComponent<MMOUnitSkill> ();
@@ -464,6 +396,12 @@ TPS = 1
 			}
 		}
 
+		public FullPlayerInfo fullPlayerInfo{
+			get{ 
+				return mFullPlayerInfo;
+			}
+		}
+
 		public Vector3 GetTerrainPos (Vector3 pos)
 		{
 			Vector3 terrainPos = new Vector3 (pos.x, mTerrain.SampleHeight (pos), pos.z);
@@ -476,7 +414,6 @@ TPS = 1
 			playerControll.right = right;
 			MMOClient.Instance.Send (MessageConstant.PLAYER_CONTROLL, playerControll);
 		}
-
 		//Send the status to the server.
 		//例えば　遷移とか、待機どか。
 		//为了更好的用户体验，这些操作都在客户端进行。
@@ -505,10 +442,67 @@ TPS = 1
 			}
 		}
 
+		public void DoRemovePlayer(SimplePlayerInfo playerInfo){
+			if (this.mPlayerDic.ContainsKey (playerInfo.playerId)) {
+				GameObject playerGo = mPlayerDic [playerInfo.playerId];
+				if(playerGo!=null){
+					//TODO need some perform to excute the destory.
+					Destroy (playerGo);
+				}
+				mPlayerDic.Remove (playerInfo.playerId);
+				if(mUnitDic.ContainsKey(playerInfo.unitId))
+					mUnitDic.Remove (playerInfo.unitId);
+			}
+		}
 		//Do the action from server.
 		public void DoClientPlayerAction (StatusInfo action)
 		{
 			ActionManager.Instance.DoAction (action);
+		}
+
+		public void AddPlayer(GameInitInfo gameInitInfo){
+			GameObject playerGO;
+			PlayerInfo playerInfo = gameInitInfo.playerInfo.playerInfo;
+			MMOUnit mmoUnit = null;
+			if (gameInitInfo.playerInfo.playerInfo.playerId != mCurrentPlayerId) {
+				playerGO = InstantiateUnit (playerInfo.unitInfo.attribute.unitType, playerInfo.unitInfo,true);
+				mmoUnit = playerGO.GetComponent<MMOUnit> ();
+			} else {
+				playerGO = player.gameObject;
+				mmoUnit = playerGO.GetComponent<MMOUnit> ();
+				playerGO.layer = LayerConstant.LAYER_PLAYER;
+				MMOUnit playerUnit = playerGO.GetComponent<MMOUnit> ();
+				playerUnit.onDeath = () => {
+					OnCurrentPlayerDeath ();
+				};
+			}
+			mPlayerDic.Add (playerInfo.playerId, playerGO);
+			playerGO.SetActive (true);
+			if (!mUnitDic.ContainsKey (playerInfo.unitInfo.attribute.unitId)) {
+				mUnitDic.Add (playerInfo.unitInfo.attribute.unitId, playerGO);
+			}
+			SetPlayerInfo (playerInfo);
+			if (gameInitInfo.playerInfo.playerInfo.playerId == mCurrentPlayerId) {
+				MMOUnitSkill mmoUnitSkill = mmoUnit.GetComponent<MMOUnitSkill> ();
+				if (!mmoUnitSkill.IsInitted) {
+					mmoUnitSkill.InitSkills ();
+					PanelManager.Instance.InitSkillIcons (mmoUnitSkill);
+				}
+			}
+		}
+		//TODO need to change to set player transform and attribute.
+		void SetPlayerInfo(PlayerInfo playerInfo){
+			MMOUnit mmoUnit = mPlayerDic [playerInfo.playerId].GetComponent<MMOUnit> ();
+			mmoUnit.frame = mCurrentPlayerFrame;
+			if (playerInfo.playerId != mCurrentPlayerId) {
+				mPlayerDic [playerInfo.playerId].transform.position = IntVector3.ToVector3 (playerInfo.unitInfo.transform.position);
+				mPlayerDic [playerInfo.playerId].transform.forward = IntVector3.ToVector3 (playerInfo.unitInfo.transform.forward);
+				mmoUnit.unitInfo.attribute = playerInfo.unitInfo.attribute;
+			} else {
+				if (mPlayerInfo != null)
+					mPlayerInfo.unitInfo = playerInfo.unitInfo;
+				mmoUnit.unitInfo = playerInfo.unitInfo;
+			}
 		}
 
 	}

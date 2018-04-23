@@ -7,6 +7,7 @@ using System;
 namespace MMO
 {
 
+	//TODO
 	[Serializable]
 	public class HitInfo:MessageBase
 	{
@@ -14,6 +15,8 @@ namespace MMO
 		public IntVector3 hitOriginPosition;
 		public IntVector3 hitNormal;
 		public int hitLayer;
+		//if unitSkillId = -1 ,means is not the UnitSkill.
+		//get the hit object by the hitObjectIds.
 		public int unitSkillId;
 		public int[] hitIds;
 		public int[] nums;
@@ -42,6 +45,13 @@ namespace MMO
 	}
 
 	[Serializable]
+	public class PlayerControllInfo: MessageBase{
+		public int unitId;
+		public float forward;
+		public float right;
+	}
+
+	[Serializable]
 	public class UnitInfo : MessageBase
 	{
 		public MMOAttribute attribute;
@@ -62,32 +72,20 @@ namespace MMO
 	}
 
 	[Serializable]
-	public class PlayerInfo : MessageBase
+	public class ChatInfo : MessageBase
 	{
-		public int playerId;
-		public string chat;
-		public int skillId;
-		public int targetId;
-		public UnitInfo unitInfo;
+		public int sender;
+		public int reciever;
+		public string text;
 
-		public PlayerInfo(){
-			skillId = -1;
-			targetId = -1;
+		public ChatInfo ()
+		{
+			//-1はサーバーからメーセッジの意味
+			sender = -1;
+			//-1は全体的に話し
+			reciever = -1;
+			text = "";
 		}
-	}
-
-	[Serializable]
-	public class PlayerControllInfo : MessageBase{
-		public int unitId;
-		public float forward;
-		public float right;
-	}
-
-	[Serializable]
-	public class GameInitInfo: MessageBase
-	{
-		public int playType;
-		public PlayerInfo playerInfo;
 	}
 
 	[Serializable]
@@ -101,6 +99,52 @@ namespace MMO
 	{
 		public int sender;
 		public float[] voice;
+	}
+
+	[System.Serializable]
+	public class SimplePlayerInfo:MessageBase
+	{
+		public int playerId;
+		public int unitId;
+	}
+
+	[Serializable]
+	//only send when user info changed.
+	//通常是不经常发送的数据，string类似的大数据。
+	public class FullPlayerInfo:MessageBase{
+		public string playerName;
+		public PlayerInfo playerInfo;
+		public FullPlayerInfo(){
+			playerInfo = new PlayerInfo ();
+			playerName = "";
+		}
+	}
+
+	[Serializable]
+	public class PlayerInfo : MessageBase
+	{
+		public int playerId;
+//		public string chat;
+		public int skillId;
+		public int targetId;
+		public UnitInfo unitInfo;
+
+		public PlayerInfo ()
+		{
+			skillId = -1;
+			targetId = -1;
+			unitInfo = new UnitInfo ();
+		}
+	}
+
+	[Serializable]
+	public class GameInitInfo: MessageBase
+	{
+		public int playType;
+		public FullPlayerInfo playerInfo;
+		//TODO need to send ten by ten，
+		//这个方法可能会超过容量大小。
+		public FullPlayerInfo[] otherPlayerInfos;
 	}
 
 	[Serializable]
@@ -142,7 +186,8 @@ namespace MMO
 		public IntVector3 position;
 		public IntVector3 forward;
 
-		public MMOTransform(){
+		public MMOTransform ()
+		{
 			position = new IntVector3 ();
 			forward = new IntVector3 ();
 		}
@@ -155,36 +200,42 @@ namespace MMO
 		public float animSpeed;
 	}
 
+	//ネット通信用アクション
 	[System.Serializable]
 	public class StatusInfo:MessageBase
 	{
-		//when  is the player and is send from client to server, the unitId is not be used,because it will be get the unit by the connectid.
+		//when is the player and is send from client to server, the unitId is not be used,because it will be get the unit by the connectid.
 		public int casterId;
-		//the actionId of caster;(must)
+		//the unitskillid of caster;
 		public int actionId;
-		//1:unit skill,2:create projectile object;3:create hit object(must)
+		//1:unit skill,2:start auto,3:end auto(must),4,change status(actionId:1=idle,2=move,3=run,4=death,演出するしかない)。
 		public int status;
 		//the cast target unit id;(maybe)
 		public int targetId;
-		//the cast target position or shoot begin position.
+		//the cast target position;(maybe)
 		public IntVector3 position;
 
 		public IntVector3 forward;
 
-		public StatusInfo(){
+		public StatusInfo ()
+		{
 			actionId = -1;
 			status = 1;
-			targetId = -1;
 			position = new IntVector3 ();
 			forward = new IntVector3 ();
 		}
 	}
 
-	[System.Serializable]
-	public class RespawnInfo:MessageBase
+	public class MMOChat:MessageBase
 	{
-		public int playerId;
-		public int unitId;
+		public int chaterId;
+		public string chat;
+
+		public MMOChat (int chaterId, string chat)
+		{
+			this.chaterId = chaterId;
+			this.chat = chat;
+		}
 	}
 
 	[System.Serializable]

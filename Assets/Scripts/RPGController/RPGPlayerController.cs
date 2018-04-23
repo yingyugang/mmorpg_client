@@ -92,10 +92,10 @@ namespace MMO
 				}
 			}
 		}
-
+		//TODO
 		void UpdateETCJoystickPos(){
 			if(etcJoystick.activated){
-				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint(Input.GetTouch(etcJoystick.pointId).position,this.joystickCanvas.transform,this.joystickCanvas);
+//				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint(Input.GetTouch(etcJoystick.pointId).position,this.joystickCanvas.transform,this.joystickCanvas);
 //				etcJoystick.pointId
 
 			}

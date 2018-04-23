@@ -165,7 +165,7 @@ namespace MMO
 			if (MMOController.Instance.playerInfo == null)
 				return;
 			txt_level.text = MMOController.Instance.playerInfo.unitInfo.attribute.level.ToString ();
-			txt_name.text = MMOController.Instance.playerInfo.unitInfo.attribute.unitName;
+			txt_name.text = MMOController.Instance.fullPlayerInfo.playerName;
 			if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
 				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
 		}

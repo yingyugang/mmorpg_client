@@ -55,7 +55,15 @@ namespace MMO
 					float radio = (float)mmoUnit.unitInfo.attribute.currentHP / mmoUnit.unitInfo.attribute.maxHP;
 					healthBar.size = new Vector2 (mDefaultHealthSize * radio, healthBar.size.y);
 				}
+				CalculateUIDistance ();
 			}
+		}
+
+		void CalculateUIDistance(){
+			float distance = Vector3.Distance (Camera.main.transform.position, mTrans.position);
+			float t = Mathf.InverseLerp (BattleConst.MIN_UI_DISTANCE,BattleConst.MAX_UI_DISTANCE,distance);
+			float targetScale = Mathf.Lerp (BattleConst.MIN_UI_SCALE,BattleConst.MAX_UI_SCALE,t);
+			mTrans.localScale = Vector3.one * targetScale;
 		}
 
 		public void SetUnit (MMOUnit mmoUnit)

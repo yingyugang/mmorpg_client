@@ -285,6 +285,14 @@ public class BattleConst
 
 	public const int DEFAULT_GUN_SHOOT_ID = -1;
 
+	public const float MIN_UI_SCALE = 0.2f;
+
+	public const float MAX_UI_SCALE = 1.2f;
+
+	public const float MIN_UI_DISTANCE = 1;
+
+	public const float MAX_UI_DISTANCE = 10;
+
 	public struct BattleSounds{
 		public const string SHOOT = "Sounds/MiniGun";
 		public const string RELOAD = "Sounds/Reload";

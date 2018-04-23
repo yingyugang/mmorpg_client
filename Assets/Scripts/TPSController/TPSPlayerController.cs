@@ -10,18 +10,13 @@ namespace MMO
 {
 	public class TPSPlayerController : BasePlayerController
 	{
-
 		public float slopeLimit = 55;
-
 		public float gravity = 20;
 		public float jumpPower = 8;
 		Vector3 _velocity;
 		bool _grounded;
-
-
 		public TPSCameraController tpsCameraController;
 		public CharacterEffectUtility characterEffectUtility;
-
 		CharacterController mCharacterController;
 		float mInputX;
 		float mInputY;
@@ -30,11 +25,9 @@ namespace MMO
 		MMOUnitSkill mMMOUnitSkill;
 		public float speed = 7;
 		private UnitAnimator unitAnimator;
-
 		public Canvas joystickCanvas;
 		public ETCJoystick etcJoystick;
 		AudioSource mPlayerAudioSource;
-
 
 		void Awake ()
 		{
@@ -51,12 +44,14 @@ namespace MMO
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
-//		bool mIsRuning;
 		public bool isPause;
 		float mNextShoot;
 
 		void Update ()
 		{
+			if(!MMOController.Instance.isStart){
+				return;
+			}
 
 			if (Input.GetMouseButtonDown (0)) {
 				unitAnimator.StartFire ();
@@ -118,9 +113,7 @@ namespace MMO
 				d = -1;
 			}
 			float angleY = Mathf.Acos (angle) * 180 / Mathf.PI * d - 90;
-//			mTrans.forward = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
 			Vector3 moveDirection = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
-
 			if (mInputX != 0 || mInputY != 0) {
 				unitAnimator.SetMoveSpeed (mInputY);
 				unitAnimator.SetRight (mInputX);
@@ -137,7 +130,6 @@ namespace MMO
 //				}
 			}
 			MMOController.Instance.SendPlayerControll (mInputY,mInputX);
-
 			RaycastHit hit;
 			if (_grounded && Physics.Raycast (mTrans.position + new Vector3 (0, 2, 0), -Vector3.up, out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_GROUND | 1 << LayerConstant.LAYER_DEFAULT)) {
 				mTrans.position = new Vector3 (mTrans.position.x, hit.point.y, mTrans.position.z);
@@ -153,45 +145,19 @@ namespace MMO
 					mCharacterController.Move (direct + new Vector3 (0, _velocity.y * Time.deltaTime, 0));
 				}
 				//TODO 暂时只能同步move和idle，attack无法同步。
-
 			} else {
 				
 			}
 			_velocity.y -= gravity * Time.deltaTime;
-
 		}
 
 		void OnControllerColliderHit (ControllerColliderHit col)
 		{
 			// This keeps the player from sticking to walls
 			float angle = col.normal.y * 90;
-
 			if (angle < slopeLimit) {
-				Debug.Log (angle);
-//				if(_grounded)
-//				{
 				_velocity = Vector3.zero;
-//				}
-//				if(_velocity.y > 0)
-//				{
-//					_velocity.y = 0;
-//				}
-//				else
-//				{
-//					_velocity += new Vector3(col.normal.x, 0, col.normal.z).normalized;
-//				}
-//
-//				_grounded = false;
 			} else {
-				// Player is grounded here
-				// If player falls too far, trigger falling damage
-//				if(_t.position.y < _fall_start - fallThreshold)
-//				{
-//					FallingDamage(_fall_start - fallThreshold - _t.position.y);
-//				}
-//
-//				_fall_start = _t.position.y;
-//
 				_grounded = true;
 				_velocity.y = 0;
 			}
@@ -204,10 +170,11 @@ namespace MMO
 			mTrans.forward = forward;
 		}
 
+		//TODO 
 		void UpdateETCJoystickPos ()
 		{
 			if (etcJoystick.activated) {
-				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint (Input.GetTouch (etcJoystick.pointId).position, this.joystickCanvas.transform, this.joystickCanvas);
+//				Vector2 touchPos = RectTransformUtility.PixelAdjustPoint (Input.GetTouch (etcJoystick.pointId).position, this.joystickCanvas.transform, this.joystickCanvas);
 			}
 		}
 
@@ -231,10 +198,6 @@ namespace MMO
 						}
 						PanelManager.Instance.mainInterfacePanel.Shoot ();
 						SoundManager.Instance.PlayShoot (this.mPlayerAudioSource);
-//						RaycastHit hit;
-//						if (Physics.Raycast (tpsCameraController.transform.position, tpsCameraController.transform.forward, out hit, Mathf.Infinity, ~(1 << LayerConstant.LAYER_PLAYER))) {
-//							PerformManager.Instance.ShowBulletHit (hit.point, hit.normal, hit.collider.gameObject.layer);
-//						}
 					}
 				} else {
 					SoundManager.Instance.PlayEmpty (this.mPlayerAudioSource); 
@@ -289,7 +252,7 @@ namespace MMO
 				ToggleOffset (new Vector3 (0, 2.3f, 0)); 
 			}
 		}
-		//TODO need to check weather can reload.
+		//TODO need to check wheather can be reloaded.
 		void Reload ()
 		{
 			unitAnimator.Reload ();
@@ -298,7 +261,6 @@ namespace MMO
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD, -1, new IntVector3 ());
 			SoundManager.Instance.PlayReload (mPlayerAudioSource);
 		}
-
 		//TODO
 		IEnumerator _Reload ()
 		{
@@ -315,12 +277,9 @@ namespace MMO
 		{
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MELEE, -1, new IntVector3 ());
 		}
-
 		//Jump 正式一点跳跃应该是3个动作
 		void Jump ()
 		{
-//			StartCoroutine (_Jump());
-//			unitAnimator.GetComponent<Rigidbody> ().AddForce (0,force,0);
 			if (_grounded) {
 				unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
 				_velocity.y = jumpPower;
@@ -333,7 +292,7 @@ namespace MMO
 
 		IEnumerator _Jump ()
 		{
-			unitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 100, 0);// AddForce (0,force,0);
+			unitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 100, 0);
 			unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
 			while (true) {
 				yield return null;
