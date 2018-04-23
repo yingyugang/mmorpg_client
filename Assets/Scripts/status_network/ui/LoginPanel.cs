@@ -16,14 +16,13 @@ namespace MMO
 		public InputField input_name;
 		public Button btn_connect;
 		public GameObject uiRoot;
-		int port = 8001;
 
 		protected override void Awake ()
 		{
 			base.Awake ();
 			btn_connect.onClick.AddListener (()=>{
 				MMOController.Instance.playerName = input_name.text.Trim();
-				MMOController.Instance.Connect(ServerListPanel.targetIp.Trim(),port);
+				MMOController.Instance.Connect(ServerListPanel.targetIp.Trim(),BattleConst.DEFAULT_TARGET_PORT);
 				PlayerPrefs.SetString(TARGET_IP,input_ip.text);
 				PlayerPrefs.SetString(TARGET_PORT,input_port.text);
 				PlayerPrefs.SetString(TARGET_NAME,input_name.text);

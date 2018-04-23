@@ -39,14 +39,14 @@ namespace DuloGames.UI
             if (UIWindowManager.Instance != null && UIWindowManager.Instance.escapeInputName == this.m_InputName && UIWindowManager.Instance.escapedUsed)
                 return;
 
-            if (Input.GetButton(this.m_InputName))
-                this.m_OnButton.Invoke();
-
-            if (Input.GetButtonDown(this.m_InputName))
-                this.m_OnButtonDown.Invoke();
-
-            if (Input.GetButtonUp(this.m_InputName))
-                this.m_OnButtonUp.Invoke();
+//            if (Input.GetButton(this.m_InputName))
+//                this.m_OnButton.Invoke();
+//
+//            if (Input.GetButtonDown(this.m_InputName))
+//                this.m_OnButtonDown.Invoke();
+//
+//            if (Input.GetButtonUp(this.m_InputName))
+//                this.m_OnButtonUp.Invoke();
         }
     }
 }

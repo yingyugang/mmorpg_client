@@ -19,6 +19,14 @@ namespace MMO
 			UnityEngine.SceneManagement.SceneManager.LoadScene (SceneConstant.SCENE_MAIN);
 		}
 
+		public static void LoadCharacterSelect(){
+			UnityEngine.SceneManagement.SceneManager.LoadScene (SceneConstant.SCENE_CHARACTER_SELECT);
+		}
+
+		public static void LoadCharacterCreate(){
+			UnityEngine.SceneManagement.SceneManager.LoadScene (SceneConstant.SCENE_CHARACTER_CREATE);
+		}
+
 		public static void LoadBattlefield(){
 			UnityEngine.SceneManagement.SceneManager.LoadScene (SceneConstant.SCENE_BATTLE);
 		}

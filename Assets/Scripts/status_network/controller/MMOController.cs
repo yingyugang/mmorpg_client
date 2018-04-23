@@ -70,6 +70,13 @@ TPS = 1
 //				Instantiate (terrainPrefabT4M);
 			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
 			Instantiate (terrainObjectPrefab).GetComponent<GameObject> ();
+			if (!string.IsNullOrEmpty (ServerListPanel.targetIp)) {
+				Connect (ServerListPanel.targetIp, BattleConst.DEFAULT_TARGET_PORT);
+				//TODO need to set the character name at character select page.
+				playerName = Random.Range (10000, 99999).ToString ();
+			} else {
+				PanelManager.Instance.ShowServerListPanel ();
+			}
 		}
 
 		void InitPlayerInterface ()

@@ -22,7 +22,7 @@ namespace MMO
 			base.Awake ();
 		}
 
-		void Start(){
+		public void ShowServerListPanel(){
 			if (serverListPanel != null) {
 				serverListPanel.gameObject.SetActive (true);
 				serverListPanel.onBtnIpClick = () => {

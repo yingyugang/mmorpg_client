@@ -299,4 +299,5 @@ public class BattleConst
 		public const string EMPTY = "Sounds/Empty";
 	}
 
+	public const int DEFAULT_TARGET_PORT = 8001;
 }

@@ -70,7 +70,7 @@ namespace MMO
 				StartCoroutine (_DownloadAssets ());
 			} else {
 				Debug.Log (www.error);
-				SceneManager.LoadMain ();
+				SceneManager.LoadCharacterSelect ();
 			}
 			www.Dispose ();
 			www = null;
@@ -85,7 +85,7 @@ namespace MMO
 				if (mVersions.Count == 0 && mDownloadingCount == 0) {
 					Debug.Log ("Download Done!".AliceblueColor ());
 //				UnityEngine.SceneManagement.SceneManager.LoadSceneAsync (2);
-					SceneManager.LoadMain ();
+					SceneManager.LoadCharacterSelect ();
 					yield break;
 				}
 				if (mDownloadingCount < maxDownloadCount && mVersions.Count > 0) {
