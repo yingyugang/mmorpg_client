@@ -25,6 +25,12 @@ namespace MMO
 
 		void Start ()
 		{
+			if(client==null){
+				Init();
+			}
+		}
+
+		void Init(){
 			client = new NetworkClient ();
 			client.RegisterHandler (MsgType.Connect, OnConnect);
 			client.RegisterHandler (MsgType.Disconnect, OnDisconnect);
@@ -68,6 +74,9 @@ namespace MMO
 
 		public void Connect (string ip, int port, UnityAction<NetworkMessage> onRecieveMessage)
 		{
+			if(client==null){
+				Init();
+			}
 			Debug.Log (string.Format ("{0},{1}", ip, port));
 //			this.onConnect = onConnect;
 //			this.onRecievePlayerInitInfo = onRecievePlayerInitInfo;

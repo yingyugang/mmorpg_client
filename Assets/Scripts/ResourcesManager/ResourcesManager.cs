@@ -209,7 +209,6 @@ namespace MMO
 			GameObject go = Resources.Load<GameObject> ("Units/" + unitName);//   LoadAsset<GameObject> (abName,unitName);
 			return go;
 		}
-
 		//TODO need to be config.
 		public GameObject GetBulletHit(string prefabName){
 			string abName = ABConstant.EFFECTS + ABConstant.FPSPACK;

@@ -29,6 +29,8 @@ namespace MMO
 		public ETCJoystick etcJoystick;
 		AudioSource mPlayerAudioSource;
 
+		public GameObject arrowRenderer;
+
 		void Awake ()
 		{
 			mCharacterController = GetComponent<CharacterController> ();
@@ -46,26 +48,53 @@ namespace MMO
 
 		public bool isPause;
 		float mNextShoot;
+		bool mIsFire;
 
 		void Update ()
 		{
 			if(!MMOController.Instance.isStart){
 				return;
 			}
-
-			if (Input.GetMouseButtonDown (0)) {
-				unitAnimator.StartFire ();
-				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.FIRE, -1, new IntVector3 ());
+			if(Input.GetKeyDown(KeyCode.Escape)){
+				Cursor.lockState = CursorLockMode.Confined;
 			}
-			if (Input.GetMouseButton (0)) {
+			if(Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject()){
+				if(Cursor.lockState != CursorLockMode.Locked){
+					Cursor.lockState = CursorLockMode.Locked;
+					return;
+				}
+			}
+			//TODO mobileを対応することが必要だと思う。
+			if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject()) {
+				if (MMOController.Instance.weaponId == 1) {
+					mIsFire = true;
+					unitAnimator.StartFire ();
+					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.FIRE, -1, new IntVector3 ());
+				}else if(MMOController.Instance.weaponId == 2){
+					ShootInfo shootInfo = new ShootInfo ();
+					shootInfo.casterId = MMOController.Instance.playerInfo.unitInfo.attribute.unitId;
+					shootInfo.targetId = Random.Range (1,10);
+					shootInfo.unitSkillId = 18;
+					ActionManager.Instance. DoShoot (shootInfo);
+				}
+			}
+			if (Input.GetMouseButton (0) && mIsFire) {
 				if (mNextShoot < Time.time) {
 					Shoot ();
 					mNextShoot = Time.time + 0.1f;
 				}
 			}
 			if (Input.GetMouseButtonUp (0)) {
+				mIsFire = false;
 				unitAnimator.StopFire ();
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
+			}
+
+			if(Input.GetKeyDown(KeyCode.Alpha1)){
+				MMOController.Instance.weaponId = 1;
+			}
+			if(Input.GetKeyDown(KeyCode.Alpha2)){
+				MMOController.Instance.weaponId = 2;
 			}
 
 			if (Input.GetKeyDown (KeyCode.Space)) {

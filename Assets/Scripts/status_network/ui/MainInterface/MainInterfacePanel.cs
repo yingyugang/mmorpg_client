@@ -157,7 +157,6 @@ namespace MMO
 		{
 			UpdatePlayerInfo ();
 			UpdateCooldowns ();
-		
 		}
 
 		void UpdatePlayerInfo ()

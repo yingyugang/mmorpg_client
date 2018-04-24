@@ -49,6 +49,7 @@ TPS = 1
 		int mPreSelectId = -1;
 		float mPreSpeed;
 		Terrain mTerrain;
+		public int weaponId = 0;
 		//0:rpg 1:tps
 		public PlayType playType;
 
@@ -117,6 +118,12 @@ TPS = 1
 			minimap.SetTarget (player.gameObject);
 			TPSPlayerController tpsPlayerController = player.gameObject.GetOrAddComponent<TPSPlayerController> ();
 			tpsPlayerController.tpsCameraController = tpsCameraController;
+//			GameObject arrowPrefab = Resources.Load<GameObject> ("ArrowRenderer/ArrowRenderer");
+//			GameObject arrow = Instantiate(arrowPrefab);
+//			arrow.transform.SetParent (player);
+//			arrow.transform.localPosition = Vector3.zero;
+//			arrow.transform.localRotation = Quaternion.identity;
+//			arrow.transform.localScale = Vector3.one;
 			playerController = tpsPlayerController;
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.gameObject.SetActive (true);
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.SetWeapon (BattleConst.DEFAULT_BULLET_COUNT);
@@ -139,9 +146,9 @@ TPS = 1
 					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 				}
 			}
-			if (Input.GetKeyDown (KeyCode.Escape)) {
-				Application.Quit ();
-			}
+//			if (Input.GetKeyDown (KeyCode.Escape)) {
+//				Application.Quit ();
+//			}
 			if (Input.GetMouseButtonDown (0)) {
 				RaycastHit hit;
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT | 1 << LayerConstant.LAYER_PLAYER)) {
@@ -208,6 +215,7 @@ TPS = 1
 			mCurrentPlayerId = mPlayerInfo.playerId;
 			mPlayerInfo.unitInfo.attribute.unitName = playerName;
 			PanelManager.Instance.mainInterfacePanel.gameObject.SetActive (true);
+			MainInterface.Instance.uiMainUnitFrame.SetPlayerInfo (mPlayerInfo);
 			playType = (PlayType)gameInitInto.playType;
 			InitPlayerInterface ();
 			player.gameObject.SetActive (true);

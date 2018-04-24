@@ -83,6 +83,7 @@ namespace MMO
 			//now the action.actionId means the skill id.
 			StartCoroutine (_Cast(action));
 		}
+
 		//Do Shoot
 		public void DoShoot(ShootInfo shootInfo){
 			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (shootInfo.casterId);
@@ -147,6 +148,10 @@ namespace MMO
 			switch(mSkill.shoot_move_type){
 			case 1:
 				shootObj = shootGo.GetOrAddComponent<ShootProjectileObject> ();
+				shootObj.maxShootRange = 3;
+				ShootProjectileObject shootProjectileObject = (ShootProjectileObject)shootObj;
+				TPSCameraController tps = (TPSCameraController)MMOController.Instance.cameraController;
+				shootProjectileObject.maxShootAngle = 30 - tps.angle;
 				break;
 			default:
 				shootObj = shootGo.GetOrAddComponent<ShootLineObject> ();
@@ -156,8 +161,16 @@ namespace MMO
 			if (target != null) {
 				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
-				Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range);
-				shootObj.Shoot (caster,targetPos,Vector3.zero);
+				TPSCameraController tps = (TPSCameraController)MMOController.Instance.cameraController;
+				ShootProjectileObject shootProjectileObject = (ShootProjectileObject)shootObj;
+				if (shootProjectileObject != null) {
+					shootProjectileObject.maxShootAngle = 30 - tps.angle;
+					Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range * (1 - tps.angle / 100f));
+					shootObj.Shoot (caster, targetPos, Vector3.zero);
+				} else {
+					Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range );
+					shootObj.Shoot (caster, targetPos, Vector3.zero);
+				}
 			}
 		}
 
