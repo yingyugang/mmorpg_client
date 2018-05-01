@@ -134,9 +134,7 @@ TPS = 1
 			if (isStart) {
 				int mCurrentSelectId = selectedUnit == null ? -1 : selectedUnit.unitInfo.attribute.unitId;
 				//Postion and rotation を同期する
-				//TODO 动画状态同步
 				if (player.position != mPrePosition || player.forward != mPreForward || mPreSelectId != mCurrentSelectId) {
-					//TODO 通信を減ったら
 					mPrePosition = player.position;
 					mPreForward = player.forward;
 					mPreSelectId = mCurrentSelectId;
@@ -146,9 +144,6 @@ TPS = 1
 					client.Send (MessageConstant.CLIENT_TO_SERVER_MSG, mPlayerInfo);
 				}
 			}
-//			if (Input.GetKeyDown (KeyCode.Escape)) {
-//				Application.Quit ();
-//			}
 			if (Input.GetMouseButtonDown (0)) {
 				RaycastHit hit;
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_UNIT | 1 << LayerConstant.LAYER_PLAYER)) {
@@ -224,7 +219,6 @@ TPS = 1
 				minimap.gameObject.SetActive (true);
 			isStart = true;
 		}
-
 		//TODO 这段逻辑有点复杂，最好是用事件的方式来进行处理，但是需要对初始化数据做好管理，如果关键帧丢失也需要做处理，不过只不过是表现方面。
 		int mCurrentPlayerFrame;
 		void OnRecievePlayerMessage (NetworkMessage msg)
@@ -239,7 +233,7 @@ TPS = 1
 				}
 			}
 		}
-
+		//On current player death.
 		void OnCurrentPlayerDeath ()
 		{
 			playerController.enabled = false;

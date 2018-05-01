@@ -65,6 +65,14 @@ namespace MMO
 			} 
 		}
 
+		public int effect_base_type_id{
+			get{ 
+				if (mSkillEffectBaseCSVStructure != null)
+					return mSkillEffectBaseCSVStructure.id;
+				return -1;
+			}
+		}
+
 		public int effect_type_group {
 			get { 
 				if (mSkillEffectBaseCSVStructure != null)
@@ -83,47 +91,33 @@ namespace MMO
 		//技能值
 		[CsvColumn (CanBeNull = true)]
 		public int effect_value_max{ get; set; }
-		//攻击方式(Scope = 0,Single = 1)
+		//攻击方式(Scope = 0,Single = 1) 必ず目標を命中する。
 		[CsvColumn (CanBeNull = true)]
 		public int impact_type { get; set; }
-
+		//skill base.
 		MSkillEffectBaseCSVStructure mSkillEffectBaseCSVStructure;
-
 		public MSkillEffectBaseCSVStructure GetMSkillEffectBaseCSVStructure(){
 			return mSkillEffectBaseCSVStructure;
 		}
-
-		public int effect_base_type_id{
-			get{ 
-				if (mSkillEffectBaseCSVStructure != null)
-					return mSkillEffectBaseCSVStructure.id;
-				return -1;
-			}
-		}
-
 		//受影响的单位数
 		[CsvColumn (CanBeNull = true)]
 		public int impact_count{ get; set; }
+		//受影响检测时的角度
+		[CsvColumn (CanBeNull = true)]
+		public int impact_check_radiu{ get; set; }
 		//攻击距离
 		[CsvColumn (CanBeNull = true)]
 		public float range{ get; set; }
 
-		//是否为遠距離攻撃()
-		[CsvColumn (CanBeNull = true)]
-		public int is_remote{get; set; }
-		//遠距離動くテーマ(0:default line,1:projectile)
-		[CsvColumn (CanBeNull = true)]
-		public int shoot_move_type{get; set;}
-		//遠距離動く速度
-		[CsvColumn (CanBeNull = true)]
-		public float shoot_move_speed{ get;set;}
-
-		//命中にチェック種類
+		//命中にチェック種類(0:丸で　1:ラインで)
 		[CsvColumn (CanBeNull = true)]
 		public int hit_check_type{ get; set;}
 		//0-360;
 		[CsvColumn (CanBeNull = true)]
 		public int hit_check_radiu{ get; set;}
+		//击中是影响单位个数
+		[CsvColumn (CanBeNull = true)]
+		public int hit_impact_count{ get; set;}
 
 		//skillの持続時間,skill 終わり時点はskill起こした時点プラスduration.
 		[CsvColumn (CanBeNull = true)]
@@ -134,9 +128,11 @@ namespace MMO
 		//skillの冷却持続時間
 		[CsvColumn (CanBeNull = true)]
 		public int cooldown{ get; set;}
+
 		//击中的检测范围
 		[CsvColumn (CanBeNull = true)]
 		public float hit_range{ get; set; }
+
 		string m_sub_skills;
 		//与技能同时释放的子技能(0.8,1|1,2 “｜”分隔多个，“，”分隔时间和子技能id)
 		[CsvColumn (CanBeNull = true)]
@@ -194,11 +190,24 @@ namespace MMO
 		//just use for debug mode.
 		public bool isSelected{ get; set; }
 
-		[CsvColumn (CanBeNull = true)]
-		public float impact_check_radiu;
-
-		[CsvColumn (CanBeNull = true)]
-		public int hit_impact_count;
+		public bool IsSingle(){
+			return impact_count == 1;
+		}
+		//shoot id > 0 means remote attack;
+		public int shoot_id { get; set;}
+		//skill shoot
+		MSkillShoot mSkillShoot;
+		public MSkillShoot skillShoot{
+			get{
+				if(shoot_id <= 0){
+					return null;
+				}
+				if (mSkillShoot == null) {
+					mSkillShoot = CSVManager.Instance.GetSkillShoot (shoot_id);
+				}
+				return mSkillShoot;
+			}
+		}
 	}
 
 	[System.Serializable]

@@ -7,10 +7,8 @@ namespace MMO
 {
 	public class PerformManager : SingleMonoBehaviour<PerformManager>
 	{
-
 		public GameObject hitUITextPrefab;
 		public bool isShowHitUI;
-
 		//TODO 表示する場合が確認する
 		public void ShowHitInfo (HitInfo hitInfo, Dictionary<int,GameObject> unitDic)
 		{
@@ -46,15 +44,11 @@ namespace MMO
 			Destroy (go, 10);
 		}
 
-		void ShowHitEffect (int objectId,Vector3 pos)//   int hitId, IntVector3 pos)
+		void ShowHitEffect (int objectId,Vector3 pos)
 		{
 			if (objectId <= 0)
 				return;
 			GameObject prefab = ResourcesManager.Instance.GetEffect (objectId);
-//			MMOUnit mmoUnit = MMOController.Instance.GetUnitByUnitId (hitId);
-//			Vector3 hitPos = IntVector3.ToVector3 (pos);
-//			if (mmoUnit != null)
-//				hitPos = mmoUnit.GetBodyPos ();
 			GameObject go = Instantiater.Spawn (false, prefab, pos, Quaternion.identity);
 			Destroy (go, 10);
 		}
@@ -78,7 +72,6 @@ namespace MMO
 				}
 			}
 		}
-
 		//TODO change hit ui info color.
 		void ShowHitUIInfo (int skillId,MMOUnit mmoUnit, int val)
 		{

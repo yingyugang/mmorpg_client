@@ -14,7 +14,6 @@ namespace MMO
 		public MainInterfacePanel mainInterfacePanel;
 		public ChatPanel chatPanel;
 		public ServerListPanel serverListPanel;
-		//TODO
 		public CommonDialogPanel commonDialogPanel;
 
 		protected override void Awake ()

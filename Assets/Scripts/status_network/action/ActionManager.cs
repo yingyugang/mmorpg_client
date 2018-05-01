@@ -107,7 +107,7 @@ namespace MMO
 				if (shootInfo.targetId >= 0) {
 					target = MMOController.Instance.GetUnitByUnitId (shootInfo.targetId);
 				}
-				GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
+				GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.skillShoot.shoot_object_id);
 				Shoot (effect, mSkill, caster, target);
 			}
 		}
@@ -116,22 +116,10 @@ namespace MMO
 		//TODO the end time point need to same as the animclip end time point.
 		//TODO need to get the real skill information from csv.
 		IEnumerator _Cast(StatusInfo action){
-//			MSkill mSkill = CSVManager.Instance.skillDic [action.actionId];
 			MUnitSkill mUnitSkill = CSVManager.Instance.unitSkillDic[action.actionId];
-//			MSkill mSkill = CSVManager.Instance.skillDic [mUnitSkill.skill_id];
 			MMOUnit caster = MMOController.Instance.GetUnitByUnitId (action.casterId);
 			//TODO need know the cast anim name from csv or from other area.
 			caster.unitAnimator.SetTrigger(mUnitSkill.anim_name);
-//			MMOUnit target = null;
-//			if (action.targetId >= 0) {
-//				target = MMOController.Instance.GetUnitByUnitId (action.targetId);
-//			}
-//			yield return new WaitForSeconds ((mUnitSkill.anim_action_point / 100f) * mUnitSkill.anim_length);
-//			if (mSkill.is_remote > 0) {
-//				//Remote attack;
-//				GameObject effect = ResourcesManager.Instance.GetEffect (mUnitSkill.shoot_object_id);
-//				Shoot (effect, mSkill,caster,target,mSkill.range);
-//			}
 			yield return null;
 		}
 		//Shoot Action.
@@ -145,8 +133,8 @@ namespace MMO
 			}
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, spawnPos, caster.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootObject shootObj = null;
-			switch(mSkill.shoot_move_type){
-			case 1:
+			switch(mSkill.skillShoot.shoot_type ){
+			case BattleConst.BattleShoot.LINE:
 				shootObj = shootGo.GetOrAddComponent<ShootProjectileObject> ();
 				shootObj.maxShootRange = 3;
 				ShootProjectileObject shootProjectileObject = (ShootProjectileObject)shootObj;
@@ -157,7 +145,7 @@ namespace MMO
 				shootObj = shootGo.GetOrAddComponent<ShootLineObject> ();
 				break;
 			}
-			shootObj.speed = mSkill.shoot_move_speed;
+			shootObj.speed = mSkill.skillShoot.shoot_move_speed;
 			if (target != null) {
 				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
@@ -173,7 +161,7 @@ namespace MMO
 				}
 			}
 		}
-
+		//Do Respawn.
 		public void DoRespawn (int unitId)
 		{
 			if (MMOController.Instance.IsPlayer (unitId)) {

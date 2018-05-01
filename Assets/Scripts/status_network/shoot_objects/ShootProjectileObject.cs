@@ -77,7 +77,6 @@ namespace MMO
 					//this shoot time exceed 3.5sec, abort the trajectory and just head to the target
 					thisT.LookAt (targetPos);
 				}
-
 				if (curDist <= hitThreshold && !hit) {
 					hit = true;
 					break;

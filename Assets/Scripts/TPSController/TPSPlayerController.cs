@@ -22,19 +22,20 @@ namespace MMO
 		float mInputY;
 		Vector3 mVelocity;
 		Transform mTrans;
-		MMOUnitSkill mMMOUnitSkill;
 		public float speed = 7;
-		private UnitAnimator unitAnimator;
 		public Canvas joystickCanvas;
 		public ETCJoystick etcJoystick;
-		AudioSource mPlayerAudioSource;
 
-		public GameObject arrowRenderer;
+		UnitAnimator mUnitAnimator;
+		MMOUnit mMMOUnit;
+		MMOUnitSkill mMMOUnitSkill;
+		AudioSource mPlayerAudioSource;
 
 		void Awake ()
 		{
 			mCharacterController = GetComponent<CharacterController> ();
-			unitAnimator = GetComponent<UnitAnimator> ();
+			mUnitAnimator = GetComponent<UnitAnimator> ();
+			mMMOUnit = GetComponent<MMOUnit> ();
 			characterEffectUtility = GetComponentInChildren<CharacterEffectUtility> (true);
 			mPlayerAudioSource = gameObject.GetOrAddComponent<AudioSource> ();
 			mPlayerAudioSource.spatialBlend = 1;
@@ -44,6 +45,7 @@ namespace MMO
 				isPause = false;
 			});
 			Cursor.lockState = CursorLockMode.Locked;
+			MMOController.Instance.weaponId = 1;
 		}
 
 		public bool isPause;
@@ -68,14 +70,15 @@ namespace MMO
 			if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject()) {
 				if (MMOController.Instance.weaponId == 1) {
 					mIsFire = true;
-					unitAnimator.StartFire ();
+					mUnitAnimator.StartFire ();
 					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.FIRE, -1, new IntVector3 ());
 				}else if(MMOController.Instance.weaponId == 2){
 					ShootInfo shootInfo = new ShootInfo ();
 					shootInfo.casterId = MMOController.Instance.playerInfo.unitInfo.attribute.unitId;
 					shootInfo.targetId = Random.Range (1,10);
 					shootInfo.unitSkillId = 18;
-					ActionManager.Instance. DoShoot (shootInfo);
+					ActionManager.Instance.DoShoot (shootInfo);
+					Throw ();
 				}
 			}
 			if (Input.GetMouseButton (0) && mIsFire) {
@@ -86,7 +89,7 @@ namespace MMO
 			}
 			if (Input.GetMouseButtonUp (0)) {
 				mIsFire = false;
-				unitAnimator.StopFire ();
+				mUnitAnimator.StopFire ();
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
 			}
 
@@ -95,6 +98,10 @@ namespace MMO
 			}
 			if(Input.GetKeyDown(KeyCode.Alpha2)){
 				MMOController.Instance.weaponId = 2;
+			}
+
+			if(Input.GetKeyDown(KeyCode.V)){
+				
 			}
 
 			if (Input.GetKeyDown (KeyCode.Space)) {
@@ -117,7 +124,7 @@ namespace MMO
 				isPause = false;
 			}
 			if (isPause) {
-				unitAnimator.SetMoveSpeed (0);
+				mUnitAnimator.SetMoveSpeed (0);
 				return;
 			}
 			mInputX = Input.GetAxis ("Horizontal");
@@ -129,7 +136,7 @@ namespace MMO
 			}
 
 			if (Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.W)) {
-				unitAnimator.ResetAllAttackTriggers ();
+				mUnitAnimator.ResetAllAttackTriggers ();
 			}
 
 			Vector3 forward = tpsCameraController.transform.forward;
@@ -144,15 +151,15 @@ namespace MMO
 			float angleY = Mathf.Acos (angle) * 180 / Mathf.PI * d - 90;
 			Vector3 moveDirection = Quaternion.AngleAxis (-angleY, new Vector3 (0, 1, 0)) * forward;
 			if (mInputX != 0 || mInputY != 0) {
-				unitAnimator.SetMoveSpeed (mInputY);
-				unitAnimator.SetRight (mInputX);
+				mUnitAnimator.SetMoveSpeed (mInputY);
+				mUnitAnimator.SetRight (mInputX);
 //				if (!mIsRuning) {
 //					mIsRuning = true;
 //					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MOVE, -1, IntVector3.zero);
 //				}
 			} else {
-				unitAnimator.SetMoveSpeed (0);
-				unitAnimator.SetRight (0);
+				mUnitAnimator.SetMoveSpeed (0);
+				mUnitAnimator.SetRight (0);
 //				if (mIsRuning) {
 //					mIsRuning = false;
 //					MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.STANDBY, -1, IntVector3.zero);
@@ -163,7 +170,7 @@ namespace MMO
 			if (_grounded && Physics.Raycast (mTrans.position + new Vector3 (0, 2, 0), -Vector3.up, out hit, Mathf.Infinity, 1 << LayerConstant.LAYER_GROUND | 1 << LayerConstant.LAYER_DEFAULT)) {
 				mTrans.position = new Vector3 (mTrans.position.x, hit.point.y, mTrans.position.z);
 			}
-			if (unitAnimator.IsIdle () || unitAnimator.IsFire () || unitAnimator.IsJump () || !_grounded) {
+			if (mUnitAnimator.IsIdle () || mUnitAnimator.IsFire () || mUnitAnimator.IsJump () || !_grounded) {
 				if (mInputY < 0) {
 					mInputY = mInputY / 4f;
 				}
@@ -230,8 +237,8 @@ namespace MMO
 					}
 				} else {
 					SoundManager.Instance.PlayEmpty (this.mPlayerAudioSource); 
-					if (unitAnimator.IsFireBool ()) {
-						unitAnimator.StopFire ();
+					if (mUnitAnimator.IsFireBool ()) {
+						mUnitAnimator.StopFire ();
 						MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.UNFIRE, -1, new IntVector3 ());
 					}
 				}
@@ -260,9 +267,16 @@ namespace MMO
 			mToggleOffsetCoroutine = StartCoroutine (_ToggleOffset (target));
 		}
 
+		void Throw(){
+			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.THROW,-1,new IntVector3());
+
+
+			mUnitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_THROW);
+		}
+
 		void Squat ()
 		{
-			if (unitAnimator.Squat ()) {
+			if (mUnitAnimator.Squat ()) {
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.SQUAT, -1, new IntVector3 ());
 				ToggleOffset (new Vector3 (0, 1.8f, 0));
 			} else {
@@ -273,7 +287,7 @@ namespace MMO
 
 		void Lying ()
 		{
-			if (unitAnimator.Lying ()) {
+			if (mUnitAnimator.Lying ()) {
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.LYING, -1, new IntVector3 ());
 				ToggleOffset (new Vector3 (0, 1.2f, 0)); 
 			} else {
@@ -284,7 +298,7 @@ namespace MMO
 		//TODO need to check wheather can be reloaded.
 		void Reload ()
 		{
-			unitAnimator.Reload ();
+			mUnitAnimator.Reload ();
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.Clear ();
 			StartCoroutine (_Reload ());
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.RELOAD, -1, new IntVector3 ());
@@ -297,11 +311,6 @@ namespace MMO
 			PanelManager.Instance.mainInterfacePanel.bulletGroup.Reload ();
 		}
 
-		void Throw ()
-		{
-			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.THROWN, -1, new IntVector3 ());
-		}
-
 		void Melee ()
 		{
 			MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.MELEE, -1, new IntVector3 ());
@@ -310,7 +319,7 @@ namespace MMO
 		void Jump ()
 		{
 			if (_grounded) {
-				unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
+				mUnitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
 				_velocity.y = jumpPower;
 				_grounded = false;
 				MMOController.Instance.SendPlayerAction (BattleConst.UnitMachineStatus.JUMP, -1, new IntVector3 ());
@@ -321,8 +330,8 @@ namespace MMO
 
 		IEnumerator _Jump ()
 		{
-			unitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 100, 0);
-			unitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
+			mUnitAnimator.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 100, 0);
+			mUnitAnimator.SetTrigger (AnimationConstant.UNIT_ANIMATION_PARAMETER_JUMP);
 			while (true) {
 				yield return null;
 			}

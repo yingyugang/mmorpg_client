@@ -13,7 +13,6 @@ namespace MMO
 		[CsvColumn (CanBeNull = true)]
 		public int unlock_level{ get; set; }
 		[CsvColumn (CanBeNull = true)]
-		//この三つアニメ属性が前端に役に立つ
 		public string anim_name{ get; set; }
 		[CsvColumn (CanBeNull = true)]
 		public float anim_length{ get; set; }
@@ -34,12 +33,21 @@ namespace MMO
 			}
 		}
 		public MSkill skill;
-
-		[CsvColumn (CanBeNull = true)]
-		public int shoot_object_id;
 		[CsvColumn (CanBeNull = true)]
 		public int main_hit_object_id;
 		[CsvColumn (CanBeNull = true)]
 		public int sub_hit_object_id;
+		int mShootId;
+		[CsvColumn (CanBeNull = true)]
+		public int shoot_id{ 
+			get{
+				return mShootId;
+			}
+			set{
+				mShootId = value;
+				skillShoot = CSVManager.Instance.GetSkillShoot (mShootId);
+			}
+		}
+		public MSkillShoot skillShoot;
 	}
 }

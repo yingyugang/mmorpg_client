@@ -204,7 +204,7 @@ public class BattleConst
 		public const int UNFIRE = 12;
 		public const int JUMP = 13;
 		public const int RELOAD = 14;
-		public const int THROWN = 15;
+		public const int THROW = 15;
 		public const int MELEE = 16;
 	}
 
@@ -300,4 +300,11 @@ public class BattleConst
 	}
 
 	public const int DEFAULT_TARGET_PORT = 8001;
+
+	public const int DEFAULT_SHOOT_ID = 1;
+
+	public struct BattleShoot{
+		public const int LINE = 0;
+		public const int PROJECTILE = 1;
+	}
 }

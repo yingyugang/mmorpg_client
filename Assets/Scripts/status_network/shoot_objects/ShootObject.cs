@@ -12,9 +12,8 @@ namespace MMO
 		//射线检测
 		LineCast,
 		//球形物理检查
-		SphereCast}
-
-	;
+		SphereCast
+	};
 
 	//Base class of all shoot object;
 	//按照策略模式，一个SO应该分为三个部分，1.运动轨迹控制，2.击中判断，3.击中效果

@@ -33,6 +33,7 @@
 		public const string UNIT_ANIMATION_PARAMETER_SQUAT = "squat";
 		public const string UNIT_ANIMATION_PARAMETER_LYING = "lying";
 		public const string UNIT_ANIMATION_PARAMETER_RELOAD = "reload";
+		public const string UNIT_ANIMATION_PARAMETER_THROW = "throw";
 
 	}
 }

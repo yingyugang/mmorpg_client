@@ -15,6 +15,7 @@ namespace MMO
 		private const string CSV_SKILL_EFFECT_BASE = "m_skill_effect_base";
 		private const string CSV_UNIT_SKILL = "m_unit_skill";
 		private const string CSV_EFFECT = "m_effect";
+		private const string CSV_SKILL_SHOOT = "m_skill_shoot";
 
 		private CsvContext mCsvContext;
 		List<MUnit> mUnitList;
@@ -27,6 +28,8 @@ namespace MMO
 		public Dictionary<int,MUnitSkill> unitSkillDic;
 		public Dictionary<int,MEffect> effectDic;
 		List<MEffect> mEffectList;
+		List<MSkillShoot> mSkillShootList;
+		Dictionary<int,MSkillShoot> mSkillShootDic;
 
 		protected override void Awake ()
 		{
@@ -51,6 +54,7 @@ namespace MMO
 		{
 			mCsvContext = new CsvContext ();
 			LoadUnitTable ();
+			LoadSkillShoot ();
 			LoadSkillEffectBaseTable ();
 			LoadSkillTable ();
 			LoadUnitSkillTable ();
@@ -64,6 +68,27 @@ namespace MMO
 			else {
 				return mUnitList [0];
 			}
+		}
+
+		void LoadSkillShoot(){
+			mSkillShootList = CreateCSVList<MSkillShoot> (CSV_SKILL_SHOOT);
+			mSkillShootDic = GetDictionary<MSkillShoot> (mSkillShootList);
+		}
+
+		public MSkillShoot GetSkillShoot(int shootId){
+			if(shootId<=0){
+				return null;
+			}
+			if (mSkillShootDic.ContainsKey (shootId)) {
+				return mSkillShootDic [shootId];
+			} else {
+				if (mSkillShootDic.ContainsKey (BattleConst.DEFAULT_SHOOT_ID)) {
+					Debug.LogError (string.Format("shoot id: {0} is not exiting.",shootId));
+					return mSkillShootDic [BattleConst.DEFAULT_SHOOT_ID];
+				}
+			}
+			Debug.LogError (string.Format("default shoot id: {0} is not exiting.",BattleConst.DEFAULT_SHOOT_ID));
+			return null;
 		}
 
 		void LoadEffect(){
