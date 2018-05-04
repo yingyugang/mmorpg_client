@@ -214,7 +214,7 @@ TPS = 1
 			playType = (PlayType)gameInitInto.playType;
 			InitPlayerInterface ();
 			player.gameObject.SetActive (true);
-			AddPlayer (gameInitInto);
+			AddPlayer (gameInitInto.playerInfo);
 			if (minimap != null)
 				minimap.gameObject.SetActive (true);
 			isStart = true;
@@ -473,7 +473,7 @@ TPS = 1
 			GameObject playerGO;
 			PlayerInfo playerInfo = fullPlayerInfo.playerInfo;
 			MMOUnit mmoUnit = null;
-			if (fullPlayerInfo.playerInfo.playerId != mCurrentPlayerId) {
+			if (playerInfo.playerId != mCurrentPlayerId) {
 				playerGO = InstantiateUnit (playerInfo.unitInfo.attribute.unitType, playerInfo.unitInfo,true);
 				mmoUnit = playerGO.GetComponent<MMOUnit> ();
 			} else {
