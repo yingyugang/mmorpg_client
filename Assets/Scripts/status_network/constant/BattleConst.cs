@@ -304,7 +304,7 @@ public class BattleConst
 	public const int DEFAULT_SHOOT_ID = 1;
 
 	public struct BattleShoot{
-		public const int LINE = 0;
-		public const int PROJECTILE = 1;
+		public const int LINE = 1;
+		public const int PROJECTILE = 2;
 	}
 }

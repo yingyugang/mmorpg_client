@@ -133,32 +133,31 @@ namespace MMO
 			}
 			GameObject shootGo = Instantiater.Spawn (false, shootPrefab, spawnPos, caster.transform.rotation * Quaternion.Euler (60, 0, 0));
 			ShootObject shootObj = null;
+			Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range);
+			//TODO need to check logic.
 			switch(mSkill.skillShoot.shoot_type ){
-			case BattleConst.BattleShoot.LINE:
+			case BattleConst.BattleShoot.PROJECTILE:
 				shootObj = shootGo.GetOrAddComponent<ShootProjectileObject> ();
 				shootObj.maxShootRange = 3;
+				shootObj.speed = mSkill.skillShoot.shoot_move_speed;
 				ShootProjectileObject shootProjectileObject = (ShootProjectileObject)shootObj;
-				TPSCameraController tps = (TPSCameraController)MMOController.Instance.cameraController;
-				shootProjectileObject.maxShootAngle = 30 - tps.angle;
+				if (target == null) {
+					if (MMOController.Instance.IsPlayer (caster.unitInfo.attribute.unitId)) {
+						TPSCameraController tps = (TPSCameraController)MMOController.Instance.cameraController;
+						shootProjectileObject.maxShootAngle = 30 - tps.angle;
+						targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range * (1 - tps.angle / 100f));
+					}
+				}
 				break;
 			default:
 				shootObj = shootGo.GetOrAddComponent<ShootLineObject> ();
+				shootObj.speed = mSkill.skillShoot.shoot_move_speed;
 				break;
 			}
-			shootObj.speed = mSkill.skillShoot.shoot_move_speed;
 			if (target != null) {
 				shootObj.Shoot (caster, target, new Vector3 (0, target.GetBodyHeight () / 2f, 0));
 			} else {
-				TPSCameraController tps = (TPSCameraController)MMOController.Instance.cameraController;
-				ShootProjectileObject shootProjectileObject = (ShootProjectileObject)shootObj;
-				if (shootProjectileObject != null) {
-					shootProjectileObject.maxShootAngle = 30 - tps.angle;
-					Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range * (1 - tps.angle / 100f));
-					shootObj.Shoot (caster, targetPos, Vector3.zero);
-				} else {
-					Vector3 targetPos = MMOController.Instance.GetTerrainPos (caster.transform.position + caster.transform.forward * mSkill.range );
-					shootObj.Shoot (caster, targetPos, Vector3.zero);
-				}
+				shootObj.Shoot (caster, targetPos, Vector3.zero);
 			}
 		}
 		//Do Respawn.

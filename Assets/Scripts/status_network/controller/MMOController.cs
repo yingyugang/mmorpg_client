@@ -215,6 +215,9 @@ TPS = 1
 			InitPlayerInterface ();
 			player.gameObject.SetActive (true);
 			AddPlayer (gameInitInto.playerInfo);
+			for(int i=0;i<gameInitInto.otherPlayerInfos.Length;i++){
+				AddPlayer (gameInitInto.otherPlayerInfos[i]);
+			}
 			if (minimap != null)
 				minimap.gameObject.SetActive (true);
 			isStart = true;
