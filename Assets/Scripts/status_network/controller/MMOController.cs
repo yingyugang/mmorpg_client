@@ -469,11 +469,11 @@ TPS = 1
 			ActionManager.Instance.DoAction (action);
 		}
 
-		public void AddPlayer(GameInitInfo gameInitInfo){
+		public void AddPlayer(FullPlayerInfo fullPlayerInfo){
 			GameObject playerGO;
-			PlayerInfo playerInfo = gameInitInfo.playerInfo.playerInfo;
+			PlayerInfo playerInfo = fullPlayerInfo.playerInfo;
 			MMOUnit mmoUnit = null;
-			if (gameInitInfo.playerInfo.playerInfo.playerId != mCurrentPlayerId) {
+			if (fullPlayerInfo.playerInfo.playerId != mCurrentPlayerId) {
 				playerGO = InstantiateUnit (playerInfo.unitInfo.attribute.unitType, playerInfo.unitInfo,true);
 				mmoUnit = playerGO.GetComponent<MMOUnit> ();
 			} else {
@@ -491,7 +491,7 @@ TPS = 1
 				mUnitDic.Add (playerInfo.unitInfo.attribute.unitId, playerGO);
 			}
 			SetPlayerInfo (playerInfo);
-			if (gameInitInfo.playerInfo.playerInfo.playerId == mCurrentPlayerId) {
+			if (fullPlayerInfo.playerInfo.playerId == mCurrentPlayerId) {
 				MMOUnitSkill mmoUnitSkill = mmoUnit.GetComponent<MMOUnitSkill> ();
 				if (!mmoUnitSkill.IsInitted) {
 					mmoUnitSkill.InitSkills ();

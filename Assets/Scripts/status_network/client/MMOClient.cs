@@ -151,7 +151,7 @@ namespace MMO
 		}
 
 		void OnRecievePlayerEnter(NetworkMessage msg){
-			GameInitInfo gameInitInfo = msg.ReadMessage<GameInitInfo> ();
+			FullPlayerInfo gameInitInfo = msg.ReadMessage<FullPlayerInfo> ();
 			MMOController.Instance.AddPlayer (gameInitInfo);
 		}
 
