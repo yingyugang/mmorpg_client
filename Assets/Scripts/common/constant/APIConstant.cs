@@ -8,36 +8,11 @@
 	public const string PLAYER_UPDATE_NAME = "player/updatename";
 	public const string PLAYER_UPDATE_MIGRATION = "player/update_migration";
 	public const string PLAYER_UPDATE_HEAD = "player/updatehead";
-	public const string PLAYER_RECOVER = "player/recover";//恢复营养 require :planter id
+	public const string PLAYER_RECOVER = "player/recover";
 	public const string PLAYER_INFO = "player/info";
-	public const string PLAYER_CHANGENAME = "player/updatename";//改名字 name string
+	public const string PLAYER_CHANGENAME = "player/updatename";
 	public const string PLAYER_FRIEND_LIST = "friend/list";//请求好友列表
 	public const string PLAYER_FRIEND_FOLLOW = "friend/follow";//添加或解除follow
-
-	public const string SEEDBED_PLANT = "seedbed/plant";//种植 requires :id, type: Integer requires :item, type: String 返回 seedbed_list player_items
-	public const string SEEDBED_EVOLUTION = "seedbed/evolution";//点击种球 requires :id, type: Integer 返回 seedbed_list
-	public const string SEEDBED_TRANSPLANT = "seedbed/transplant";//移植到花盆 requires :id, type: Integer
-	public const string SEEDBED_USEITEM = "seedbed/item";//使用item,requires :id, type: Integer requires :mode, type: Integer 1:使用item（单个）2:全部（广告）返回 seedbed_list
-	public const string SEEDBED_SALE = "seedbed/sale";//requires :id, type: Integer  
-	public const string PLANTER_REAR = "planter/rear";//requires :id, type: Integer requires :mode, type: Integer requires :value, type: Integer 
-	public const string PLANTER_SALE = "planter/sale";//卖花 requires :ids, type: string
-	public const string PLANTER_COLOR = "planter/colorchange";//改变花盆颜色 requires :id, type: Integer requires :colorid, type: Integer
-	public const string PLANTER_RECOVERHEART = "planter/recoverheart";//恢复植物的心 require :planter id
-	public const string PLANTER_ITEM = "planter/item";//对心使用item requires :id, type: Integer requires :mode, type: Integer
-	public const string PLANTER_EVOLUTION = "planter/evolution";//进化 requires :id, type: Integer
-	public const string PLANTER_COMMUNICATION = "planter/evolution";//communication 开始
-	public const string PLANTER_COMMUNICATION_ITEM = "planter/communication/item";//communication item使用
-	public const string PLANTER_TODEPOT = "planter/todepot";//移动到保管库 planterid 返回 planterlist和detoplist
-	public const string DEPOT_TOPLANTER = "depot/toplanter";//移动到花盆 depotid 返回 planterlist和detoplist
-	public const string DEPOT_SALE = "depot/sale";//保管库出售
-	public const string DEPOT_COMBINE = "depot/combine";//保管库交配
-
-	public const string PLANTER_INJECT = "planter/injection";//注射
-	public const string PLANTER_SLEEP = "planter/sleep";//睡觉
-	public const string SHOP_OPEN = "shop/open";//解锁苗床，解锁或者强化花盆 id 
-	public const string SHOP_ITEM_EXCHANGE = "shop/item_exchange";//购买item  id
-	public const string PLAYER_HELPFUL = "player/helpful";//参数 mode:1 虫1 mode2:虫2 num：钱的数量
-
 	public const string GAME_OPEN = "game/open";
 	public const string GAME_START = "game/start";
 	public const string GAME_OVER = "game/over";
