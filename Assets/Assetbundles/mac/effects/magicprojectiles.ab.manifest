@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2991986182
+CRC: 170588312
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e76ddf0c2ecedb2c784d0ffbccd1fd37
+    Hash: ff018803bc8efb5408bd83503dec4aad
   TypeTreeHash:
     serializedVersion: 2
-    Hash: affc46d64f5d595a8598c6127bd7ec49
+    Hash: 40a72139e30a0fd4fec411ef4f5041fd
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,11 +15,19 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 33
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 108
   Script: {instanceID: 0}
@@ -45,6 +53,7 @@ Assets:
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Icons/Textures/water.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Lightning/LightningArcNew.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Light/LightParticle.mat
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicShields/Textures/shield_fire2.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/AirImpactSmall.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/frost_powder.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/life_cloud.png
@@ -71,6 +80,7 @@ Assets:
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Lightning/LightningBolt.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/FrostSpray.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Earth/EarthSpray.mat
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicShields/Models/Materials/sphereshield.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Fire/FireSmokeEmbers.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/life_drop.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/AirProjectile.prefab
@@ -135,6 +145,7 @@ Assets:
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/earth_bigrock.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/LightningImpactSmall.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/frost_snowflake.png
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicModular/Materials/glowring.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Earth/EarthBigRockClear.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Icons/Textures/earth.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/fire_flick.png
@@ -163,6 +174,7 @@ Assets:
 - Assets/AssetBundleResources/Effects/MagicProjectiles/ArcaneProjectileSmall.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Icons/Materials/Life.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/frost_spike_big.png
+- Assets/AssetBundleResources/Effects/MagicProjectiles/FireShield.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/EarthSpray.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Materials/Frost/FrostSnowflake.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/ArcaneSpray.prefab
@@ -191,9 +203,12 @@ Assets:
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/lightning_new_glow2.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/LightningImpact.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/EarthProjectileSmall.prefab
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicModular/Textures/glowring.png
 - Assets/AssetBundleResources/Effects/MagicProjectiles/LightImpactSmall.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/frost_spike.png
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicShields/Models/mp_shield.FBX
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Icons/Materials/Wind.mat
+- Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicShields/Materials/ShieldFire02.mat
 - Assets/AssetBundleResources/Effects/MagicProjectiles/FireImpact.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/LifeProjectile.prefab
 - Assets/AssetBundleResources/Effects/MagicProjectiles/MagicProjectiles/MagicProjectiles/Textures/arcane_sphere.png
