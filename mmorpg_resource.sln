@@ -1,9 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_resource", "Assembly-CSharp.csproj", "{6C1B12A3-37CC-20DC-3B20-1A7A1C8A30AB}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio for Mac
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{6C1B12A3-37CC-20DC-3B20-1A7A1C8A30AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_resource", "Assembly-CSharp-Editor.csproj", "{AA77AEB3-B568-89A1-67F7-484A7A39651D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.AssetBundleBrowser.Editor", "Unity.AssetBundleBrowser.Editor.csproj", "{23416643-BD36-15A4-3209-1B9F081F41B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{AA77AEB3-B568-89A1-67F7-484A7A39651D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.AssetBundleBrowser.Editor.Tests", "Unity.AssetBundleBrowser.Editor.Tests.csproj", "{F8053FAA-4009-71D4-684F-AE0D7D9EC3E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,15 +19,20 @@ Global
 		{6C1B12A3-37CC-20DC-3B20-1A7A1C8A30AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C1B12A3-37CC-20DC-3B20-1A7A1C8A30AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C1B12A3-37CC-20DC-3B20-1A7A1C8A30AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23416643-BD36-15A4-3209-1B9F081F41B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23416643-BD36-15A4-3209-1B9F081F41B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23416643-BD36-15A4-3209-1B9F081F41B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23416643-BD36-15A4-3209-1B9F081F41B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA77AEB3-B568-89A1-67F7-484A7A39651D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA77AEB3-B568-89A1-67F7-484A7A39651D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA77AEB3-B568-89A1-67F7-484A7A39651D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA77AEB3-B568-89A1-67F7-484A7A39651D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8053FAA-4009-71D4-684F-AE0D7D9EC3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8053FAA-4009-71D4-684F-AE0D7D9EC3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8053FAA-4009-71D4-684F-AE0D7D9EC3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8053FAA-4009-71D4-684F-AE0D7D9EC3E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

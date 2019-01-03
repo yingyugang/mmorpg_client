@@ -268,30 +268,30 @@ public class AssetBundleWindow : EditorWindow
 //		}
 		#elif UNITY_ANDROID
 		if(abList.Count>0){
-		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None, BuildTarget.Android);
+        BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.Android);
 		}
 //		else{
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.Android);
 //		}
 		#elif UNITY_STANDALONE_OSX
 		if (abList.Count > 0) {
-			BuildPipeline.BuildAssetBundles (fullTmpOutputPath, abList.ToArray (), BuildAssetBundleOptions.None, BuildTarget.StandaloneOSXUniversal);
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath, abList.ToArray (), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneOSX);
 		}
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal );
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.ChunkBasedCompression,BuildTarget.StandaloneOSXUniversal );
 		#elif UNITY_STANDALONE
 		if(abList.Count>0){
-		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+        BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneWindows64);
 		}
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows64);
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.ChunkBasedCompression,BuildTarget.StandaloneWindows64);
 		#endif
 
 //		InitBuild ();
 //		#if UNITY_IOS
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.None, BuildTarget.iOS);
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.iOS);
 //		#elif UNITY_ANDROID
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.Android);
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.ChunkBasedCompression,BuildTarget.Android);
 //		#else
-//		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None);
+        //		BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.ChunkBasedCompression);
 //		#endif
 		HashSet<string> setStrs = new HashSet<string> ();
 		foreach (ABBuildEntity entity in allAssetBundleEntitys) {
