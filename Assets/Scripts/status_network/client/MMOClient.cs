@@ -86,7 +86,7 @@ namespace MMO
 
 		void OnConnect (NetworkMessage nm)
 		{
-			Debug.logger.Log ("<color=green>Connect</color>,new send the player information.");
+			Debug.unityLogger.Log ("<color=green>Connect</color>,new send the player information.");
 //			if (onConnect != null)
 //				onConnect (nm);
 			SendPlayerRegister(MMOController.Instance.playerName);
@@ -111,7 +111,7 @@ namespace MMO
 			AssetbundleManager.Instance.ClearAssetBundles ();
 			Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene ();
 			UnityEngine.SceneManagement.SceneManager.LoadScene (currentScene.name);
-			Debug.logger.Log ("<color=red>Disconnect</color>");
+			Debug.unityLogger.Log ("<color=red>Disconnect</color>");
 		}
 
 		void OnRecievePlayerInitInfo (NetworkMessage msg)

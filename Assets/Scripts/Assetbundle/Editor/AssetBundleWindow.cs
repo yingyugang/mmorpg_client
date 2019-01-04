@@ -232,7 +232,7 @@ public class AssetBundleWindow : EditorWindow
 			#elif UNITY_ANDROID
 			BuildPipeline.BuildAssetBundles (fullTmpOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
 			#else
-			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal);
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneOSX);
 			#endif
 		} else {
 			List<AssetBundleBuild> abList = new List<AssetBundleBuild> ();
@@ -254,7 +254,7 @@ public class AssetBundleWindow : EditorWindow
 				BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None, BuildTarget.Android);
 			}
 			#else
-			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None,BuildTarget.StandaloneOSXUniversal);
+			BuildPipeline.BuildAssetBundles (fullTmpOutputPath,abList.ToArray(),BuildAssetBundleOptions.None,BuildTarget.StandaloneOSX);
 			#endif
 		}
 
@@ -458,7 +458,7 @@ public class AssetBundleWindow : EditorWindow
 
 	static void CreateVersion ()
 	{
-		Caching.CleanCache ();
+		Caching.ClearCache ();
 		StringBuilder result = new StringBuilder ();
 		string title = "FileName,FileSize,IsCSV,HashCode";
 		result.AppendLine (title);

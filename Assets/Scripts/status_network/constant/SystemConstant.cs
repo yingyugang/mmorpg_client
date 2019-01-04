@@ -185,7 +185,7 @@ public class SystemConstant
 			return "ios";
 		case BuildTarget.WebGL:
 			return "webgl";
-		case BuildTarget.StandaloneOSXUniversal:
+		case BuildTarget.StandaloneOSX:
 			return "mac";
 		case BuildTarget.StandaloneOSXIntel64:
 			return "mac";

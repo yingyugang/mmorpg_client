@@ -1,13 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_mobile", "Assembly-CSharp-firstpass.csproj", "{EB441946-93E7-1E9C-A1BE-35926547C6D5}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio for Mac
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{E4932B75-624B-3256-8BD4-11C5AF438FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_mobile", "Assembly-CSharp.csproj", "{E4932B75-624B-3256-8BD4-11C5AF438FA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{EB441946-93E7-1E9C-A1BE-35926547C6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_mobile", "Assembly-CSharp-Editor-firstpass.csproj", "{F718FC80-0747-AFB6-DA9A-05D939E4D059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mmorpg_mobile", "Assembly-CSharp-Editor.csproj", "{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{F718FC80-0747-AFB6-DA9A-05D939E4D059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,27 +15,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4932B75-624B-3256-8BD4-11C5AF438FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4932B75-624B-3256-8BD4-11C5AF438FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4932B75-624B-3256-8BD4-11C5AF438FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4932B75-624B-3256-8BD4-11C5AF438FA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB441946-93E7-1E9C-A1BE-35926547C6D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1B936B6-8673-E1EF-ECE2-4A152FCAE542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F718FC80-0747-AFB6-DA9A-05D939E4D059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
