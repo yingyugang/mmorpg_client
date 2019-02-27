@@ -18,7 +18,8 @@ namespace MMO
 			if (AssetbundleManager.Instance == null)
 				DontDestroyOnLoad (gameObject);
 			base.Awake ();
-			mCachedAssetbundles = new Dictionary<string, AssetBundle> ();
+            isStreaming = true;
+            mCachedAssetbundles = new Dictionary<string, AssetBundle> ();
 		}
 
 		void LoadManifestAssetbundle ()

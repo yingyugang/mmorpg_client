@@ -11,13 +11,13 @@
 	public const string BATTLE = "prefab_battles";
 	public const string CITY = "prefab_citys";
 
-	public const string IMAGE_SKILLICONS = "images/skillicons";
+	public const string IMAGE_SKILLICONS = "images/skill_icons";
 	public const string TERRAIN = "terrains/";
-	public const string TERRAIN_OBJECTS = "terrainobjects/";
+	public const string TERRAIN_OBJECTS = "terrain_objects/";
 	public const string CHARACTERS = "characters/";
 	public const string EFFECTS = "effects/";
 
-	public const string FPSPACK = "fpspack";
+	public const string FPSPACK = "fps_pack";
 
 	public const string FPSPACK_PREFAB_DIRT = "DirtImpact";
 	public const string FPSPACK_PREFAB_BRICK = "BrickImpact";

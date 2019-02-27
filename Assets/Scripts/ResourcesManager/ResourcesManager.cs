@@ -173,15 +173,15 @@ namespace MMO
 			return Resources.Load<AudioClip> (audioName);
 		}
 
-		public GameObject GetTerrainObjects(string terrainName){
-			string abName = ABConstant.TERRAIN_OBJECTS + terrainName;
+		public GameObject GetTerrainObjects(string abName,string terrainName){
+			 abName = ABConstant.TERRAIN_OBJECTS + abName;
 			GameObject go = LoadAsset<GameObject> (abName,terrainName);
 			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			return go;
 		}
 
-		public void GetTerrain(string terrainName,out GameObject terrain,out GameObject terrainT4M){
-			string abName = ABConstant.TERRAIN + terrainName;
+        public void GetTerrain(string abName,string terrainName,out GameObject terrain,out GameObject terrainT4M){
+			 abName = ABConstant.TERRAIN + abName;
 			terrain  = LoadAsset<GameObject> (abName,terrainName);
 			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			terrainT4M = LoadAsset<GameObject> (abName,string.Format("{0}{1}",terrainName,"T4M"));

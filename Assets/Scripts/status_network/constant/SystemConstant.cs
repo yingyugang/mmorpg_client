@@ -182,7 +182,7 @@ public class SystemConstant
 		case BuildTarget.Android:
 			return "android";
 		case BuildTarget.iOS:
-			return "ios";
+			return "iOS";
 		case BuildTarget.WebGL:
 			return "webgl";
 		case BuildTarget.StandaloneOSX:
@@ -205,7 +205,7 @@ public class SystemConstant
 		case RuntimePlatform.Android:
 			return "android";
 		case RuntimePlatform.IPhonePlayer:
-			return "ios";
+			return "iOS";
 		case RuntimePlatform.WebGLPlayer:
 			return "webgl";
 		case RuntimePlatform.OSXPlayer:

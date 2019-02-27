@@ -62,14 +62,14 @@ TPS = 1
 			mHeadUIPrefab = Resources.Load<GameObject> ("UnitUI/HeadRoot").GetComponent<HeadUIBase> ();
 			GameObject terrainPrefab;
 			GameObject terrainPrefabT4M;
-			ResourcesManager.Instance.GetTerrain ("FarmTerrain", out terrainPrefab, out terrainPrefabT4M);
+			ResourcesManager.Instance.GetTerrain ("farm_terrain","FarmTerrain", out terrainPrefab, out terrainPrefabT4M);
 			mTerrain = Instantiate (terrainPrefab).GetComponent<Terrain> ();
 			mTerrain.drawHeightmap = true;
 			mTerrain.gameObject.layer = LayerConstant.LAYER_GROUND;
 			//TODO the T4M terrain's 精度不够，需要重新制作。
 //			if(terrainPrefabT4M!=null)
 //				Instantiate (terrainPrefabT4M);
-			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("FarmTerrianObjects");
+			GameObject terrainObjectPrefab = ResourcesManager.Instance.GetTerrainObjects ("farm_terrian_objects","FarmTerrianObjects");
 			Instantiate (terrainObjectPrefab).GetComponent<GameObject> ();
 			if (!string.IsNullOrEmpty (ServerListPanel.targetIp)) {
 				Connect (ServerListPanel.targetIp, BattleConst.DEFAULT_TARGET_PORT);
