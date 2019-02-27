@@ -86,48 +86,71 @@ namespace MMO
 
 		void Ratate ()
 		{
-			#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-		foreach (Touch touch in Input.touches) {
-		if (touch.phase == TouchPhase.Began) {
-		if (!isTouchMoved) {
-		if (!EventSystem.current.IsPointerOverGameObject (touch.fingerId)) {
-		mFingerId = touch.fingerId;
-		isTouchMoved = true;
-		}
-		}
-		}
-		if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
-		if (mFingerId == touch.fingerId) {
-		isTouchMoved = false;
-		}
-		}
-		}
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+            MobileRotate();
+#else
+            NormalRotate();
+#endif
+        }
+        //TODO event 化
+        void MobileRotate()
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (!isTouchMoved)
+                    {
+                        if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId) && touch.position.x>Screen.width/2f)
+                        {
+                            mFingerId = touch.fingerId;
+                            isTouchMoved = true;
+                        }
+                    }
+                }
+                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    if (mFingerId == touch.fingerId)
+                    {
+                        isTouchMoved = false;
+                    }
+                }
+            }
 
-		if(Input.touchCount>0){
-		if(isTouchMoved){
-		if (Input.GetTouch(mFingerId).deltaPosition.x != 0 ) {
-		mDirect = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * mDirect;
-		if(!target.GetComponent<MMOUnit>().isDead){				
-		target.forward = Quaternion.AngleAxis (Input.GetTouch(mFingerId).deltaPosition.x * speed, new Vector3 (0, 1, 0)) * target.forward;
-		}
-		}
-		if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0 ) {
-				angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed;
-			}
-		}
-		}
-			//Debug.Log(string.Format("{0}:{1}:{2}",Input.GetTouch(mFingerId).fingerId,isTouchMoved,Input.GetTouch(mFingerId).deltaPosition.x));
-			#else
-			if (Input.GetAxis ("Mouse X") != 0 && Input.GetMouseButton (1)) {
-				mDirect = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * mDirect;
-				if (!target.GetComponent<MMOUnit> ().isDead) {
-					target.forward = Quaternion.AngleAxis (Input.GetAxis ("Mouse X") * speed, new Vector3 (0, 1, 0)) * target.forward;
-				}
-			}
-			if (is3D && Input.GetAxis ("Mouse Y") != 0 && Input.GetMouseButton (1)) {
-				angle -= Input.GetAxis ("Mouse Y") * speed;
-			}
-			#endif
-		}
-	}
+            if (Input.touchCount > 0)
+            {
+                if (isTouchMoved)
+                {
+                    if (Input.GetTouch(mFingerId).deltaPosition.x != 0)
+                    {
+                        mDirect = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * mDirect;
+                        if (!target.GetComponent<MMOUnit>().isDead)
+                        {
+                            target.forward = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * target.forward;
+                        }
+                    }
+                    if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0)
+                    {
+                        angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed / 10;
+                    }
+                }
+            }
+        }
+
+        void NormalRotate()
+        {
+            if (Input.GetAxis("Mouse X") != 0 && Input.GetMouseButton(1))
+            {
+                mDirect = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * speed, new Vector3(0, 1, 0)) * mDirect;
+                if (!target.GetComponent<MMOUnit>().isDead)
+                {
+                    target.forward = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * speed, new Vector3(0, 1, 0)) * target.forward;
+                }
+            }
+            if (is3D && Input.GetAxis("Mouse Y") != 0 && Input.GetMouseButton(1))
+            {
+                angle -= Input.GetAxis("Mouse Y") * speed;
+            }
+        }
+    }
 }
