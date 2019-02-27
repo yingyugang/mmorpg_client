@@ -1,0 +1,74 @@
+{
+  "sceneTransform": {
+    "position": {
+      "x": "-5.73",
+      "y": "0",
+      "z": "-0.4"
+    },
+    "eulerAngles": {
+      "x": "0",
+      "y": "90",
+      "z": "0"
+    },
+    "scale": "1"
+  },
+  "characters": {
+    "mainCharacter": {
+      "id": "1",
+      "charaId": "1",
+      "transform": {
+        "position": {
+          "x": "4.84",
+          "y": "0.01",
+          "z": "3.8"
+        },
+        "eulerAngles": {
+          "x": "0",
+          "y": "45",
+          "z": "0"
+        },
+        "scale": "1"
+      }
+    },
+    "otherCharacters": [
+      {
+        "id": 1,
+        "charaId": "8",
+        "transform": {
+          "position": {
+            "x": "-8.73",
+            "y": "0.01",
+            "z": "0.28"
+          },
+          "eulerAngles": {
+            "x": "0",
+            "y": "-125",
+            "z": "0"
+          },
+          "scale": "1"
+        }
+      },
+      {
+        "id": 2,
+        "charaId": "3",
+        "transform": {
+          "position": {
+            "x": "1.18",
+            "y": "0.01",
+            "z": "0.1"
+          },
+          "eulerAngles": {
+            "x": "0",
+            "y": "0",
+            "z": "0"
+          },
+          "scale": "0.4"
+        }
+      }
+    ]
+  },
+  "floorRendererPath": "td_fnt_1201A1N",
+
+  "wallRendererPaths": [ "walls1/td_fnt_1202A1N", "walls1/td_fnt_1202A2N", "walls1/td_fnt_1202B1N", "walls1/td_fnt_1202A1N1", "walls2/td_fnt_1202A1N", "walls2/td_fnt_1202A2N", "walls2/td_fnt_1202B1N", "walls2/td_fnt_1202A1N1" ]
+
+}
