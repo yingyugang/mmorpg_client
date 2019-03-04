@@ -1,0 +1,2109 @@
+{
+  "ApiInfo": {
+    "ErrorCode": 0,
+    "GachaStatus": [],
+    "LastLoginAt": 1548393284
+  },
+  "DebugInfo": { "Log": [ "[debug][+0ms]init session [builtin_middleware.go line:45]", "[debug][+0ms]auth: PlayerId=%!s(uint8=88) Uuid=%!s(uint8=49) [builtin_middleware.go line:45]", "[debug][+2ms]db:game transaction started [builtin_middleware.go line:70]", "[debug][+2ms]start service:/api/player/signIn [builtin_middleware.go line:95]", "[debug][+5ms]global mutex:15 acquired [sign_in_server.go line:55]", "[debug][+29ms]end service /api/player/signIn [builtin_middleware.go line:95]", "[debug][+35ms]transaction commit [builtin_middleware.go line:70]" ] },
+  "SystemInfo": {
+    "CurrentTime": 1548393903,
+    "GoroutineNum": 22,
+    "MemorySys": 71760120,
+    "NumCpu": 1,
+    "OneTimeToken": "4USUwDLT4Bjnuc70",
+    "RequestNumAPI": 1,
+    "RequestNumAll": 1,
+    "ServerConfig": "cfg/server_dev.toml",
+    "ServerId": "Td-Dev-01",
+    "ServerStatus": 0,
+    "SystemParameter": {
+      "BuyBagCost": 100,
+      "BuyCardDeckCost": 200,
+      "BuyProductionGridCost": 100,
+      "DeckCoolDownInterval": 30,
+      "DeckEffectDuration": 60,
+      "FastFinishCostInfo": "1,25,320,1000",
+      "FastFinishCostTimeInfo": "60,3600,86400,604800",
+      "FriendAttentionRewardCoin": 500,
+      "FriendHelpCookingRewardCoin": 500,
+      "GameTimeIntervals": 2,
+      "GameTimeStartAt": 5,
+      "MaterialBagMaxClothes": 999,
+      "MaterialBagMaxCooking": 999,
+      "MaterialBagMaxFurniture": 999,
+      "ProductionGridMaxGoodsClothes": 6,
+      "ProductionGridMaxGoodsCooking": 6,
+      "ProductionGridMaxGoodsFurniture": 6,
+      "ProductionGridMaxMaterialClothes": 6,
+      "ProductionGridMaxMaterialCooking": 6,
+      "ProductionGridMaxMaterialFurniture": 6
+    }
+  },
+  "UpdateInfo": {
+    "BuyVipInfo": [],
+    "Player": {
+      "AndroidPushToken": "",
+      "BanType": 0,
+      "BanUntilAt": 0,
+      "Birthday": "1-1",
+      "BirthdayForPay": 0,
+      "BuildingGrid": 2,
+      "BuildingMaterialCap": 100,
+      "BuildingMaterialGrid": 2,
+      "ClothesGrid": 2,
+      "ClothesMaterialCap": 100,
+      "ClothesMaterialGrid": 2,
+      "Coin": 10000,
+      "Comment": 0,
+      "CookingGrid": 2,
+      "CookingMaterialCap": 100,
+      "CookingMaterialGrid": 2,
+      "CreatedAt": 1548380251,
+      "CurrentUserType": 1,
+      "DeviceModel": "",
+      "DeviceToken": "",
+      "Diamond": 100,
+      "Exp": 0,
+      "FreeDiamond": 10000,
+      "FriendId": "0VGC6X",
+      "FriendPoint": 0,
+      "ID": 15,
+      "IosPushToken": "",
+      "IsSetMigrationPw": false,
+      "IsShowBirthday": false,
+      "LastLoginAt": 1548393903,
+      "LastLoginBonusAt": 0,
+      "LastLoginIp": "39.110.216.51",
+      "LastRequestAt": 1548393903,
+      "Name": "新規ユーザー",
+      "Platform": 3,
+      "ProfilePhoto": 0,
+      "Rank": 1,
+      "RequestCount": 1,
+      "SignUpAt": 1548380251,
+      "SignUpIp": "39.110.216.51",
+      "SnsIconUrl": "",
+      "SnsId": "",
+      "Status": 0,
+      "SuUntilAt": 0,
+      "TotalGetCoin": 0,
+      "TutorialEndTime": 0,
+      "TutorialInfo": "",
+      "TutorialStep": 0,
+      "UserType": 1,
+      "Uuid": "X15vQ4pR78380251"
+    },
+    "PlayerAchievementCount": {
+      "Type100001": 0,
+      "Type100002": 0,
+      "Type100003": 0,
+      "Type106101": 0,
+      "Type110001": 0,
+      "Type110002": 0,
+      "Type120001": 0,
+      "Type120002": 0,
+      "Type173100": 0,
+      "Type173101": 0,
+      "Type173102": 0,
+      "Type173103": 0,
+      "Type183000": 0,
+      "Type183001": 0,
+      "Type183002": 0,
+      "Type183003": 0,
+      "Type191001": 0,
+      "Type191002": 0,
+      "Type191101": 0,
+      "Type193001": 0,
+      "Type193002": 0,
+      "Type193003": 0,
+      "Type200001": 0,
+      "Type300001": 0,
+      "Type300002": 0
+    },
+    "PlayerAchievementDaily": [],
+    "PlayerAchievementStatus": [],
+    "PlayerAchievementWeek": [],
+    "PlayerCard": [
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 337,
+        "IsFavourite": false,
+        "MId": 24,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 338,
+        "IsFavourite": false,
+        "MId": 6,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 339,
+        "IsFavourite": false,
+        "MId": 9,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 340,
+        "IsFavourite": false,
+        "MId": 18,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 341,
+        "IsFavourite": false,
+        "MId": 21,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 342,
+        "IsFavourite": false,
+        "MId": 2,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 343,
+        "IsFavourite": false,
+        "MId": 12,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 344,
+        "IsFavourite": false,
+        "MId": 15,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 345,
+        "IsFavourite": false,
+        "MId": 10,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 346,
+        "IsFavourite": false,
+        "MId": 14,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 347,
+        "IsFavourite": false,
+        "MId": 17,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 348,
+        "IsFavourite": false,
+        "MId": 19,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 349,
+        "IsFavourite": false,
+        "MId": 1,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 350,
+        "IsFavourite": false,
+        "MId": 3,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 351,
+        "IsFavourite": false,
+        "MId": 7,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 352,
+        "IsFavourite": false,
+        "MId": 8,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 353,
+        "IsFavourite": false,
+        "MId": 22,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 354,
+        "IsFavourite": false,
+        "MId": 16,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 355,
+        "IsFavourite": false,
+        "MId": 20,
+        "MRarityId": 2,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 356,
+        "IsFavourite": false,
+        "MId": 23,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 357,
+        "IsFavourite": false,
+        "MId": 4,
+        "MRarityId": 3,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 358,
+        "IsFavourite": false,
+        "MId": 5,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 359,
+        "IsFavourite": false,
+        "MId": 11,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      },
+      {
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "ID": 360,
+        "IsFavourite": false,
+        "MId": 13,
+        "MRarityId": 1,
+        "TrainingExp": 0,
+        "TrainingStep": 0
+      }
+    ],
+    "PlayerCardDeck": [
+      {
+        "CardIds": "0,0,0,0",
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "DeckType": 1,
+        "EffectEndAt": 0,
+        "ID": 29,
+        "MIds": "0,0,0,0"
+      },
+      {
+        "CardIds": "0,0,0,0,0,0",
+        "CoolDownAt": 0,
+        "CreatedAt": 1548380251,
+        "DeckType": 2,
+        "EffectEndAt": 0,
+        "ID": 30,
+        "MIds": "0,0,0,0,0,0"
+      }
+    ],
+    "PlayerCardDivine": [],
+    "PlayerCharacterClothes": [],
+    "PlayerDecorationBox": [
+      {
+        "CreatedAt": 1548380251,
+        "ID": 252,
+        "MDecorationId": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 242,
+        "MDecorationId": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 253,
+        "MDecorationId": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 247,
+        "MDecorationId": 4
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 254,
+        "MDecorationId": 5
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 239,
+        "MDecorationId": 6
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 248,
+        "MDecorationId": 7
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 240,
+        "MDecorationId": 8
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 241,
+        "MDecorationId": 9
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 249,
+        "MDecorationId": 10
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 255,
+        "MDecorationId": 11
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 250,
+        "MDecorationId": 12
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 245,
+        "MDecorationId": 13
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 251,
+        "MDecorationId": 14
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 243,
+        "MDecorationId": 15
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 246,
+        "MDecorationId": 16
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 244,
+        "MDecorationId": 17
+      }
+    ],
+    "PlayerFriendApplies": [],
+    "PlayerFriendBeApplies": [],
+    "PlayerFriends": [],
+    "PlayerGoodsBox": [
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 701,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2020,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 702,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3011,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 703,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1002,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 704,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1008,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 705,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1016,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 706,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2014,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 707,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2016,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 708,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2018,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 709,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3013,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 710,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1014,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 711,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2008,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 712,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2010,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 713,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2013,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 714,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1004,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 715,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1009,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 716,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2005,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 717,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2004,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 718,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2015,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 719,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3008,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 720,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3010,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 721,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3015,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 722,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1001,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 723,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1005,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 724,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1007,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 725,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3016,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 726,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1010,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 727,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2012,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 728,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2017,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 729,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2009,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 730,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3007,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 731,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3009,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 732,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3012,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 733,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3017,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 734,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1006,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 735,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1011,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 736,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2002,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 737,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2006,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 738,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2007,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 739,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2011,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 740,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2019,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 741,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3014,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 742,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1003,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 743,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1012,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 744,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1013,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 745,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2003,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 746,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3005,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 1,
+        "CreatedAt": 1548380251,
+        "ID": 747,
+        "IsFavourite": false,
+        "MCharacterId": 1,
+        "MId": 3006,
+        "RemainderCount": 1
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 748,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1015,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 749,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 1017,
+        "RemainderCount": 2
+      },
+      {
+        "Count": 2,
+        "CreatedAt": 1548380251,
+        "ID": 750,
+        "IsFavourite": false,
+        "MCharacterId": 0,
+        "MId": 2001,
+        "RemainderCount": 2
+      }
+    ],
+    "PlayerMagicCard": [
+      {
+        "CreatedAt": 1548380251,
+        "ID": 869,
+        "MMagicCardId": 3007,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 870,
+        "MMagicCardId": 3053,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 871,
+        "MMagicCardId": 2039,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 872,
+        "MMagicCardId": 2009,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 873,
+        "MMagicCardId": 2033,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 874,
+        "MMagicCardId": 3011,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 875,
+        "MMagicCardId": 2025,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 876,
+        "MMagicCardId": 2031,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 877,
+        "MMagicCardId": 2013,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 878,
+        "MMagicCardId": 3025,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 879,
+        "MMagicCardId": 1015,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 880,
+        "MMagicCardId": 2003,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 881,
+        "MMagicCardId": 1011,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 882,
+        "MMagicCardId": 3043,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 883,
+        "MMagicCardId": 3051,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 884,
+        "MMagicCardId": 3013,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 885,
+        "MMagicCardId": 1009,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 886,
+        "MMagicCardId": 2011,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 887,
+        "MMagicCardId": 3009,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 888,
+        "MMagicCardId": 2051,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 889,
+        "MMagicCardId": 3031,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 890,
+        "MMagicCardId": 2045,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 891,
+        "MMagicCardId": 3033,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 892,
+        "MMagicCardId": 3045,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 893,
+        "MMagicCardId": 2049,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 894,
+        "MMagicCardId": 1003,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 895,
+        "MMagicCardId": 2041,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 896,
+        "MMagicCardId": 1005,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 897,
+        "MMagicCardId": 2001,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 898,
+        "MMagicCardId": 3047,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 899,
+        "MMagicCardId": 2005,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 900,
+        "MMagicCardId": 2015,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 901,
+        "MMagicCardId": 3005,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 902,
+        "MMagicCardId": 1007,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 903,
+        "MMagicCardId": 2043,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 904,
+        "MMagicCardId": 3003,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 905,
+        "MMagicCardId": 3049,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 906,
+        "MMagicCardId": 3023,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 907,
+        "MMagicCardId": 3027,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 908,
+        "MMagicCardId": 3039,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 909,
+        "MMagicCardId": 3017,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 910,
+        "MMagicCardId": 3029,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 911,
+        "MMagicCardId": 2017,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 912,
+        "MMagicCardId": 2047,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 913,
+        "MMagicCardId": 2019,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 914,
+        "MMagicCardId": 2053,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 915,
+        "MMagicCardId": 2037,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 916,
+        "MMagicCardId": 3041,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 917,
+        "MMagicCardId": 3021,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 918,
+        "MMagicCardId": 3035,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 919,
+        "MMagicCardId": 3019,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 920,
+        "MMagicCardId": 3015,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 921,
+        "MMagicCardId": 1001,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 922,
+        "MMagicCardId": 1013,
+        "MagicCardType": 3
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 923,
+        "MMagicCardId": 2035,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 924,
+        "MMagicCardId": 2027,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 925,
+        "MMagicCardId": 2023,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 926,
+        "MMagicCardId": 2029,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 927,
+        "MMagicCardId": 2007,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 928,
+        "MMagicCardId": 2021,
+        "MagicCardType": 2
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 929,
+        "MMagicCardId": 3037,
+        "MagicCardType": 1
+      },
+      {
+        "CreatedAt": 1548380251,
+        "ID": 930,
+        "MMagicCardId": 3001,
+        "MagicCardType": 1
+      }
+    ],
+    "PlayerMaterialBox": [
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1359,
+        "MId": 11004,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1360,
+        "MId": 11010,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1364,
+        "MId": 11002,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1365,
+        "MId": 11008,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1366,
+        "MId": 11012,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1372,
+        "MId": 11001,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1373,
+        "MId": 11006,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1374,
+        "MId": 11007,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1375,
+        "MId": 11011,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1378,
+        "MId": 11003,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1393,
+        "MId": 11005,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1394,
+        "MId": 11009,
+        "MResourceId": 31
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1395,
+        "MId": 12,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1397,
+        "MId": 3,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1398,
+        "MId": 8,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1399,
+        "MId": 14,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1402,
+        "MId": 1,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1405,
+        "MId": 17,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1408,
+        "MId": 7,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1409,
+        "MId": 10,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1413,
+        "MId": 13,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1417,
+        "MId": 5,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1418,
+        "MId": 11,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1425,
+        "MId": 9,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1429,
+        "MId": 4,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1430,
+        "MId": 6,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1431,
+        "MId": 16,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1435,
+        "MId": 2,
+        "MResourceId": 32
+      },
+      {
+        "Category": 1,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1452,
+        "MId": 15,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1361,
+        "MId": 21003,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1362,
+        "MId": 21012,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1367,
+        "MId": 21009,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1368,
+        "MId": 21011,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1370,
+        "MId": 21005,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1382,
+        "MId": 21001,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1383,
+        "MId": 21002,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1384,
+        "MId": 21007,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1385,
+        "MId": 21008,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1386,
+        "MId": 21010,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1389,
+        "MId": 21004,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1390,
+        "MId": 21006,
+        "MResourceId": 31
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1396,
+        "MId": 30,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1410,
+        "MId": 22,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1411,
+        "MId": 25,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1412,
+        "MId": 26,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1414,
+        "MId": 20,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1415,
+        "MId": 35,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1420,
+        "MId": 23,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1421,
+        "MId": 36,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1423,
+        "MId": 19,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1424,
+        "MId": 28,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1426,
+        "MId": 31,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1432,
+        "MId": 32,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1436,
+        "MId": 21,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1441,
+        "MId": 18,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1442,
+        "MId": 24,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1443,
+        "MId": 37,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1448,
+        "MId": 27,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1449,
+        "MId": 33,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1453,
+        "MId": 29,
+        "MResourceId": 32
+      },
+      {
+        "Category": 2,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1454,
+        "MId": 34,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1363,
+        "MId": 31012,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1369,
+        "MId": 31001,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1371,
+        "MId": 31005,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1376,
+        "MId": 31003,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1377,
+        "MId": 31008,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1379,
+        "MId": 31006,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1380,
+        "MId": 31007,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1381,
+        "MId": 31009,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1387,
+        "MId": 31002,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1388,
+        "MId": 31011,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1391,
+        "MId": 31004,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 888,
+        "CreatedAt": 1548380251,
+        "ID": 1392,
+        "MId": 31010,
+        "MResourceId": 31
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1400,
+        "MId": 47,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1401,
+        "MId": 56,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1403,
+        "MId": 55,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1404,
+        "MId": 57,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1406,
+        "MId": 48,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1407,
+        "MId": 52,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1416,
+        "MId": 59,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1419,
+        "MId": 60,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1422,
+        "MId": 54,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1427,
+        "MId": 38,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1428,
+        "MId": 49,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1433,
+        "MId": 50,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1434,
+        "MId": 51,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1437,
+        "MId": 41,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1438,
+        "MId": 44,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1439,
+        "MId": 45,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1440,
+        "MId": 46,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1444,
+        "MId": 40,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1445,
+        "MId": 43,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1446,
+        "MId": 53,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1447,
+        "MId": 58,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1450,
+        "MId": 42,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1451,
+        "MId": 61,
+        "MResourceId": 32
+      },
+      {
+        "Category": 3,
+        "Count": 999,
+        "CreatedAt": 1548380251,
+        "ID": 1455,
+        "MId": 39,
+        "MResourceId": 32
+      }
+    ],
+    "PlayerRoomBuilding": [
+      {
+        "CreatedAt": 1548394143,
+        "ID": 1,
+        "MGoodsId": 2001,
+        "MGoodsType": 201,
+        "PlayerFloorId": 15,
+        "PosX": -320,
+        "PosY": -29,
+        "PosZ": -429,
+        "RotateAngle": 0
+      }
+    ],
+    "PlayerRoomFloor": [
+      {
+        "CreatedAt": 1548380251,
+        "ID": 15,
+        "MGoodsFloorId": 2018,
+        "MGoodsWallpaperId": 2015,
+        "MRoomFloorId": 1
+      }
+    ],
+    "PlayerProductionInfo": [],
+    "PlayerTownDecoration": []
+  }
+}

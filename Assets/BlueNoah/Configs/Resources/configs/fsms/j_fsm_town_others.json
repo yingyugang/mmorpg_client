@@ -1,0 +1,169 @@
+{
+  "finiteStateMachineArray": [
+    {
+      "id": 5,
+      "name": "CharacterInTown",
+      "conditions": [
+        "StandBy",
+        "Travel",
+        "Angry",
+        "Meet",
+        "MoveToMeet"
+      ],
+      "states": [
+        {
+          "subFSMId": -1,
+          "stateId": "StandBy",
+          "actions": [
+            "LoopMoveTargetAtTownAction"
+          ],
+          "position": {
+            "x": 210,
+            "y": 10,
+            "z": 0
+          }
+        },
+        {
+          "subFSMId": -1,
+          "stateId": "Travel",
+          "actions": [
+            "AStarMultiPointMoveAction"
+          ],
+          "position": {
+            "x": 212,
+            "y": 93,
+            "z": 0
+          }
+        },
+        {
+          "subFSMId": -1,
+          "stateId": "MoveToMeet",
+          "actions": [
+            "MeetAction"
+          ],
+          "position": {
+            "x": 212,
+            "y": 192,
+            "z": 0
+          }
+        },
+        {
+          "subFSMId": -1,
+          "stateId": "Meet",
+          "actions": [
+            "MeetAction"
+          ],
+          "position": {
+            "x": 503,
+            "y": 89,
+            "z": 0
+          }
+        },
+        {
+          "subFSMId": -1,
+          "stateId": "Angry",
+          "actions": [
+            "RandomMoodAction"
+          ],
+          "position": {
+            "x": 503,
+            "y": 13,
+            "z": 0
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Travel",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "StandBy",
+          "toStateId": "Travel"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "MoveToMeet",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "StandBy",
+          "toStateId": "MoveToMeet"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "MoveToMeet",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "Travel",
+          "toStateId": "MoveToMeet"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Travel",
+              "conditionValue": 0
+            }
+          ],
+          "fromStateId": "Travel",
+          "toStateId": "StandBy"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Meet",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "MoveToMeet",
+          "toStateId": "Meet"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Meet",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "Travel",
+          "toStateId": "Meet"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Meet",
+              "conditionValue": 0
+            }
+          ],
+          "fromStateId": "Meet",
+          "toStateId": "StandBy"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Angry",
+              "conditionValue": 0
+            }
+          ],
+          "fromStateId": "Angry",
+          "toStateId": "StandBy"
+        },
+        {
+          "conditionIdValues": [
+            {
+              "conditionId": "Angry",
+              "conditionValue": 1
+            }
+          ],
+          "fromStateId": "StandBy",
+          "toStateId": "Angry"
+        }
+      ]
+    }
+  ]
+}

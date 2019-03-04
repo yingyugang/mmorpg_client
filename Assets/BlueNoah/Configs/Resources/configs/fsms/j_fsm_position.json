@@ -1,0 +1,1211 @@
+{
+    "finiteStateMachineArray": [
+        {
+            "id": 1,
+            "name": "SakuraInRoom",
+            "conditions": [
+                "StandBy",
+                "Walk",
+                "Run",
+                "SitDownToChair",
+                "SitDownToGround",
+                "Fitting",
+                "Fitting01",
+                "Fitting02",
+                "Delight",
+                "Angry",
+                "FeelDown",
+                "Pinch",
+                "HaveSMA",
+                "Incline",
+                "Jump",
+                "Secure",
+                "Release01",
+                "Release02",
+                "Release03",
+                "Release04",
+                "SitEar",
+                "ForceSitChair"
+            ],
+            "states": [
+                {
+                    "subFSMId": -1,
+                    "stateId": "StandBy",
+                    "actions": [
+                        "StandByAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Walk",
+                    "actions": [
+                        "WalkAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Run",
+                    "actions": [
+                        "RunAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 100,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": 2,
+                    "stateId": "SitDownToChair",
+                    "actions": [
+                        "SitDownToChairAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 100,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitDownToGround",
+                    "actions": [
+                        "SitDownToGroundAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 190,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Fitting01",
+                    "actions": [
+                        "Fitting01Action"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 190,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Fitting02",
+                    "actions": [
+                        "Fitting02Action"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 280,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Delight",
+                    "actions": [
+                        "DelightAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 280,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Angry",
+                    "actions": [
+                        "AngryAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 370,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "FeelDown",
+                    "actions": [
+                        "FeelDownAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 370,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Pinch",
+                    "actions": [
+                        "PinchAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 460,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "HaveSMA",
+                    "actions": [
+                        "HaveSMAAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 460,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Incline",
+                    "actions": [
+                        "InclineAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 550,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Jump",
+                    "actions": [
+                        "JumpAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 550,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Secure",
+                    "actions": [
+                        "SecureAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 640,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Release01",
+                    "actions": [
+                        "Release01Action"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 640,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Release02",
+                    "actions": [
+                        "Release02Action"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 730,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Release03",
+                    "actions": [
+                        "Release03Action"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 730,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Release04",
+                    "actions": [
+                        "Release04Action"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 820,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitEar",
+                    "actions": [
+                        "SitEarAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 820,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": 3,
+                    "stateId": "Fitting",
+                    "actions": [
+                        "FittingAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 910,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "ForceSitChair",
+                    "actions": [
+                        "ForceSitChairAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 910,
+                        "z": 0
+                    }
+                }
+            ],
+            "transitions": [
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Run"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Walk"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownToChair",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "SitDownToChair"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownToGround",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "SitDownToGround"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Delight",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Delight"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Angry",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Angry"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "FeelDown",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "FeelDown"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Pinch",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Pinch"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "HaveSMA",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "HaveSMA"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Incline",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Incline"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Jump",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Jump"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Secure",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Secure"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release01",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Release01"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release02",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Release02"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release03",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Release03"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release04",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Release04"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitEar",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "SitEar"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Fitting"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting01",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Fitting01"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting02",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Fitting02"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "Walk",
+                    "toStateId": "Run"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Walk",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        },
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "Run",
+                    "toStateId": "Walk"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        },
+                        {
+                            "conditionId": "SitDownToChair",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "Run",
+                    "toStateId": "SitDownToChair"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        },
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Run",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownToChair",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "SitDownToChair",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownToGround",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "SitDownToGround",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Delight",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Delight",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Angry",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Angry",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "FeelDown",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "FeelDown",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Pinch",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Pinch",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "HaveSMA",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "HaveSMA",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Incline",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Incline",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Jump",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Jump",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Secure",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Secure",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release01",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Release01",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release02",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Release02",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release03",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Release03",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Release03",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Release03",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting01",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Fitting01",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting02",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Fitting02",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitEar",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "SitEar",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitEar",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "SitEar",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Fitting",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "ForceSitChair",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "ForceSitChair"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "ForceSitChair",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "ForceSitChair",
+                    "toStateId": "StandBy"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "SitDown",
+            "conditions": [
+                "SitDownSubRotate",
+                "SitDownSubMoveBack",
+                "SitDownSubExcute",
+                "SitDownSubIdle"
+            ],
+            "states": [
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitDownSubRotate",
+                    "actions": [
+                        "SitDownRotateAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitDownSubMoveBack",
+                    "actions": [
+                        "SitDownMoveBackAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitDownSubExcute",
+                    "actions": [
+                        "SitDownExcuteAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 100,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "SitDownSubIdle",
+                    "actions": [
+                        "SitDownIdleAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 100,
+                        "z": 0
+                    }
+                }
+            ],
+            "transitions": [
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownSubMoveBack",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "SitDownSubRotate",
+                    "toStateId": "SitDownSubMoveBack"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownSubExcute",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "SitDownSubMoveBack",
+                    "toStateId": "SitDownSubExcute"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "SitDownSubIdle",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "SitDownSubExcute",
+                    "toStateId": "SitDownSubIdle"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Fitting",
+            "conditions": [
+                "Fitting01",
+                "Fitting02"
+            ],
+            "states": [
+                {
+                    "subFSMId": -1,
+                    "stateId": "StandBy",
+                    "actions": [
+                        "StandByAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Fitting01",
+                    "actions": [
+                        "Fitting01Action"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Fitting02",
+                    "actions": [
+                        "Fitting02Action"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 100,
+                        "z": 0
+                    }
+                }
+            ],
+            "transitions": [
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting01",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Fitting01"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting02",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Fitting02"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting01",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Fitting01",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Fitting02",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Fitting02",
+                    "toStateId": "StandBy"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Kero",
+            "conditions": [
+                "StandBy",
+                "Run",
+                "Gacha",
+                "Skill",
+                "Avoid",
+                "Follow"
+            ],
+            "states": [
+                {
+                    "subFSMId": -1,
+                    "stateId": "StandBy",
+                    "actions": [
+                        "StandByAction",
+                        "FollowCheckAction",
+                        "ForwardSakuraAction",
+                        "AvoidCheckAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Follow",
+                    "actions": [
+                        "RunAction",
+                        "FollowOnMovingAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Skill",
+                    "actions": [
+                        "SkillAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 160,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Gacha",
+                    "actions": [
+                        "GachaAction"
+                    ],
+                    "position": {
+                        "x": 430,
+                        "y": 160,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Avoid",
+                    "actions": [
+                        "RunAction",
+                        "AvoidAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 250,
+                        "z": 0
+                    }
+                }
+            ],
+            "transitions": [
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 1
+                        },
+                        {
+                            "conditionId": "Follow",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Follow"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Gacha",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Gacha"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Skill",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Skill"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Follow",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Gacha",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Gacha",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Skill",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Skill",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Avoid",
+                            "conditionValue": 1
+                        },
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Avoid"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Avoid",
+                    "toStateId": "StandBy"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "SakuraInTown",
+            "conditions": [
+                "StandBy",
+                "Run",
+                "Walk"
+            ],
+            "states": [
+                {
+                    "subFSMId": -1,
+                    "stateId": "StandBy",
+                    "actions": [
+                        "StandByAction",
+                        "LoopMoveTargetAtTownAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 10,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Run",
+                    "actions": [
+                        "RunAction"
+                    ],
+                    "position": {
+                        "x": 603,
+                        "y": 168,
+                        "z": 0
+                    }
+                },
+                {
+                    "subFSMId": -1,
+                    "stateId": "Walk",
+                    "actions": [
+                        "WalkAction"
+                    ],
+                    "position": {
+                        "x": 210,
+                        "y": 120,
+                        "z": 0
+                    }
+                }
+            ],
+            "transitions": [
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Run"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 1
+                        }
+                    ],
+                    "fromStateId": "StandBy",
+                    "toStateId": "Walk"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Run",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Run",
+                    "toStateId": "StandBy"
+                },
+                {
+                    "conditionIdValues": [
+                        {
+                            "conditionId": "Walk",
+                            "conditionValue": 0
+                        }
+                    ],
+                    "fromStateId": "Walk",
+                    "toStateId": "StandBy"
+                }
+            ]
+        }
+    ]
+}

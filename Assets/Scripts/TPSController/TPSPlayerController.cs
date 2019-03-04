@@ -26,7 +26,6 @@ namespace MMO
         public float speed = 7;
         public Canvas joystickCanvas;
         public ETCJoystick etcJoystick;
-
         UnitAnimator mUnitAnimator;
         MMOUnit mMMOUnit;
         MMOUnitSkill mMMOUnitSkill;
@@ -49,44 +48,42 @@ namespace MMO
             Cursor.lockState = CursorLockMode.Locked;
             MMOController.Instance.weaponId = 1;
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-            EasyInput.Instance.AddListener(BlueNoah.Event.TouchType.TouchBegin, OnTouchBegin);
-            EasyInput.Instance.AddListener(BlueNoah.Event.TouchType.TwoFingerBegin, OnTouchBegin);
-            EasyInput.Instance.AddListener(BlueNoah.Event.TouchType.Touch, OnTouch);
+//之所以用全局事件，是因为任意finger的触点都有可能成为移动的触点
+            EasyInput.Instance.AddGlobalListener(BlueNoah.Event.TouchType.TouchBegin, OnTouchBegin);
+            // EasyInput.Instance.AddGlobalListener(BlueNoah.Event.TouchType.TwoFingerBegin, OnTouchBegin);
+            EasyInput.Instance.AddGlobalListener(BlueNoah.Event.TouchType.Touch, OnTouch);
             //TODO TwoFinger没有实现。
-            EasyInput.Instance.AddListener(BlueNoah.Event.TouchType.TwoFinger, OnTouch);
-            EasyInput.Instance.AddListener(BlueNoah.Event.TouchType.TouchEnd, OnTouchEnd);
+            // EasyInput.Instance.AddGlobalListener(BlueNoah.Event.TouchType.TwoFinger, OnTouch);
+            EasyInput.Instance.AddGlobalListener(BlueNoah.Event.TouchType.TouchEnd, OnTouchEnd);
 #endif
 
         }
 
         bool mMove;
-
-        bool mRotate;
-
-        Vector3 mStartPos;
+        int mMoveFinger;
+        // Vector2 mStartPos;
 
         void OnTouchBegin(EventData eventData)
         {
-            if (eventData.touchStartPos0.x < Screen.width / 2f)
+            if (!mMove && !eventData.currentTouch.isPointerOnGameObject)
             {
-                mMove = true;
-                mRotate = false;
+                if (eventData.currentTouch.startTouch.position.x < Screen.width / 2f)
+                {
+                    mMove = true;
+                    mMoveFinger = eventData.currentTouch.startTouch.fingerId;
+                    // mStartPos = eventData.currentTouch.startTouch.position;
+                }
             }
-            else
-            {
-                mMove = false;
-                mRotate = true;
-            }
-            mStartPos = eventData.touchStartPos0;
         }
 
         void OnTouch(EventData eventData)
         {
-            if (mMove)
+            if (mMove && eventData.currentTouch.touch.fingerId == mMoveFinger)
             {
-                Vector3 distance = eventData.touchPos0 - mStartPos;
-                mInputX = Mathf.Clamp(distance.x / Screen.dpi * 3,-1,1) ;
-                if (Mathf.Abs(mInputX)< 0.2f)
+                isPause = false;
+                Vector3 distance = eventData.currentTouch.touch.position - eventData.currentTouch.startTouch.position;
+                mInputX = Mathf.Clamp(distance.x / Screen.dpi * 3, -1, 1);
+                if (Mathf.Abs(mInputX) < 0.2f)
                 {
                     mInputX = 0;
                 }
@@ -102,10 +99,13 @@ namespace MMO
         void OnTouchEnd(EventData eventData)
         {
             Debug.Log("OnTouchEnd");
-            mMove = false;
-            mRotate = false;
-            mInputX = 0;
-            mInputY = 0;
+            if (mMove && eventData.currentTouch.touch.fingerId == mMoveFinger)
+            {
+                mMove = false;
+                mInputX = 0;
+                mInputY = 0;
+                mMoveFinger = -1;
+            }
         }
 
         public bool isPause;
@@ -200,10 +200,10 @@ namespace MMO
                 Reload();
             }
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
-            {
-                isPause = false;
-            }
+            // if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
+            // {
+            //     isPause = false;
+            // }
             if (isPause)
             {
                 mUnitAnimator.SetMoveSpeed(0);
@@ -211,18 +211,19 @@ namespace MMO
             }
 
 #if UNITY_EDITOR || (!UNITY_IOS && !UNITY_ANDROID)
-            mInputX = Input.GetAxis ("Horizontal");
-			mInputY = Input.GetAxis ("Vertical");
+            mInputX = Input.GetAxis("Horizontal");
+            mInputY = Input.GetAxis("Vertical");
 
-			if (etcJoystick != null && etcJoystick.gameObject.activeInHierarchy) {
-				mInputX = etcJoystick.axisX.axisValue;
-				mInputY = etcJoystick.axisY.axisValue;
-			}
-#endif
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
+            if (etcJoystick != null && etcJoystick.gameObject.activeInHierarchy)
             {
-                mUnitAnimator.ResetAllAttackTriggers();
+                mInputX = etcJoystick.axisX.axisValue;
+                mInputY = etcJoystick.axisY.axisValue;
             }
+#endif
+            // if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
+            // {
+            //     mUnitAnimator.ResetAllAttackTriggers();
+            // }
 
             Vector3 forward = tpsCameraController.transform.forward;
             forward = new Vector3(forward.x, 0, forward.z).normalized;
