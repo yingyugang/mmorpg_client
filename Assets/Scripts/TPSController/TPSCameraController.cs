@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using MMO;
 using BlueNoah.Event;
 
-namespace MMO
+namespace TPS.CameraControl
 {
     public class TPSCameraController : BaseCameraController
     {
@@ -135,61 +135,61 @@ namespace MMO
             Gizmos.DrawSphere(hit.point, 10);
         }
 
-        bool isTouchMoved = false;
-        int mFingerId;
+        //         bool isTouchMoved = false;
+        //         int mFingerId;
 
-        void Ratate()
-        {
-#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-            MobileRotate();
-#else
-            NormalRotate();
-#endif
-        }
+        //         void Ratate()
+        //         {
+        // #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+        //             MobileRotate();
+        // #else
+        //             NormalRotate();
+        // #endif
+        //         }
         //TODO event 化
-        void MobileRotate()
-        {
-            foreach (Touch touch in Input.touches)
-            {
-                if (touch.phase == TouchPhase.Began)
-                {
-                    if (!isTouchMoved)
-                    {
-                        if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId) && touch.position.x > Screen.width / 2f)
-                        {
-                            mFingerId = touch.fingerId;
-                            isTouchMoved = true;
-                        }
-                    }
-                }
-                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-                {
-                    if (mFingerId == touch.fingerId)
-                    {
-                        isTouchMoved = false;
-                    }
-                }
-            }
+        // void MobileRotate()
+        // {
+        //     foreach (Touch touch in Input.touches)
+        //     {
+        //         if (touch.phase == TouchPhase.Began)
+        //         {
+        //             if (!isTouchMoved)
+        //             {
+        //                 if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId) && touch.position.x > Screen.width / 2f)
+        //                 {
+        //                     mFingerId = touch.fingerId;
+        //                     isTouchMoved = true;
+        //                 }
+        //             }
+        //         }
+        //         if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+        //         {
+        //             if (mFingerId == touch.fingerId)
+        //             {
+        //                 isTouchMoved = false;
+        //             }
+        //         }
+        //     }
 
-            if (Input.touchCount > 0)
-            {
-                if (isTouchMoved)
-                {
-                    if (Input.GetTouch(mFingerId).deltaPosition.x != 0)
-                    {
-                        mDirect = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * mDirect;
-                        if (!target.GetComponent<MMOUnit>().isDead)
-                        {
-                            target.forward = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * target.forward;
-                        }
-                    }
-                    if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0)
-                    {
-                        angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed / 10;
-                    }
-                }
-            }
-        }
+        //     if (Input.touchCount > 0)
+        //     {
+        //         if (isTouchMoved)
+        //         {
+        //             if (Input.GetTouch(mFingerId).deltaPosition.x != 0)
+        //             {
+        //                 mDirect = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * mDirect;
+        //                 if (!target.GetComponent<MMOUnit>().isDead)
+        //                 {
+        //                     target.forward = Quaternion.AngleAxis(Input.GetTouch(mFingerId).deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * target.forward;
+        //                 }
+        //             }
+        //             if (is3D && Input.GetTouch(mFingerId).deltaPosition.y != 0)
+        //             {
+        //                 angle -= Input.GetTouch(mFingerId).deltaPosition.y * speed / 10;
+        //             }
+        //         }
+        //     }
+        // }
 
         void NormalRotate()
         {

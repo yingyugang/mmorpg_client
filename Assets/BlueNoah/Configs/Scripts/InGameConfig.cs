@@ -7,6 +7,7 @@ namespace TD.Config
     {
 
         public float cameraDragSpeed;
+        public float rotateSpeed;
 
         static InGameConfig mInstance;
 
