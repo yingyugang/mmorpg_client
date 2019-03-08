@@ -140,7 +140,7 @@ namespace MMO
             if (isStart)
             {
                 int mCurrentSelectId = selectedUnit == null ? -1 : selectedUnit.unitInfo.attribute.unitId;
-                //Postion and rotation を同期する
+                //Position and rotation を同期する
                 if (player.position != mPrePosition || player.forward != mPreForward || mPreSelectId != mCurrentSelectId)
                 {
                     mPrePosition = player.position;

@@ -3,230 +3,271 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 namespace MMO
 {
-	public class MainInterfacePanel : PanelBase
-	{
+    public class MainInterfacePanel : PanelBase
+    {
 
-		public Image img_head;
-		public Image img_health;
-		public Image img_mana;
-		public Text txt_name;
-		public Text txt_level;
-		public Slider slider_skill;
-		public Image img_bigmap_mask;
-		public Image img_aim;
-		public Image img_aim1;
+        public Image img_head;
+        public Image img_health;
+        public Image img_mana;
+        public Text txt_name;
+        public Text txt_level;
+        public Slider slider_skill;
+        public Image img_bigmap_mask;
+        public Image img_aim;
+        public Image img_aim1;
 
-		const int SKILL_ICON_COUNT = 20;
-		public GridLayoutGroup skillGrid;
-		public GameObject skillItemPrefab;
-		public List<Button> skillButtonList;
-		public Button btn_normal_attack;
-		public Button btn_voice;
-		public Button btn_respawn;
-		bool isRecording;
-		public MobileSkillButtonGroup mobileSkillButtonGroup;
-		public BulletGroup bulletGroup;
+        const int SKILL_ICON_COUNT = 20;
+        public GridLayoutGroup skillGrid;
+        public GameObject skillItemPrefab;
+        public List<Button> skillButtonList;
+        public Button btn_normal_attack;
+        public Button btn_voice;
+        public Button btn_respawn;
+        bool isRecording;
+        public MobileSkillButtonGroup mobileSkillButtonGroup;
+        public BulletGroup bulletGroup;
 
-		Dictionary<Button,SkillBase> mSkillButtonDic;
-		MMOUnitSkill mUnitSkill;
-		Button mSelectButton;
-		bool mIsIconInited = false;
-		float mTimeToCloseMobileSkillButtonGroup;
-		const float DurationToCloseMobileSkillButtonGroup = 5f;
+        Dictionary<Button, SkillBase> mSkillButtonDic;
+        MMOUnitSkill mUnitSkill;
+        Button mSelectButton;
+        bool mIsIconInited = false;
+        float mTimeToCloseMobileSkillButtonGroup;
+        const float DurationToCloseMobileSkillButtonGroup = 5f;
 
-		protected override void Awake ()
-		{
-			base.Awake ();
-			mSkillButtonDic = new Dictionary<Button, SkillBase> ();
-			InitIconItems ();
-			skillGrid.gameObject.SetActive(false);
-			btn_voice.onClick.AddListener (()=>{
-				if(!isRecording){
-					MicrophoneManager.Instance.StartMicrophone();
-					isRecording = true;
-				}else{
-					float[] datas = MicrophoneManager.Instance.EndMicrophone();
-					MMOController.Instance.SendVoice(datas);
-					isRecording = false;
-				}
-			});
-		}
+        protected override void Awake()
+        {
+            base.Awake();
+            mSkillButtonDic = new Dictionary<Button, SkillBase>();
+            InitIconItems();
+            skillGrid.gameObject.SetActive(false);
+            btn_voice.onClick.AddListener(() =>
+            {
+                if (!isRecording)
+                {
+                    MicrophoneManager.Instance.StartMicrophone();
+                    isRecording = true;
+                }
+                else
+                {
+                    float[] datas = MicrophoneManager.Instance.EndMicrophone();
+                    MMOController.Instance.SendVoice(datas);
+                    isRecording = false;
+                }
+            });
+        }
 
-		protected override void Start(){
-			base.Start ();
-		}
+        protected override void Start()
+        {
+            base.Start();
+        }
 
-		public void HideAims(){
-			img_aim.gameObject.SetActive (false);
-			img_aim1.gameObject.SetActive (false);
-		}
+        public void HideAims()
+        {
+            img_aim.gameObject.SetActive(false);
+            img_aim1.gameObject.SetActive(false);
+        }
 
-		public void ShowAims(){
-			img_aim.gameObject.SetActive (true);
-			img_aim1.gameObject.SetActive (true);
-		}
+        public void ShowAims()
+        {
+            img_aim.gameObject.SetActive(true);
+            img_aim1.gameObject.SetActive(true);
+        }
 
-		void InitIconItems ()
-		{
-			if (mIsIconInited)
-				return;
-			skillButtonList = new List<Button> ();
-			for (int i = 0; i < SKILL_ICON_COUNT; i++) {
-				GameObject item = Instantiate (skillItemPrefab);
-				item.transform.SetParent (skillGrid.transform);
-				item.transform.localScale = Vector3.one;
-				item.transform.localPosition = Vector3.zero;
-				item.SetActive (true);
-				skillButtonList.Add (item.GetComponentInChildren<Button>(true));
-			}
-			mIsIconInited = true;
-		}
+        void InitIconItems()
+        {
+            if (mIsIconInited)
+                return;
+            skillButtonList = new List<Button>();
+            for (int i = 0; i < SKILL_ICON_COUNT; i++)
+            {
+                GameObject item = Instantiate(skillItemPrefab);
+                item.transform.SetParent(skillGrid.transform);
+                item.transform.localScale = Vector3.one;
+                item.transform.localPosition = Vector3.zero;
+                item.SetActive(true);
+                skillButtonList.Add(item.GetComponentInChildren<Button>(true));
+            }
+            mIsIconInited = true;
+        }
 
-		public void SetSkillDatas (MMOUnitSkill unitSkill)
-		{
-			InitIconItems ();
-			ResetSkillIcons ();
-			mUnitSkill = unitSkill;
-			this.mobileSkillButtonGroup.Init (unitSkill);
-			List<SkillBase> skills = unitSkill.skillList;
-			for (int i = 0; i < skills.Count; i++) {
-//				SkillBase sb = skills [i];
-				Button btnSkill = skillButtonList [i];
-				btnSkill.onClick.AddListener (()=>{
-					if(mSelectButton!=null){
-						UnSelectSkillButton(mSelectButton);
-					}
-					mSelectButton = btnSkill;
-					SelectSkillButton(mSelectButton);
-					ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION,unitSkill,skills[i]);
-				});
-				Image imgIcon = btnSkill.GetComponent<Image>();
-				if (imgIcon != null && skills [i].mSkill != null) {
-					imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon (skills [i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
-					imgIcon.gameObject.SetActive (true);
-				}
-			}
-		}
+        public void SetSkillDatas(MMOUnitSkill unitSkill)
+        {
+            InitIconItems();
+            ResetSkillIcons();
+            mUnitSkill = unitSkill;
+            try
+            {
+                this.mobileSkillButtonGroup.Init(unitSkill);
+            }
+            catch (Exception ex)
+            {
 
-		void UnSelectSkillButton(Button skillBtn){
-			if(skillBtn!=null){
-				Transform activeTrans = skillBtn.transform.parent.Find ("img_active");
-				activeTrans.gameObject.SetActive (false);
-				skillBtn = null;
-			}
-		}
+            }
 
-		void SelectSkillButton(Button skillBtn){
-			if(skillBtn!=null){
-				Transform activeTrans = skillBtn.transform.parent.Find ("img_active");
-				activeTrans.gameObject.SetActive (true);
-			}
-		}
+            List<SkillBase> skills = unitSkill.skillList;
+            for (int i = 0; i < skills.Count; i++)
+            {
+                //				SkillBase sb = skills [i];
+                Button btnSkill = skillButtonList[i];
+                btnSkill.onClick.AddListener(() =>
+                {
+                    if (mSelectButton != null)
+                    {
+                        UnSelectSkillButton(mSelectButton);
+                    }
+                    mSelectButton = btnSkill;
+                    SelectSkillButton(mSelectButton);
+                    ShowSkillSilder(GlobalConstant.DEFAULT_SKILL_READ_DURATION, unitSkill, skills[i]);
+                });
+                Image imgIcon = btnSkill.GetComponent<Image>();
+                if (imgIcon != null && skills[i].mSkill != null)
+                {
+                    imgIcon.sprite = ResourcesManager.Instance.GetSkillIcon(skills[i].mSkill.id);// skillIconList[sb.skillId % skillIconList.Count];
+                    imgIcon.gameObject.SetActive(true);
+                }
+            }
+        }
 
-		void UpdateCooldowns(){
-			if (mUnitSkill == null || mUnitSkill.skillList == null)
-				return;
-			List<SkillBase> skills = mUnitSkill.skillList;
-			for (int i = 0; i < skills.Count; i++) {
-				SkillBase sb = skills [i];
-				Button btnSkill = skillButtonList [i];
-				SkillBase skillBase = skills [i];
-				Image imgCooldown = btnSkill.transform.parent.Find ("img_cooldown").GetComponent<Image> ();
-				imgCooldown.fillAmount = Mathf.Max(0,skillBase.GetCooldown());
-				if (imgCooldown.fillAmount == 0) {
-					imgCooldown.gameObject.SetActive (false);
-				} else {
-					imgCooldown.gameObject.SetActive (true);
-				}
-			}
-		}
+        void UnSelectSkillButton(Button skillBtn)
+        {
+            if (skillBtn != null)
+            {
+                Transform activeTrans = skillBtn.transform.parent.Find("img_active");
+                activeTrans.gameObject.SetActive(false);
+                skillBtn = null;
+            }
+        }
 
-		void ResetSkillIcons ()
-		{
-			for (int i = 0; i < skillButtonList.Count; i++) {
-				Button btn = skillButtonList [i];
-				Image imgIcon = btn.GetComponent<Image>();
-				imgIcon.gameObject.SetActive (false);
-			}
-		}
+        void SelectSkillButton(Button skillBtn)
+        {
+            if (skillBtn != null)
+            {
+                Transform activeTrans = skillBtn.transform.parent.Find("img_active");
+                activeTrans.gameObject.SetActive(true);
+            }
+        }
 
-		void Update ()
-		{
-			UpdatePlayerInfo ();
-			UpdateCooldowns ();
-		}
+        void UpdateCooldowns()
+        {
+            if (mUnitSkill == null || mUnitSkill.skillList == null)
+                return;
+            List<SkillBase> skills = mUnitSkill.skillList;
+            for (int i = 0; i < skills.Count; i++)
+            {
+                SkillBase sb = skills[i];
+                Button btnSkill = skillButtonList[i];
+                SkillBase skillBase = skills[i];
+                Image imgCooldown = btnSkill.transform.parent.Find("img_cooldown").GetComponent<Image>();
+                imgCooldown.fillAmount = Mathf.Max(0, skillBase.GetCooldown());
+                if (imgCooldown.fillAmount == 0)
+                {
+                    imgCooldown.gameObject.SetActive(false);
+                }
+                else
+                {
+                    imgCooldown.gameObject.SetActive(true);
+                }
+            }
+        }
 
-		void UpdatePlayerInfo ()
-		{
-			if (MMOController.Instance.playerInfo == null)
-				return;
-			txt_level.text = MMOController.Instance.playerInfo.unitInfo.attribute.level.ToString ();
-			txt_name.text = MMOController.Instance.fullPlayerInfo.playerName;
-			if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
-				img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
-		}
+        void ResetSkillIcons()
+        {
+            for (int i = 0; i < skillButtonList.Count; i++)
+            {
+                Button btn = skillButtonList[i];
+                Image imgIcon = btn.GetComponent<Image>();
+                imgIcon.gameObject.SetActive(false);
+            }
+        }
 
-		Coroutine mCoroutine;
-		public void ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
-			//TODO to check the animation clip name;
-			StartCoroutine (_PlayAnimation("cast",2));
-			if (mCoroutine != null) {
-				StopCoroutine (mCoroutine);
-			}
-			mCoroutine = StartCoroutine (_ShowSkillSilder(duration,unitSkill,skillBase));
-		}
+        void Update()
+        {
+            UpdatePlayerInfo();
+            UpdateCooldowns();
+        }
 
-		IEnumerator _PlayAnimation(string clip,float length){
-			this.mUnitSkill.mmoUnit.unitAnimator.Play (clip);
-			this.mUnitSkill.mmoUnit.unitAnimator.SetSpeed (1);
-			yield return new WaitForSeconds (length);
-		}
+        void UpdatePlayerInfo()
+        {
+            if (MMOController.Instance.playerInfo == null)
+                return;
+            txt_level.text = MMOController.Instance.playerInfo.unitInfo.attribute.level.ToString();
+            txt_name.text = MMOController.Instance.fullPlayerInfo.playerName;
+            if (MMOController.Instance.playerInfo.unitInfo.attribute.maxHP > 0)
+                img_health.fillAmount = MMOController.Instance.playerInfo.unitInfo.attribute.currentHP / (float)MMOController.Instance.playerInfo.unitInfo.attribute.maxHP;
+        }
 
-		IEnumerator _ShowSkillSilder(float duration,MMOUnitSkill unitSkill,SkillBase skillBase){
-			slider_skill.GetComponent<CanvasGroup> ().DOFade (1,0.1f);
-			float t = 0;
-			slider_skill.value = 0;
-			while(t < 1){
-				t += Time.deltaTime / duration;
-				slider_skill.value = t;
-				yield return null;
-			}
-			unitSkill.PlayClientSkill(skillBase);
-			ShopSkill ();
-		}
+        Coroutine mCoroutine;
+        public void ShowSkillSilder(float duration, MMOUnitSkill unitSkill, SkillBase skillBase)
+        {
+            //TODO to check the animation clip name;
+            StartCoroutine(_PlayAnimation("cast", 2));
+            if (mCoroutine != null)
+            {
+                StopCoroutine(mCoroutine);
+            }
+            mCoroutine = StartCoroutine(_ShowSkillSilder(duration, unitSkill, skillBase));
+        }
 
-		void ShopSkill(){
-			UnSelectSkillButton (mSelectButton);
-			slider_skill.GetComponent<CanvasGroup> ().DOFade (0,0.1f);
-		}
+        IEnumerator _PlayAnimation(string clip, float length)
+        {
+            this.mUnitSkill.mmoUnit.unitAnimator.Play(clip);
+            this.mUnitSkill.mmoUnit.unitAnimator.SetSpeed(1);
+            yield return new WaitForSeconds(length);
+        }
 
-		float mCurrentSize = 1;
-		Coroutine mAimCoroutine;
-		IEnumerator _Aim(){
-			 mCurrentSize = 1;
-			while(true){
-				mCurrentSize -= Mathf.Max(Time.deltaTime,(mCurrentSize - 1) * Time.deltaTime * 2);
-				mCurrentSize = Mathf.Max (1,mCurrentSize);
-				img_aim.transform.localScale = Vector3.one * mCurrentSize;
-				yield return null;
-			}
-		}
+        IEnumerator _ShowSkillSilder(float duration, MMOUnitSkill unitSkill, SkillBase skillBase)
+        {
+            slider_skill.GetComponent<CanvasGroup>().DOFade(1, 0.1f);
+            float t = 0;
+            slider_skill.value = 0;
+            while (t < 1)
+            {
+                t += Time.deltaTime / duration;
+                slider_skill.value = t;
+                yield return null;
+            }
+            unitSkill.PlayClientSkill(skillBase);
+            ShopSkill();
+        }
 
-		float deltaSize = 0.3f;
-		public void Shoot(){
-			if(mAimCoroutine==null)
-				mAimCoroutine = StartCoroutine (_Aim());
-			mCurrentSize += deltaSize;
-		}
+        void ShopSkill()
+        {
+            UnSelectSkillButton(mSelectButton);
+            slider_skill.GetComponent<CanvasGroup>().DOFade(0, 0.1f);
+        }
 
-		public IntVector3 GetAimTargetPos(){
-//			RectTransformUtility.WorldToScreenPoint ();
-			return new IntVector3 ();
-		}
+        float mCurrentSize = 1;
+        Coroutine mAimCoroutine;
+        IEnumerator _Aim()
+        {
+            mCurrentSize = 1;
+            while (true)
+            {
+                mCurrentSize -= Mathf.Max(Time.deltaTime, (mCurrentSize - 1) * Time.deltaTime * 2);
+                mCurrentSize = Mathf.Max(1, mCurrentSize);
+                img_aim.transform.localScale = Vector3.one * mCurrentSize;
+                yield return null;
+            }
+        }
+
+        float deltaSize = 0.3f;
+        public void Shoot()
+        {
+            if (mAimCoroutine == null)
+                mAimCoroutine = StartCoroutine(_Aim());
+            mCurrentSize += deltaSize;
+        }
+
+        public IntVector3 GetAimTargetPos()
+        {
+            //			RectTransformUtility.WorldToScreenPoint ();
+            return new IntVector3();
+        }
 
 
-	}
+    }
 }

@@ -21,8 +21,8 @@ namespace TPS.CameraControl
         public float speed = 2;
         public bool is3D = true;
         public bool isRotateable = true;
-        public float DISTANCE_GROUND_OFFSET = 1;
-        public float DISTANCE_SPEED = 10;
+        public const float DISTANCE_GROUND_OFFSET = 1;
+        public const float DISTANCE_SPEED = 10;
         Vector3 mDirect;
         int mRotateFinger;
         bool mRotate;
@@ -32,14 +32,14 @@ namespace TPS.CameraControl
             mTrans = transform;
             mRealDistance = distance;
             mCamera = GetComponent<Camera>();
-            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.TouchBegin, OnTouchBegin);
-            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.Touch, OnTouch);
-            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.TouchEnd, OnTouchEnd);
         }
 
         void Start()
         {
             mDirect = (new Vector3(mTrans.position.x - target.position.x, 0, mTrans.position.z - target.position.z)).normalized;
+            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.TouchBegin, OnTouchBegin);
+            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.Touch, OnTouch);
+            EasyInput.Instance.AddGlobalLateUpdateListener(BlueNoah.Event.TouchType.TouchEnd, OnTouchEnd);
         }
 
         void OnTouchBegin(EventData eventData)

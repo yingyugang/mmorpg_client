@@ -274,10 +274,6 @@ namespace TPS.PlayerControl
                 }
                 //TODO 暂时只能同步move和idle，attack无法同步。
             }
-            else
-            {
-
-            }
             _velocity.y -= gravity * Time.deltaTime;
         }
 
