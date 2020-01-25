@@ -60,7 +60,12 @@ namespace MMO
             mPlayerDic = new Dictionary<int, GameObject>();
             mMonsterDic = new Dictionary<int, GameObject>();
             mUnitDic = new Dictionary<int, GameObject>();
-            client.onRecieveMonsterInfos = OnRecieveServerActions;
+
+            //client.onRecieveMonsterInfos = OnRecieveServerActions;
+            //TODO
+            MMOSocketClient.onAction = OnRecieveServerActions;
+
+
             mHeadUIPrefab = Resources.Load<GameObject>("UnitUI/HeadRoot").GetComponent<HeadUIBase>();
             GameObject terrainPrefab;
             GameObject terrainPrefabT4M;
@@ -75,7 +80,7 @@ namespace MMO
             Instantiate(terrainObjectPrefab).GetComponent<GameObject>();
             if (!string.IsNullOrEmpty(ServerListPanel.targetIp))
             {
-                Connect(ServerListPanel.targetIp, BattleConst.DEFAULT_TARGET_PORT);
+                Connect(ServerListPanel.targetIp1, BattleConst.DEFAULT_TARGET_PORT);
                 //TODO need to set the character name at character select page.
                 playerName = Random.Range(10000, 99999).ToString();
             }
@@ -312,6 +317,23 @@ namespace MMO
             if (!isStart)
                 return;
             TransferData data = msg.ReadMessage<TransferData>();
+            OnRecieveServerActions(data);
+        }
+
+        void OnRecieveServerActions(string msg)
+        {
+            if(false)
+            Debug.Log(msg);
+            //Heart tips
+            if (msg == "/r/n")
+                return;
+            MessageRequest request = JsonUtility.FromJson<MessageRequest>(msg);
+            TransferData data = JsonUtility.FromJson<TransferData>(request.requestMessage);
+            OnRecieveServerActions(data);
+        }
+
+        void OnRecieveServerActions(TransferData data)
+        {
             mCurrentFrame++;
             for (int i = 0; i < data.monsterDatas.Length; i++)
             {

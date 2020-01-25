@@ -22,7 +22,7 @@ namespace MMO
 			base.Awake ();
 			btn_connect.onClick.AddListener (()=>{
 				MMOController.Instance.playerName = input_name.text.Trim();
-				MMOController.Instance.Connect(ServerListPanel.targetIp.Trim(),BattleConst.DEFAULT_TARGET_PORT);
+				MMOController.Instance.Connect(ServerListPanel.targetIp, BattleConst.DEFAULT_TARGET_PORT);
 				PlayerPrefs.SetString(TARGET_IP,input_ip.text);
 				PlayerPrefs.SetString(TARGET_PORT,input_port.text);
 				PlayerPrefs.SetString(TARGET_NAME,input_name.text);

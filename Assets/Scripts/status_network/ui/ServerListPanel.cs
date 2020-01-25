@@ -19,8 +19,8 @@ namespace MMO
 		float mNextCheckTime;
 		string[] mServerNames;
 		public static string targetIp;
-
-		protected override void Awake ()
+        public static string targetIp1 = "127.0.0.1";
+        protected override void Awake ()
 		{
 			base.Awake ();
 			mServerBtns = new Dictionary<string, GameObject> ();

@@ -176,14 +176,20 @@ namespace MMO
 		public GameObject GetTerrainObjects(string abName,string terrainName){
 			 abName = ABConstant.TERRAIN_OBJECTS + abName;
 			GameObject go = LoadAsset<GameObject> (abName,terrainName);
-			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
+#if UNITY_EDITOR
+            ResetShader(go);
+#endif
+            AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			return go;
 		}
 
         public void GetTerrain(string abName,string terrainName,out GameObject terrain,out GameObject terrainT4M){
 			 abName = ABConstant.TERRAIN + abName;
 			terrain  = LoadAsset<GameObject> (abName,terrainName);
-			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
+#if UNITY_EDITOR
+            ResetShader(terrain);
+#endif
+            AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 			terrainT4M = LoadAsset<GameObject> (abName,string.Format("{0}{1}",terrainName,"T4M"));
 			AssetbundleManager.Instance.UnloadAssetBundle (abName,false);
 		}
@@ -201,10 +207,26 @@ namespace MMO
 		public GameObject GetUnit(string abName,string unitName){
 			AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
 			GameObject go = LoadAsset<GameObject> (abName,unitName);
-			return go;
+#if UNITY_EDITOR
+            ResetShader(go);
+#endif
+            return go;
 		}
 
-		public GameObject GetUnitFromLocal(string unitName){
+        void ResetShader(GameObject go)
+        {
+            Renderer[] renderers = go.GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer renderer in renderers)
+            {
+                foreach (Material mat in renderer.sharedMaterials)
+                {
+                    if(mat!=null && mat.shader!=null)
+                    mat.shader = Shader.Find(mat.shader.name);
+                }
+            }
+        }
+
+        public GameObject GetUnitFromLocal(string unitName){
 			AssetbundleManager.Instance.GetAssetbundleFromLocal (ABConstant.CHARACTERS + ABConstant.CHARACTERS_SHARED);
 			GameObject go = Resources.Load<GameObject> ("Units/" + unitName);//   LoadAsset<GameObject> (abName,unitName);
 			return go;
@@ -213,7 +235,10 @@ namespace MMO
 		public GameObject GetBulletHit(string prefabName){
 			string abName = ABConstant.EFFECTS + ABConstant.FPSPACK;
 			GameObject go = LoadAsset<GameObject> (abName,prefabName);
-			return go;
+#if UNITY_EDITOR
+            ResetShader(go);
+#endif
+            return go;
 		}
 
 		Dictionary<int,GameObject> mCachedEffect;
