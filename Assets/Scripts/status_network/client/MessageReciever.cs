@@ -24,7 +24,9 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 		//監視しているポート
 		int LOCAL_PORT = 50001;
 		ips = new Dictionary<string, float> ();
-		udp = new UdpClient(LOCAL_PORT);
+        //TODO
+        ips.Add("127.0.0.1", Time.time);
+        udp = new UdpClient(LOCAL_PORT);
 		thread = new Thread(new ThreadStart(ThreadMethod));
 		thread.IsBackground = true;
 		thread.Start();

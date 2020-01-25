@@ -69,12 +69,21 @@ namespace TPS.PlayerControl
         {
             if (!mMove && !eventData.currentTouch.isPointerOnGameObject)
             {
+                //special for pc.
+#if UNITY_EDITOR || UNITY_STANDALONE
+                if (Input.GetMouseButtonDown(0))
+                {
+                    mMove = true;
+                    mMoveFinger = eventData.currentTouch.startTouch.fingerId;
+                }
+#else
                 if (eventData.currentTouch.startTouch.position.x < Screen.width / 2f)
                 {
                     mMove = true;
                     mMoveFinger = eventData.currentTouch.startTouch.fingerId;
                     // mStartPos = eventData.currentTouch.startTouch.position;
                 }
+#endif
             }
         }
 
@@ -126,6 +135,7 @@ namespace TPS.PlayerControl
             }
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
+                //Cursor.visible = false;
                 if (Cursor.lockState != CursorLockMode.Locked)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
@@ -134,7 +144,7 @@ namespace TPS.PlayerControl
             }
 #if UNITY_EDITOR || (!UNITY_IOS && !UNITY_ANDROID)
             //TODO mobileを対応することが必要だと思う。
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonDown(0) && (!EventSystem.current.IsPointerOverGameObject() || Cursor.lockState == CursorLockMode.Locked))
             {
                 if (MMOController.Instance.weaponId == 1)
                 {

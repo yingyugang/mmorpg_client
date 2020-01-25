@@ -203,7 +203,6 @@ namespace MMO {
                 NetworkStream stream = client.GetStream();
                 StreamReader serverReader = new StreamReader(stream, Encoding.UTF8);
                 string responseData = serverReader.ReadLine();
-                Debug.Log(responseData);
                 messageQueue.Enqueue(responseData);
             }
             catch (ArgumentNullException e)

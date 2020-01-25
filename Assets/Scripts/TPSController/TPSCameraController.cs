@@ -44,13 +44,28 @@ namespace TPS.CameraControl
 
         void OnTouchBegin(EventData eventData)
         {
-            if (!mRotate && !eventData.currentTouch.isPointerOnGameObject)
+            if (!mRotate )
             {
-                if (eventData.currentTouch.startTouch.position.x >= Screen.width / 2f)
+                //special for pc.
+#if UNITY_EDITOR || UNITY_STANDALONE
+                Debug.Log("OnTouchBegin");
+                if ( Input.GetMouseButtonDown(1))
                 {
+                    if (!eventData.currentTouch.isPointerOnGameObject || Cursor.lockState == CursorLockMode.Locked)
+                    {
+                        Debug.Log("OnTouchBegin");
+                        mRotate = true;
+                        mRotateFinger = eventData.currentTouch.startTouch.fingerId;
+                    }
+                }
+#else
+                if (eventData.currentTouch.startTouch.position.x >= Screen.width / 2f && !eventData.currentTouch.isPointerOnGameObject)
+                {
+                    Debug.Log("OnTouchBegin");
                     mRotate = true;
                     mRotateFinger = eventData.currentTouch.startTouch.fingerId;
                 }
+#endif
             }
         }
 
@@ -65,10 +80,20 @@ namespace TPS.CameraControl
                     {
                         target.forward = Quaternion.AngleAxis(eventData.currentTouch.touch.deltaPosition.x * speed / 10, new Vector3(0, 1, 0)) * target.forward;
                     }
+                }else if (Input.GetAxis("Mouse X")!=0)
+                {
+                    mDirect = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * speed , new Vector3(0, 1, 0)) * mDirect;
+                    if (!target.GetComponent<MMOUnit>().isDead)
+                    {
+                        target.forward = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * speed, new Vector3(0, 1, 0)) * target.forward;
+                    }
                 }
                 if (is3D && eventData.currentTouch.touch.deltaPosition.y != 0)
                 {
                     angle -= eventData.currentTouch.touch.deltaPosition.y * speed / 10;
+                }else if (is3D &&  Input.GetAxis("Mouse Y")!=0)
+                {
+                    angle -= Input.GetAxis("Mouse Y") * speed * 2;
                 }
             }
         }
@@ -77,6 +102,7 @@ namespace TPS.CameraControl
         {
             if (mRotate && eventData.currentTouch.touch.fingerId == mRotateFinger)
             {
+                Debug.Log("OnTouchEnd");
                 mRotate = false;
                 mRotateFinger = -1;
             }
