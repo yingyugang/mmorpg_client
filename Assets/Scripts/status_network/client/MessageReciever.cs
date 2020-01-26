@@ -26,6 +26,7 @@ public class MessageReciever : SingleMonoBehaviour<MessageReciever> {
 		ips = new Dictionary<string, float> ();
         //TODO
         ips.Add("127.0.0.1", Time.time);
+        ips.Add("34.85.109.164", Time.time);
         udp = new UdpClient(LOCAL_PORT);
 		thread = new Thread(new ThreadStart(ThreadMethod));
 		thread.IsBackground = true;

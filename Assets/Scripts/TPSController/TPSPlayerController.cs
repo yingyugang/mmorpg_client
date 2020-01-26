@@ -69,21 +69,12 @@ namespace TPS.PlayerControl
         {
             if (!mMove && !eventData.currentTouch.isPointerOnGameObject)
             {
-                //special for pc.
-#if UNITY_EDITOR || UNITY_STANDALONE
-                if (Input.GetMouseButtonDown(0))
-                {
-                    mMove = true;
-                    mMoveFinger = eventData.currentTouch.startTouch.fingerId;
-                }
-#else
                 if (eventData.currentTouch.startTouch.position.x < Screen.width / 2f)
                 {
                     mMove = true;
                     mMoveFinger = eventData.currentTouch.startTouch.fingerId;
                     // mStartPos = eventData.currentTouch.startTouch.position;
                 }
-#endif
             }
         }
 
@@ -109,7 +100,6 @@ namespace TPS.PlayerControl
 
         void OnTouchEnd(EventData eventData)
         {
-            Debug.Log("OnTouchEnd");
             if (mMove && eventData.currentTouch.touch.fingerId == mMoveFinger)
             {
                 mMove = false;
